@@ -1,0 +1,92 @@
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Literal
+
+DEFAULT_TOPCV_START_URL = "https://www.topcv.vn/tim-viec-lam-moi-nhat?type_keyword=1&sba=1"
+SAMPLE_MAX_PAGES = 2
+SAMPLE_MAX_DETAILS = 20
+
+
+class ConfigError(ValueError):
+    """Raised before any request when crawler configuration is unsafe or invalid."""
+
+
+@dataclass(frozen=True, slots=True)
+class CrawlConfig:
+    source: str = "topcv"
+    mode: Literal["sample", "full-snapshot"] = "sample"
+    start_url: str = DEFAULT_TOPCV_START_URL
+    output_dir: Path = Path("data/raw")
+    timeout_seconds: float = 20.0
+    delay_min_seconds: float = 1.5
+    delay_max_seconds: float = 3.0
+    max_retries: int = 3
+    max_pages: int | None = SAMPLE_MAX_PAGES
+    max_details: int | None = SAMPLE_MAX_DETAILS
+    user_agent: str = "job-warehouse-crawler/0.1 (+public-research; contact=configure-me)"
+    timezone: str = "Asia/Ho_Chi_Minh"
+    save_html: bool = False
+    log_level: str = "INFO"
+    authorization_reference: str | None = None
+    confirm_full: bool = False
+    resume: bool = False
+    fetcher: Literal["auto", "http", "playwright"] = "auto"
+    headed: bool = False
+    save_screenshot_on_error: bool = False
+    browser_wait_ms: int = 1500
+
+    @classmethod
+    def from_environment(cls, **overrides: object) -> CrawlConfig:
+        values: dict[str, object] = {
+            "output_dir": Path(os.getenv("JOB_CRAWLER_OUTPUT_DIR", "data/raw")),
+            "timeout_seconds": float(os.getenv("JOB_CRAWLER_TIMEOUT_SECONDS", "20")),
+            "delay_min_seconds": float(os.getenv("JOB_CRAWLER_DELAY_MIN_SECONDS", "1.5")),
+            "delay_max_seconds": float(os.getenv("JOB_CRAWLER_DELAY_MAX_SECONDS", "3.0")),
+            "max_retries": int(os.getenv("JOB_CRAWLER_MAX_RETRIES", "3")),
+            "user_agent": os.getenv(
+                "JOB_CRAWLER_USER_AGENT",
+                "job-warehouse-crawler/0.1 (+public-research; contact=configure-me)",
+            ),
+            "log_level": os.getenv("JOB_CRAWLER_LOG_LEVEL", "INFO"),
+            "fetcher": os.getenv("JOB_CRAWLER_FETCHER", "auto"),
+            "browser_wait_ms": int(os.getenv("JOB_CRAWLER_BROWSER_WAIT_MS", "1500")),
+        }
+        values.update(overrides)
+        return cls(**values)  # type: ignore[arg-type]
+
+    def validate(self) -> None:
+        if self.source != "topcv":
+            raise ConfigError(f"Unsupported source: {self.source}")
+        if not self.authorization_reference or not self.authorization_reference.strip():
+            raise ConfigError(
+                "Live access is locked. Provide a non-secret --authorization-reference "
+                "only after written permission has been obtained."
+            )
+        if self.mode == "sample":
+            if self.max_pages is None or not 1 <= self.max_pages <= SAMPLE_MAX_PAGES:
+                raise ConfigError("Sample --max-pages must be between 1 and 2.")
+            if self.max_details is None or not 1 <= self.max_details <= SAMPLE_MAX_DETAILS:
+                raise ConfigError("Sample --max-details must be between 1 and 20.")
+        elif not self.confirm_full:
+            raise ConfigError("Full snapshot requires --confirm-full.")
+        if self.max_pages is not None and self.max_pages < 1:
+            raise ConfigError("--max-pages must be positive.")
+        if self.max_details is not None and self.max_details < 1:
+            raise ConfigError("--max-details must be positive.")
+        if self.timeout_seconds <= 0:
+            raise ConfigError("Timeout must be positive.")
+        if self.delay_min_seconds < 0 or self.delay_max_seconds < self.delay_min_seconds:
+            raise ConfigError("Delay range is invalid.")
+        if self.max_retries < 0:
+            raise ConfigError("Retry count cannot be negative.")
+        if self.fetcher not in {"auto", "http", "playwright"}:
+            raise ConfigError("--fetcher must be auto, http, or playwright.")
+        if self.browser_wait_ms < 0 or self.browser_wait_ms > 10_000:
+            raise ConfigError("Browser wait must be between 0 and 10000 milliseconds.")
+        if self.fetcher != "playwright" and (
+            "configure-me" in self.user_agent or "YOUR_EMAIL" in self.user_agent
+        ):
+            raise ConfigError("Configure a transparent User-Agent with a real contact address.")
