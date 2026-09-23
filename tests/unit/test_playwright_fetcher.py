@@ -205,6 +205,15 @@ def test_browser_page_classification() -> None:
     )
     assert classify_browser_page("Login", "https://topcv.vn/login", "") == "login_required"
     assert classify_browser_page("Jobs", "https://topcv.vn/jobs", "Public jobs") is None
+    assert (
+        classify_browser_page(
+            "Public jobs",
+            "https://example.vn/jobs",
+            "Normal public page",
+            "<script>const captchaProvider = 'configured';</script>",
+        )
+        is None
+    )
 
 
 def test_error_artifacts_include_html_and_screenshot(tmp_path) -> None:

@@ -1,8 +1,9 @@
 # job_warehouse
 
 Pipeline thu thập dữ liệu tuyển dụng công khai cho phân tích thị trường Việt Nam. Giai
-đoạn hiện tại chỉ có adapter TopCV và lớp Raw/Bronze. Dự án không triển khai OLTP,
-Airflow, dbt, Data Warehouse, dashboard hoặc LLM.
+đoạn hiện tại có adapter TopCV và CareerViet cùng lớp Raw/Bronze. CareerViet được chọn
+sau feasibility probe giới hạn; TopCV vẫn được giữ nhưng live detail có thể bị WAF chặn.
+Dự án không triển khai OLTP, Airflow, dbt, Data Warehouse, dashboard hoặc LLM.
 
 ## Cổng an toàn và phạm vi
 
@@ -16,6 +17,13 @@ Sample bị khóa cứng ở tối đa 2 URL listing và 20 URL detail duy nhấ
 được chạy nếu chưa có xác nhận riêng trong cuộc trao đổi hiện tại; CLI còn bắt buộc
 `--confirm-full`.
 
+Gate `medium` là chế độ riêng, bị khóa ở tối đa 5 listing và 50 detail. Nó không phải
+full snapshot và vẫn yêu cầu authorization reference.
+
+Gate `pilot` bị khóa ở tối đa 5 listing đã discovery và 250 detail cumulative. Resume
+từ batch `medium` sang `pilot` giữ authorization reference gốc và thêm reference mới
+vào `authorization_references`; tỷ lệ detail lỗi tối đa là 5%.
+
 ## Kiến trúc
 
 ```text
@@ -26,7 +34,8 @@ CLI -> source-independent engine -> fetcher
 ```
 
 - `crawlers/base.py` định nghĩa hợp đồng adapter dùng chung.
-- `crawlers/topcv.py` và `parsers/topcv_*` chứa logic riêng của TopCV.
+- `crawlers/topcv.py`, `crawlers/careerviet.py` và các `parsers/<source>_*` chứa logic
+  riêng của từng nguồn.
 - `engine.py` quản lý robots, phân trang, deduplication, giới hạn và resume.
 - `storage/` ghi JSONL append-only, manifest nguyên tử và checkpoint kỹ thuật. SQLite
   không phải cơ sở dữ liệu OLTP nghiệp vụ.
@@ -75,6 +84,43 @@ python -m job_crawler.cli crawl topcv \
 `--save-html` là tùy chọn và mặc định tắt. Chỉ bật khi phạm vi chấp thuận cho phép lưu
 HTML nguồn.
 
+CareerViet dùng cùng guard và pipeline; sample kiểm chứng nhỏ nhất là:
+
+```bash
+python -m job_crawler.cli crawl careerviet \
+  --mode sample \
+  --fetcher http \
+  --max-pages 1 \
+  --max-details 3 \
+  --require-complete-content \
+  --authorization-reference APPROVAL-REFERENCE
+```
+
+Pagination CareerViet dùng route được xác nhận từ navigation công khai, ví dụ trang 2:
+`/viec-lam/tat-ca-viec-lam-trang-2-vi.html`. Crawler không dùng query `?page=N`.
+
+Medium gate hai pha có thể chạy bằng cùng batch:
+
+```bash
+python -m job_crawler.cli crawl careerviet --mode medium \
+  --max-pages 5 --max-details 10 --fetcher http --save-html \
+  --require-complete-content --authorization-reference APPROVAL-REFERENCE
+
+python -m job_crawler.cli crawl careerviet --mode medium \
+  --max-pages 5 --max-details 50 --fetcher http --save-html \
+  --require-complete-content --resume --resume-batch-id BATCH-ID \
+  --authorization-reference APPROVAL-REFERENCE
+```
+
+Pilot tiếp tục đúng batch medium, không mở thêm listing khi batch đã đạt 5 trang:
+
+```bash
+python -m job_crawler.cli crawl careerviet --mode pilot \
+  --max-pages 5 --max-details 250 --fetcher http --save-html \
+  --require-complete-content --resume --resume-batch-id BATCH-ID \
+  --authorization-reference PILOT-APPROVAL-REFERENCE
+```
+
 `--fetcher` nhận `http`, `playwright` hoặc `auto` (mặc định). `auto` bắt đầu bằng HTTP
 và chỉ chuyển một chiều sang Chromium chuẩn khi listing trả 403 hoặc không có job hợp
 lệ. `--headed` chỉ áp dụng cho Playwright; không có stealth, proxy rotation hay thay đổi
@@ -84,7 +130,7 @@ fingerprint. Khi phát hiện CAPTCHA/challenge/access denied, crawler lưu bằ
 Output:
 
 ```text
-data/raw/topcv/snapshot_date=YYYY-MM-DD/batch_id=<id>/
+data/raw/<source>/snapshot_date=YYYY-MM-DD/batch_id=<id>/
 ├── jobs.jsonl
 ├── manifest.json
 ├── errors.jsonl
@@ -99,8 +145,17 @@ dataset.
 
 ## Resume và full snapshot
 
-`--resume` chọn batch chưa hoàn tất mới nhất của đúng nguồn và mode, đối chiếu checkpoint
-với ID đã có trong `jobs.jsonl` để tránh ghi trùng.
+`--resume` chọn batch có checkpoint còn pending mới nhất của đúng nguồn và mode. Dùng
+thêm `--resume-batch-id <id>` để chọn chính xác batch, ví dụ khi chạy gate nhiều pha.
+Resume đối chiếu checkpoint với ID đã có trong `jobs.jsonl` để tránh tải/ghi trùng; phần
+đuôi JSONL dang dở do tiến trình bị ngắt được giữ ở `jobs.jsonl.partial` trước khi phục
+hồi file hợp lệ.
+
+State incremental nằm tại `data/raw/<source>/incremental_state.sqlite3`, tách khỏi batch.
+Nó giữ `first_seen_at`, `last_seen_at`, `last_content_hash`,
+`last_detail_fetched_at`, `seen_count` và `active`. Một lần vắng mặt hoặc crawl lỗi không
+tự động chuyển job sang inactive. Hiện crawler vẫn tải detail một lần cho mỗi snapshot;
+hash được dùng để phân biệt nội dung mới, không đổi hoặc thay đổi sau khi parse.
 
 Lệnh dưới đây chỉ để tài liệu hóa và **không được chạy khi chưa có phê duyệt riêng**:
 
@@ -119,11 +174,28 @@ selector nguồn vào engine, fetcher hoặc storage. Nguồn mới vẫn phải
 truy cập, robots, rate limit và hợp đồng `JobRecord` chung; field không tồn tại được để
 `null`.
 
+## Feasibility probe nguồn mới
+
+Probe chẩn đoán bị khóa ở đúng một listing và tối đa ba detail, không chạy các nguồn
+song song:
+
+```bash
+python scripts/probe_job_sources.py --source careerviet \
+  --max-listing-pages 1 --max-details 3 --fetcher auto \
+  --save-html --save-screenshot-on-error
+```
+
+Các source hợp lệ là `careerviet`, `jobsgo`, `vieclam24h` và `vietnamworks`. Artifact
+được ghi dưới `data/diagnostics/source_feasibility/` và bị loại khỏi Git cùng toàn bộ
+dữ liệu runtime.
+
 ## Giới hạn hiện tại
 
-- Selector listing/detail đã được xác nhận bằng sample công khai giới hạn và được khóa
-  bằng fixture HTML rút gọn. Giao diện nguồn vẫn có thể thay đổi nên manifest thống kê
-  field thiếu cho từng batch.
+- Selector listing/detail được khóa bằng fixture HTML rút gọn. Giao diện nguồn vẫn có
+  thể thay đổi nên manifest thống kê field thiếu cho từng batch.
+- CareerViet công khai JSON-LD cho metadata và dùng các section ngữ nghĩa cho mô tả/yêu
+  cầu. `application_method`, `company_size`, `company_address`, `company_industry` và
+  `work_model` có thể `null` khi nguồn không công bố trên detail.
 - Chromium chuẩn được hỗ trợ khi HTTP không đủ. Việc một listing tải được không đảm bảo
   mọi detail sẽ tải được; Cloudflare/WAF có thể chặn giữa batch và crawler sẽ dừng, không
   thử vượt chặn.

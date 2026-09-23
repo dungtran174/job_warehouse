@@ -4,8 +4,12 @@ import re
 from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 TOPCV_HOSTS = {"topcv.vn", "www.topcv.vn"}
+CAREERVIET_HOSTS = {"careerviet.vn", "www.careerviet.vn"}
 TRACKING_PARAMETERS = {"ta_source", "ref", "sr_id", "u_sr_id", "fbclid", "gclid"}
 JOB_ID_PATTERN = re.compile(r"/viec-lam/(?:[^/?#]+/)+(\d+)\.html/?$", re.IGNORECASE)
+CAREERVIET_JOB_ID_PATTERN = re.compile(
+    r"/(?:vi/)?tim-viec-lam/[^/?#]+\.([0-9a-f]{8,})\.html/?$", re.IGNORECASE
+)
 
 
 def canonicalize_url(url: str, base_url: str | None = None) -> str:
@@ -40,6 +44,19 @@ def is_topcv_detail_url(url: str) -> bool:
     return extract_topcv_job_id(url) is not None
 
 
-def topcv_robots_url(url: str) -> str:
+def extract_careerviet_job_id(url: str) -> str | None:
+    parts = urlsplit(url)
+    if (parts.hostname or "").lower() not in CAREERVIET_HOSTS:
+        return None
+    match = CAREERVIET_JOB_ID_PATTERN.search(parts.path)
+    return match.group(1).upper() if match else None
+
+
+def robots_url(url: str) -> str:
     parts = urlsplit(url)
     return urlunsplit((parts.scheme or "https", parts.netloc, "/robots.txt", "", ""))
+
+
+def topcv_robots_url(url: str) -> str:
+    """Backward-compatible alias for callers outside the crawl engine."""
+    return robots_url(url)

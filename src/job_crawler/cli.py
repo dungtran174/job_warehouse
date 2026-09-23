@@ -8,12 +8,18 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from job_crawler.config import (
-    DEFAULT_TOPCV_START_URL,
+    DEFAULT_START_URLS,
+    MEDIUM_MAX_DETAILS,
+    MEDIUM_MAX_PAGES,
+    PILOT_MAX_DETAILS,
+    PILOT_MAX_PAGES,
     SAMPLE_MAX_DETAILS,
     SAMPLE_MAX_PAGES,
     ConfigError,
     CrawlConfig,
 )
+from job_crawler.crawlers.base import SourceCrawler
+from job_crawler.crawlers.careerviet import CareerVietCrawler
 from job_crawler.crawlers.topcv import TopCVCrawler
 from job_crawler.engine import CrawlEngine
 from job_crawler.fetchers.factory import create_fetcher
@@ -24,9 +30,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="job-crawler")
     commands = parser.add_subparsers(dest="command", required=True)
     crawl = commands.add_parser("crawl", help="crawl one public job source")
-    crawl.add_argument("source", choices=("topcv",))
-    crawl.add_argument("--mode", choices=("sample", "full-snapshot"), default="sample")
-    crawl.add_argument("--start-url", default=DEFAULT_TOPCV_START_URL)
+    crawl.add_argument("source", choices=tuple(DEFAULT_START_URLS))
+    crawl.add_argument(
+        "--mode",
+        choices=("sample", "medium", "pilot", "full-snapshot"),
+        default="sample",
+    )
+    crawl.add_argument("--start-url")
     crawl.add_argument("--output-dir", type=Path)
     crawl.add_argument("--max-pages", type=int)
     crawl.add_argument("--max-details", type=int)
@@ -40,7 +50,16 @@ def build_parser() -> argparse.ArgumentParser:
     crawl.add_argument("--headed", action="store_true")
     crawl.add_argument("--save-html", action="store_true")
     crawl.add_argument("--save-screenshot-on-error", action="store_true")
+    crawl.add_argument(
+        "--require-complete-content",
+        action="store_true",
+        help="stop if company, description, or candidate requirements are missing",
+    )
     crawl.add_argument("--resume", action="store_true")
+    crawl.add_argument(
+        "--resume-batch-id",
+        help="resume this exact batch ID instead of selecting the latest resumable batch",
+    )
     crawl.add_argument("--confirm-full", action="store_true")
     crawl.add_argument(
         "--authorization-reference",
@@ -55,16 +74,24 @@ def _config_from_args(args: argparse.Namespace) -> CrawlConfig:
     if args.mode == "sample":
         max_pages = SAMPLE_MAX_PAGES if max_pages is None else max_pages
         max_details = SAMPLE_MAX_DETAILS if max_details is None else max_details
+    elif args.mode == "medium":
+        max_pages = MEDIUM_MAX_PAGES if max_pages is None else max_pages
+        max_details = MEDIUM_MAX_DETAILS if max_details is None else max_details
+    elif args.mode == "pilot":
+        max_pages = PILOT_MAX_PAGES if max_pages is None else max_pages
+        max_details = PILOT_MAX_DETAILS if max_details is None else max_details
     overrides: dict[str, object] = {
         "source": args.source,
         "mode": args.mode,
-        "start_url": args.start_url,
+        "start_url": args.start_url or DEFAULT_START_URLS[args.source],
         "max_pages": max_pages,
         "max_details": max_details,
         "save_html": args.save_html,
         "headed": args.headed,
         "save_screenshot_on_error": args.save_screenshot_on_error,
+        "require_complete_content": args.require_complete_content,
         "resume": args.resume,
+        "resume_batch_id": args.resume_batch_id,
         "confirm_full": args.confirm_full,
         "authorization_reference": args.authorization_reference,
     }
@@ -96,7 +123,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         level=getattr(logging, config.log_level.upper(), logging.INFO),
         format="%(asctime)s %(levelname)s %(name)s %(message)s",
     )
-    crawler = TopCVCrawler()
+    crawlers: dict[str, SourceCrawler] = {
+        "topcv": TopCVCrawler(),
+        "careerviet": CareerVietCrawler(),
+    }
+    crawler = crawlers[config.source]
     try:
         with create_fetcher(config) as fetcher:
             manifest = CrawlEngine(config, crawler, fetcher).run()

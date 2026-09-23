@@ -1,13 +1,23 @@
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Literal
 
 DEFAULT_TOPCV_START_URL = "https://www.topcv.vn/tim-viec-lam-moi-nhat?type_keyword=1&sba=1"
+DEFAULT_CAREERVIET_START_URL = "https://careerviet.vn/viec-lam/tat-ca-viec-lam-vi.html"
+DEFAULT_START_URLS = {
+    "topcv": DEFAULT_TOPCV_START_URL,
+    "careerviet": DEFAULT_CAREERVIET_START_URL,
+}
 SAMPLE_MAX_PAGES = 2
 SAMPLE_MAX_DETAILS = 20
+MEDIUM_MAX_PAGES = 5
+MEDIUM_MAX_DETAILS = 50
+PILOT_MAX_PAGES = 5
+PILOT_MAX_DETAILS = 250
 
 
 class ConfigError(ValueError):
@@ -17,7 +27,7 @@ class ConfigError(ValueError):
 @dataclass(frozen=True, slots=True)
 class CrawlConfig:
     source: str = "topcv"
-    mode: Literal["sample", "full-snapshot"] = "sample"
+    mode: Literal["sample", "medium", "pilot", "full-snapshot"] = "sample"
     start_url: str = DEFAULT_TOPCV_START_URL
     output_dir: Path = Path("data/raw")
     timeout_seconds: float = 20.0
@@ -33,10 +43,12 @@ class CrawlConfig:
     authorization_reference: str | None = None
     confirm_full: bool = False
     resume: bool = False
+    resume_batch_id: str | None = None
     fetcher: Literal["auto", "http", "playwright"] = "auto"
     headed: bool = False
     save_screenshot_on_error: bool = False
     browser_wait_ms: int = 1500
+    require_complete_content: bool = False
 
     @classmethod
     def from_environment(cls, **overrides: object) -> CrawlConfig:
@@ -58,7 +70,7 @@ class CrawlConfig:
         return cls(**values)  # type: ignore[arg-type]
 
     def validate(self) -> None:
-        if self.source != "topcv":
+        if self.source not in DEFAULT_START_URLS:
             raise ConfigError(f"Unsupported source: {self.source}")
         if not self.authorization_reference or not self.authorization_reference.strip():
             raise ConfigError(
@@ -70,6 +82,16 @@ class CrawlConfig:
                 raise ConfigError("Sample --max-pages must be between 1 and 2.")
             if self.max_details is None or not 1 <= self.max_details <= SAMPLE_MAX_DETAILS:
                 raise ConfigError("Sample --max-details must be between 1 and 20.")
+        elif self.mode == "medium":
+            if self.max_pages is None or not 1 <= self.max_pages <= MEDIUM_MAX_PAGES:
+                raise ConfigError("Medium --max-pages must be between 1 and 5.")
+            if self.max_details is None or not 1 <= self.max_details <= MEDIUM_MAX_DETAILS:
+                raise ConfigError("Medium --max-details must be between 1 and 50.")
+        elif self.mode == "pilot":
+            if self.max_pages is None or not 1 <= self.max_pages <= PILOT_MAX_PAGES:
+                raise ConfigError("Pilot --max-pages must be between 1 and 5.")
+            if self.max_details is None or not 1 <= self.max_details <= PILOT_MAX_DETAILS:
+                raise ConfigError("Pilot --max-details must be between 1 and 250.")
         elif not self.confirm_full:
             raise ConfigError("Full snapshot requires --confirm-full.")
         if self.max_pages is not None and self.max_pages < 1:
@@ -90,3 +112,8 @@ class CrawlConfig:
             "configure-me" in self.user_agent or "YOUR_EMAIL" in self.user_agent
         ):
             raise ConfigError("Configure a transparent User-Agent with a real contact address.")
+        if self.resume_batch_id is not None:
+            if not self.resume:
+                raise ConfigError("--resume-batch-id requires --resume.")
+            if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", self.resume_batch_id):
+                raise ConfigError("--resume-batch-id contains unsafe characters.")

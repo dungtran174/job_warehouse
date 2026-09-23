@@ -107,9 +107,15 @@ class RunManifest(StableModel):
     finished_at: datetime | None = None
     status: Literal["running", "completed", "completed_with_errors", "stopped", "failed"]
     authorization_reference: str
+    authorization_references: list[str] = Field(default_factory=list)
     source_reported_total: int | None = None
     listing_pages_requested: int = 0
     listing_pages_succeeded: int = 0
+    listing_pages_unique: int = 0
+    listing_page_fingerprints: list[str] = Field(default_factory=list)
+    duplicate_listing_pages: int = 0
+    new_job_ids_per_page: list[int] = Field(default_factory=list)
+    pagination_termination_reason: str | None = None
     urls_discovered: int = 0
     unique_ids_discovered: int = 0
     detail_requested: int = 0
@@ -130,3 +136,8 @@ class RunManifest(StableModel):
     browser_headless: bool | None = None
     challenge_detected: bool = False
     missing_fields: dict[str, int] = Field(default_factory=dict)
+    incremental_new_ids: int = 0
+    incremental_existing_ids: int = 0
+    content_hash_new: int = 0
+    content_hash_unchanged: int = 0
+    content_hash_changed: int = 0

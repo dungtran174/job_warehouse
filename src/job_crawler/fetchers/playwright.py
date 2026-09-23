@@ -26,9 +26,9 @@ CAPTCHA_MARKERS = (
     "captcha",
     "verify you are human",
     "xác minh bạn là con người",
-    "cf-chl-",
     "just a moment",
 )
+CAPTCHA_HTML_MARKERS = ("cf-chl-", "cf-turnstile", "g-recaptcha")
 ACCESS_DENIED_MARKERS = (
     "access denied",
     "request unsuccessful",
@@ -48,10 +48,13 @@ NETWORK_ERROR_MARKERS = (
 
 
 def classify_browser_page(title: str, url: str, visible_text: str, html: str = "") -> str | None:
-    combined = f"{title}\n{visible_text[:100_000]}\n{html[:20_000]}".casefold()
-    if any(marker in combined for marker in ACCESS_DENIED_MARKERS):
+    visible = f"{title}\n{visible_text[:100_000]}".casefold()
+    html_excerpt = html[:100_000].casefold()
+    if any(marker in visible for marker in ACCESS_DENIED_MARKERS):
         return "access_denied"
-    if any(marker in combined for marker in CAPTCHA_MARKERS):
+    if any(marker in visible for marker in CAPTCHA_MARKERS) or any(
+        marker in html_excerpt for marker in CAPTCHA_HTML_MARKERS
+    ):
         return "captcha"
     path = urlsplit(url).path.casefold()
     if path.startswith(("/login", "/dang-nhap")):

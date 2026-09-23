@@ -4,6 +4,7 @@ import gzip
 import json
 import os
 import secrets
+import sqlite3
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -45,17 +46,47 @@ def batch_paths(output_dir: Path, source: str, snapshot_date: str, batch_id: str
     )
 
 
-def find_latest_resumable(output_dir: Path, source: str) -> Path | None:
+def _checkpoint_has_pending(root: Path) -> bool:
+    checkpoint = root / "checkpoint.sqlite3"
+    if not checkpoint.is_file():
+        return False
+    try:
+        with sqlite3.connect(f"file:{checkpoint}?mode=ro", uri=True) as connection:
+            for table in ("listing_queue", "detail_queue"):
+                row = connection.execute(
+                    f"SELECT 1 FROM {table} WHERE status = 'pending' LIMIT 1"  # noqa: S608
+                ).fetchone()
+                if row is not None:
+                    return True
+    except sqlite3.Error:
+        return False
+    return False
+
+
+def _manifest_status(root: Path) -> str | None:
+    manifest_path = root / "manifest.json"
+    if not manifest_path.exists():
+        return None
+    try:
+        status = json.loads(manifest_path.read_text(encoding="utf-8")).get("status")
+    except (OSError, json.JSONDecodeError):
+        return None
+    return str(status) if status is not None else None
+
+
+def find_latest_resumable(
+    output_dir: Path, source: str, batch_id: str | None = None
+) -> Path | None:
     roots = sorted(output_dir.glob(f"{source}/snapshot_date=*/batch_id=*"), reverse=True)
+    if batch_id is not None:
+        roots = [root for root in roots if root.name == f"batch_id={batch_id}"]
     for root in roots:
-        manifest_path = root / "manifest.json"
-        if not manifest_path.exists():
-            continue
-        try:
-            status = json.loads(manifest_path.read_text(encoding="utf-8")).get("status")
-        except (OSError, json.JSONDecodeError):
-            continue
+        status = _manifest_status(root)
+        if batch_id is not None and status is not None:
+            return root
         if status in {"running", "stopped", "failed", "completed_with_errors"}:
+            return root
+        if status == "completed" and _checkpoint_has_pending(root):
             return root
     return None
 
@@ -69,10 +100,40 @@ class BatchStorage:
             paths.errors.touch()
         elif not paths.root.is_dir():
             raise StorageError(f"Resume batch does not exist: {paths.root}")
+        else:
+            self._repair_trailing_jsonl(paths.jobs)
         self.checkpoint = Checkpoint(paths.checkpoint)
         self.manifest_writer = ManifestWriter(paths.manifest)
         self.existing_job_ids = self._read_existing_job_ids()
         self.checkpoint.sync_completed(self.existing_job_ids)
+
+    @staticmethod
+    def _repair_trailing_jsonl(path: Path) -> None:
+        if not path.exists():
+            return
+        data = path.read_bytes()
+        if not data or data.endswith(b"\n"):
+            return
+        last_newline = data.rfind(b"\n")
+        prefix = data[: last_newline + 1]
+        tail = data[last_newline + 1 :]
+        try:
+            decoded = tail.decode("utf-8")
+            parsed = json.loads(decoded)
+            if not isinstance(parsed, dict) or "source_job_id" not in parsed:
+                raise ValueError("trailing JSONL value is not a job record")
+        except (UnicodeDecodeError, json.JSONDecodeError, ValueError):
+            recovery = path.with_name(f"{path.name}.partial")
+            recovery.write_bytes(tail)
+            with path.open("r+b") as handle:
+                handle.truncate(len(prefix))
+                handle.flush()
+                os.fsync(handle.fileno())
+        else:
+            with path.open("ab") as handle:
+                handle.write(b"\n")
+                handle.flush()
+                os.fsync(handle.fileno())
 
     @classmethod
     def resume(cls, root: Path) -> BatchStorage:
