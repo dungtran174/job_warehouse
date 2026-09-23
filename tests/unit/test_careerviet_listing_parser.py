@@ -1,3 +1,5 @@
+import pytest
+
 from job_crawler.parsers.careerviet_listing import parse_listing
 
 START_URL = "https://careerviet.vn/viec-lam/tat-ca-viec-lam-vi.html"
@@ -48,3 +50,12 @@ def test_different_listing_url_with_same_ids_has_same_fingerprint(read_source_fi
         "https://careerviet.vn/viec-lam/tat-ca-viec-lam-trang-2-vi.html",
     )
     assert first.fingerprint == repeated.fingerprint
+
+
+def test_same_id_with_different_job_url_is_rejected() -> None:
+    html = (
+        '<a class="job_link" href="/vi/tim-viec-lam/first.35C00001.html">First</a>'
+        '<a class="job_link" href="/vi/tim-viec-lam/second.35C00001.html">Second</a>'
+    )
+    with pytest.raises(ValueError, match="Conflicting listing URLs"):
+        parse_listing(html, START_URL)

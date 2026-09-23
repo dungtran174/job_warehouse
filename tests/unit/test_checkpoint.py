@@ -1,9 +1,11 @@
 import json
+import sqlite3
 from datetime import UTC, date, datetime
 
 import pytest
 
 from job_crawler.models import DiscoveredJob, JobRecord
+from job_crawler.storage.checkpoint import Checkpoint, CheckpointConflict
 from job_crawler.storage.jsonl import BatchStorage, batch_paths
 
 
@@ -60,6 +62,71 @@ def test_resume_syncs_jsonl_before_checkpoint_to_avoid_duplicates(
     assert not resumed.append_job(record)
     lines = [json.loads(line) for line in paths.jobs.read_text().splitlines()]
     assert [line["source_job_id"] for line in lines] == [job_id]
+    resumed.close()
+
+
+def test_listing_enqueue_rolls_back_if_completion_fails(tmp_path) -> None:
+    checkpoint = Checkpoint(tmp_path / "checkpoint.sqlite3")
+    listing_url = "https://careerviet.vn/viec-lam/tat-ca-viec-lam-vi.html"
+    checkpoint.enqueue_listing(listing_url)
+    assert checkpoint.next_listing() == listing_url
+    jobs = [
+        DiscoveredJob(
+            source_name="careerviet",
+            source_job_id=f"35C{number:05X}",
+            source_url=f"https://careerviet.vn/vi/tim-viec-lam/test.35C{number:05X}.html",
+            canonical_url=f"https://careerviet.vn/vi/tim-viec-lam/test.35C{number:05X}.html",
+            listing_url=listing_url,
+        )
+        for number in (1, 2)
+    ]
+    checkpoint.connection.execute(
+        "CREATE TEMP TRIGGER fail_completion BEFORE UPDATE OF status ON listing_queue "
+        "WHEN NEW.status = 'completed' BEGIN SELECT RAISE(ABORT, 'interrupted'); END"
+    )
+    with pytest.raises(sqlite3.IntegrityError):
+        checkpoint.commit_listing_page(listing_url, "fingerprint", jobs)
+    assert checkpoint.count_details() == 0
+    assert (
+        checkpoint.connection.execute("SELECT count(*) FROM page_fingerprints").fetchone()[0] == 0
+    )
+    assert (
+        checkpoint.connection.execute(
+            "SELECT status FROM listing_queue WHERE url = ?", (listing_url,)
+        ).fetchone()[0]
+        == "processing"
+    )
+    checkpoint.close()
+
+    resumed = Checkpoint(tmp_path / "checkpoint.sqlite3")
+    assert resumed.next_listing() == listing_url
+    assert resumed.commit_listing_page(listing_url, "fingerprint", jobs) == (2, 0)
+    assert resumed.count_details() == 2
+    assert (
+        resumed.connection.execute(
+            "SELECT status FROM listing_queue WHERE url = ?", (listing_url,)
+        ).fetchone()[0]
+        == "completed"
+    )
+    second_listing = "https://careerviet.vn/viec-lam/tat-ca-viec-lam-trang-2-vi.html"
+    assert resumed.enqueue_listing(second_listing)
+    assert resumed.next_listing() == second_listing
+    conflicting = jobs[0].model_copy(
+        update={
+            "canonical_url": "https://careerviet.vn/vi/tim-viec-lam/different.35C00001.html",
+            "listing_url": second_listing,
+        }
+    )
+    with pytest.raises(CheckpointConflict, match="Conflicting mapping"):
+        resumed.commit_listing_page(second_listing, "fingerprint-2", [conflicting])
+    assert resumed.count_details() == 2
+    assert resumed.connection.execute("SELECT count(*) FROM page_fingerprints").fetchone()[0] == 1
+    assert (
+        resumed.connection.execute(
+            "SELECT status FROM listing_queue WHERE url = ?", (second_listing,)
+        ).fetchone()[0]
+        == "processing"
+    )
     resumed.close()
 
 

@@ -53,6 +53,52 @@ def test_pilot_accepts_five_pages_and_two_hundred_fifty_details() -> None:
     config(mode="pilot", max_pages=5, max_details=250).validate()
 
 
+@pytest.mark.parametrize(
+    "overrides",
+    [
+        {"max_pages": 5},
+        {"max_pages": 7},
+        {"max_details": 250},
+        {"max_details": 301},
+        {"source": "topcv"},
+        {"resume": False},
+        {"resume_batch_id": None},
+        {"fetcher": "auto"},
+        {"save_html": False},
+        {"require_complete_content": False},
+    ],
+)
+def test_page6_check_rejects_unsafe_scope(overrides: dict[str, object]) -> None:
+    values = {
+        "mode": "page6-check",
+        "source": "careerviet",
+        "max_pages": 6,
+        "max_details": 300,
+        "resume": True,
+        "resume_batch_id": "20260922T165843Z-f6b389a4",
+        "fetcher": "http",
+        "save_html": True,
+        "require_complete_content": True,
+    }
+    values.update(overrides)
+    with pytest.raises(ConfigError):
+        config(**values).validate()
+
+
+def test_page6_check_accepts_exact_scope() -> None:
+    config(
+        mode="page6-check",
+        source="careerviet",
+        max_pages=6,
+        max_details=300,
+        resume=True,
+        resume_batch_id="20260922T165843Z-f6b389a4",
+        fetcher="http",
+        save_html=True,
+        require_complete_content=True,
+    ).validate()
+
+
 def test_resume_batch_id_requires_resume_and_safe_identifier() -> None:
     with pytest.raises(ConfigError, match="requires --resume"):
         config(resume_batch_id="batch-1").validate()

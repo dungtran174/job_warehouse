@@ -11,6 +11,8 @@ from job_crawler.config import (
     DEFAULT_START_URLS,
     MEDIUM_MAX_DETAILS,
     MEDIUM_MAX_PAGES,
+    PAGE6_CHECK_MAX_DETAILS,
+    PAGE6_CHECK_MAX_PAGES,
     PILOT_MAX_DETAILS,
     PILOT_MAX_PAGES,
     SAMPLE_MAX_DETAILS,
@@ -33,7 +35,7 @@ def build_parser() -> argparse.ArgumentParser:
     crawl.add_argument("source", choices=tuple(DEFAULT_START_URLS))
     crawl.add_argument(
         "--mode",
-        choices=("sample", "medium", "pilot", "full-snapshot"),
+        choices=("sample", "medium", "pilot", "page6-check", "full-snapshot"),
         default="sample",
     )
     crawl.add_argument("--start-url")
@@ -80,6 +82,9 @@ def _config_from_args(args: argparse.Namespace) -> CrawlConfig:
     elif args.mode == "pilot":
         max_pages = PILOT_MAX_PAGES if max_pages is None else max_pages
         max_details = PILOT_MAX_DETAILS if max_details is None else max_details
+    elif args.mode == "page6-check":
+        max_pages = PAGE6_CHECK_MAX_PAGES if max_pages is None else max_pages
+        max_details = PAGE6_CHECK_MAX_DETAILS if max_details is None else max_details
     overrides: dict[str, object] = {
         "source": args.source,
         "mode": args.mode,

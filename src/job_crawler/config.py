@@ -18,6 +18,8 @@ MEDIUM_MAX_PAGES = 5
 MEDIUM_MAX_DETAILS = 50
 PILOT_MAX_PAGES = 5
 PILOT_MAX_DETAILS = 250
+PAGE6_CHECK_MAX_PAGES = 6
+PAGE6_CHECK_MAX_DETAILS = 300
 
 
 class ConfigError(ValueError):
@@ -27,7 +29,7 @@ class ConfigError(ValueError):
 @dataclass(frozen=True, slots=True)
 class CrawlConfig:
     source: str = "topcv"
-    mode: Literal["sample", "medium", "pilot", "full-snapshot"] = "sample"
+    mode: Literal["sample", "medium", "pilot", "page6-check", "full-snapshot"] = "sample"
     start_url: str = DEFAULT_TOPCV_START_URL
     output_dir: Path = Path("data/raw")
     timeout_seconds: float = 20.0
@@ -92,6 +94,20 @@ class CrawlConfig:
                 raise ConfigError("Pilot --max-pages must be between 1 and 5.")
             if self.max_details is None or not 1 <= self.max_details <= PILOT_MAX_DETAILS:
                 raise ConfigError("Pilot --max-details must be between 1 and 250.")
+        elif self.mode == "page6-check":
+            if self.source != "careerviet" or not self.resume or not self.resume_batch_id:
+                raise ConfigError(
+                    "Page 6 check requires CareerViet and an explicit resume batch ID."
+                )
+            if (
+                self.max_pages != PAGE6_CHECK_MAX_PAGES
+                or self.max_details != PAGE6_CHECK_MAX_DETAILS
+            ):
+                raise ConfigError(
+                    "Page 6 check requires exactly 6 cumulative pages and 300 details."
+                )
+            if self.fetcher != "http" or not self.save_html or not self.require_complete_content:
+                raise ConfigError("Page 6 check requires HTTP, saved HTML, and complete content.")
         elif not self.confirm_full:
             raise ConfigError("Full snapshot requires --confirm-full.")
         if self.max_pages is not None and self.max_pages < 1:

@@ -67,19 +67,24 @@ def parse_listing(html: str, listing_url: str) -> ListingPage:
             candidates.append(href)
 
     jobs: list[DiscoveredJob] = []
-    seen: set[str] = set()
+    seen: dict[str, str] = {}
     for candidate in candidates:
         source_url = urljoin(listing_url, candidate)
         job_id = extract_careerviet_job_id(source_url)
-        if job_id is None or job_id in seen:
+        if job_id is None:
             continue
-        seen.add(job_id)
+        canonical_url = canonicalize_url(source_url)
+        if job_id in seen:
+            if seen[job_id] != canonical_url:
+                raise ValueError(f"Conflicting listing URLs for job ID {job_id}.")
+            continue
+        seen[job_id] = canonical_url
         jobs.append(
             DiscoveredJob(
                 source_name="careerviet",
                 source_job_id=job_id,
                 source_url=source_url,
-                canonical_url=canonicalize_url(source_url),
+                canonical_url=canonical_url,
                 listing_url=listing_url,
             )
         )

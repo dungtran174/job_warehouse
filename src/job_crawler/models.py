@@ -114,6 +114,7 @@ class RunManifest(StableModel):
     listing_pages_unique: int = 0
     listing_page_fingerprints: list[str] = Field(default_factory=list)
     duplicate_listing_pages: int = 0
+    cross_page_overlaps: int = 0
     new_job_ids_per_page: list[int] = Field(default_factory=list)
     pagination_termination_reason: str | None = None
     urls_discovered: int = 0

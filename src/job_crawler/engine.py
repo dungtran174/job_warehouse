@@ -13,6 +13,7 @@ from job_crawler.config import CrawlConfig
 from job_crawler.crawlers.base import SourceCrawler
 from job_crawler.fetchers.base import Fetcher, FetchError
 from job_crawler.models import CrawlError, RunManifest
+from job_crawler.storage.checkpoint import CheckpointConflict, RepeatedPageFingerprint
 from job_crawler.storage.incremental import IncrementalState
 from job_crawler.storage.jsonl import (
     BatchStorage,
@@ -21,11 +22,13 @@ from job_crawler.storage.jsonl import (
     find_latest_resumable,
     make_batch_id,
 )
+from job_crawler.storage.page6_preflight import validate_page6_transition
 from job_crawler.utils.time import local_snapshot_date, utc_now
 from job_crawler.utils.url import canonicalize_url, robots_url
 
 LOGGER = logging.getLogger(__name__)
-DETAIL_ERROR_RATE_LIMITS = {"medium": 0.1, "pilot": 0.05}
+DETAIL_ERROR_RATE_LIMITS = {"medium": 0.1, "pilot": 0.05, "page6-check": 0.05}
+STRICT_MODES = {"pilot", "page6-check"}
 MISSING_FIELD_NAMES = (
     "salary_raw",
     "location_raw",
@@ -117,10 +120,22 @@ class CrawlEngine:
         )
         if root is None:
             raise StorageError("No resumable batch was found.")
+        if self.config.mode == "page6-check":
+            try:
+                existing_manifest = RunManifest.model_validate_json(
+                    (root / "manifest.json").read_text(encoding="utf-8")
+                )
+            except (OSError, ValidationError) as exc:
+                raise StorageError("Page 6 manifest is missing or invalid.") from exc
+            if existing_manifest.mode == "pilot":
+                validate_page6_transition(root, existing_manifest)
         storage = BatchStorage.resume(root)
         manifest = storage.read_manifest()
         transitioning_to_pilot = manifest.mode == "medium" and self.config.mode == "pilot"
-        if manifest.mode != self.config.mode and not transitioning_to_pilot:
+        transitioning_to_page6 = manifest.mode == "pilot" and self.config.mode == "page6-check"
+        if manifest.mode != self.config.mode and not (
+            transitioning_to_pilot or transitioning_to_page6
+        ):
             storage.close()
             raise StorageError("Resume mode does not match the existing batch.")
         if manifest.start_url != self.config.start_url:
@@ -140,6 +155,8 @@ class CrawlEngine:
             manifest.authorization_references.append(new_reference)
         if transitioning_to_pilot:
             manifest.mode = "pilot"
+        if transitioning_to_page6:
+            manifest.mode = "page6-check"
         manifest.status = "running"
         manifest.finished_at = None
         manifest.fetcher_requested = self.config.fetcher
@@ -279,7 +296,7 @@ class CrawlEngine:
                         )
                     )
                     listing_reason = "access_blocked" if exc.blocked else "listing_fetch_failed"
-                    stopped = exc.blocked
+                    stopped = exc.blocked or self.config.mode == "page6-check"
                     manifest.challenge_detected = self.fetcher.state.challenge_detected
                     break
                 manifest.fetcher_used = response.fetcher
@@ -387,6 +404,7 @@ class CrawlEngine:
                     )
                 if not page.jobs:
                     storage.checkpoint.finish_listing(listing_url, "failed")
+                    stopped = self.config.mode == "page6-check"
                     storage.append_error(
                         self._error(
                             url=response.url,
@@ -402,21 +420,39 @@ class CrawlEngine:
                     listing_reason = "no_jobs_found"
                     break
 
+                try:
+                    new_ids, overlaps = storage.checkpoint.commit_listing_page(
+                        listing_url, page.fingerprint, page.jobs
+                    )
+                except RepeatedPageFingerprint:
+                    manifest.listing_pages_succeeded += 1
+                    manifest.duplicate_listing_pages += 1
+                    manifest.new_job_ids_per_page.append(0)
+                    storage.checkpoint.finish_listing(listing_url, "pending")
+                    listing_reason = "repeated_page_fingerprint"
+                    stopped = self.config.mode in STRICT_MODES
+                    break
+                except CheckpointConflict as exc:
+                    storage.checkpoint.finish_listing(listing_url, "pending")
+                    storage.append_error(
+                        self._error(
+                            url=listing_url,
+                            stage="listing_discovery",
+                            error_type=type(exc).__name__,
+                            message=str(exc),
+                        )
+                    )
+                    listing_reason = "checkpoint_conflict"
+                    stopped = True
+                    break
                 manifest.listing_pages_succeeded += 1
                 manifest.urls_discovered += len(page.jobs)
                 if manifest.source_reported_total is None:
                     manifest.source_reported_total = page.source_reported_total
                 manifest.listing_page_fingerprints.append(page.fingerprint)
-                if not storage.checkpoint.add_fingerprint(page.fingerprint):
-                    manifest.duplicate_listing_pages += 1
-                    manifest.new_job_ids_per_page.append(0)
-                    storage.checkpoint.finish_listing(listing_url)
-                    listing_reason = "repeated_page_fingerprint"
-                    stopped = self.config.mode == "pilot"
-                    break
                 manifest.listing_pages_unique += 1
-                new_ids = 0
-                duplicate_job_id = False
+                manifest.cross_page_overlaps += overlaps
+                manifest.duplicates_skipped += overlaps
                 seen_at = self.clock()
                 for job in page.jobs:
                     if incremental.observe_discovery(
@@ -428,29 +464,19 @@ class CrawlEngine:
                         manifest.incremental_new_ids += 1
                     else:
                         manifest.incremental_existing_ids += 1
-                    if storage.checkpoint.enqueue_detail(job):
-                        new_ids += 1
-                    else:
-                        manifest.duplicates_skipped += 1
-                        if self.config.mode == "pilot":
-                            duplicate_job_id = True
-                            break
                 manifest.new_job_ids_per_page.append(new_ids)
                 manifest.unique_ids_discovered = storage.checkpoint.count_details()
-                storage.checkpoint.finish_listing(listing_url)
                 storage.write_manifest(manifest)
-                if duplicate_job_id:
-                    listing_reason = "duplicate_job_id"
-                    stopped = True
-                    break
                 if new_ids == 0:
                     listing_reason = "no_new_ids"
+                    stopped = self.config.mode == "page6-check"
                     break
                 if page.next_url is None:
                     listing_reason = "next_page_disabled_or_absent"
                     break
                 if not storage.checkpoint.enqueue_listing(page.next_url):
                     listing_reason = "listing_url_loop"
+                    stopped = self.config.mode == "page6-check"
                     break
             else:
                 listing_reason = "max_pages"
@@ -639,7 +665,7 @@ class CrawlEngine:
                     manifest.records_written += 1
                 else:
                     manifest.duplicates_skipped += 1
-                    if self.config.mode == "pilot":
+                    if self.config.mode in STRICT_MODES:
                         storage.checkpoint.finish_detail(job.source_job_id, "failed")
                         detail_reason = "duplicate_record"
                         stopped = True

@@ -6,6 +6,14 @@ from pathlib import Path
 from job_crawler.models import DiscoveredJob
 
 
+class RepeatedPageFingerprint(RuntimeError):
+    """The same listing fingerprint was already committed."""
+
+
+class CheckpointConflict(RuntimeError):
+    """A source job ID or listing state conflicts with the checkpoint."""
+
+
 class Checkpoint:
     """Technical crawl state only; this is not an application OLTP database."""
 
@@ -83,6 +91,67 @@ class Checkpoint:
         )
         self.connection.commit()
         return cursor.rowcount == 1
+
+    def commit_listing_page(
+        self, url: str, fingerprint: str, jobs: list[DiscoveredJob]
+    ) -> tuple[int, int]:
+        """Atomically enqueue every new ID before completing its listing page."""
+        new_count = 0
+        overlaps = 0
+        seen: set[str] = set()
+        with self.connection:
+            row = self.connection.execute(
+                "SELECT status FROM listing_queue WHERE url = ?", (url,)
+            ).fetchone()
+            if row is None or row["status"] != "processing":
+                raise CheckpointConflict("Listing is not in processing state.")
+            if (
+                self.connection.execute(
+                    "INSERT OR IGNORE INTO page_fingerprints(fingerprint) VALUES (?)",
+                    (fingerprint,),
+                ).rowcount
+                != 1
+            ):
+                raise RepeatedPageFingerprint(fingerprint)
+            for job in jobs:
+                if job.source_job_id in seen:
+                    raise CheckpointConflict("Duplicate ID within listing page.")
+                seen.add(job.source_job_id)
+                existing = self.connection.execute(
+                    "SELECT source_name, canonical_url FROM detail_queue WHERE source_job_id = ?",
+                    (job.source_job_id,),
+                ).fetchone()
+                if existing is not None:
+                    if (
+                        existing["source_name"] != job.source_name
+                        or existing["canonical_url"] != job.canonical_url
+                    ):
+                        raise CheckpointConflict(
+                            f"Conflicting mapping for job ID {job.source_job_id}."
+                        )
+                    overlaps += 1
+                    continue
+                self.connection.execute(
+                    "INSERT INTO detail_queue("
+                    "source_job_id, source_name, source_url, canonical_url, listing_url"
+                    ") VALUES (?, ?, ?, ?, ?)",
+                    (
+                        job.source_job_id,
+                        job.source_name,
+                        job.source_url,
+                        job.canonical_url,
+                        job.listing_url,
+                    ),
+                )
+                new_count += 1
+            if (
+                self.connection.execute(
+                    "UPDATE listing_queue SET status = 'completed' WHERE url = ?", (url,)
+                ).rowcount
+                != 1
+            ):
+                raise CheckpointConflict("Listing completion failed.")
+        return new_count, overlaps
 
     def enqueue_detail(self, job: DiscoveredJob) -> bool:
         cursor = self.connection.execute(

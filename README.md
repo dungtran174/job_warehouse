@@ -24,6 +24,10 @@ Gate `pilot` bị khóa ở tối đa 5 listing đã discovery và 250 detail cu
 từ batch `medium` sang `pilot` giữ authorization reference gốc và thêm reference mới
 vào `authorization_references`; tỷ lệ detail lỗi tối đa là 5%.
 
+Gate `page6-check` là chặng kiểm tra riêng cho CareerViet: bắt buộc resume batch pilot
+5/250 nguyên vẹn, HTTP thuần, lưu HTML, nội dung detail đầy đủ, và đúng giới hạn
+cumulative 6 listing/300 detail. Gate `pilot` vẫn giữ nguyên 5/250.
+
 ## Kiến trúc
 
 ```text
@@ -120,6 +124,23 @@ python -m job_crawler.cli crawl careerviet --mode pilot \
   --require-complete-content --resume --resume-batch-id BATCH-ID \
   --authorization-reference PILOT-APPROVAL-REFERENCE
 ```
+
+Chặng kiểm tra trang 6 chỉ dùng sau preflight xác nhận batch pilot 5/250 nguyên vẹn:
+
+```bash
+python -m job_crawler.cli crawl careerviet --mode page6-check \
+  --max-pages 6 --max-details 300 --fetcher http --save-html \
+  --require-complete-content --resume --resume-batch-id BATCH-ID \
+  --authorization-reference PAGE6-APPROVAL-REFERENCE
+```
+
+Lệnh không mở trang 7; checkpoint giữ 5 listing và 250 detail đã hoàn thành.
+Cross-page overlap cùng ID/canonical URL được đếm trong `cross_page_overlaps` và không
+tạo detail thứ hai. Enqueue ID mới, fingerprint và trạng thái listing completed được
+commit trong cùng một giao dịch SQLite; ID trùng nhưng ánh xạ URL khác sẽ dừng batch.
+Với batch page 6 cũ đã dừng giữa chừng tại overlap, hàm
+`recover_page6_from_saved_html(root)` đối soát HTML gzip đã lưu, thêm đúng ID thiếu
+và có thể gọi lại an toàn trước khi resume; hàm không gửi request mạng.
 
 `--fetcher` nhận `http`, `playwright` hoặc `auto` (mặc định). `auto` bắt đầu bằng HTTP
 và chỉ chuyển một chiều sang Chromium chuẩn khi listing trả 403 hoặc không có job hợp
