@@ -106,7 +106,8 @@ class RunManifest(StableModel):
     started_at: datetime
     finished_at: datetime | None = None
     status: Literal["running", "completed", "completed_with_errors", "stopped", "failed"]
-    authorization_reference: str
+    access_basis: Literal["source_reference", "project_owner_public_test"] = "source_reference"
+    authorization_reference: str | None = None
     authorization_references: list[str] = Field(default_factory=list)
     source_reported_total: int | None = None
     listing_pages_requested: int = 0

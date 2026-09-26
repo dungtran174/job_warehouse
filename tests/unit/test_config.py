@@ -17,8 +17,8 @@ def config(**overrides):
     return CrawlConfig(**values)
 
 
-def test_live_access_requires_authorization_reference() -> None:
-    with pytest.raises(ConfigError, match="authorization"):
+def test_live_access_requires_a_declared_basis() -> None:
+    with pytest.raises(ConfigError, match="access basis"):
         config(authorization_reference=None).validate()
 
 

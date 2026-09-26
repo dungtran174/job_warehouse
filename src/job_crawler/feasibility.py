@@ -104,8 +104,8 @@ SOURCES: dict[str, SourceDefinition] = {
         name="vietnamworks",
         listing_url="https://www.vietnamworks.com/tim-viec-lam/tim-tat-ca-viec-lam",
         allowed_hosts=("vietnamworks.com", "www.vietnamworks.com"),
-        detail_path_markers=("-jv",),
-        id_patterns=(r"-(\d+)-jv(?:[/?#]|$)", r"/(\d{5,})(?:[/?#]|$)"),
+        detail_path_markers=("-jv", "-jd"),
+        id_patterns=(r"-(\d+)-(?:jv|jd)$",),
         pagination_notes="Expected public search pagination and a stable job identifier.",
     ),
 }
@@ -148,6 +148,7 @@ class ProbeReport:
     source: str
     listing_url: str
     started_at: str
+    access_basis: str = "source_reference"
     finished_at: str | None = None
     duration_seconds: float | None = None
     status: str = "running"
@@ -572,15 +573,19 @@ def _error(
 
 def _probe_config(
     *,
+    source_name: str,
+    authorization_reference: str | None,
+    project_owner_public_test: bool,
     fetcher: Literal["http", "playwright", "auto"],
     headed: bool,
     save_html: bool,
     save_screenshot_on_error: bool,
 ) -> CrawlConfig:
     return CrawlConfig(
-        source="topcv",
+        source=source_name,
         fetcher=fetcher,
-        authorization_reference="source-feasibility-probe",
+        authorization_reference=authorization_reference,
+        project_owner_public_test=project_owner_public_test,
         user_agent="job-warehouse-feasibility/0.1 (public-research)",
         delay_min_seconds=1.5,
         delay_max_seconds=3.0,
@@ -594,6 +599,8 @@ def _probe_config(
 def run_probe(
     source_name: str,
     *,
+    authorization_reference: str | None = None,
+    project_owner_public_test: bool = False,
     output_dir: Path = Path("data/diagnostics/source_feasibility"),
     max_listing_pages: int = MAX_LISTING_PAGES,
     max_details: int = MAX_DETAIL_ATTEMPTS,
@@ -608,6 +615,17 @@ def run_probe(
         raise ValueError("Feasibility probe is locked to exactly one listing page.")
     if not 1 <= max_details <= MAX_DETAIL_ATTEMPTS:
         raise ValueError("Feasibility probe permits between one and three details.")
+    if project_owner_public_test and authorization_reference is not None:
+        raise ValueError("Choose one access basis, not both.")
+    if not project_owner_public_test and (
+        not authorization_reference or not authorization_reference.strip()
+    ):
+        raise ValueError(
+            "Choose an access basis: a genuine source --authorization-reference or "
+            "--project-owner-public-test for a bounded public probe."
+        )
+    if project_owner_public_test and fetcher_mode == "playwright":
+        raise ValueError("Project-owner public probe must start with HTTP or auto.")
 
     source = SOURCES[source_name]
     started = datetime.now(UTC)
@@ -621,10 +639,18 @@ def run_probe(
         source=source.name,
         listing_url=source.listing_url,
         started_at=started.isoformat(),
+        access_basis="project_owner_public_test"
+        if project_owner_public_test
+        else "source_reference",
         fetcher_requested=fetcher_mode,
         listing_pages_requested=1,
     )
     config = _probe_config(
+        source_name=source_name,
+        authorization_reference=authorization_reference.strip()
+        if authorization_reference
+        else None,
+        project_owner_public_test=project_owner_public_test,
         fetcher=fetcher_mode,
         headed=headed,
         save_html=save_html,
@@ -695,16 +721,14 @@ def run_probe(
                 details = discover_details(listing_response.text, listing_response.url, source)
             except FetchError as exc:
                 report.http_status_listing = exc.status_code
-                if fetcher_mode == "http" or exc.status_code != 403:
-                    _error(
-                        root,
-                        stage="listing_http",
-                        url=exc.url,
-                        message=str(exc),
-                        status=exc.status_code,
-                    )
-                    return finish("stopped", "listing_http_failed")
-                report.notes.append("HTTP 403 triggered one-way Playwright fallback.")
+                _error(
+                    root,
+                    stage="listing_http",
+                    url=exc.url,
+                    message=str(exc),
+                    status=exc.status_code,
+                )
+                return finish("stopped", "access_blocked" if exc.blocked else "listing_http_failed")
 
         should_use_browser = fetcher_mode == "playwright" or (
             fetcher_mode == "auto" and not details
@@ -834,6 +858,15 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--save-html", action="store_true")
     parser.add_argument("--save-screenshot-on-error", action="store_true")
     parser.add_argument(
+        "--authorization-reference",
+        help="Non-secret reference to genuine written source authorization, if available.",
+    )
+    parser.add_argument(
+        "--project-owner-public-test",
+        action="store_true",
+        help="Owner-directed public probe only; not source authorization.",
+    )
+    parser.add_argument(
         "--output-dir", type=Path, default=Path("data/diagnostics/source_feasibility")
     )
     return parser
@@ -845,6 +878,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         report, root = run_probe(
             args.source,
             output_dir=args.output_dir,
+            authorization_reference=args.authorization_reference,
+            project_owner_public_test=args.project_owner_public_test,
             max_listing_pages=args.max_listing_pages,
             max_details=args.max_details,
             fetcher_mode=args.fetcher,

@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from job_crawler.config import CrawlConfig
 from job_crawler.fetchers.auto import AutoFetcher
 from job_crawler.fetchers.base import FetchError, FetcherState, FetchResponse
@@ -58,7 +60,7 @@ def config(fetcher: str = "auto") -> CrawlConfig:
     )
 
 
-def test_auto_falls_back_once_from_http_403() -> None:
+def test_auto_stops_on_http_403_without_browser_fallback() -> None:
     http = FakeFetcher(
         "http",
         [
@@ -73,12 +75,25 @@ def test_auto_falls_back_once_from_http_403() -> None:
     )
     browser = FakeFetcher("playwright", [response("playwright")])
     fetcher = AutoFetcher(config(), http_fetcher=http, playwright_factory=lambda _cfg: browser)
-    actual = fetcher.get("https://www.topcv.vn/jobs")
-    assert actual.fetcher == "playwright"
+    with pytest.raises(FetchError, match="blocked"):
+        fetcher.get("https://www.topcv.vn/jobs")
+    assert not fetcher.state.fallback_used
+    assert http.calls == 1
+    assert browser.calls == 0
+    fetcher.close()
+    assert http.closed and not browser.closed
+
+
+def test_auto_can_render_after_successful_http_listing() -> None:
+    http = FakeFetcher("http", [response("http")])
+    browser = FakeFetcher("playwright", [response("playwright")])
+    fetcher = AutoFetcher(config(), http_fetcher=http, playwright_factory=lambda _cfg: browser)
+    assert fetcher.get("https://www.topcv.vn/jobs").fetcher == "http"
+    assert fetcher.fallback("empty_listing")
+    assert fetcher.get("https://www.topcv.vn/jobs").fetcher == "playwright"
     assert fetcher.state.fallback_used
     assert not fetcher.fallback("again")
-    assert http.calls == 1
-    assert browser.calls == 1
+    assert (http.calls, browser.calls) == (1, 1)
     fetcher.close()
     assert http.closed and browser.closed
 

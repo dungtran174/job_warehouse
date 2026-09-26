@@ -11,6 +11,8 @@ DEFAULT_CAREERVIET_START_URL = "https://careerviet.vn/viec-lam/tat-ca-viec-lam-v
 DEFAULT_START_URLS = {
     "topcv": DEFAULT_TOPCV_START_URL,
     "careerviet": DEFAULT_CAREERVIET_START_URL,
+    "careerlink": "https://www.careerlink.vn/vieclam/tim-kiem-viec-lam",
+    "vietnamworks": "https://www.vietnamworks.com/tim-viec-lam/tim-tat-ca-viec-lam",
 }
 SAMPLE_MAX_PAGES = 2
 SAMPLE_MAX_DETAILS = 20
@@ -29,7 +31,7 @@ class ConfigError(ValueError):
 @dataclass(frozen=True, slots=True)
 class CrawlConfig:
     source: str = "topcv"
-    mode: Literal["sample", "medium", "pilot", "page6-check", "full-snapshot"] = "sample"
+    mode: Literal["sample", "medium", "pilot", "page6-check", "bounded", "full-snapshot"] = "sample"
     start_url: str = DEFAULT_TOPCV_START_URL
     output_dir: Path = Path("data/raw")
     timeout_seconds: float = 20.0
@@ -43,6 +45,7 @@ class CrawlConfig:
     save_html: bool = False
     log_level: str = "INFO"
     authorization_reference: str | None = None
+    project_owner_public_test: bool = False
     confirm_full: bool = False
     resume: bool = False
     resume_batch_id: str | None = None
@@ -50,6 +53,7 @@ class CrawlConfig:
     headed: bool = False
     save_screenshot_on_error: bool = False
     browser_wait_ms: int = 1500
+    browser_executable_path: str | None = None
     require_complete_content: bool = False
 
     @classmethod
@@ -67,6 +71,7 @@ class CrawlConfig:
             "log_level": os.getenv("JOB_CRAWLER_LOG_LEVEL", "INFO"),
             "fetcher": os.getenv("JOB_CRAWLER_FETCHER", "auto"),
             "browser_wait_ms": int(os.getenv("JOB_CRAWLER_BROWSER_WAIT_MS", "1500")),
+            "browser_executable_path": os.getenv("JOB_CRAWLER_BROWSER_EXECUTABLE_PATH"),
         }
         values.update(overrides)
         return cls(**values)  # type: ignore[arg-type]
@@ -74,16 +79,46 @@ class CrawlConfig:
     def validate(self) -> None:
         if self.source not in DEFAULT_START_URLS:
             raise ConfigError(f"Unsupported source: {self.source}")
-        if not self.authorization_reference or not self.authorization_reference.strip():
+        if self.project_owner_public_test and self.authorization_reference is not None:
             raise ConfigError(
-                "Live access is locked. Provide a non-secret --authorization-reference "
-                "only after written permission has been obtained."
+                "Choose one access basis: project-owner public test or source authorization."
             )
-        if self.mode == "sample":
+        if not self.project_owner_public_test and (
+            not self.authorization_reference or not self.authorization_reference.strip()
+        ):
+            raise ConfigError(
+                "Choose an access basis: a genuine source --authorization-reference or "
+                "--project-owner-public-test for a bounded public sample."
+            )
+        if self.source == "careerlink":
+            if self.fetcher != "http" or not self.save_html or not self.require_complete_content:
+                raise ConfigError("CareerLink requires HTTP, saved HTML and complete content.")
+            if self.delay_min_seconds < 3 or self.max_retries != 0:
+                raise ConfigError("CareerLink requires delay >= 3 seconds and no automatic retry.")
+            if self.mode not in {"sample", "bounded"}:
+                raise ConfigError("CareerLink supports sample or explicitly bounded batches only.")
+        if self.mode == "bounded":
+            if self.source != "careerlink" or not self.project_owner_public_test:
+                raise ConfigError("Bounded mode is owner-directed CareerLink only.")
+            if self.max_pages is None or not 1 <= self.max_pages <= 6:
+                raise ConfigError("Bounded --max-pages must be between 1 and 6.")
+            if self.max_details is None or not 1 <= self.max_details <= 300:
+                raise ConfigError("Bounded --max-details must be between 1 and 300.")
+        elif self.mode == "sample":
             if self.max_pages is None or not 1 <= self.max_pages <= SAMPLE_MAX_PAGES:
                 raise ConfigError("Sample --max-pages must be between 1 and 2.")
             if self.max_details is None or not 1 <= self.max_details <= SAMPLE_MAX_DETAILS:
                 raise ConfigError("Sample --max-details must be between 1 and 20.")
+            if (
+                self.project_owner_public_test
+                and self.source not in {"vietnamworks", "careerlink"}
+                and (self.max_pages != 1 or self.max_details > 3)
+            ):
+                raise ConfigError(
+                    "Project-owner public test is limited to one listing and three details."
+                )
+        elif self.project_owner_public_test:
+            raise ConfigError("Project-owner public test is available only in sample mode.")
         elif self.mode == "medium":
             if self.max_pages is None or not 1 <= self.max_pages <= MEDIUM_MAX_PAGES:
                 raise ConfigError("Medium --max-pages must be between 1 and 5.")
@@ -122,6 +157,8 @@ class CrawlConfig:
             raise ConfigError("Retry count cannot be negative.")
         if self.fetcher not in {"auto", "http", "playwright"}:
             raise ConfigError("--fetcher must be auto, http, or playwright.")
+        if self.project_owner_public_test and self.fetcher == "playwright":
+            raise ConfigError("Project-owner public test must start with HTTP or auto.")
         if self.browser_wait_ms < 0 or self.browser_wait_ms > 10_000:
             raise ConfigError("Browser wait must be between 0 and 10000 milliseconds.")
         if self.fetcher != "playwright" and (

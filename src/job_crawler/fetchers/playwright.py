@@ -112,7 +112,10 @@ class PlaywrightFetcher:
         if self._context is not None:
             return
         self._playwright = self._playwright_factory().start()
-        self._browser = self._playwright.chromium.launch(headless=not self.config.headed)
+        launch_options: dict[str, Any] = {"headless": not self.config.headed}
+        if self.config.browser_executable_path:
+            launch_options["executable_path"] = self.config.browser_executable_path
+        self._browser = self._playwright.chromium.launch(**launch_options)
         self._context = self._browser.new_context()
 
     def close(self) -> None:
@@ -215,6 +218,9 @@ class PlaywrightFetcher:
             fetcher="playwright",
         )
 
+    def _prepare_page(self, page: Any) -> None:
+        """Optional source hook for public content that needs bounded rendering."""
+
     def get(self, url: str) -> FetchResponse:
         if urlsplit(url).path == "/robots.txt":
             return self._get_text_resource(url)
@@ -230,6 +236,24 @@ class PlaywrightFetcher:
                     wait_until="domcontentloaded",
                     timeout=self.config.timeout_seconds * 1000,
                 )
+                if response is not None and int(response.status) in {401, 403}:
+                    self.state.challenge_detected = True
+                    artifacts = self._save_artifacts(
+                        page,
+                        page.url,
+                        page.content(),
+                        kind="access_denied",
+                        screenshot=self.config.save_screenshot_on_error,
+                    )
+                    raise FetchError(
+                        "Browser stopped at access_denied",
+                        url=page.url,
+                        attempt=attempt,
+                        status_code=int(response.status),
+                        blocked=True,
+                        challenge_type="access_denied",
+                        artifact_paths=artifacts,
+                    )
                 self._accept_cookie_consent(page)
                 with suppress(PlaywrightTimeoutError):
                     page.locator(
@@ -240,6 +264,7 @@ class PlaywrightFetcher:
                 for _ in range(2):
                     page.evaluate("window.scrollBy(0, Math.min(window.innerHeight, 900))")
                     page.wait_for_timeout(250)
+                self._prepare_page(page)
                 html = page.content()
                 title = page.title()
                 final_url = page.url

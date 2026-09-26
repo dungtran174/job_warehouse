@@ -46,13 +46,10 @@ class AutoFetcher:
     def get(self, url: str) -> FetchResponse:
         try:
             response = self._active.get(url)
-        except FetchError as exc:
-            if self._active is self._http and exc.status_code == 403 and self.fallback("http_403"):
-                response = self._active.get(url)
-            else:
-                if self._active.state.challenge_detected:
-                    self.state.challenge_detected = True
-                raise
+        except FetchError:
+            if self._active.state.challenge_detected:
+                self.state.challenge_detected = True
+            raise
         self.state.active = response.fetcher
         if self._active.state.challenge_detected:
             self.state.challenge_detected = True

@@ -21,8 +21,10 @@ from job_crawler.config import (
     CrawlConfig,
 )
 from job_crawler.crawlers.base import SourceCrawler
+from job_crawler.crawlers.careerlink import CareerLinkCrawler
 from job_crawler.crawlers.careerviet import CareerVietCrawler
 from job_crawler.crawlers.topcv import TopCVCrawler
+from job_crawler.crawlers.vietnamworks import VietnamWorksCrawler
 from job_crawler.engine import CrawlEngine
 from job_crawler.fetchers.factory import create_fetcher
 from job_crawler.storage.jsonl import StorageError
@@ -35,7 +37,7 @@ def build_parser() -> argparse.ArgumentParser:
     crawl.add_argument("source", choices=tuple(DEFAULT_START_URLS))
     crawl.add_argument(
         "--mode",
-        choices=("sample", "medium", "pilot", "page6-check", "full-snapshot"),
+        choices=("sample", "medium", "pilot", "page6-check", "bounded", "full-snapshot"),
         default="sample",
     )
     crawl.add_argument("--start-url")
@@ -65,7 +67,15 @@ def build_parser() -> argparse.ArgumentParser:
     crawl.add_argument("--confirm-full", action="store_true")
     crawl.add_argument(
         "--authorization-reference",
-        help="non-secret reference to written authorization for live access",
+        help="non-secret reference to genuine written authorization from the source",
+    )
+    crawl.add_argument(
+        "--project-owner-public-test",
+        action="store_true",
+        help="owner-directed public sample (VietnamWorks/CareerLink: 2 listings/20 details; "
+        "CareerLink bounded mode: explicit caps up to 6 listings/300 details); "
+        "other sources: 1 listing/3 details); "
+        "not source authorization",
     )
     return parser
 
@@ -74,8 +84,10 @@ def _config_from_args(args: argparse.Namespace) -> CrawlConfig:
     max_pages = args.max_pages
     max_details = args.max_details
     if args.mode == "sample":
-        max_pages = SAMPLE_MAX_PAGES if max_pages is None else max_pages
-        max_details = SAMPLE_MAX_DETAILS if max_details is None else max_details
+        default_pages = 1 if args.project_owner_public_test else SAMPLE_MAX_PAGES
+        default_details = 3 if args.project_owner_public_test else SAMPLE_MAX_DETAILS
+        max_pages = default_pages if max_pages is None else max_pages
+        max_details = default_details if max_details is None else max_details
     elif args.mode == "medium":
         max_pages = MEDIUM_MAX_PAGES if max_pages is None else max_pages
         max_details = MEDIUM_MAX_DETAILS if max_details is None else max_details
@@ -99,6 +111,7 @@ def _config_from_args(args: argparse.Namespace) -> CrawlConfig:
         "resume_batch_id": args.resume_batch_id,
         "confirm_full": args.confirm_full,
         "authorization_reference": args.authorization_reference,
+        "project_owner_public_test": args.project_owner_public_test,
     }
     for argument, field in (
         (args.output_dir, "output_dir"),
@@ -131,6 +144,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     crawlers: dict[str, SourceCrawler] = {
         "topcv": TopCVCrawler(),
         "careerviet": CareerVietCrawler(),
+        "careerlink": CareerLinkCrawler(),
+        "vietnamworks": VietnamWorksCrawler(),
     }
     crawler = crawlers[config.source]
     try:

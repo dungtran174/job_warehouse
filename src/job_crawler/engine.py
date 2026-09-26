@@ -27,8 +27,8 @@ from job_crawler.utils.time import local_snapshot_date, utc_now
 from job_crawler.utils.url import canonicalize_url, robots_url
 
 LOGGER = logging.getLogger(__name__)
-DETAIL_ERROR_RATE_LIMITS = {"medium": 0.1, "pilot": 0.05, "page6-check": 0.05}
-STRICT_MODES = {"pilot", "page6-check"}
+DETAIL_ERROR_RATE_LIMITS = {"medium": 0.1, "pilot": 0.05, "page6-check": 0.05, "bounded": 0.05}
+STRICT_MODES = {"pilot", "page6-check", "bounded"}
 MISSING_FIELD_NAMES = (
     "salary_raw",
     "location_raw",
@@ -98,8 +98,15 @@ class CrawlEngine:
             start_url=self.config.start_url,
             started_at=started_at,
             status="running",
-            authorization_reference=self.config.authorization_reference or "",
-            authorization_references=[self.config.authorization_reference or ""],
+            access_basis=(
+                "project_owner_public_test"
+                if self.config.project_owner_public_test
+                else "source_reference"
+            ),
+            authorization_reference=self.config.authorization_reference,
+            authorization_references=(
+                [self.config.authorization_reference] if self.config.authorization_reference else []
+            ),
             delay_min_seconds=self.config.delay_min_seconds,
             delay_max_seconds=self.config.delay_max_seconds,
             max_retries=self.config.max_retries,
@@ -141,6 +148,14 @@ class CrawlEngine:
         if manifest.start_url != self.config.start_url:
             storage.close()
             raise StorageError("Resume start URL does not match the existing batch.")
+        expected_basis = (
+            "project_owner_public_test"
+            if self.config.project_owner_public_test
+            else "source_reference"
+        )
+        if manifest.access_basis != expected_basis:
+            storage.close()
+            raise StorageError("Resume access basis does not match the existing batch.")
         if (
             manifest.schema_version != self.crawler.schema_version
             or manifest.parser_version != self.crawler.parser_version
@@ -148,10 +163,10 @@ class CrawlEngine:
             storage.close()
             raise StorageError("Refusing resume with a different schema/parser version.")
         snapshot = date.fromisoformat(root.parent.name.removeprefix("snapshot_date="))
-        if not manifest.authorization_references:
+        if manifest.authorization_reference and not manifest.authorization_references:
             manifest.authorization_references.append(manifest.authorization_reference)
-        new_reference = self.config.authorization_reference or ""
-        if new_reference not in manifest.authorization_references:
+        new_reference = self.config.authorization_reference
+        if new_reference and new_reference not in manifest.authorization_references:
             manifest.authorization_references.append(new_reference)
         if transitioning_to_pilot:
             manifest.mode = "pilot"
@@ -283,7 +298,9 @@ class CrawlEngine:
                 try:
                     response = self.fetcher.get(listing_url)
                 except FetchError as exc:
-                    storage.checkpoint.finish_listing(listing_url, "failed")
+                    storage.checkpoint.finish_listing(
+                        listing_url, "pending" if exc.blocked else "failed"
+                    )
                     storage.append_error(
                         self._error(
                             url=exc.url,
@@ -367,7 +384,9 @@ class CrawlEngine:
                         response = self.fetcher.get(listing_url)
                         page = self.crawler.parse_listing(response.text, response.url)
                     except FetchError as exc:
-                        storage.checkpoint.finish_listing(listing_url, "failed")
+                        storage.checkpoint.finish_listing(
+                            listing_url, "pending" if exc.blocked else "failed"
+                        )
                         manifest.challenge_detected = self.fetcher.state.challenge_detected
                         storage.append_error(
                             self._error(
@@ -512,7 +531,9 @@ class CrawlEngine:
                 try:
                     response = self.fetcher.get(job.canonical_url)
                 except FetchError as exc:
-                    storage.checkpoint.finish_detail(job.source_job_id, "failed")
+                    storage.checkpoint.finish_detail(
+                        job.source_job_id, "pending" if exc.blocked else "failed"
+                    )
                     manifest.detail_failed += 1
                     storage.append_error(
                         self._error(
