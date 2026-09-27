@@ -6,10 +6,13 @@ from job_crawler.fetchers.base import Fetcher
 from job_crawler.fetchers.careerlink import CareerLinkHttpFetcher
 from job_crawler.fetchers.http import HttpFetcher
 from job_crawler.fetchers.playwright import PlaywrightFetcher
+from job_crawler.fetchers.timviec365 import Timviec365HttpFetcher
 from job_crawler.fetchers.vietnamworks import VietnamWorksFetcher
 
 
 def create_fetcher(config: CrawlConfig) -> Fetcher:
+    if config.source == "timviec365":
+        return Timviec365HttpFetcher(config)
     if config.source == "careerlink":
         return CareerLinkHttpFetcher(config)
     if config.fetcher == "http":

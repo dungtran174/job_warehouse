@@ -12,6 +12,7 @@ DEFAULT_START_URLS = {
     "topcv": DEFAULT_TOPCV_START_URL,
     "careerviet": DEFAULT_CAREERVIET_START_URL,
     "careerlink": "https://www.careerlink.vn/vieclam/tim-kiem-viec-lam",
+    "timviec365": "https://timviec365.vn/viec-lam",
     "vietnamworks": "https://www.vietnamworks.com/tim-viec-lam/tim-tat-ca-viec-lam",
 }
 SAMPLE_MAX_PAGES = 2
@@ -90,6 +91,18 @@ class CrawlConfig:
                 "Choose an access basis: a genuine source --authorization-reference or "
                 "--project-owner-public-test for a bounded public sample."
             )
+        if self.source == "timviec365":
+            if self.mode not in {"sample", "bounded"} or (
+                self.mode == "sample"
+                and (self.max_pages != 1 or not self.max_details or self.max_details > 3)
+            ):
+                raise ConfigError(
+                    "Timviec365 supports a 1/3 sample or explicitly bounded collection."
+                )
+            if self.fetcher != "http" or not self.save_html or not self.require_complete_content:
+                raise ConfigError("Timviec365 requires HTTP, saved HTML and complete content.")
+            if self.delay_min_seconds < 10 or self.max_retries != 0:
+                raise ConfigError("Timviec365 requires delay >= 10 seconds and no automatic retry.")
         if self.source == "careerlink":
             if self.fetcher != "http" or not self.save_html or not self.require_complete_content:
                 raise ConfigError("CareerLink requires HTTP, saved HTML and complete content.")
@@ -98,10 +111,14 @@ class CrawlConfig:
             if self.mode not in {"sample", "bounded"}:
                 raise ConfigError("CareerLink supports sample or explicitly bounded batches only.")
         if self.mode == "bounded":
-            if self.source != "careerlink" or not self.project_owner_public_test:
-                raise ConfigError("Bounded mode is owner-directed CareerLink only.")
-            if self.max_pages is None or not 1 <= self.max_pages <= 6:
-                raise ConfigError("Bounded --max-pages must be between 1 and 6.")
+            if (
+                self.source not in {"careerlink", "timviec365"}
+                or not self.project_owner_public_test
+            ):
+                raise ConfigError("Bounded mode is owner-directed CareerLink/Timviec365 only.")
+            page_limit = 13 if self.source == "timviec365" else 6
+            if self.max_pages is None or not 1 <= self.max_pages <= page_limit:
+                raise ConfigError(f"Bounded --max-pages must be between 1 and {page_limit}.")
             if self.max_details is None or not 1 <= self.max_details <= 300:
                 raise ConfigError("Bounded --max-details must be between 1 and 300.")
         elif self.mode == "sample":

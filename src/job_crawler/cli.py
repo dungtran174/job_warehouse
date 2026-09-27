@@ -23,6 +23,7 @@ from job_crawler.config import (
 from job_crawler.crawlers.base import SourceCrawler
 from job_crawler.crawlers.careerlink import CareerLinkCrawler
 from job_crawler.crawlers.careerviet import CareerVietCrawler
+from job_crawler.crawlers.timviec365 import Timviec365Crawler
 from job_crawler.crawlers.topcv import TopCVCrawler
 from job_crawler.crawlers.vietnamworks import VietnamWorksCrawler
 from job_crawler.engine import CrawlEngine
@@ -73,7 +74,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--project-owner-public-test",
         action="store_true",
         help="owner-directed public sample (VietnamWorks/CareerLink: 2 listings/20 details; "
-        "CareerLink bounded mode: explicit caps up to 6 listings/300 details); "
+        "bounded mode: CareerLink 6 listings/300 details, Timviec365 13/300; "
         "other sources: 1 listing/3 details); "
         "not source authorization",
     )
@@ -145,6 +146,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "topcv": TopCVCrawler(),
         "careerviet": CareerVietCrawler(),
         "careerlink": CareerLinkCrawler(),
+        "timviec365": Timviec365Crawler(),
         "vietnamworks": VietnamWorksCrawler(),
     }
     crawler = crawlers[config.source]

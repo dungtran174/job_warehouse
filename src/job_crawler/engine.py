@@ -140,8 +140,20 @@ class CrawlEngine:
         manifest = storage.read_manifest()
         transitioning_to_pilot = manifest.mode == "medium" and self.config.mode == "pilot"
         transitioning_to_page6 = manifest.mode == "pilot" and self.config.mode == "page6-check"
+        transitioning_to_bounded = (
+            manifest.source == "timviec365"
+            and self.crawler.source_name == "timviec365"
+            and manifest.mode == "sample"
+            and self.config.mode == "bounded"
+            and self.config.project_owner_public_test
+            and self.config.resume_batch_id == manifest.batch_id
+            and manifest.status == "completed"
+            and manifest.records_written >= 3
+            and manifest.detail_failed == 0
+            and not manifest.challenge_detected
+        )
         if manifest.mode != self.config.mode and not (
-            transitioning_to_pilot or transitioning_to_page6
+            transitioning_to_pilot or transitioning_to_page6 or transitioning_to_bounded
         ):
             storage.close()
             raise StorageError("Resume mode does not match the existing batch.")
@@ -172,6 +184,8 @@ class CrawlEngine:
             manifest.mode = "pilot"
         if transitioning_to_page6:
             manifest.mode = "page6-check"
+        if transitioning_to_bounded:
+            manifest.mode = "bounded"
         manifest.status = "running"
         manifest.finished_at = None
         manifest.fetcher_requested = self.config.fetcher
