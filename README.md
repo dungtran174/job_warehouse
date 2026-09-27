@@ -1,7 +1,7 @@
 # job_warehouse
 
 Pipeline thu thập dữ liệu tuyển dụng công khai cho phân tích thị trường Việt Nam. Giai
-đoạn hiện tại có adapter TopCV, CareerViet, VietnamWorks và CareerLink, lưu batch raw.
+đoạn hiện tại có adapter TopCV, CareerViet, VietnamWorks, CareerLink và Timviec365, lưu batch raw.
 VietnamWorks đã tích hợp offline nhưng pilot live đầu tiên dừng ở listing render HTTP 403.
 CareerViet được chọn
 sau feasibility probe giới hạn; TopCV vẫn được giữ nhưng live detail có thể bị WAF chặn.
@@ -22,7 +22,7 @@ sự chấp thuận của VietnamWorks hay bất kỳ chủ nguồn nào. Trong 
 giới hạn là đúng 1 listing và tối đa 3 detail cho TopCV/CareerViet. Với VietnamWorks/CareerLink,
 chủ dự án đã cho phép pilot nhỏ trong mode `sample`: tối đa 2 listing/20 detail;
 mặc định vẫn là 1/3 nếu không truyền giới hạn. Probe feasibility vẫn khóa 1/3.
-Riêng CareerLink còn có mode `bounded` với giới hạn tường minh, xem mục bên dưới;
+CareerLink và Timviec365 có mode `bounded` với giới hạn tường minh, xem bên dưới;
 đây không phải quyền tự động mở rộng hay chạy lại sau challenge.
 `--authorization-reference` chỉ dùng khi có
 văn bản chấp thuận thật của chủ nguồn; không tự tạo mã hoặc dùng mã chủ dự án thay thế.
@@ -107,7 +107,7 @@ python -m job_crawler.cli crawl topcv \
 `--save-html` là tùy chọn và mặc định tắt. Chỉ bật khi điều khoản hoặc phạm vi chấp
 thuận cho phép lưu HTML nguồn. Đường `--project-owner-public-test` hỗ trợ
 sample công khai (VietnamWorks/CareerLink tối đa 2 listing/20 detail, nguồn khác 1/3)
-và mode `bounded` riêng CareerLink;
+và mode `bounded` riêng CareerLink/Timviec365;
 manifest ghi `access_basis=project_owner_public_test`
 và `authorization_reference=null`, không gắn nhãn chấp thuận của chủ nguồn.
 
@@ -351,3 +351,55 @@ ghi kiểu giá trị, tỷ lệ thiếu, đối chiếu HTML và các trường
 Có thể bắt đầu thiết kế từ 354 tin hiện có; mẫu lịch sử chưa được xác định cục bộ.
 Chưa triển khai Bronze/Silver. Báo cáo cũng có lệnh resume có điều kiện, tối đa
 20 lần thử detail thêm, **chưa chạy**; không dùng mốc 100/300 để bỏ qua challenge.
+
+## Timviec365: mẫu HTTP và batch mở rộng có giới hạn
+
+Mode `sample` giữ giới hạn 1 listing/3 detail. Theo yêu cầu tăng dần của chủ dự án
+ngày 27/09/2026, mode `bounded` cho phép tối đa 13 listing/300 lần thử detail lũy kế,
+với các mốc kiểm toán 30 → 100 → 300 ID hợp lệ (không bảo đảm đạt trước khi đo).
+HTTP một luồng, delay tối thiểu 10 giây, không retry, bắt buộc lưu HTML và đủ nội dung.
+Đây không phải full snapshot hay chấp thuận của chủ nguồn: manifest vẫn ghi
+`access_basis=project_owner_public_test`, `authorization_reference=null`.
+Resume `sample` → `bounded` chỉ cho Timviec365, đúng batch ID, mẫu đã completed,
+có ít nhất 3 record, không lỗi detail/challenge và cùng parser/schema/access basis.
+
+```bash
+job-crawler crawl timviec365 --mode sample --fetcher http \
+  --max-pages 1 --max-details 3 --delay-min 10 --delay-max 15 \
+  --max-retries 0 --timeout 30 --save-html --require-complete-content \
+  --project-owner-public-test \
+  --user-agent 'job-warehouse-crawler/0.1 (public academic research; single-threaded)'
+```
+
+Chỉ chạy sau khi đối chiếu điều kiện hiện hành. Thêm `--resume --resume-batch-id ID`
+để tiếp tục đúng batch; `max-details` là giới hạn **lũy kế**, không phải số tin thêm.
+Không tự resume sau challenge/401/403/429. Fetcher không theo redirect, không gọi
+API hoặc tải ảnh/script/PDF; lưu body + metadata trong `http/` trước khi xét lỗi.
+Guard robots riêng chặn mọi Disallow khớp (kể cả wildcard), thiên về dừng nếu
+quy tắc tương lai có Allow ngoại lệ cần đánh giá lại.
+
+Parser chỉ lấy card thuộc vùng kết quả chính, đối chiếu ID canonical với h1 của
+detail; không lấy preview làm mô tả. Ngày “Cập nhật” không được gán thành ngày đăng.
+[Đánh giá và pilot 27/09/2026](docs/timviec365_followup_2026-09-27.md) phân biệt
+đọc được ba detail với độ ổn định nhiều trang; artifact raw chỉ có trên máy cục bộ.
+
+Lệnh mở rộng theo từng mốc (chỉ sau khi điều kiện hiện hành phù hợp và mốc trước ổn):
+
+```bash
+job-crawler crawl timviec365 --mode bounded --fetcher http \
+  --resume --resume-batch-id 20260926T174917Z-3a406cfa \
+  --max-pages 2 --max-details 30 --delay-min 10 --delay-max 15 \
+  --max-retries 0 --timeout 30 --save-html --require-complete-content \
+  --project-owner-public-test \
+  --user-agent 'job-warehouse-crawler/0.1 (public academic research; single-threaded)'
+```
+
+Mốc tiếp theo dùng 5/100 rồi tối đa 13/300, không chạy đồng thời. `max-details`
+đếm lần thử lũy kế; báo cáo phải đếm riêng record hợp lệ và tổng ID duy nhất,
+không cộng lại ba detail probe. Không tự chạy lại sau tín hiệu chặn.
+
+Kết quả mở rộng ngày 27/09/2026: **299 ID detail raw duy nhất** từ 13 listing
+chính (303 ID discovery), 299/299 mô tả và yêu cầu khớp toàn văn HTML. Bộ đếm
+300 lần thử gồm một lần gián đoạn chưa có phản hồi; không báo 300/300 thành công.
+Xem [báo cáo mở rộng, resume và kiểm toán](docs/timviec365_expansion_2026-09-27.md).
+Không tự mở rộng tiếp; CareerViet 299 và CareerLink 55 được giữ nguyên.
