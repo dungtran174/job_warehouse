@@ -133,6 +133,70 @@ def test_owner_vietnamworks_cap_is_twenty(tmp_path):
 
 
 @respx.mock
+def test_terminal_listing_error_does_not_attempt_queued_details(tmp_path):
+    from job_crawler.fetchers.base import FetchError
+
+    respx.get("https://www.vietnamworks.com/robots.txt").mock(
+        return_value=httpx.Response(200, text="User-agent: *\nAllow: /")
+    )
+    respx.get(START).mock(return_value=httpx.Response(200, text=listing()))
+    first_id, item = next(iter(EXPECTED.items()))
+    respx.get(item["url"]).mock(
+        return_value=httpx.Response(200, text=(ROOT / f"detail_{first_id}.html").read_text())
+    )
+    c = config(tmp_path, max_details=1)
+    with HttpFetcher(c) as f:
+        first = CrawlEngine(c, VietnamWorksCrawler(), f).run()
+    root = next(tmp_path.glob("vietnamworks/snapshot_date=*/batch_id=*"))
+    page2 = "https://www.vietnamworks.com/viec-lam?page=2"
+    with sqlite3.connect(root / "checkpoint.sqlite3") as db:
+        db.execute("INSERT INTO listing_queue(url) VALUES (?)", (page2,))
+
+    class TerminalFetcher(HttpFetcher):
+        def get(self, url):
+            if url == page2:
+                raise FetchError("Terminal page error", url=url, attempt=1, terminal=True)
+            return super().get(url)
+
+    c = replace(c, max_pages=2, max_details=3, resume=True, resume_batch_id=first.batch_id)
+    with TerminalFetcher(c) as f:
+        result = CrawlEngine(c, VietnamWorksCrawler(), f).run()
+    assert result.records_written == result.detail_requested == 1
+    assert result.status == "stopped"
+    assert result.termination_reason == "listing_fetch_failed"
+
+
+@respx.mock
+def test_discovery_landing_http_200_does_not_fetch_details_or_render(tmp_path, monkeypatch):
+    url = "https://www.vietnamworks.com/tim-viec-lam"
+    respx.get("https://www.vietnamworks.com/robots.txt").mock(
+        return_value=httpx.Response(200, text="User-agent: *\nAllow: /")
+    )
+    route = respx.get(url).mock(
+        return_value=httpx.Response(
+            200, text=(ROOT / "discovery_landing_20260929.html").read_text()
+        )
+    )
+    c = replace(config(tmp_path, max_details=3), start_url=url, fetcher="auto")
+    f = VietnamWorksFetcher(c)
+    monkeypatch.setattr(
+        f.browser, "get", lambda _url: pytest.fail("Landing is not a JS search-results shell")
+    )
+    with f:
+        result = CrawlEngine(c, VietnamWorksCrawler(), f).run()
+    assert route.call_count == 1
+    assert result.listing_pages_requested == 1
+    assert result.listing_pages_succeeded == 0
+    assert result.unique_ids_discovered == 0
+    assert result.detail_requested == result.records_written == 0
+    assert result.pagination_termination_reason == "no_jobs_found"
+    assert not result.challenge_detected
+    assert not result.http_fallback_to_playwright
+    root = next(tmp_path.glob("vietnamworks/snapshot_date=*/batch_id=*"))
+    assert (root / "jobs.jsonl").read_text() == ""
+
+
+@respx.mock
 def test_browser_listing_block_preserves_pending_and_offline_resume(tmp_path, monkeypatch):
     from job_crawler.fetchers.base import FetchError, FetchResponse
 

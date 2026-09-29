@@ -12,6 +12,7 @@ DEFAULT_START_URLS = {
     "topcv": DEFAULT_TOPCV_START_URL,
     "careerviet": DEFAULT_CAREERVIET_START_URL,
     "careerlink": "https://www.careerlink.vn/vieclam/tim-kiem-viec-lam",
+    "vieclam24h": "https://vieclam24h.vn/tim-kiem-viec-lam-nhanh",
     "timviec365": "https://timviec365.vn/viec-lam",
     "vietnamworks": "https://www.vietnamworks.com/tim-viec-lam/tim-tat-ca-viec-lam",
 }
@@ -110,13 +111,34 @@ class CrawlConfig:
                 raise ConfigError("CareerLink requires delay >= 3 seconds and no automatic retry.")
             if self.mode not in {"sample", "bounded"}:
                 raise ConfigError("CareerLink supports sample or explicitly bounded batches only.")
+        if self.source == "vieclam24h":
+            if self.mode != "bounded" or not self.project_owner_public_test:
+                raise ConfigError("Việc Làm 24h supports explicitly owner-bounded batches only.")
+            if self.fetcher != "playwright" or not self.headed:
+                raise ConfigError("Việc Làm 24h uses an ordinary headed browser chosen upfront.")
+            if not self.save_html or not self.require_complete_content:
+                raise ConfigError("Việc Làm 24h requires saved HTML and complete detail content.")
+            if self.delay_min_seconds < 10 or self.max_retries != 0:
+                raise ConfigError("Việc Làm 24h requires delay >= 10 seconds and no retries.")
+        if self.source == "vietnamworks" and self.fetcher == "playwright":
+            if not self.headed or not self.save_html or not self.require_complete_content:
+                raise ConfigError("VietnamWorks browser requires headed, saved HTML, full content.")
+            if self.delay_min_seconds < 10 or self.max_retries != 0:
+                raise ConfigError("VietnamWorks browser requires delay >= 10 and no retries.")
         if self.mode == "bounded":
             if (
-                self.source not in {"careerlink", "timviec365"}
+                self.source not in {"careerlink", "timviec365", "vieclam24h", "vietnamworks"}
                 or not self.project_owner_public_test
             ):
-                raise ConfigError("Bounded mode is owner-directed CareerLink/Timviec365 only.")
-            page_limit = 13 if self.source == "timviec365" else 6
+                raise ConfigError(
+                    "Bounded mode is owner-directed "
+                    "CareerLink/Timviec365/Việc Làm 24h/VietnamWorks."
+                )
+            if self.source == "vietnamworks" and self.fetcher != "playwright":
+                raise ConfigError(
+                    "VietnamWorks bounded collection uses the tested ordinary browser."
+                )
+            page_limit = {"timviec365": 13, "vieclam24h": 12, "vietnamworks": 8}.get(self.source, 6)
             if self.max_pages is None or not 1 <= self.max_pages <= page_limit:
                 raise ConfigError(f"Bounded --max-pages must be between 1 and {page_limit}.")
             if self.max_details is None or not 1 <= self.max_details <= 300:
@@ -174,7 +196,11 @@ class CrawlConfig:
             raise ConfigError("Retry count cannot be negative.")
         if self.fetcher not in {"auto", "http", "playwright"}:
             raise ConfigError("--fetcher must be auto, http, or playwright.")
-        if self.project_owner_public_test and self.fetcher == "playwright":
+        if (
+            self.project_owner_public_test
+            and self.fetcher == "playwright"
+            and self.source not in {"vieclam24h", "vietnamworks"}
+        ):
             raise ConfigError("Project-owner public test must start with HTTP or auto.")
         if self.browser_wait_ms < 0 or self.browser_wait_ms > 10_000:
             raise ConfigError("Browser wait must be between 0 and 10000 milliseconds.")

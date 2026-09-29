@@ -1,7 +1,10 @@
 from pathlib import Path
+from urllib.parse import urljoin
 
 import pytest
+from selectolax.parser import HTMLParser
 
+from job_crawler.parsers.vietnamworks_detail import job_id_from_url
 from job_crawler.parsers.vietnamworks_listing import parse_listing
 
 ROOT = Path(__file__).parents[1] / "fixtures/vietnamworks"
@@ -31,3 +34,21 @@ def test_featured_only_is_not_a_main_listing():
 def test_unverified_pagination_fails_closed():
     with pytest.raises(ValueError, match="active pagination"):
         parse_listing((ROOT / "main_listing_1.html").read_text(), START + "?page=2")
+
+
+def test_discovery_landing_ids_and_carousel_are_not_main_results():
+    url = "https://www.vietnamworks.com/tim-viec-lam"
+    html = (ROOT / "discovery_landing_20260929.html").read_text()
+    tree = HTMLParser(html)
+    ids = {
+        job_id_from_url(urljoin(url, anchor.attributes["href"]))
+        for anchor in tree.css('[data-cname="preview-job"] a[href]')
+    }
+    assert ids == {"2099338", "2113189"}
+    assert len(tree.css('[data-id^="recommend-jobs-pagination-"]')) == 2
+    assert "Loading" not in html
+    page = parse_listing(html, url)
+    assert page.jobs == []
+    assert page.next_url is None
+    # A landing total is neither a main listing count nor detail discovery.
+    assert page.source_reported_total is None

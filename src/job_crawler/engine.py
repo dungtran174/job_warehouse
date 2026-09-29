@@ -327,7 +327,7 @@ class CrawlEngine:
                         )
                     )
                     listing_reason = "access_blocked" if exc.blocked else "listing_fetch_failed"
-                    stopped = exc.blocked or self.config.mode == "page6-check"
+                    stopped = exc.blocked or exc.terminal or self.config.mode == "page6-check"
                     manifest.challenge_detected = self.fetcher.state.challenge_detected
                     break
                 manifest.fetcher_used = response.fetcher
@@ -566,6 +566,10 @@ class CrawlEngine:
                         detail_reason = (
                             "browser_challenge" if exc.challenge_type else "access_blocked"
                         )
+                        stopped = True
+                        break
+                    if exc.terminal:
+                        detail_reason = "detail_fetch_failed"
                         stopped = True
                         break
                     consecutive_detail_failures += 1

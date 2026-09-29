@@ -109,6 +109,41 @@ def plain(value: Any) -> str | None:
     return re.sub(r"\s+", " ", HTMLParser(value).text(separator=" ", strip=True)).strip() or None
 
 
+def validate_rendered_detail(html: str, record: JobRecord) -> None:
+    """Independently compare inline detail fields with complete rendered sections."""
+    tree = HTMLParser(html)
+    heading = tree.css_first("h1")
+    if heading is None:
+        return  # HTTP Flight fixtures need not contain a rendered DOM.
+    if plain(heading.html) != record.job_title:
+        raise ValueError("Rendered detail title differs from inline detail")
+    companies = {plain(anchor.html) for anchor in tree.css('a[href*="/nha-tuyen-dung/"]')}
+    if record.company_name not in companies:
+        raise ValueError("Rendered company missing/different from inline detail")
+    sections: dict[str, str | None] = {}
+    for node in tree.css("h2"):
+        label = node.text(strip=True).casefold()
+        if label not in {
+            "mô tả công việc",
+            "yêu cầu công việc",
+            "job description",
+            "job requirements",
+        }:
+            continue
+        sibling = node.next
+        content = None
+        while sibling is not None:
+            if sibling.tag == "div":
+                content = sibling
+            sibling = sibling.next
+        if content is not None:
+            sections[label] = plain(content.html)
+    description = sections.get("mô tả công việc") or sections.get("job description")
+    requirements = sections.get("yêu cầu công việc") or sections.get("job requirements")
+    if description != record.job_description or requirements != record.candidate_requirements:
+        raise ValueError("Rendered full description/requirements differ from inline detail")
+
+
 def parse_detail(
     html: str,
     discovered: DiscoveredJob,
@@ -165,4 +200,6 @@ def parse_detail(
         "company_size": plain(job.get("companySize")),
     }
     payload["content_hash"] = job_content_hash(payload)
-    return JobRecord.model_validate(payload)
+    record = JobRecord.model_validate(payload)
+    validate_rendered_detail(html, record)
+    return record

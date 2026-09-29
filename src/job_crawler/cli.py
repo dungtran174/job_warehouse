@@ -25,6 +25,7 @@ from job_crawler.crawlers.careerlink import CareerLinkCrawler
 from job_crawler.crawlers.careerviet import CareerVietCrawler
 from job_crawler.crawlers.timviec365 import Timviec365Crawler
 from job_crawler.crawlers.topcv import TopCVCrawler
+from job_crawler.crawlers.vieclam24h import Vieclam24hCrawler
 from job_crawler.crawlers.vietnamworks import VietnamWorksCrawler
 from job_crawler.engine import CrawlEngine
 from job_crawler.fetchers.factory import create_fetcher
@@ -74,7 +75,8 @@ def build_parser() -> argparse.ArgumentParser:
         "--project-owner-public-test",
         action="store_true",
         help="owner-directed public sample (VietnamWorks/CareerLink: 2 listings/20 details; "
-        "bounded mode: CareerLink 6 listings/300 details, Timviec365 13/300; "
+        "bounded mode: CareerLink 6 listings/300 details, Timviec365 13/300, "
+        "Việc Làm 24h 12/300, VietnamWorks 8/300 (ordinary browser); "
         "other sources: 1 listing/3 details); "
         "not source authorization",
     )
@@ -147,6 +149,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "careerviet": CareerVietCrawler(),
         "careerlink": CareerLinkCrawler(),
         "timviec365": Timviec365Crawler(),
+        "vieclam24h": Vieclam24hCrawler(),
         "vietnamworks": VietnamWorksCrawler(),
     }
     crawler = crawlers[config.source]

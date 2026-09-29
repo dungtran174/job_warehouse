@@ -37,6 +37,7 @@ class FetchError(RuntimeError):
         status_code: int | None = None,
         retryable: bool = False,
         blocked: bool = False,
+        terminal: bool = False,
         challenge_type: str | None = None,
         artifact_paths: tuple[str, ...] = (),
     ) -> None:
@@ -46,6 +47,7 @@ class FetchError(RuntimeError):
         self.status_code = status_code
         self.retryable = retryable
         self.blocked = blocked
+        self.terminal = terminal
         self.challenge_type = challenge_type
         self.artifact_paths = artifact_paths
 

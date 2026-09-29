@@ -3,14 +3,13 @@ from __future__ import annotations
 from datetime import date, datetime
 
 from job_crawler.models import DiscoveredJob, JobRecord, ListingPage
-from job_crawler.parsers.vietnamworks_detail import parse_detail
-from job_crawler.parsers.vietnamworks_listing import parse_listing
+from job_crawler.parsers.vieclam24h import parse_detail, parse_listing
 
 
-class VietnamWorksCrawler:
-    source_name = "vietnamworks"
+class Vieclam24hCrawler:
+    source_name = "vieclam24h"
     schema_version = "1.0.0"
-    parser_version = "vietnamworks-1.1.0"
+    parser_version = "vieclam24h-1.0.0"
 
     def parse_listing(self, html: str, listing_url: str) -> ListingPage:
         return parse_listing(html, listing_url)
