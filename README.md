@@ -1,8 +1,10 @@
 # job_warehouse
 
 Pipeline thu thập dữ liệu tuyển dụng công khai cho phân tích thị trường Việt Nam. Giai
-đoạn hiện tại có adapter TopCV, CareerViet, VietnamWorks, CareerLink và Timviec365, lưu batch raw.
-VietnamWorks đã tích hợp offline nhưng pilot live đầu tiên dừng ở listing render HTTP 403.
+đoạn hiện tại có adapter TopCV, CareerViet, VietnamWorks, CareerLink, Timviec365
+và Việc Làm 24h, lưu batch raw.
+Pilot VietnamWorks ngày 26/09 dừng ở listing render HTTP 403; lượt browser-first
+ngày 29/09 đã ghi và audit **295 detail raw duy nhất** từ tám trang listing chính.
 CareerViet được chọn
 sau feasibility probe giới hạn; TopCV vẫn được giữ nhưng live detail có thể bị WAF chặn.
 Dự án không triển khai OLTP, Airflow, dbt, Data Warehouse, dashboard hoặc LLM.
@@ -12,24 +14,76 @@ Các đường dẫn `data/` và `.runtime/` trong README/báo cáo là **artifa
 ảnh challenge và backup diff. Clone repository không có các artifact này; lệnh
 audit/profile/resume cần đúng batch trên máy. Git chỉ chứa code, tài liệu và fixture
 kiểm thử rút gọn trong `tests/fixtures/`, không phải toàn bộ phản hồi crawl.
+Các báo cáo theo ngày là snapshot của từng lượt thử: trạng thái Git hoặc câu
+“không commit/push” trong báo cáo mô tả lượt đó, không phải cấm một lượt publish
+code/test/tài liệu riêng được chủ dự án yêu cầu sau này. Không publish raw.
 
 ## Cổng an toàn và phạm vi
 
 Quyết định nội bộ của chủ dự án: cho phép thử giới hạn trên trang tuyển dụng công khai
-nếu robots và điều khoản hiện hành không cấm hoạt động dự định. Cờ
+nếu robots và điều khoản hiện hành không cấm hoạt động dự định, trừ ngoại lệ
+probe JobOKO cụ thể được chủ dự án quyết định dưới đây. Cờ
 `--project-owner-public-test` chỉ ghi nhận quyết định của chủ dự án, **không phải**
 sự chấp thuận của VietnamWorks hay bất kỳ chủ nguồn nào. Trong mode `sample`,
 giới hạn là đúng 1 listing và tối đa 3 detail cho TopCV/CareerViet. Với VietnamWorks/CareerLink,
 chủ dự án đã cho phép pilot nhỏ trong mode `sample`: tối đa 2 listing/20 detail;
 mặc định vẫn là 1/3 nếu không truyền giới hạn. Probe feasibility vẫn khóa 1/3.
-CareerLink và Timviec365 có mode `bounded` với giới hạn tường minh, xem bên dưới;
+CareerLink, Timviec365, Việc Làm 24h và VietnamWorks có mode `bounded` với giới hạn tường minh, xem bên dưới;
 đây không phải quyền tự động mở rộng hay chạy lại sau challenge.
 `--authorization-reference` chỉ dùng khi có
 văn bản chấp thuận thật của chủ nguồn; không tự tạo mã hoặc dùng mã chủ dự án thay thế.
 
+**Không bắt buộc văn bản của chủ website cho phép thử kỹ thuật công khai được
+chủ dự án yêu cầu rõ.** Dùng `--project-owner-public-test` hoặc ghi cùng cơ sở
+trong biên bản probe, `authorization_reference=null`; thiếu văn bản tự nó không
+phải điều kiện dừng sample. Điều này không thay đổi điều khoản website hoặc xác
+nhận quyền sử dụng dữ liệu quy mô lớn; luôn kiểm tra robots và tín hiệu truy cập.
+
 Crawler không đăng nhập, không vượt CAPTCHA, không dùng stealth hoặc proxy rotation.
-Dừng khi điều khoản cấm, robots không cho phép, HTTP 401/403 hoặc challenge; không dùng
-Playwright để vượt một phản hồi chặn. Trước khi lưu HTML, kiểm tra việc lưu được phép.
+Dừng khi điều khoản cấm (trừ đúng ngoại lệ probe JobOKO dưới đây), robots không
+cho phép, HTTP 401/403/429 hoặc CAPTCHA/challenge, kể cả HTTP 200; không dùng
+Playwright để vượt một phản hồi chặn. Trước khi lưu HTML, ghi rõ phạm vi quyết
+định và quyền sử dụng đã/chưa được xác minh; ngoài ngoại lệ này, chỉ lưu khi được phép.
+
+### Ngoại lệ nội bộ: một probe kỹ thuật JobOKO ngày 28/09/2026
+
+Theo yêu cầu rõ trong chat, chủ dự án quyết định thử tối đa **1 listing chính và
+3 detail từ listing đó** trên `https://vn.joboko.com/`, dù đã biết điều khoản
+JobOKO hạn chế bot/crawler. Đây **không phải chấp thuận của JobOKO**, không xác
+nhận quyền sử dụng/tái công bố dữ liệu và không tạo authorization-reference.
+Biên bản ghi `access_basis=project_owner_public_test`, `authorization_reference=null`,
+quyết định chủ dự án và hạn chế điều khoản; không sửa báo cáo/bằng chứng cũ.
+
+Chỉ gửi request khi **robots hiện tại cho phép đúng URL**, HTTP thông thường trước,
+một luồng, nghỉ ít nhất 10 giây, không retry phản hồi chặn. Chỉ dùng browser thường
+nếu HTTP 200 bình thường cần JavaScript; không đăng nhập hoặc vượt 401/403/429,
+CAPTCHA/challenge, không stealth/proxy/CAPTCHA solver. Lưu status, URL cuối và
+body/HTML của đúng mẫu làm bằng chứng **cục bộ, không công bố raw**; việc lưu này
+theo quyết định nội bộ, không được ghi thành quyền do nguồn cấp. Không lấy preview
+listing làm detail, không crawl sang host khác. Dừng ngay khi robots cấm hoặc bị chặn.
+
+Ngoại lệ chỉ dành cho probe này, không mở quyền cho nguồn khác, batch lớn hoặc
+probe tự động tiếp theo; không commit/push. CLI chưa tích hợp nguồn JobOKO: probe
+dùng công cụ ghi bằng chứng hiện có, không mở `bounded` hay sửa guard nguồn cũ.
+
+### Thử lại TopCV theo yêu cầu mới ngày 29/09/2026
+
+Lượt mới do chủ dự án yêu cầu, không tự suy diễn tình trạng hiện tại từ challenge
+cũ và không xóa/sửa lịch sử. Thử đúng 1 listing chính và tối đa 3 detail từ listing;
+HTTP trước, nghỉ ít nhất 10 giây, một luồng, không retry khi bị chặn. Chỉ render
+browser thường nếu HTTP 200 bình thường cần JavaScript; robots không cho phép
+hoặc HTTP 401/403/429/CAPTCHA/challenge thì dừng ngay, không đổi công cụ để né.
+Không lấy sitemap/tin gợi ý thay listing chính. Dữ liệu JSON chỉ dùng nếu trang
+công khai thật tải để hiển thị nội dung, ghi URL và nguồn gốc, không dò API nội bộ.
+
+Chỉ khi ba detail đủ title/company/toàn văn description/requirements mới xem xét
+tích hợp và pilot tối đa 20 detail, lưu HTML/raw JSONL/dedup/checkpoint/resume.
+Đây không phải gate `pilot` 250 của CareerViet, không cho phép tự mở rộng 100/300.
+CLI hiện giữ TopCV owner sample 1/3; chỉ cập nhật tích hợp/guard pilot khi mẫu đạt,
+không đặt authorization-reference giả để vượt guard. Lưu bằng chứng nội bộ theo
+quyết định chủ dự án, không ghi là chấp thuận TopCV. Không commit/push.
+
+### Giới hạn chung của các gate
 
 Sample bị khóa cứng ở tối đa 2 URL listing và 20 URL detail duy nhất. Full snapshot không
 được chạy nếu chưa có xác nhận riêng trong cuộc trao đổi hiện tại; CLI còn bắt buộc
@@ -107,7 +161,7 @@ python -m job_crawler.cli crawl topcv \
 `--save-html` là tùy chọn và mặc định tắt. Chỉ bật khi điều khoản hoặc phạm vi chấp
 thuận cho phép lưu HTML nguồn. Đường `--project-owner-public-test` hỗ trợ
 sample công khai (VietnamWorks/CareerLink tối đa 2 listing/20 detail, nguồn khác 1/3)
-và mode `bounded` riêng CareerLink/Timviec365;
+và mode `bounded` riêng CareerLink/Timviec365/Việc Làm 24h/VietnamWorks;
 manifest ghi `access_basis=project_owner_public_test`
 và `authorization_reference=null`, không gắn nhãn chấp thuận của chủ nguồn.
 
@@ -311,11 +365,58 @@ JOB_CRAWLER_BROWSER_EXECUTABLE_PATH=/usr/bin/google-chrome \
 Xem docs/vietnamworks_batch_pilot_2026-09-26.md để phân biệt kết quả kiểm tra
 listing 50+50 ID, ba detail offline và batch pilot bị chặn (0 record).
 
+### VietnamWorks: browser-first theo yêu cầu mới ngày 29/09/2026
+
+Lượt mới chọn Chrome thường có giao diện **ngay từ đầu** tại `/viec-lam`,
+không chuyển công cụ để né phản hồi chặn. `/tim-viec-lam` là landing gợi ý,
+không được dùng 330 ID ở đó làm main results. Giữ nguyên batch 403 cũ;
+ba detail chẩn đoán cũ không được chép vào raw của batch mới.
+
+Chỉ sau main listing và 3 detail mới được kiểm chứng đủ toàn văn mới chạy
+pilot tối đa 20 record. Mode `bounded` của VietnamWorks dành cho yêu cầu này:
+trần 8 listing/300 **lần thử detail lũy kế**, `--project-owner-public-test`,
+`--fetcher playwright --headed`, lưu HTML, đầy đủ nội dung, nghỉ >=10 giây,
+không retry. Không phải full snapshot hoặc chấp thuận của VietnamWorks.
+Mode HTTP/auto cũ và gate của nguồn khác không được mở rộng.
+
+```bash
+JOB_CRAWLER_BROWSER_EXECUTABLE_PATH=/usr/bin/google-chrome \
+.venv/bin/job-crawler crawl vietnamworks --mode bounded \
+  --start-url https://www.vietnamworks.com/viec-lam \
+  --project-owner-public-test --fetcher playwright --headed \
+  --max-pages 2 --max-details 20 --delay-min 10 --delay-max 15 \
+  --max-retries 0 --timeout 45 --save-html --save-screenshot-on-error \
+  --require-complete-content \
+  --user-agent 'job-warehouse-crawler/0.1 (public academic research; single-threaded)'
+```
+
+Fetcher mới lưu status, URL cuối và body gốc trong `http/` **trước khi đọc DOM**;
+main card được render/cuộn trong phạm vi hữu hạn. Parser đối chiếu h1/công ty
+và toàn văn hai section DOM với payload detail inline, bỏ banner gợi ý.
+Chỉ ghi URL/status endpoint JSON mà UI tự tải, không gửi API độc lập.
+Robots cấm hoặc 401/403/429/challenge (kể cả 200) dừng ngay, không fallback.
+Lỗi điều hướng/DOM cũng dừng và giữ bằng chứng, không che mất HTTP gốc.
+
+Chỉ sau audit pilot ổn định và pagination thật hoạt động mới resume **batch mới**
+với `--resume --resume-batch-id ID`, cùng mode/start URL/parser và limits lũy kế:
+mốc 100 rồi tối đa 300. Không dùng batch cũ `20260926T151442Z-1439f601`;
+không tự resume sau tín hiệu từ chối. Kết quả thực tế ghi trong
+[báo cáo browser-first](docs/vietnamworks_browser_assessment_2026-09-29.md).
+
+Kết quả cuối batch mới `20260929T091457Z-1d8023a1`: **295 raw / 295 ID duy nhất**,
+toàn văn mô tả và yêu cầu khớp HTML 295/295. Tám listing có 351 ID main;
+300 lượt detail gồm 295 hợp lệ, bốn lỗi parser và một lượt gián đoạn được resume.
+Dừng ở trần `max-details`, không phải 403/challenge mới; không báo 300 tin thành công.
+Raw/HTML/checkpoint chỉ có cục bộ; không tự mở rộng vượt giới hạn hiện tại.
+
 ## CareerLink: batch giới hạn sau pilot (26/09/2026)
 
-**Trạng thái hiện tại: STOPPED.** Pilot đạt 20/20 nhưng batch tăng quy mô dừng ở
-55/56 detail vì HTTP 200 chứa hCaptcha thật. Đã lưu 55 record raw; chưa đạt 100/300.
-Không chạy lại/resume cho tới khi điều kiện truy cập được xác nhận phù hợp.
+Ngày 26/09, pilot đạt 20/20 nhưng batch tăng quy mô dừng ở 55/56 detail vì
+HTTP 200 chứa hCaptcha thật. Theo yêu cầu kiểm tra mới ngày 29/09, detail pending
+đã truy cập bình thường và một đợt resume giới hạn thêm 20 record: **75 raw / 75 ID**.
+Lỗi challenge cũ được giữ nguyên; chưa đạt 100/300 và không tự mở rộng.
+Xem [báo cáo resume CareerLink](docs/careerlink_resume_assessment_2026-09-29.md).
+Mỗi lần tiếp tục vẫn phải đánh giá điều kiện truy cập và dừng khi bị từ chối.
 
 Đã kiểm tra robots, thỏa thuận sử dụng và quy chế hoạt động; mẫu 3/3 và pilot
 20/20 detail từ hai trang chính đều đủ nội dung qua HTTP. Xem
@@ -348,9 +449,12 @@ Không đổi dữ liệu CareerViet hoặc chạy lại VietnamWorks.
 
 [Đánh giá offline 55 CareerLink + 299 CareerViet](docs/week3_data_readiness_2026-09-26.md)
 ghi kiểu giá trị, tỷ lệ thiếu, đối chiếu HTML và các trường hợp chưa có mẫu.
-Có thể bắt đầu thiết kế từ 354 tin hiện có; mẫu lịch sử chưa được xác định cục bộ.
+Có thể bắt đầu thiết kế từ 354 tin đã đánh giá ở thời điểm 26/09;
+mẫu lịch sử chưa được xác định cục bộ trong báo cáo đó.
 Chưa triển khai Bronze/Silver. Báo cáo cũng có lệnh resume có điều kiện, tối đa
-20 lần thử detail thêm, **chưa chạy**; không dùng mốc 100/300 để bỏ qua challenge.
+20 lần thử detail thêm, **chưa chạy tại thời điểm báo cáo 26/09**.
+Đợt 29/09 sau đó đã thêm 20 tin, xem báo cáo resume riêng;
+không dùng mốc 100/300 để bỏ qua challenge.
 
 ## Timviec365: mẫu HTTP và batch mở rộng có giới hạn
 
@@ -403,3 +507,39 @@ chính (303 ID discovery), 299/299 mô tả và yêu cầu khớp toàn văn HTM
 300 lần thử gồm một lần gián đoạn chưa có phản hồi; không báo 300/300 thành công.
 Xem [báo cáo mở rộng, resume và kiểm toán](docs/timviec365_expansion_2026-09-27.md).
 Không tự mở rộng tiếp; CareerViet 299 và CareerLink 55 được giữ nguyên.
+
+## Việc Làm 24h: batch giới hạn theo yêu cầu chủ dự án
+
+Nguồn `vieclam24h` sử dụng listing chính
+`https://vieclam24h.vn/tim-kiem-viec-lam-nhanh` và phân trang `?page=N`.
+Lượt ngày 29/09/2026 chọn browser Chrome thường **ngay từ đầu** theo yêu cầu,
+không chuyển sang browser để né lỗi HTTP của lượt khác. Chỉ dùng `bounded`,
+`--project-owner-public-test`, `--fetcher playwright --headed`, lưu HTML và
+kiểm tra nội dung đầy đủ; một luồng, nghỉ tối thiểu 10 giây, `--max-retries 0`.
+Không thay đổi guard/fetcher các nguồn cũ. Quyết định chủ dự án không phải
+chấp thuận của website (`authorization_reference=null`). Robots cấm hoặc
+401/403/429/challenge, kể cả 200, vẫn phải dừng ngay; không full snapshot.
+
+```bash
+JOB_CRAWLER_BROWSER_EXECUTABLE_PATH=/usr/bin/google-chrome \
+.venv/bin/job-crawler crawl vieclam24h --mode bounded \
+  --project-owner-public-test --fetcher playwright --headed \
+  --max-pages 2 --max-details 20 --delay-min 10 --delay-max 15 \
+  --max-retries 0 --timeout 30 --save-html --save-screenshot-on-error \
+  --require-complete-content \
+  --user-agent 'job-warehouse-crawler/0.1 (public academic research; single-threaded)'
+```
+
+Sau audit mốc trước ổn định, resume đúng batch ID với trần lũy kế 4/100 rồi
+tối đa 12/300 (số **lần thử**, không phải số tin mới bảo đảm thành công).
+Parser chỉ nhận ID card vùng main khớp `jobsResponse` công khai; mỗi dòng raw
+là detail đã kiểm chứng toàn văn DOM, không lấy preview/listing hoặc tin gợi ý.
+Xem [báo cáo và bằng chứng cục bộ](docs/vieclam24h_assessment_2026-09-29.md).
+Artifact `data/` được Git ignore và không đi cùng bản clone repository.
+
+Kết quả 29/09/2026: **104 ID detail raw hợp lệ**, đủ toàn văn mô tả/yêu cầu
+104/104, từ 11 listing chính (277 ID discovery). Mốc 100 đã kiểm toán đạt;
+mở rộng dừng ở 104 do lỗi capture DOM khi trang đang điều hướng, status/body
+của lượt cuối chưa xác minh. Có một HTTP 502 trước đó, không gán thành 403.
+Bản sửa capture chỉ kiểm thử offline, chưa xác nhận live; không tự resume
+sau lỗi cuối hoặc coi 299 ID listing union là 299 record detail.
