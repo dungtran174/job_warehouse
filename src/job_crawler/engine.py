@@ -12,7 +12,7 @@ from pydantic import ValidationError
 from job_crawler.config import CrawlConfig
 from job_crawler.crawlers.base import SourceCrawler
 from job_crawler.fetchers.base import Fetcher, FetchError
-from job_crawler.models import CrawlError, RunManifest
+from job_crawler.models import CrawlError, RunManifest, RunSettings
 from job_crawler.storage.checkpoint import CheckpointConflict, RepeatedPageFingerprint
 from job_crawler.storage.incremental import IncrementalState
 from job_crawler.storage.jsonl import (
@@ -230,6 +230,23 @@ class CrawlEngine:
         storage, manifest, snapshot = (
             self._resume_storage() if self.config.resume else self._new_storage(started_at)
         )
+        manifest.run_settings.append(
+            RunSettings(
+                started_at=started_at,
+                max_pages=self.config.max_pages,
+                max_details=self.config.max_details,
+                target_records=self.config.target_records,
+                delay_min_seconds=self.config.delay_min_seconds,
+                delay_max_seconds=self.config.delay_max_seconds,
+                max_retries=self.config.max_retries,
+                fetcher=self.config.fetcher,
+            )
+        )
+        if self.config.target_records is not None:
+            # JSONL is the authority if a crash happened between append and manifest write.
+            manifest.records_written = len(storage.existing_job_ids)
+            manifest.detail_succeeded = max(manifest.detail_succeeded, manifest.records_written)
+        storage.write_manifest(manifest)
         incremental = IncrementalState(
             self.config.output_dir / self.crawler.source_name / "incremental_state.sqlite3"
         )
@@ -238,6 +255,15 @@ class CrawlEngine:
         consecutive_detail_failures = 0
         listing_reason = "no_next_page"
         try:
+            if (
+                self.config.target_records is not None
+                and len(storage.existing_job_ids) >= self.config.target_records
+            ):
+                manifest.status = "completed_with_errors" if manifest.detail_failed else "completed"
+                manifest.termination_reason = "target_records"
+                manifest.finished_at = self.clock()
+                storage.write_manifest(manifest)
+                return manifest
             source_robots_url = robots_url(self.config.start_url)
             try:
                 robots_response = self.fetcher.get(source_robots_url)
@@ -519,6 +545,11 @@ class CrawlEngine:
                 self.config.max_details is None
                 or manifest.detail_requested < self.config.max_details
             ):
+                if (
+                    self.config.target_records is not None
+                    and len(storage.existing_job_ids) >= self.config.target_records
+                ):
+                    break
                 pending_job = storage.checkpoint.next_detail()
                 if pending_job is None:
                     break
@@ -726,8 +757,16 @@ class CrawlEngine:
                 consecutive_detail_failures = 0
                 storage.write_manifest(manifest)
 
+            if (
+                detail_reason is None
+                and self.config.target_records is not None
+                and len(storage.existing_job_ids) >= self.config.target_records
+            ):
+                detail_reason = "target_records"
             if storage.checkpoint.has_pending_details() and detail_reason is None:
                 detail_reason = "max_details"
+            if detail_reason is None and self.config.target_records is not None:
+                detail_reason = "target_unmet_no_pending_details"
             manifest.termination_reason = detail_reason or listing_reason
             manifest.pagination_termination_reason = listing_reason
             manifest.fetcher_used = self.fetcher.state.active

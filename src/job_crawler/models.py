@@ -98,6 +98,19 @@ class CrawlError(StableModel):
     retryable: bool
 
 
+class RunSettings(StableModel):
+    """Actual settings of each invocation; older runs are not reconstructed."""
+
+    started_at: datetime
+    max_pages: int | None
+    max_details: int | None
+    target_records: int | None = None
+    delay_min_seconds: float
+    delay_max_seconds: float
+    max_retries: int
+    fetcher: str
+
+
 class RunManifest(StableModel):
     source: str
     batch_id: str
@@ -143,3 +156,4 @@ class RunManifest(StableModel):
     content_hash_new: int = 0
     content_hash_unchanged: int = 0
     content_hash_changed: int = 0
+    run_settings: list[RunSettings] = Field(default_factory=list)

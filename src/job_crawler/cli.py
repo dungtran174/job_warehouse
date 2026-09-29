@@ -44,8 +44,15 @@ def build_parser() -> argparse.ArgumentParser:
     )
     crawl.add_argument("--start-url")
     crawl.add_argument("--output-dir", type=Path)
-    crawl.add_argument("--max-pages", type=int)
-    crawl.add_argument("--max-details", type=int)
+    crawl.add_argument("--max-pages", type=int, help="cumulative listing attempts in this batch")
+    crawl.add_argument(
+        "--max-details", type=int, help="cumulative detail attempts, not raw records"
+    )
+    crawl.add_argument(
+        "--target-records",
+        type=int,
+        help="CareerLink bounded: stop at this total of unique raw records (at most 300)",
+    )
     crawl.add_argument("--timeout", type=float)
     crawl.add_argument("--delay-min", type=float)
     crawl.add_argument("--delay-max", type=float)
@@ -75,7 +82,8 @@ def build_parser() -> argparse.ArgumentParser:
         "--project-owner-public-test",
         action="store_true",
         help="owner-directed public sample (VietnamWorks/CareerLink: 2 listings/20 details; "
-        "bounded mode: CareerLink 6 listings/300 details, Timviec365 13/300, "
+        "bounded mode: CareerLink 8 listings/330 attempts, at most 300 target records; "
+        "Timviec365 13/300, "
         "Việc Làm 24h 12/300, VietnamWorks 8/300 (ordinary browser); "
         "other sources: 1 listing/3 details); "
         "not source authorization",
@@ -106,6 +114,7 @@ def _config_from_args(args: argparse.Namespace) -> CrawlConfig:
         "start_url": args.start_url or DEFAULT_START_URLS[args.source],
         "max_pages": max_pages,
         "max_details": max_details,
+        "target_records": args.target_records,
         "save_html": args.save_html,
         "headed": args.headed,
         "save_screenshot_on_error": args.save_screenshot_on_error,

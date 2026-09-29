@@ -24,6 +24,9 @@ PILOT_MAX_PAGES = 5
 PILOT_MAX_DETAILS = 250
 PAGE6_CHECK_MAX_PAGES = 6
 PAGE6_CHECK_MAX_DETAILS = 300
+CAREERLINK_MAX_PAGES = 8
+CAREERLINK_MAX_ATTEMPTS = 330
+CAREERLINK_MAX_RECORDS = 300
 
 
 class ConfigError(ValueError):
@@ -42,6 +45,7 @@ class CrawlConfig:
     max_retries: int = 3
     max_pages: int | None = SAMPLE_MAX_PAGES
     max_details: int | None = SAMPLE_MAX_DETAILS
+    target_records: int | None = None
     user_agent: str = "job-warehouse-crawler/0.1 (+public-research; contact=configure-me)"
     timezone: str = "Asia/Ho_Chi_Minh"
     save_html: bool = False
@@ -138,11 +142,29 @@ class CrawlConfig:
                 raise ConfigError(
                     "VietnamWorks bounded collection uses the tested ordinary browser."
                 )
-            page_limit = {"timviec365": 13, "vieclam24h": 12, "vietnamworks": 8}.get(self.source, 6)
+            page_limit = {
+                "careerlink": CAREERLINK_MAX_PAGES,
+                "timviec365": 13,
+                "vieclam24h": 12,
+                "vietnamworks": 8,
+            }[self.source]
             if self.max_pages is None or not 1 <= self.max_pages <= page_limit:
                 raise ConfigError(f"Bounded --max-pages must be between 1 and {page_limit}.")
-            if self.max_details is None or not 1 <= self.max_details <= 300:
-                raise ConfigError("Bounded --max-details must be between 1 and 300.")
+            detail_limit = CAREERLINK_MAX_ATTEMPTS if self.source == "careerlink" else 300
+            if self.max_details is None or not 1 <= self.max_details <= detail_limit:
+                raise ConfigError(f"Bounded --max-details must be between 1 and {detail_limit}.")
+            if (
+                self.source == "careerlink"
+                and self.max_details > 300
+                and self.target_records is None
+            ):
+                raise ConfigError("CareerLink attempts above 300 require --target-records.")
+            if (
+                self.source == "careerlink"
+                and (self.max_pages > 6 or self.max_details > 300)
+                and self.delay_min_seconds < 10
+            ):
+                raise ConfigError("Extended CareerLink budgets require delay >= 10 seconds.")
         elif self.mode == "sample":
             if self.max_pages is None or not 1 <= self.max_pages <= SAMPLE_MAX_PAGES:
                 raise ConfigError("Sample --max-pages must be between 1 and 2.")
@@ -184,6 +206,11 @@ class CrawlConfig:
                 raise ConfigError("Page 6 check requires HTTP, saved HTML, and complete content.")
         elif not self.confirm_full:
             raise ConfigError("Full snapshot requires --confirm-full.")
+        if self.target_records is not None:
+            if self.source != "careerlink" or self.mode != "bounded":
+                raise ConfigError("--target-records is supported only for CareerLink bounded mode.")
+            if not 1 <= self.target_records <= CAREERLINK_MAX_RECORDS:
+                raise ConfigError("CareerLink --target-records must be between 1 and 300.")
         if self.max_pages is not None and self.max_pages < 1:
             raise ConfigError("--max-pages must be positive.")
         if self.max_details is not None and self.max_details < 1:
