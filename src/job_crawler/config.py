@@ -109,8 +109,8 @@ class CrawlConfig:
             if self.delay_min_seconds < 10 or self.max_retries != 0:
                 raise ConfigError("Timviec365 requires delay >= 10 seconds and no automatic retry.")
         if self.source == "careerlink":
-            if self.fetcher != "http" or not self.save_html or not self.require_complete_content:
-                raise ConfigError("CareerLink requires HTTP, saved HTML and complete content.")
+            if self.fetcher != "http" or not self.require_complete_content:
+                raise ConfigError("CareerLink requires HTTP and complete content.")
             if self.delay_min_seconds < 3 or self.max_retries != 0:
                 raise ConfigError("CareerLink requires delay >= 3 seconds and no automatic retry.")
             if self.mode not in {"sample", "bounded"}:

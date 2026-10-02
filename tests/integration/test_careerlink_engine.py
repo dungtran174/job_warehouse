@@ -138,7 +138,6 @@ def test_passive_login_widget_is_not_a_challenge():
         {"fetcher": "auto"},
         {"delay_min_seconds": 2},
         {"max_retries": 1},
-        {"save_html": False},
         {"require_complete_content": False},
     ],
 )

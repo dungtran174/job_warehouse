@@ -47,6 +47,12 @@ gọi lại đúng lệnh không gửi request mạng. Giới hạn bản mới:
 delay, retry, fetcher); không tự dựng lại cấu hình các lượt lịch sử chưa ghi.
 Các trường delay ở gốc manifest vẫn là cấu hình khởi tạo của batch cũ.
 
+CareerLink có thể resume với `success_body_storage=metadata_only`: parser vẫn
+đọc body trong RAM; response thành công chỉ lưu metadata v2, record mới có
+`raw_html_path=null`; response lỗi/challenge vẫn lưu body. Run settings cũ
+thiếu trường này mặc định `full`. Audit hỗn hợp giữ đối chiếu DOM cho record
+cũ, còn record mới chỉ kiểm tra metadata ID/status/hash và content hash của raw.
+
 State incremental độc lập tại `data/raw/<source>/incremental_state.sqlite3`:
 first/last seen, last content hash, last detail fetched, seen count, active.
 **Hiện vẫn tải detail trong mỗi snapshot**, chưa có scheduler hoặc chính sách
@@ -66,12 +72,12 @@ Chưa triển khai các bước này trong lượt chuẩn bị/dọn repository
 
 ## Batch cần giữ và trạng thái nguồn
 
-Số liệu xác minh offline 29/09/2026, không phải kết quả crawl mới:
+Số liệu xác minh offline đến 30/09/2026, không phải kết quả crawl mới:
 
 | Nguồn | Vai trò | Batch ID | Raw / ID duy nhất | Trạng thái |
 | --- | --- | --- | ---: | --- |
 | CareerViet | Chính, HTTP | `20260922T165843Z-f6b389a4` | 299 / 299 | 6 listing, 299 detail hợp lệ |
-| CareerLink | Chính, HTTP | `20260926T160422Z-c39d6a20` | 75 / 75 | 2 listing, 100 ID; 76 attempts, 1 challenge cũ; 25 pending |
+| CareerLink | Chính, HTTP | `20260926T160422Z-c39d6a20` | 156 / 156 | 8 listing, 400 ID; 159 attempts, 3 challenges; access_blocked, 244 pending |
 | VietnamWorks | Dự phòng, browser | `20260929T091457Z-1d8023a1` | 295 / 295 | 8 listing/351 ID; 300 slot = 295 thành công +4 lỗi +1 gián đoạn |
 | Việc Làm 24h | Dự phòng, browser | `20260929T042736Z-b37e7b1a` | 104 / 104 | 11 listing/277 ID; 502 và capture cuối chưa biết status |
 | Timviec365 | Đối chiếu kế hoạch cũ, archive ngoài repo | `20260926T174917Z-3a406cfa` | 299 / 299 | Dữ liệu thật; bản trong repo đã bỏ sau kiểm chứng archive |
@@ -92,7 +98,7 @@ batch lớn tương lai hoặc dùng reference do chủ dự án tự đặt nh�
 ## Bài học cần giữ cho chuẩn hóa
 
 - CareerLink metadata nghề/type/degree/experience/company/benefits có trong nhiều
-  HTML nhưng raw chưa map. Có thể enrich offline ở Silver, không sửa 75 dòng cũ.
+  HTML nhưng raw chưa map. Có thể enrich offline ở Silver, không sửa 156 dòng cũ.
 - CareerViet có lower/upper salary bounds và nhiều job locations; parser có thể
   mất nhãn "Trên/Lên đến" hoặc chỉ lấy location đầu. Giữ HTML và giá trị gốc.
 - VietnamWorks main listing cần render trong batch đã kiểm chứng; HTTP200 khung

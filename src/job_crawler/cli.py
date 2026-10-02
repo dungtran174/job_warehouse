@@ -61,7 +61,11 @@ def build_parser() -> argparse.ArgumentParser:
     crawl.add_argument("--log-level")
     crawl.add_argument("--fetcher", choices=("auto", "http", "playwright"))
     crawl.add_argument("--headed", action="store_true")
-    crawl.add_argument("--save-html", action="store_true")
+    crawl.add_argument(
+        "--save-html",
+        action="store_true",
+        help="save parsed HTML; CareerLink without this keeps only metadata for successful bodies",
+    )
     crawl.add_argument("--save-screenshot-on-error", action="store_true")
     crawl.add_argument(
         "--require-complete-content",

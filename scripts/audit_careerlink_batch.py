@@ -1,4 +1,4 @@
-"""Offline audit of raw JSONL against complete saved detail DOM sections."""
+"""Offline audit of full-HTML records and limited metadata-only records."""
 
 from __future__ import annotations
 
@@ -35,6 +35,7 @@ def audit(root: Path) -> dict:
     rows = []
     completeness = Counter()
     seen = set()
+    metadata_only_records = 0
     http_metadata = [json.loads(p.read_text()) for p in (root / "http").glob("*.json")]
     statuses = Counter(str(m["http_status"]) for m in http_metadata)
     for record in records:
@@ -43,7 +44,47 @@ def audit(root: Path) -> dict:
             errors.append(f"Duplicate ID: {record.source_job_id}")
         seen.add(record.source_job_id)
         if not record.raw_html_path:
-            errors.append(f"Missing HTML: {record.source_job_id}")
+            metadata_only_records += 1
+            matches = [
+                meta
+                for meta in http_metadata
+                if meta.get("evidence_schema_version") == "2"
+                and meta.get("batch_id") == record.batch_id
+                and meta.get("requested_job_id") == record.source_job_id
+                and meta.get("final_job_id") == record.source_job_id
+                and meta.get("canonical_job_id") == record.source_job_id
+                and meta.get("canonical_url") == record.canonical_url
+                and meta.get("http_status") == 200
+                and meta.get("challenge_detected") is False
+                and meta.get("body_path") is None
+                and isinstance(meta.get("body_bytes"), int)
+                and meta["body_bytes"] > 0
+                and isinstance(meta.get("body_sha256"), str)
+                and len(meta["body_sha256"]) == 64
+            ]
+            if not matches:
+                errors.append(f"Missing metadata-only success evidence: {record.source_job_id}")
+            if job_content_hash(record.model_dump()) != record.content_hash:
+                errors.append(f"Hash mismatch: {record.source_job_id}")
+            for field in FIELDS:
+                actual = getattr(record, field)
+                if actual:
+                    completeness[field] += 1
+                checks[field] = {
+                    "full_dom_match": None,
+                    "characters": len(actual or ""),
+                    "sha256": hashlib.sha256((actual or "").encode()).hexdigest(),
+                }
+            if record.posted_at_raw:
+                completeness["posted_at_raw"] += 1
+            rows.append(
+                {
+                    "source_job_id": record.source_job_id,
+                    "canonical_url": record.canonical_url,
+                    "evidence": "metadata_only",
+                    "fields": checks,
+                }
+            )
             continue
         html = gzip.decompress((root / record.raw_html_path).read_bytes()).decode()
         tree = HTMLParser(html)
@@ -93,6 +134,8 @@ def audit(root: Path) -> dict:
         "batch_path": str(root),
         "jsonl_lines": len(records),
         "unique_ids": len(seen),
+        "html_verified_records": len(records) - metadata_only_records,
+        "metadata_only_records": metadata_only_records,
         "field_completeness": dict(completeness),
         "http_status_counts": dict(statuses),
         "errors": errors,

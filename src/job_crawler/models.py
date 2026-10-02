@@ -109,6 +109,8 @@ class RunSettings(StableModel):
     delay_max_seconds: float
     max_retries: int
     fetcher: str
+    # Old manifests omitted this field and all their CareerLink responses kept full bodies.
+    success_body_storage: Literal["full", "metadata_only"] = "full"
 
 
 class RunManifest(StableModel):

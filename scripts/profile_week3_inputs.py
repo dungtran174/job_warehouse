@@ -97,6 +97,27 @@ def profile(root):
     source = rows[0]["source_name"]
     html_rows = []
     for row in rows:
+        if not row.get("raw_html_path"):
+            html_rows.append(
+                {
+                    "id": row["source_job_id"],
+                    "html_path": None,
+                    "sections": {
+                        field: {
+                            "characters": len(row[field]),
+                            "blocks": None,
+                            "full_dom_match": None,
+                            "full_source_match": None,
+                            "value_source": "unavailable",
+                            "tag_counts": {},
+                            "has_dash_bullet": None,
+                            "newlines_in_jsonl": row[field].count("\n"),
+                        }
+                        for field in ("job_description", "candidate_requirements")
+                    },
+                }
+            )
+            continue
         path = root / row["raw_html_path"]
         tree = HTMLParser(gzip.decompress(path.read_bytes()).decode())
         posting = _job_posting(tree)
@@ -193,15 +214,19 @@ def profile(root):
             "min": min(lengths),
             "median": median(lengths),
             "max": max(lengths),
-            "full_dom_match_count": sum(h["sections"][field]["full_dom_match"] for h in html_rows),
+            "full_dom_match_count": sum(
+                h["sections"][field]["full_dom_match"] is True for h in html_rows
+            ),
             "full_source_match_count": sum(
-                h["sections"][field]["full_source_match"] for h in html_rows
+                h["sections"][field]["full_source_match"] is True for h in html_rows
             ),
             "value_sources": dict(Counter(h["sections"][field]["value_source"] for h in html_rows)),
             "records_by_tag": dict(
                 Counter(tag for h in html_rows for tag in h["sections"][field]["tag_counts"])
             ),
-            "dash_bullet_records": sum(h["sections"][field]["has_dash_bullet"] for h in html_rows),
+            "dash_bullet_records": sum(
+                h["sections"][field]["has_dash_bullet"] is True for h in html_rows
+            ),
             "with_newline": sum(h["sections"][field]["newlines_in_jsonl"] > 0 for h in html_rows),
         }
     posting_dates = []
@@ -225,6 +250,8 @@ def profile(root):
         "source": source,
         "path": str(root),
         "records": len(rows),
+        "html_records_available": sum(h["html_path"] is not None for h in html_rows),
+        "html_records_unavailable": sum(h["html_path"] is None for h in html_rows),
         "jobs_sha256": hashlib.sha256(raw_path.read_bytes()).hexdigest(),
         "unique_ids": len({r["source_job_id"] for r in rows}),
         "fields": field_profile(rows),

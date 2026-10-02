@@ -12,7 +12,7 @@
 ## Crawl và truy cập
 
 - Không tự crawl live. Chỉ nguồn tuyển dụng công khai, không đăng nhập; người vận
-  hành đối chiếu điều khoản, robots và phạm vi lưu HTML trước mỗi lượt chạy.
+  hành đối chiếu điều khoản, robots và phạm vi lưu dữ liệu trước mỗi lượt chạy.
 - Tôn trọng robots/rate limit/Retry-After; nếu điều khoản cấm hoạt động dự định
   hoặc robots không cho phép thì dừng. Robots chưa xác định không phải được phép.
 - Dừng 401/403/429 hoặc CAPTCHA/challenge kể cả HTTP200; lưu bằng chứng/checkpoint,
@@ -27,7 +27,11 @@
 
 - Listing chỉ phát hiện ID; chỉ detail đủ title/company/toàn văn description và
   requirements mới ghi jobs.jsonl. Không bù bằng preview/gợi ý; thiếu tùy chọn=null.
-- Giữ raw/HTML/provenance; không viết lại schema/parser batch cũ khi chưa migration.
+- Giữ raw/provenance và HTML cũ; không viết lại schema/parser batch cũ khi chưa migration.
+  CareerLink có thể không lưu body HTTP 200 không challenge: ghi metadata v2,
+  giữ body HTTP lỗi/challenge; lỗi parse trên HTTP 200 chỉ còn metadata,
+  đánh dấu chế độ theo lượt; không được gọi metadata là kiểm chứng lại toàn văn HTML.
+  Tin nhà tuyển dụng và dữ liệu dashboard có phạm vi quyền riêng với HTML website.
 - Khóa là source_name + source_job_id. Dedup/resume đúng nguồn/batch, không đếm
   ID listing hay cộng cùng ID qua nhiều snapshot thành tin mới.
 - Batch mới theo ngày; resume chỉ hoàn tất batch dang dở, giữ snapshot cũ và

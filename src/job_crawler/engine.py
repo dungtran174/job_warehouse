@@ -240,6 +240,11 @@ class CrawlEngine:
                 delay_max_seconds=self.config.delay_max_seconds,
                 max_retries=self.config.max_retries,
                 fetcher=self.config.fetcher,
+                success_body_storage=(
+                    "full"
+                    if self.config.save_html or self.crawler.source_name != "careerlink"
+                    else "metadata_only"
+                ),
             )
         )
         if self.config.target_records is not None:

@@ -56,7 +56,6 @@ def test_careerlink_target_command_parses_and_validates_offline() -> None:
             "15",
             "--max-retries",
             "0",
-            "--save-html",
             "--require-complete-content",
             "--resume",
             "--resume-batch-id",
@@ -69,3 +68,4 @@ def test_careerlink_target_command_parses_and_validates_offline() -> None:
     config.validate()
     assert config.target_records == 300 and config.max_details == 330
     assert config.resume and config.fetcher == "http"
+    assert config.save_html is False
