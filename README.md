@@ -1,11 +1,31 @@
 # job_warehouse
 
-Crawler raw tuyển dụng công khai; pipeline chính: **CareerViet + CareerLink**.
-Bronze ingestion/Silver/Gold/dashboard và scheduler hằng ngày là bước tiếp theo,
-chưa triển khai. [Kiến trúc và dữ liệu](docs/architecture_data.md) ghi hợp đồng,
-batch dự phòng, bài học và cách khôi phục báo cáo lịch sử.
+Đồ án kho dữ liệu hiện chỉ dùng **lịch sử Hugging Face**. S0 đã có profiler
+offline, chưa triển khai Bronze registry/Silver/Gold/dashboard/Airflow.
+Code warehouse ở `src/job_warehouse/`, test ở `tests/warehouse/`,
+[hợp đồng và cách chạy](docs/warehouse/history_data_contract.md) ở `docs/warehouse/`.
 
-## Cài đặt và kiểm tra offline
+Code crawler trước đây ở `src/job_crawler/` và các batch CareerViet/CareerLink
+được giữ riêng; warehouse không dùng chúng làm input hay gọi crawler.
+[Kiến trúc crawler và dữ liệu cũ](docs/architecture_data.md) ghi hợp đồng,
+batch dự phòng, bài học và cách khôi phục báo cáo lịch sử của phần web.
+
+## Warehouse lịch sử — S0
+
+```bash
+.venv/bin/python -m pip install -e '.[dev,warehouse]'
+.venv/bin/job-warehouse profile \
+  --input /path/to/history_data.parquet \
+  --report-dir /path/outside/repository/s0-profile
+```
+
+Input đọc đủ file ở chế độ chỉ đọc; CLI mặc định kiểm SHA/revision contract và
+606.878 dòng. Report directory phải mới, lưu ngoài repository. Profiler báo
+null/trùng/phân bố raw, chưa chuẩn hóa ngành hoặc loại nhãn ít mẫu. Nhãn cùng
+ngữ nghĩa cần gộp trước khi áp ngưỡng 500/1.000 ở Silver. Không commit report
+thật, Parquet hoặc kế hoạch ngoài repo. Chi tiết ở hợp đồng warehouse liên kết trên.
+
+## Cài đặt crawler cũ và kiểm tra offline
 
 Python >=3.11. Dùng môi trường đang có hoặc tạo môi trường mới:
 

@@ -16,6 +16,10 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+warehouse = [
+  "pandas>=2.2,<4",
+  "pyarrow>=19,<26",
+]
 dev = [
   "mypy>=1.11,<2",
   "pytest>=8.2,<9",
@@ -26,6 +30,7 @@ dev = [
 
 [project.scripts]
 job-crawler = "job_crawler.cli:main"
+job-warehouse = "job_warehouse.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -47,8 +52,12 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 [tool.mypy]
 python_version = "3.11"
 strict = true
-packages = ["job_crawler"]
+packages = ["job_crawler", "job_warehouse"]
 
 [[tool.mypy.overrides]]
 module = "selectolax.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pyarrow.*"
 ignore_missing_imports = true

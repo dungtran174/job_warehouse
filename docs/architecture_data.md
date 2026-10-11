@@ -1,5 +1,10 @@
 # Kiến trúc, dữ liệu và bài học vận hành
 
+> Tài liệu này mô tả phần crawler/web trước đây và các bằng chứng theo thời điểm
+> ghi nhận. Warehouse hiện dùng duy nhất lịch sử Hugging Face, độc lập với code
+> và batch web; xem [hợp đồng warehouse](warehouse/history_data_contract.md).
+> S0 bổ sung profiler local, không thay schema/parser/checkpoint của crawler.
+
 ## Phạm vi
 
 Hai nguồn pipeline chính: **CareerViet + CareerLink**. Hiện có crawler/raw,
