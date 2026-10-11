@@ -1,7 +1,7 @@
 # job_warehouse
 
-Đồ án kho dữ liệu hiện chỉ dùng **lịch sử Hugging Face**. S0 đã có profiler
-offline, chưa triển khai Bronze registry/Silver/Gold/dashboard/Airflow.
+Đồ án kho dữ liệu hiện chỉ dùng **lịch sử Hugging Face**. S0 có profiler
+offline; S1 có PostgreSQL Bronze registry. Silver/Gold/dashboard/Airflow chưa triển khai.
 Code warehouse ở `src/job_warehouse/`, test ở `tests/warehouse/`,
 [hợp đồng và cách chạy](docs/warehouse/history_data_contract.md) ở `docs/warehouse/`.
 
@@ -24,6 +24,17 @@ Input đọc đủ file ở chế độ chỉ đọc; CLI mặc định kiểm S
 null/trùng/phân bố raw, chưa chuẩn hóa ngành hoặc loại nhãn ít mẫu. Nhãn cùng
 ngữ nghĩa cần gộp trước khi áp ngưỡng 500/1.000 ở Silver. Không commit report
 thật, Parquet hoặc kế hoạch ngoài repo. Chi tiết ở hợp đồng warehouse liên kết trên.
+
+## Warehouse lịch sử — S1 Bronze
+
+Compose/Dockerfile riêng tại `infra/warehouse/`, code registry và migration tại
+`src/job_warehouse/bronze/`. PostgreSQL chỉ lưu metadata file; processor đọc
+Parquet gốc bằng bind mount chỉ đọc. Cấu hình và secret nằm trong `.runtime/warehouse/`
+được Git bỏ qua, report thật nằm ngoài repository.
+
+Xem [hướng dẫn khởi động, register, kiểm thử và backup](docs/warehouse/bronze_operations.md).
+CLI: `job-warehouse bronze migrate` và `job-warehouse bronze register`.
+Cùng artifact đăng ký lại là no-op; cùng revision/artifact khác SHA bị từ chối.
 
 ## Cài đặt crawler cũ và kiểm tra offline
 

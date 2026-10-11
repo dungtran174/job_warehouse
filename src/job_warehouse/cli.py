@@ -1,4 +1,4 @@
-"""Local history CLI; never calls crawler, network, or a database."""
+"""Historical warehouse CLI; profiling is local, Bronze connects to PostgreSQL."""
 
 import argparse
 import sys
@@ -19,12 +19,27 @@ def build_parser() -> argparse.ArgumentParser:
     profile.add_argument("--batch-size", type=int, default=4096)
     profile.add_argument("--expected-sha256", default=EXPECTED_SHA256)
     profile.add_argument("--expected-rows", type=int, default=EXPECTED_ROWS)
+    bronze = commands.add_parser("bronze", help="validate and register immutable historical files")
+    bronze_commands = bronze.add_subparsers(dest="bronze_command", required=True)
+    migrate = bronze_commands.add_parser("migrate", help="apply the versioned registry migration")
+    migrate.add_argument("--report-dir", type=Path, required=True)
+    register = bronze_commands.add_parser(
+        "register", help="validate the pinned file and register it"
+    )
+    register.add_argument("--input-root", type=Path, required=True)
+    register.add_argument("--relative-path", default="history_data.parquet")
+    register.add_argument("--batch-size", type=int, default=4096)
+    register.add_argument("--report-dir", type=Path, required=True)
     return parser
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
+        if args.command == "bronze":
+            from job_warehouse.bronze.commands import run_bronze
+
+            return run_bronze(args)
         # Optional dependency is needed for profiling, not for crawler or CLI help.
         from job_warehouse.history.profile import profile_history, write_profile
 

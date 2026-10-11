@@ -18,7 +18,8 @@ docs/warehouse/              # hợp đồng và hướng dẫn warehouse
 src/job_crawler/             # code web trước đây, giữ riêng và nguyên trạng
 ```
 
-S0 đã có profiler và data contract; chưa có PostgreSQL registry, Silver mapping,
+S0 đã có profiler và data contract; S1 bổ sung PostgreSQL registry theo
+[hướng dẫn Bronze](bronze_operations.md). Chưa có Silver mapping,
 salary parser, extractor, Gold, Airflow hoặc Metabase. Kế hoạch triển khai chi
 tiết, báo cáo thật và các thiết kế giữ ngoài repository.
 

@@ -1,0 +1,61 @@
+name: job-warehouse-history
+
+services:
+  db:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_DB: ${WAREHOUSE_DB_NAME:-job_warehouse}
+      POSTGRES_USER: ${WAREHOUSE_DB_USER:-warehouse}
+      POSTGRES_PASSWORD_FILE: /run/secrets/warehouse_db_password
+    secrets:
+      - warehouse_db_password
+    ports:
+      - "127.0.0.1:${WAREHOUSE_DB_PORT:-55432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+  processor:
+    build:
+      context: ../..
+      dockerfile: infra/warehouse/Dockerfile
+    profiles: ["tools"]
+    user: "${WAREHOUSE_UID:-1000}:${WAREHOUSE_GID:-1000}"
+    environment:
+      WAREHOUSE_DB_HOST: db
+      WAREHOUSE_DB_PORT: "5432"
+      WAREHOUSE_DB_NAME: ${WAREHOUSE_DB_NAME:-job_warehouse}
+      WAREHOUSE_DB_USER: ${WAREHOUSE_DB_USER:-warehouse}
+      WAREHOUSE_DB_PASSWORD_FILE: /run/secrets/warehouse_db_password
+    secrets:
+      - warehouse_db_password
+    volumes:
+      - type: bind
+        source: ${HISTORY_PARQUET_PATH:?Set HISTORY_PARQUET_PATH to the existing file}
+        target: /bronze/input/history_data.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${WAREHOUSE_REPORT_ROOT:?Set WAREHOUSE_REPORT_ROOT to a local directory}
+        target: /reports
+        bind:
+          create_host_path: false
+    depends_on:
+      db:
+        condition: service_healthy
+    read_only: true
+    tmpfs:
+      - /tmp
+
+volumes:
+  postgres_data:
+
+secrets:
+  warehouse_db_password:
+    file: ${WAREHOUSE_DB_PASSWORD_FILE:?Set WAREHOUSE_DB_PASSWORD_FILE to a local secret file}

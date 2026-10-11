@@ -19,6 +19,7 @@ dependencies = [
 warehouse = [
   "pandas>=2.2,<4",
   "pyarrow>=19,<26",
+  "psycopg[binary]>=3.2,<4",
 ]
 dev = [
   "mypy>=1.11,<2",
@@ -35,10 +36,14 @@ job-warehouse = "job_warehouse.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+"job_warehouse.bronze" = ["migrations/*.sql"]
+
 [tool.pytest.ini_options]
 addopts = "-m 'not live'"
 markers = [
   "live: tests that access a live public website and require explicit authorization",
+  "warehouse_db: offline PostgreSQL tests in an isolated temporary database",
 ]
 testpaths = ["tests"]
 
