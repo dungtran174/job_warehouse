@@ -7,7 +7,8 @@ không import adapter/parser/fetcher/checkpoint của crawler.
 
 ```text
 src/job_warehouse/
-  cli.py                    # job-warehouse profile, chỉ đọc file local
+  cli.py                    # profile, bronze, silver core
+  silver/                   # core/inference offline S2, riêng với crawler
   history/
     contract.py             # nguồn, revision, schema, điều kiện kiểm tra
     identity.py             # SHA256, row key, fingerprint nội dung
@@ -19,8 +20,10 @@ src/job_crawler/             # code web trước đây, giữ riêng và nguyên
 ```
 
 S0 đã có profiler và data contract; S1 bổ sung PostgreSQL registry theo
-[hướng dẫn Bronze](bronze_operations.md). Chưa có Silver mapping,
-salary parser, extractor, Gold, Airflow hoặc Metabase. Kế hoạch triển khai chi
+[hướng dẫn Bronze](bronze_operations.md). S2 có [Silver core offline](silver_core_contract.md)
+và extractor học vấn/kinh nghiệm từ requirements, lưu inferred riêng. Chưa có
+mapping nghề/địa điểm, salary parser, skill extractor, Silver database publish,
+Gold, Airflow hoặc Metabase. Kế hoạch triển khai chi
 tiết, báo cáo thật và các thiết kế giữ ngoài repository.
 
 ## Nguồn và bất biến

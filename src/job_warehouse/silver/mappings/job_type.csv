@@ -1,0 +1,12 @@
+label,category,work_arrangement,shift_work,status
+Toàn thời gian,full_time,,,mapped
+Bán thời gian,part_time,,,mapped
+Thực tập,internship,,,mapped
+Thời vụ,temporary,,,mapped
+Hợp đồng,contract,,,mapped
+Freelance,freelance,,,mapped
+Remote,,remote,,mapped
+Theo ca,,,true,mapped
+Khác,,,,other
+Không,,,,ambiguous_literal
+Chưa xác định,,,,unknown

@@ -4,6 +4,8 @@
 > ghi nhận. Warehouse hiện dùng duy nhất lịch sử Hugging Face, độc lập với code
 > và batch web; xem [hợp đồng warehouse](warehouse/history_data_contract.md).
 > S0 bổ sung profiler local; S1 thêm [Bronze registry lịch sử](warehouse/bronze_operations.md).
+> S2 bổ sung [Silver core offline lịch sử](warehouse/silver_core_contract.md),
+> chưa publish Silver vào PostgreSQL.
 > Các phần này không thay schema/parser/checkpoint của crawler.
 
 ## Phạm vi

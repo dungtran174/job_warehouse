@@ -1,7 +1,8 @@
 # job_warehouse
 
 Đồ án kho dữ liệu hiện chỉ dùng **lịch sử Hugging Face**. S0 có profiler
-offline; S1 có PostgreSQL Bronze registry. Silver/Gold/dashboard/Airflow chưa triển khai.
+offline; S1 có PostgreSQL Bronze registry; S2 có Silver core offline.
+Silver database publish/Gold/dashboard/Airflow chưa triển khai.
 Code warehouse ở `src/job_warehouse/`, test ở `tests/warehouse/`,
 [hợp đồng và cách chạy](docs/warehouse/history_data_contract.md) ở `docs/warehouse/`.
 
@@ -35,6 +36,23 @@ Parquet gốc bằng bind mount chỉ đọc. Cấu hình và secret nằm trong
 Xem [hướng dẫn khởi động, register, kiểm thử và backup](docs/warehouse/bronze_operations.md).
 CLI: `job-warehouse bronze migrate` và `job-warehouse bronze register`.
 Cùng artifact đăng ký lại là no-op; cùng revision/artifact khác SHA bị từ chối.
+
+## Warehouse lịch sử — S2 Silver core
+
+Normalizer và extractor học vấn/kinh nghiệm từ requirements ở
+`src/job_warehouse/silver/`, độc lập với crawler và PostgreSQL. Các giá trị suy
+ra lưu riêng kèm evidence; ưu tiên không thành yêu cầu bắt buộc, câu phức tạp
+chờ review. Tách title thiếu/Không, giữ raw và đối soát core+quarantine.
+
+```bash
+.venv/bin/job-warehouse silver core \
+  --input /path/to/history_data.parquet \
+  --output-dir /path/outside/repository/s2-core-run
+```
+
+CLI giữ SHA/N pin, output phải mới và ngoài repository. Chưa parse
+salary/location/industry, loại trùng, trích skill hay publish vào database.
+Xem [hợp đồng và cách kiểm định core](docs/warehouse/silver_core_contract.md).
 
 ## Cài đặt crawler cũ và kiểm tra offline
 

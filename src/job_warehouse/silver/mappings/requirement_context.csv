@@ -1,0 +1,5 @@
+context,pattern
+preferred,ưu tiên|là (?:một )?lợi thế|là (?:một )?điểm cộng|preferred|an advantage
+negated,không (?:yêu cầu|cần|nhận|chấp nhận)|chưa|không phải|not required
+conditional,chấp nhận|vẫn nhận|sinh viên mới|mới ra trường|mới tốt nghiệp|trong đó
+alternatives,\b(?:hoặc|or)\b

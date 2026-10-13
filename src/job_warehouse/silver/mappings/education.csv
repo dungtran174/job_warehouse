@@ -1,0 +1,12 @@
+label,category,status
+Không,,ambiguous_literal
+Cao đẳng,college,mapped
+Đại học,bachelor,mapped
+Trung cấp,vocational,mapped
+Trung học,secondary_unspecified,mapped
+Chứng chỉ,certificate_unspecified,mapped
+Cử nhân,bachelor,mapped
+Khác,other,other
+Kỹ sư,,ambiguous_degree_label
+Bằng cấp liên quan,related_unspecified,mapped
+Không yêu cầu bằng cấp,,no_requirement

@@ -38,6 +38,7 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 "job_warehouse.bronze" = ["migrations/*.sql"]
+"job_warehouse.silver" = ["mappings/*.csv"]
 
 [tool.pytest.ini_options]
 addopts = "-m 'not live'"

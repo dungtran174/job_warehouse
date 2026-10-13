@@ -1,0 +1,62 @@
+label,roles,seniorities,management,status
+05/12 (hết tiểu học),,,,wrong_field_content
+09/12 (hết thcs),,,,wrong_field_content
+chuyên gia,expert,,,mapped
+chuyên viên,specialist,,,mapped
+chuyên viên- nhân viên,multiple,,,multiple
+chưa cập nhật,,,,unknown
+công nhân,worker,,,mapped
+cộng tác viên,collaborator,,,mapped
+fresher,entry_level,entry_level,,mapped
+giám đốc,manager,,director,mapped
+giám đốc và cấp cao hơn,,,,ambiguous
+"giám đốc, phó giám đốc bộ phận/ trưởng phòng/ tổ trưởng",multiple,,,multiple
+giám đốc/ trưởng bp,multiple,,,multiple
+học việc/ thực tập,multiple,,,multiple
+junior,,junior,,mapped
+khác,other,,,other
+kỹ sư,engineer,,,mapped
+kỹ thuật viên / kỹ sư,multiple,,,multiple
+lao động kỹ thuật,technical_worker,,,mapped
+lao động phổ thông,general_worker,,,mapped
+loại hình: toàn thời gian,,,,wrong_field_content
+loại hợp đồng:,,,,wrong_field_content
+lãnh đạo,leadership,,,mapped
+mới tốt nghiệp,graduate,entry_level,,mapped
+mới tốt nghiệp / thực tập sinh,multiple,,,multiple
+mới đi làm,entry_level,entry_level,,mapped
+nhân viên,employee,,,mapped
+nhân viên tập sự,trainee,,,mapped
+nhân viên/ chuyên viên,multiple,,,multiple
+outlet manager,manager,,outlet_manager,mapped
+phó giám đốc,manager,,deputy_director,mapped
+quản lý,manager,,manager_unspecified,mapped
+quản lý / giám sát,multiple,,,multiple
+quản lý / trưởng phòng,multiple,,,multiple
+quản lý cấp cao,manager,,senior_manager_unspecified,mapped
+quản đốc/ giám sát/ tổ trưởng,multiple,,,multiple
+senior,,senior,,mapped
+sinh viên / thực tập sinh,multiple,,,multiple
+sinh viên/ thực tập sinh,multiple,,,multiple
+thực tập sinh,intern,intern,,mapped
+thực tập sinh/sinh viên,multiple,,,multiple
+trung cấp chuyên nghiệp,,,,wrong_field_content
+trung cấp nghề,,,,wrong_field_content
+trưởng ca,manager,,shift_lead,mapped
+trưởng ca/ giám sát,multiple,,,multiple
+trưởng chi nhánh,manager,,branch_manager,mapped
+trưởng nhóm,manager,,team_lead,mapped
+trưởng nhóm / giám sát,multiple,,,multiple
+trưởng nhóm/ giám sát,multiple,,,multiple
+trưởng nhóm/giám sát,multiple,,,multiple
+trưởng phòng,manager,,department_manager,mapped
+trưởng/phó phòng,multiple,,,multiple
+"trợ lý, thư ký",multiple,,,multiple
+trợ lý/ thư ký,multiple,,,multiple
+tốt nghiệp thcs,,,,wrong_field_content
+tốt nghiệp thpt,,,,wrong_field_content
+tốt nghiệp đại học,,,,wrong_field_content
+tổng giám đốc,manager,,general_director,mapped
+tổng giám đốc/ ptgđ/ giám đốc/ pgđ,multiple,,,multiple
+điều hành cấp cao,executive,,,mapped
+đào tạo viên,trainer,,,mapped
