@@ -1,0 +1,61 @@
+alias,value
+IT Phần mềm,IT_DATA
+IT Phần cứng - Mạng,IT_DATA
+IT - Phần mềm,IT_DATA
+Công nghệ thông tin,IT_DATA
+Bán hàng - Kinh doanh,SALES
+Bán hàng / Kinh doanh,SALES
+Nhân viên kinh doanh,SALES
+Kinh doanh,SALES
+Bán hàng,SALES
+Kinh doanh / Bán hàng,SALES
+Sales,SALES
+Chăm sóc khách hàng,CUSTOMER_SERVICE
+Dịch vụ khách hàng,CUSTOMER_SERVICE
+Customer Service,CUSTOMER_SERVICE
+Marketing,MARKETING_MEDIA
+Marketing - PR,MARKETING_MEDIA
+Marketing/PR,MARKETING_MEDIA
+Tiếp thị - Quảng cáo,MARKETING_MEDIA
+Truyền thông,MARKETING_MEDIA
+Kế toán / Kiểm toán,ACCOUNTING
+Kế toán - Kiểm toán,ACCOUNTING
+Kế toán,ACCOUNTING
+Kiểm toán,ACCOUNTING
+Kế toán/ Kiểm toán,ACCOUNTING
+Tài chính - Đầu tư - Chứng Khoán,FINANCE
+Tài chính,FINANCE
+Nghiệp vụ ngân hàng,FINANCE
+Nhân sự / Hành chính - Thư ký,HR_ADMIN
+Nhân sự,HR_ADMIN
+Hành chính - Thư ký,HR_ADMIN
+Hành chính - Văn phòng,HR_ADMIN
+Thư ký - Trợ lý,HR_ADMIN
+Vận Tải - Lái xe - Giao nhận,LOGISTICS
+Xuất Nhập Khẩu / Thu mua - Kho Vận - Chuỗi cung ứng,LOGISTICS
+Thu mua - Kho Vận - Chuỗi cung ứng,LOGISTICS
+Xuất Nhập Khẩu,LOGISTICS
+Giao nhận/ Vận chuyển/ Kho bãi,LOGISTICS
+Logistics,LOGISTICS
+Kỹ thuật,ENGINEERING
+Điện - Điện tử - Điện lạnh / Vận hành - Bảo trì - Bảo dưỡng,ENGINEERING
+Vận hành - Bảo trì - Bảo dưỡng,ENGINEERING
+Điện - Điện tử - Điện lạnh,ENGINEERING
+Cơ khí - Ô tô - Tự động hóa,ENGINEERING
+Sản xuất - Lắp ráp - Chế biến,MANUFACTURING
+Quản lý tiêu chuẩn và chất lượng,MANUFACTURING
+Xây dựng,CONSTRUCTION
+Kiến trúc - Thiết kế nội ngoại thất,CONSTRUCTION
+Kiến trúc - Thiết kế nội thất,CONSTRUCTION
+Giáo dục - Đào tạo,EDUCATION
+Thiết kế - Sáng tạo nghệ thuật,DESIGN
+Thiết kế - Mỹ thuật,DESIGN
+Luật - Pháp Lý - Tuân thủ,LEGAL
+Pháp lý,LEGAL
+Luật/ Pháp lý,LEGAL
+Biên phiên dịch,LANGUAGE
+Biên dịch / Phiên dịch,LANGUAGE
+Nông - Lâm - Ngư nghiệp,AGRICULTURE
+An toàn lao động,SAFETY_ENVIRONMENT
+Môi trường / Xử lý chất thải,SAFETY_ENVIRONMENT
+An ninh - Bảo vệ,SECURITY

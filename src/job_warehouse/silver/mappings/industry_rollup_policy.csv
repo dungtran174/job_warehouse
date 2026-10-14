@@ -1,0 +1,270 @@
+decision_code,child,parent,action
+A02,Vận hành - Bảo trì - Bảo dưỡng,Điện - Điện tử - Điện lạnh / Vận hành - Bảo trì - Bảo dưỡng,merge
+A03,Tài chính - Đầu tư - Chứng Khoán,Ngân hàng / Tài chính - Đầu tư - Chứng Khoán,merge
+A04,Khách sạn - Nhà hàng - Du lịch,Khách sạn - Nhà hàng - Du lịch / Bán sỉ - Bán lẻ - Quản lý cửa hàng,merge
+A05,Hành chính - Thư ký,Nhân sự / Hành chính - Thư ký,merge
+A06,Thu mua - Kho Vận - Chuỗi cung ứng,Xuất Nhập Khẩu / Thu mua - Kho Vận - Chuỗi cung ứng,merge
+A07,Bán sỉ - Bán lẻ - Quản lý cửa hàng,Khách sạn - Nhà hàng - Du lịch / Bán sỉ - Bán lẻ - Quản lý cửa hàng,merge
+A08,Nhân sự,Nhân sự / Hành chính - Thư ký,merge
+A10,Y tế - Chăm sóc sức khỏe,Dược phẩm / Y tế - Chăm sóc sức khỏe,merge
+A11,Sản xuất - Lắp ráp - Chế biến,Cơ khí - Ô tô - Tự động hóa / Sản xuất - Lắp ráp - Chế biến,merge
+A12,Xuất Nhập Khẩu,Xuất Nhập Khẩu / Thu mua - Kho Vận - Chuỗi cung ứng,merge
+A13,Ngân hàng,Ngân hàng / Tài chính - Đầu tư - Chứng Khoán,merge
+A14,Kế toán,Kế toán / Kiểm toán,merge
+A15,Điện - Điện tử - Điện lạnh,Điện - Điện tử - Điện lạnh / Vận hành - Bảo trì - Bảo dưỡng,merge
+A16,Thực phẩm - Đồ uống,Thực phẩm - Đồ uống / Công nghệ thực phẩm - Dinh dưỡng,merge
+A17,Cơ khí - Ô tô - Tự động hóa,Cơ khí - Ô tô - Tự động hóa / Sản xuất - Lắp ráp - Chế biến,merge
+A18,Biên phiên dịch,Giáo dục - Đào tạo / Biên phiên dịch,merge
+A19,Dược phẩm,Dược phẩm / Y tế - Chăm sóc sức khỏe,merge
+A20,Công nghệ thực phẩm - Dinh dưỡng,Thực phẩm - Đồ uống / Công nghệ thực phẩm - Dinh dưỡng,merge
+A21,Kiểm toán,Kế toán / Kiểm toán,merge
+B01,Ngân hàng/ Tài Chính,Ngân hàng / Tài chính - Đầu tư - Chứng Khoán,merge
+B02,Đầu tư,Tài chính - Đầu tư - Chứng Khoán,merge
+B04,Bán hàng,Bán hàng - Kinh doanh,merge
+B07,Tư vấn chăm sóc khách hàng,Chăm sóc khách hàng,merge
+B08,Tiếp thị - Quảng cáo,Marketing,merge
+B09,Thông tin - Truyền thông - Quảng cáo,Marketing,merge
+B13,Thư ký - Trợ lý,Hành chính - Thư ký,merge
+B14,Thư ký / Hành chánh,Nhân sự / Hành chính - Thư ký,merge
+B15,Giao nhận/ Vận chuyển/ Kho bãi,Thu mua - Kho Vận - Chuỗi cung ứng,merge
+B16,Vật tư/Thiết bị/Mua hàng,Thu mua - Kho Vận - Chuỗi cung ứng,merge
+B17,Vận tải - Lái xe/ Tài xế,Vận Tải - Lái xe - Giao nhận,merge
+B18,Vận chuyển / Giao thông / Kho bãi,Vận Tải - Lái xe - Giao nhận,merge
+B19,Kiến trúc,Kiến trúc - Thiết kế nội ngoại thất,merge
+B20,Kiến trúc - Thiết kế nội thất,Kiến trúc - Thiết kế nội ngoại thất,merge
+B22,Thiết kế đồ họa - Web,Thiết kế - Sáng tạo nghệ thuật,merge
+B23,Thiết kế - Mỹ thuật,Thiết kế - Sáng tạo nghệ thuật,merge
+B24,Dệt may - Da giày,Dệt may - Da giày - Thời trang,merge
+B25,Thời trang,Dệt may - Da giày - Thời trang,merge
+B26,Y tế - Dược,Dược phẩm / Y tế - Chăm sóc sức khỏe,merge
+B27,Khách sạn - Nhà hàng,Khách sạn - Nhà hàng - Du lịch,merge
+B28,Khách sạn,Khách sạn - Nhà hàng - Du lịch,merge
+B29,Du lịch,Khách sạn - Nhà hàng - Du lịch,merge
+B30,Pháp luật/ Pháp lý,Luật - Pháp Lý - Tuân thủ,merge
+B36,Cơ khí - Chế tạo,Cơ khí - Ô tô - Tự động hóa / Sản xuất - Lắp ráp - Chế biến,merge
+B39,Môi trường - Xử lý chất thải,Môi trường,merge
+B40,IT phần mềm,Công nghệ thông tin,merge
+B41,IT Phần cứng - Mạng,Công nghệ thông tin,merge
+B42,IT Phần cứng - Mạng / IT phần mềm,Công nghệ thông tin,merge
+B43,Software Products and Web Services,Công nghệ thông tin,merge
+B44,Software Development Outsourcing,Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Backend Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Software Engineer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Fullstack Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Infrastructure and Operations, IT Helpdesk/IT support",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Frontend Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, Manual Tester",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Mobile Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, Software Tester (Automation & Manual)",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Công nghệ thông tin khác, Chuyên môn Công nghệ thông tin khác, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Product Management, Business Analyst",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Product Management, Business Analyst, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Artificial Intelligence (AI), AI Engineer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Infrastructure and Operations, DevOps Engineer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Project Management, IT Project Manager",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Product Management, Product Owner/Product Manager",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Software Engineer, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Data Science, Data Engineer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Infrastructure and Operations, System Administrator",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Thiết kế, Software Design, Thiết kế Đồ họa/Giao diện/Trải nghiệm, UI/UX Design, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Infrastructure and Operations, Kỹ thuật IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Infrastructure and Operations, System Engineer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Thiết kế, Software Design, Thiết kế Đồ họa/Giao diện/Trải nghiệm, UI/UX Design",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Product Management, Business Analyst (Phân tích nghiệp vụ), Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Product Management, Business Analyst, IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Infrastructure and Operations, Network Engineer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Thiết kế, Game Development, Nghệ thuật/Hoạt hình/Game, Game Design, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, Automation Tester",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Game Development, Game Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Consultant",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Điện/Điện tử/Viễn thông, IoT/Embedded Engineer, Điện tử/Phần cứng, Embedded Engineer/Lập trình nhúng, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Chuyên viên IT Security",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Project Management, Kỹ sư cầu nối BrSE",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, QA Engineer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, Process Quality Assurance (PQA)",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Thiết kế, Game Development, Nghệ thuật/Hoạt hình/Game, Concept Artist",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Backend Developer, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Product Management, Product Owner/Product Manager, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Mobile Developer, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, Software Tester (Automation & Manual), Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Artificial Intelligence (AI), AI Engineer, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Product Management, Business Analyst (Phân tích nghiệp vụ)",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Infrastructure and Operations, Database Administrator (DBA)",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, Technical Leader",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Thiết kế, Game Development, Nghệ thuật/Hoạt hình/Game, Concept Artist, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, Game Tester",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Chuyên viên Cyber Security",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Data Science, Data Engineer, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Project Management, IT Comtor",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Infrastructure and Operations, IT Helpdesk/IT support, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, Technical Leader, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Blockchain Engineer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Kiểm thử và đánh giá bảo mật",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Frontend Developer, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, Technical Manager, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Bất động sản/Xây dựng, Công nghệ thông tin khác, Thiết kế và Kiến trúc, BIM Engineer, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Project Management, IT Project Manager, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, Game Tester, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Thiết kế, Game Development, Nghệ thuật/Hoạt hình/Game, Game Design",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Ngân hàng, Tài chính",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Fullstack Developer, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Quản trị và vận hành bảo mật",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Artificial Intelligence (AI), AI Researcher",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Kiểm thử và đánh giá bảo mật, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Infrastructure and Operations, Cloud Engineer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Chiến lược và phân tích bảo mật",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Project Management, Scrum Master",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, Solution Architect",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, Software Tester",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Khoa học máy tính",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, Manual Tester, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, Chief Technology Officer (CTO)",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Data Science, Data Scientist, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Phần mềm, Ngân hàng, Tài chính",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, Solution Architect, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Điện/Điện tử/Viễn thông, IoT/Embedded Engineer, Viễn thông, Kỹ sư IoT (IoT Engineer), Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Data Science, Data Scientist",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Quản trị và vận hành bảo mật, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Game Development, Game Developer, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, Software Architect",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Lập trình viên",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT - Phần mềm, Ngân hàng, Tài chính",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, Process Quality Assurance (PQA), Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Artificial Intelligence (AI), Data Labeling (Gán nhãn dữ liệu)",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Product Management, Business Analyst, Phân tích nghiệp vụ",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, Technical Director",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Bảo mật ứng dụng và phát triển",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Chuyên môn Công nghệ thông tin khác, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Tuân thủ và kiểm toán bảo mật",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Bất động sản/Xây dựng, Thiết kế và Kiến trúc, BIM Engineer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Chuyên môn Công nghệ thông tin khác",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Market Research and Analysis, Data Science, Data Analyst",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, DevOps Engineer, IT Infrastructure and Operations",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Phòng chống lừa đảo và an ninh mạng, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Điện tử viễn thông, Mạng máy tính",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Công nghệ thông tin khác, IT Consultant, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Điện/Điện tử/Viễn thông, IoT/Embedded Engineer, Kỹ sư IoT (IoT Engineer)",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Ngân hàng, Tài chính, Data Analyst",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, Head of Engineering",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Game Development, AR/VR Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Thiết kế web",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, Software Architect, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Software Engineer, IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Kinh doanh/Bán hàng, Sales IT phần mềm, Kinh doanh phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Kiểm thử phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, System Architect",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Hệ thống thông tin, Kiểm thử phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Sales IT phần mềm, Kinh doanh phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Management/Specialist, Technical Director, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT - Phần mềm, Tài chính, Lập trình",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Phần mềm, Business Analyst, Phân tích nghiệp vụ",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT - Phần cứng và máy tính, IT - Phần mềm, Điện toán đám mây (Cloud)",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Tin học, Điện tử Viễn thông",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Ngân hàng, Tài chính, Quản lý đầu tư",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Phần mềm, Ngân hàng",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Chuyên viên IT Security, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Quản lý Dự án CNTT, Quản lý Dự án IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, AI Engineer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Kiểm thử phần mềm, QC",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Product Management, Product Analyst/Research",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Game Development, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Viễn thông, IP Network",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Frontend Developer, Web Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, AI Engineer, Natural Language Processing",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Ngân hàng, Tài chính, IT - Phần mềm, Backend Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT Infrastructure and Operations, Kỹ thuật IT, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Java Developer, Backend Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Tài chính, IT - Phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Backend Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Game Development",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Ngân hàng, Tài chính, System Administrator",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, QA Engineer, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Lập trình viên Frontend, Phát triển phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Ngân hàng, Tài chính, System Administrator, IT Infrastructure and Operations",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Phòng chống lừa đảo và an ninh mạng",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Hệ thống thông tin, Khoa học máy tính",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Sales IT phần mềm, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Testing, Automation Tester, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Công nghệ thông tin khác, Chuyên môn Công nghệ thông tin khác",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Engineering, Blockchain Engineer, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Information Security, Chuyên viên Cyber Security, Việc làm IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Ngân hàng, Tài chính, Lập trình, Phát triển phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Toán tin, Điện tử Viễn thông, Kế toán, Tài chính Ngân hàng",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Tester, QC",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Ngân hàng, Tài chính, Phần mềm, Backend Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Software Development, Backend Development",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, QA Engineer, IT - Phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Sales Kỹ thuật (Sales Engineer), Bán hàng kỹ thuật IT",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Data Science, Data Analyst, Market Research and Analysis",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Phần mềm, Ngân hàng, Backend Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Computer Science",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, IT - Phần cứng và máy tính, IT - Phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Khoa học máy tính, Lập trình viên, .Net Developer",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Ngân hàng, Tài chính, Kiểm thử phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Kinh doanh phần mềm, Sales IT phần mềm",Công nghệ thông tin,merge
+C01,"Công nghệ thông tin, Khoa học Máy tính, Hệ thống Thông tin Quản lý",Công nghệ thông tin,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Thiết kế Đồ họa/Giao diện/Trải nghiệm, Quảng cáo/Sáng tạo, Marketing/PR/Quảng cáo",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Thiết kế Đồ họa/Giao diện/Trải nghiệm, Marketing/PR/Quảng cáo, Quảng cáo/Sáng tạo",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Quảng cáo/Sáng tạo, Marketing/PR/Quảng cáo",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Thiết kế Đồ họa/Giao diện/Trải nghiệm, Software Design",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Marketing/PR/Quảng cáo, Quảng cáo/Sáng tạo",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Thiết kế Đồ họa/Giao diện/Trải nghiệm, Marketing/PR/Quảng cáo, Quảng cáo/Sáng tạo, Công nghệ thông tin, Software Design, Việc làm IT",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Thiết kế Đồ họa/Giao diện/Trải nghiệm, Quảng cáo/Sáng tạo, Marketing/PR/Quảng cáo, Software Design",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Quảng cáo/Sáng tạo, Phim và truyền hình, Nghệ thuật/Hoạt hình/Game, Animation Design",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Nghệ thuật/Hoạt hình/Game, Animation Design, Software Design",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Thiết kế Đồ họa/Giao diện/Trải nghiệm, Marketing/PR/Quảng cáo, Quảng cáo/Sáng tạo, Software Design",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế Đồ họa/Giao diện/Trải nghiệm, Thiết kế đồ họa (Graphic Design), Marketing/PR/Quảng cáo, Quảng cáo/Sáng tạo",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Thiết kế Đồ họa/Giao diện/Trải nghiệm, Quảng cáo/Sáng tạo, Software Design",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Công nghệ thông tin, Marketing/PR/Quảng cáo, Quảng cáo/Sáng tạo, Nghệ thuật/Hoạt hình/Game, Thiết kế Đồ họa/Giao diện/Trải nghiệm, Software Design, Illustration",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Quảng cáo/Sáng tạo, Animation Design, Software Design",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa, Thiết kế đồ họa/Giao diện/Trải nghiệm, Quảng cáo/Sáng tạo, Marketing/PR/Quảng cáo",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế Đồ họa/Giao diện/Trải nghiệm, Thiết kế đồ họa (Graphic Design)",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Marketing/PR/Quảng cáo, Quảng cáo/Sáng tạo, Thiết kế Đồ họa/Giao diện/Trải nghiệm",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế Đồ họa/Giao diện/Trải nghiệm, Thiết kế đồ họa (Graphic Design), Quảng cáo/Sáng tạo, Marketing/PR/Quảng cáo",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Quảng cáo/Sáng tạo, Thiết kế Đồ họa/Giao diện/Trải nghiệm, 3D Modeler",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, 3D Modeler, Thiết kế Đồ họa/Giao diện/Trải nghiệm, Software Design, Công nghệ thông tin, Marketing/PR/Quảng cáo, Quảng cáo/Sáng tạo",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Thiết kế Đồ họa/Giao diện/Trải nghiệm, Software Design, Marketing/PR/Quảng cáo, Quảng cáo/Sáng tạo, Công nghệ thông tin, Việc làm IT",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Nghệ thuật/Hoạt hình/Game, Thiết kế Đồ họa/Giao diện/Trải nghiệm, Illustration, Công nghệ thông tin, Marketing/PR/Quảng cáo, Quảng cáo/Sáng tạo, Software Design, Việc làm IT",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Kiến trúc, Truyền thông đa phương tiện, Báo chí",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, Thiết kế đồ họa (Graphic Design), Thiết kế Đồ họa/Giao diện/Trải nghiệm, Software Design, Marketing/PR/Quảng cáo, Quảng cáo/Sáng tạo",Thiết kế - Sáng tạo nghệ thuật,merge
+C02,"Thiết kế, 3D Modeler, Thiết kế Đồ họa/Giao diện/Trải nghiệm",Thiết kế - Sáng tạo nghệ thuật,merge
+C03,"Kinh doanh/Bán hàng, Công nghệ thông tin, Sales IT phần mềm, Kinh doanh phần mềm, Việc làm IT",Bán hàng - Kinh doanh,merge
+C03,"Kinh doanh/Bán hàng, Công nghệ thông tin, Sales IT phần mềm, Kinh doanh Domain/Hosting/Server, Việc làm IT",Bán hàng - Kinh doanh,merge
+C03,"Kinh doanh/Bán hàng, Công nghệ thông tin, Sales Kỹ thuật (Sales Engineer), Bán hàng kỹ thuật IT",Bán hàng - Kinh doanh,merge
+C03,"Kinh doanh/Bán hàng, Công nghệ thông tin, Sales IT phần mềm, Việc làm IT",Bán hàng - Kinh doanh,merge
+C03,"Kinh doanh/Bán hàng, Công nghệ thông tin, Sales Kỹ thuật (Sales Engineer), Công nghệ thông tin khác, Bán hàng kỹ thuật IT, Việc làm IT",Bán hàng - Kinh doanh,merge
+C03,"Kinh doanh/Bán hàng, Công nghệ thông tin, Sales IT phần mềm, Kinh doanh phần mềm",Bán hàng - Kinh doanh,merge
+C03,"Kinh doanh/Bán hàng, Công nghệ thông tin, Sales Kỹ thuật (Sales Engineer), Bán hàng kỹ thuật IT, Việc làm IT",Bán hàng - Kinh doanh,merge
+C03,"Kinh doanh/Bán hàng, Công nghệ thông tin, Sales IT phần mềm, Sales IT phần mềm khác, Việc làm IT",Bán hàng - Kinh doanh,merge
+C03,"Kinh doanh/Bán hàng, Điện/Điện tử/Viễn thông, Sales Điện/Điện tử/Viễn thông, Kinh doanh dịch vụ viễn thông",Bán hàng - Kinh doanh,merge
+C03,"Kinh doanh/Bán hàng, Sales Admin/Sales Support, Sales Admin/Sales Support/Sales Associate",Bán hàng - Kinh doanh,merge
+C04,"Marketing/PR/Quảng cáo, Công nghệ thông tin, Thiết kế, Quảng cáo/Sáng tạo, Software Design, Thiết kế Đồ họa/Giao diện/Trải nghiệm, Thiết kế đồ họa (Graphic Design), Việc làm IT",Marketing,merge
+C04,"Marketing/PR/Quảng cáo, Công nghệ thông tin, Market Research and Analysis, Data Science, Data Analyst, Việc làm IT",Marketing,merge
+C04,"Marketing/PR/Quảng cáo, Thiết kế, Quảng cáo/Sáng tạo, Thiết kế Đồ họa/Giao diện/Trải nghiệm, Thiết kế đồ họa (Graphic Design)",Marketing,merge
+C04,"Marketing/PR/Quảng cáo, Công nghệ thông tin, Phim và truyền hình/Báo chí/Xuất bản, Thiết kế, Quảng cáo/Sáng tạo, Software Design, Phim và truyền hình, Nghệ thuật/Hoạt hình/Game, Animation Design, Việc làm IT",Marketing,merge
+C04,"Marketing/PR/Quảng cáo, Công nghệ thông tin, Market Research and Analysis, Data Science, Data Analyst",Marketing,merge
+C04,"Marketing/PR/Quảng cáo, Công nghệ thông tin, Thiết kế, Quảng cáo/Sáng tạo, Software Design, Thiết kế Đồ họa/Giao diện/Trải nghiệm, 3D Modeler, Việc làm IT",Marketing,merge
+C04,"Marketing/PR/Quảng cáo, Thiết kế, Quảng cáo/Sáng tạo, Thiết kế đồ họa (Graphic Design)",Marketing,merge
+C04,"Marketing/PR/Quảng cáo, Công nghệ thông tin, Thiết kế, Quảng cáo/Sáng tạo, Software Design, Thiết kế Đồ họa/Giao diện/Trải nghiệm, Nghệ thuật/Hoạt hình/Game, Illustration, Việc làm IT",Marketing,merge
+C04,"Marketing/PR/Quảng cáo, Thiết kế, Quảng cáo/Sáng tạo, Phim và truyền hình, Nghệ thuật/Hoạt hình/Game",Marketing,merge
+C04,"Marketing/PR/Quảng cáo, Tư vấn chuyên môn, Market Research and Analysis, Nghiên cứu thị trường (Market Research)",Marketing,merge
+C04,"Marketing/PR/Quảng cáo, Marketing, Digital Marketing",Marketing,merge
+C04,"Marketing/PR/Quảng cáo, Thiết kế, Quảng cáo/Sáng tạo, Thiết kế Đồ họa/Giao diện/Trải nghiệm, 3D Modeler",Marketing,merge
+B03,Bảo hiểm,,keep
+B05,Nhân viên kinh doanh,,keep
+B06,Phát triển thị trường,,keep
+B10,Quan hệ đối ngoại,,keep
+B11,Tổ chức sự kiện - Quà tặng,,keep
+B12,Hành chính - Văn phòng,,keep
+B21,Kiến trúc - Thiết kế nội ngoại thất,,keep
+B31,Quản lý chất lượng,,keep
+B32,Quản lý chất lượng (QA / QC),,keep
+B33,QA-QC/ Thẩm định/ Giám định,,keep
+B34,Kỹ thuật,,keep
+B35,Kỹ thuật ứng dụng,,keep
+B37,Công nghiệp,,keep
+B38,Hoạch định - Dự án,,keep
+A09,Giáo dục - Đào tạo,,keep
+A01,Chăm sóc khách hàng,,keep

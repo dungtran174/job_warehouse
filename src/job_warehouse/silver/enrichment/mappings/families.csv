@@ -1,0 +1,24 @@
+code,label,definition,exclusions
+IT_DATA,Công nghệ thông tin,"Phát triển, kiểm thử phần mềm; dữ liệu; hạ tầng CNTT",Bán phần mềm; thiết kế đồ họa; QC nhà máy
+SALES,Kinh doanh,"Bán hàng, kinh doanh, telesales và hỗ trợ bán hàng",Tư vấn đơn lẻ; kế toán bán hàng; marketing
+CUSTOMER_SERVICE,Chăm sóc khách hàng,Hỗ trợ khách hàng và tổng đài dịch vụ,Telesales; tư vấn chưa rõ nhiệm vụ
+MARKETING_MEDIA,Marketing truyền thông,"Marketing, sáng tạo nội dung, biên tập, quay dựng video và sản xuất truyền thông",Thiết kế đồ họa/UI-UX/thời trang/bao bì; bán dịch vụ truyền thông
+ACCOUNTING,Kế toán kiểm toán,"Kế toán, kiểm toán, thuế, quản trị sổ sách",Tư vấn tài chính; phân tích đầu tư
+FINANCE,Tài chính ngân hàng,"Phân tích tài chính, tín dụng và vận hành ngân hàng",Bán sản phẩm tài chính; tư vấn tài chính đơn lẻ
+HR_ADMIN,Hành chính nhân sự,"Tuyển dụng, nhân sự, hành chính, thư ký",Quản lý chung; sales admin
+LOGISTICS,Hậu cần vận tải,"Kho, mua hàng, xuất nhập khẩu, giao nhận, lái xe",Kế toán kho; bán dịch vụ logistics
+ENGINEERING,Kỹ thuật thiết bị,"Kỹ thuật cơ điện, tự động hóa, bảo trì thiết bị",Xây dựng; CNTT; HSE; vận hành sản xuất; bảo trì chưa rõ thiết bị hoặc chuyên môn; chức danh kỹ sư kèm nhiệm vụ hồ sơ chưa rõ
+MANUFACTURING,Sản xuất công nghiệp,"Sản xuất, vận hành máy, QC công nghiệp",QA phần mềm; kỹ sư xây dựng; lao động chung chưa rõ
+CONSTRUCTION,Xây dựng kiến trúc,"Kiến trúc, thiết kế và thi công xây dựng",Bán bất động sản; legal bất động sản
+HEALTHCARE,Y tế thú y,"Bác sĩ, điều dưỡng, y tá, dược sĩ, bác sĩ/y tá thú y và chăm sóc sức khỏe người/động vật",Sales y tế; kỹ sư chăn nuôi không thực hiện vai trò bác sĩ; lễ tân bệnh viện
+EDUCATION,Giáo dục đào tạo,"Giảng dạy, đào tạo chuyên trách, học vụ và hỗ trợ quản lý học sinh",Tư vấn tuyển sinh chưa rõ chức năng; phiên dịch; tuyển dụng và đào tạo nhân sự nội bộ
+DESIGN,Thiết kế sáng tạo,"Thiết kế đồ họa, thời trang, bao bì, UI/UX, họa sĩ",Kiến trúc; lập trình frontend; nội dung và quay dựng video
+HOSPITALITY,Dịch vụ hiếu khách,"Bếp, phục vụ, vận hành nhà hàng và khách sạn, hướng dẫn và dịch vụ du lịch",Kế toán khách sạn; kỹ thuật thực phẩm; công việc vệ sinh và buồng phòng làm vệ sinh
+RETAIL,Vận hành bán lẻ,"Thu ngân, quản lý và vận hành cửa hàng",Nhân viên kinh doanh; kế toán cửa hàng
+LEGAL,Pháp lý tuân thủ,"Luật, pháp chế, tuân thủ pháp lý",QC công nghiệp; quản lý chung
+LANGUAGE,Biên phiên dịch,Biên phiên dịch ngôn ngữ,Giáo viên ngoại ngữ; vị trí chỉ yêu cầu ngoại ngữ
+AGRICULTURE,Nông lâm ngư nghiệp,"Nông học, lâm nghiệp, thủy sản",Môi trường; kỹ thuật thực phẩm; sales nông sản
+FOOD_TECH,Công nghệ thực phẩm,"Công nghệ thực phẩm, nghiên cứu thực phẩm, dinh dưỡng",Bếp; bán thực phẩm; công nhân đóng gói
+SAFETY_ENVIRONMENT,An toàn môi trường,"HSE, an toàn lao động, kỹ thuật môi trường",Cụm môi trường làm việc; kỹ thuật máy móc
+SECURITY,An ninh bảo vệ,Bảo vệ và an ninh vật lý,An ninh mạng; HSE
+CLEANING,Dịch vụ vệ sinh,"Tạp vụ, vệ sinh công nghiệp, housekeeping và buồng phòng làm vệ sinh ở mọi loại cơ sở",Kinh doanh dịch vụ vệ sinh; kỹ sư môi trường; giảng dạy vệ sinh; vận hành khách sạn khác; vệ sinh sản phẩm có thể là sơ chế chưa rõ

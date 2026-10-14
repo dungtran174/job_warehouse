@@ -36,6 +36,25 @@ def build_parser() -> argparse.ArgumentParser:
     core.add_argument("--input", type=Path, required=True)
     core.add_argument("--output-dir", type=Path, required=True)
     core.add_argument("--batch-size", type=int, default=2048)
+    enrich = silver_commands.add_parser("enrich", help="map occupations and source places offline")
+    enrich.add_argument("--core", type=Path, required=True)
+    enrich.add_argument("--core-manifest", type=Path, required=True)
+    enrich.add_argument("--output-dir", type=Path, required=True)
+    enrich.add_argument("--batch-size", type=int, default=2048)
+    owner_map = silver_commands.add_parser(
+        "apply-location-map", help="apply owner Excel locations to a verified S3 run"
+    )
+    owner_map.add_argument("--base-run", type=Path, required=True)
+    owner_map.add_argument("--mapping-xlsx", type=Path, required=True)
+    owner_map.add_argument("--output-dir", type=Path, required=True)
+    industry = silver_commands.add_parser(
+        "industry", help="apply owner source-industry policy and select analysis records"
+    )
+    industry.add_argument("--bronze", type=Path, required=True)
+    industry.add_argument("--base-run", type=Path, required=True)
+    industry.add_argument("--output-dir", type=Path, required=True)
+    industry.add_argument("--threshold", type=int, default=500)
+    industry.add_argument("--batch-size", type=int, default=4096)
     return parser
 
 
@@ -43,6 +62,32 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         if args.command == "silver":
+            if args.silver_command == "industry":
+                from job_warehouse.silver.industry_runner import run_industry
+
+                report = run_industry(
+                    args.bronze,
+                    args.base_run,
+                    args.output_dir,
+                    threshold=args.threshold,
+                    batch_size=args.batch_size,
+                )
+                print(f"Silver source industry: {report['partition']}; output={args.output_dir}")
+                return 0
+            if args.silver_command == "apply-location-map":
+                from job_warehouse.silver.enrichment.owner_locations import apply_owner_mapping
+
+                report = apply_owner_mapping(args.base_run, args.mapping_xlsx, args.output_dir)
+                print(f"Owner location mapping: {report}; output={args.output_dir}")
+                return 0
+            if args.silver_command == "enrich":
+                from job_warehouse.silver.enrichment.runner import run_enrichment
+
+                manifest = run_enrichment(
+                    args.core, args.core_manifest, args.output_dir, batch_size=args.batch_size
+                )
+                print(f"Silver enrichment: {manifest['partition']}; output={args.output_dir}")
+                return 0
             from job_warehouse.silver.core_runner import run_core
 
             manifest = run_core(args.input, args.output_dir, batch_size=args.batch_size)

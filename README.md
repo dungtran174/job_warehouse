@@ -1,7 +1,10 @@
 # job_warehouse
 
 Đồ án kho dữ liệu hiện chỉ dùng **lịch sử Hugging Face**. S0 có profiler
-offline; S1 có PostgreSQL Bronze registry; S2 có Silver core offline.
+offline; S1 có PostgreSQL Bronze registry; S2 có Silver core offline;
+S3 có enrichment và nhập ánh xạ địa điểm offline; trục ngành hiện dùng nhãn
+nguồn, alias và ghép cha theo quyết định chủ dự án. CLI ngành xuất Silver
+đầy đủ và tập phân tích theo ngưỡng ≥500, giữ lưu vết về Bronze.
 Silver database publish/Gold/dashboard/Airflow chưa triển khai.
 Code warehouse ở `src/job_warehouse/`, test ở `tests/warehouse/`,
 [hợp đồng và cách chạy](docs/warehouse/history_data_contract.md) ở `docs/warehouse/`.
@@ -53,6 +56,88 @@ chờ review. Tách title thiếu/Không, giữ raw và đối soát core+quaran
 CLI giữ SHA/N pin, output phải mới và ngoài repository. Chưa parse
 salary/location/industry, loại trùng, trích skill hay publish vào database.
 Xem [hợp đồng và cách kiểm định core](docs/warehouse/silver_core_contract.md).
+
+## Warehouse lịch sử — S3 enrichment
+
+**Trục ngành hiện hành:** dùng `job_industry`, không dùng `occupation_primary`
+hoặc cờ `scope_500` của classifier chức năng dưới đây. Sau chặng địa điểm,
+chạy `silver industry` để áp dụng policy cuối và lọc tập phân tích:
+
+```bash
+job-warehouse silver industry \
+  --bronze /path/to/history_data.parquet \
+  --base-run /path/outside/repo/verified-location-run \
+  --output-dir /path/outside/repo/industry-run --threshold 500
+```
+
+Giữ Giáo dục - Đào tạo và Chăm sóc khách hàng riêng; tư vấn CSKH vẫn ghép
+vào CSKH. Giữ cả hai nhóm Chưa xác định/Nghề nghiệp khác nếu đạt ngưỡng.
+Xem [quyết định, cột, lưu vết và cách chạy lại](docs/warehouse/source_industry_operations.md).
+Classifier chức năng và các báo cáo lịch sử dưới đây giữ để đối chiếu,
+không là trục phân tích chính hiện tại.
+
+Code, taxonomy và mapping ở `src/job_warehouse/silver/enrichment/`, có version
+riêng với core S2. CLI `job-warehouse silver enrich` đọc core cùng manifest,
+giữ một dòng mỗi record_key, lưu nghề theo chức năng, domain riêng, đủ labels
+địa điểm và scope ≥500/≥1.000. Không xóa nhóm ít mẫu khỏi Silver.
+Taxonomy có 23 nhóm mang tên bao quát theo chức năng; công việc vệ sinh ở
+mọi cơ sở thuộc Dịch vụ vệ sinh, gồm cả vệ sinh buồng phòng khách sạn.
+Xem [contract, cách chạy và kiểm định S3](docs/warehouse/silver_enrichment_contract.md).
+Đầu ra thật ở ngoài Git; coverage và các nhóm ít mẫu còn giới hạn, được ghi
+trong báo cáo kiểm định. Chưa publish Silver vào database/dashboard.
+Chính sách Q32–Q37:
+giữ các tỉnh được đề cập, ưu tiên một địa chỉ đầy đủ khi nhãn bao ngoài mâu
+thuẫn, dùng tỉnh đã rõ và ghi cờ khi danh sách chưa đầy đủ. Mỗi version địa
+điểm mới cần đối soát toàn file và mẫu kiểm định mới trước khi nhận gate cũ.
+Tin nhắc cả Việt Nam và nước ngoài giữ các tỉnh Việt Nam, quốc gia lưu riêng
+kèm cờ; không loại tỉnh đã rõ vì có thêm nơi nước ngoài.
+Kiểm định địa điểm vòng 6 khớp 251/268 (93,66%), chưa đạt 95%. Location v9
+qua vòng 7 tổng thể 309/322 (95,96%), nhưng nhóm tên cơ sở chỉ 20/30;
+điểm cũ giữ nguyên. Location v11/pipeline v14 đã đối soát đủ core; vòng 9
+khớp 292/300 (97,33%), nhưng nhiều tỉnh chỉ 40/45 (88,89%) và còn lỗi cần sửa.
+Q41 không lấy tỉnh từ tên cơ sở lặp; Q42 đọc quan hệ tên mới/cũ nguồn ghi rõ;
+Q43 tránh tên đường Hậu Giang trong danh sách đường. Giữ tên cũ trong bằng
+chứng; không tự quy đổi tin khác. Q44 đã chốt ưu tiên tỉnh chung rõ của các
+địa chỉ bên trong khi nhãn bao ngoài lặp mâu thuẫn; bản tiếp theo cần kiểm định mới.
+
+Location v12/pipeline v15 đã chạy và audit đủ 606.857 dòng, còn 17.792
+unmapped. Q44 và quan hệ địa chỉ cũ/mới đã có code/test; reference KCN Quế Võ
+được bổ sung. Vòng AI mù 10 đã hoàn tất: khớp 312/320 (97,5%) tổng thể;
+nhiều tỉnh 65/70 và quan hệ địa chỉ cũ 3/4, còn bất đồng cần xử lý.
+Nhãn/score v12 giữ nguyên. Location v13/pipeline v16 sửa tám ca bất đồng,
+gồm Q45 đã chốt về địa chỉ cũ lặp khớp rõ cùng nơi. Run-v20 đã audit đủ
+606.857 dòng, còn 17.768 unmapped. Vòng AI thật 11 khớp 310/318 tuple
+(97,48%), tập tỉnh 312/318; nhiều địa điểm 62/70 còn yếu. Q45 có 32 câu
+thử tổng hợp khớp 32/32, báo riêng; không thay mẫu thật.
+
+Code hiện tại là location v14/pipeline v19, sửa bảy ca rõ của vòng11 và
+Q46 về tên nhà máy có địa chỉ cùng lô/KCN ghi tỉnh rõ. Theo điều chỉnh Q47,
+chỉ trích/chuẩn hóa tên tỉnh/thành theo nguồn, giữ tên cũ, chưa thêm cột hoặc
+quy đổi toàn bộ sang địa giới sau sáp nhập. Run-v22 đã audit đủ606.857 dòng,
+còn17.759 unmapped. Vòng AI mù12 khớp310/318tuple(97,48%) và313/318status;
+nhóm nhiều địa điểm67/70(95,71%). Đạt gate tổng thể của mẫu, còn8bất đồng,
+nhóm tên cơ sở chỉ0/1 và rule cùng lô/KCN chỉ1/1, chưa đủ bảo đảm riêng.
+Không gọi đồng thuận AI là accuracy toànfile; domains/coverage vẫn có giới hạn.
+Chưa publish Silver DB.
+
+## Nhập ánh xạ địa điểm do chủ dự án cung cấp
+
+`silver apply-location-map` đọc hai sheet trong XLSX, ghép theo địa chỉ raw
+với các dòng unmapped của run S3 đã kiểm SHA; số lần xuất hiện và ID ví dụ
+phải khớp. Sheet chưa xác định được gán “Chưa xác định”. Output mới có cột
+`location` là tên tỉnh/thành (nhiều tỉnh nối bằng `; `), mã tỉnh vẫn lưu trong
+`location_places`; giữ tên cũ, không quy đổi địa giới sau sáp nhập.
+
+```bash
+job-warehouse silver apply-location-map \
+  --base-run /path/outside/repo/s3-run \
+  --mapping-xlsx /path/owner-mapping.xlsx \
+  --output-dir /path/outside/repo/new-mapped-run
+```
+
+Excel và CSV mapping thật được lưu ngoài Git, giữ SHA/row/provenance trong
+manifest. Đây là nhập nhãn chủ dự án, chưa phải kiểm định địa lý độc lập;
+không sửa Bronze/S2, nghề/năm hay tin đã xác định tỉnh. Chưa publish DB.
 
 ## Cài đặt crawler cũ và kiểm tra offline
 

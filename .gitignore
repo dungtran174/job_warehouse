@@ -18,5 +18,13 @@ dist/
 *.egg-info/
 data/
 .runtime/
+# Local datasets, mapping workbooks and generated warehouse artifacts.
+*.parquet
+*.xlsx
+*.xls
+*.duckdb
+/outputs/
+/artifacts/
+/reports/generated/
 .DS_Store
 *~
