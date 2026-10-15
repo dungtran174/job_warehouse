@@ -109,6 +109,80 @@ def test_existing_output_is_never_overwritten(silver_file, tmp_path):
     assert (output / "manifest.json").read_bytes() == saved
 
 
+def test_source_label_counts_and_mapping_reconcile_after_publication(silver_file, tmp_path):
+    table = pq.read_table(silver_file)
+    rows = table.to_pylist()
+    rows[2]["job_position"] = "NHÂN VIÊN"
+    rows[3]["job_position"] = "nhân viên"
+    rows[2]["education_level"] = "ĐẠI HỌC"
+    rows[3]["education_level"] = "CỬ NHÂN"
+    rows[2]["job_type"] = "TOÀN THỜI GIAN, REMOTE"
+    pq.write_table(pa.Table.from_pylist(rows, schema=table.schema), silver_file)
+    destination = tmp_path / "canonical"
+    manifest = run(silver_file, destination)
+    result = pq.read_table(destination / "core.parquet").to_pylist()
+    assert {r["position_label_clean"] for r in result} == {"Nhân viên"}
+    assert {r["job_type_label_clean"] for r in result} == {"Toàn thời gian, Remote"}
+    assert {r["education_label_clean"] for r in result} == {"Không", "Đại học", "Cử nhân"}
+    report = json.loads((destination / "core_quality_report.json").read_text())
+    counts = report["canonical_source_labels"]["job_position"]
+    assert counts == {
+        "output_column": "position_label_clean",
+        "raw_distinct_nonnull": 3,
+        "canonical_distinct_nonnull": 1,
+        "changed_rows": 2,
+        "null_output_rows": 0,
+    }
+    import csv
+
+    with (destination / "source_label_mapping.csv").open(newline="") as stream:
+        mapping = list(csv.DictReader(stream))
+    for field in ["job_position", "education_level", "job_type"]:
+        assert sum(int(r["core_rows"]) for r in mapping if r["source_column"] == field) == 6
+    assert "source_label_mapping.csv" in manifest["artifacts"]
+    for row in result:
+        assert all(row[c] == rows[row["source_row_index"]][c] for c in COLUMNS)
+
+
+def test_company_case_canonicalization_preserves_raw_keys_and_replay(silver_file, tmp_path):
+    table = pq.read_table(silver_file)
+    rows = table.to_pylist()
+    names = ["Công ty A", "Công ty A", "CÔNG TY A", "CÔNG TY A", "Công ty A", ".", None, "Cty A"]
+    for row, name in zip(rows, names, strict=True):
+        row["company_name"] = name
+    pq.write_table(pa.Table.from_pylist(rows, schema=table.schema), silver_file)
+    first = run(silver_file, tmp_path / "company-one", batch_size=1)
+    second = run(silver_file, tmp_path / "company-many", batch_size=7)
+    assert first["content_digest"] == second["content_digest"]
+    records = pq.read_table(tmp_path / "company-one/core.parquet").to_pylist()
+    assert [r["company_name_clean"] for r in records] == [
+        "CÔNG TY A",
+        "CÔNG TY A",
+        "CÔNG TY A",
+        None,
+        None,
+        "Cty A",
+    ]
+    # The two quarantined rows must not let the less frequent core spelling win.
+    assert [r["company_match_key"] for r in records] == [
+        "công ty a",
+        "công ty a",
+        "công ty a",
+        None,
+        None,
+        "cty a",
+    ]
+    for record in records:
+        assert all(record[c] == rows[record["source_row_index"]][c] for c in COLUMNS)
+    quality = json.loads((tmp_path / "company-one/core_quality_report.json").read_text())
+    info = quality["company_name_canonicalization"]
+    assert info["clean_spelling_distinct_nonnull"] == 3
+    assert info["canonical_distinct_nonnull"] == 2
+    assert info["case_changed_rows"] == 1
+    assert info["null_output_rows"] == 2
+    assert "company_name_mapping.csv" in first["artifacts"]
+
+
 def test_mixed_units_and_student_policy_survive_parquet_roundtrip(silver_file, tmp_path):
     table = pq.read_table(silver_file)
     rows = table.to_pylist()

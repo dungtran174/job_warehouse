@@ -1,62 +1,62 @@
-label,roles,seniorities,management,status
-05/12 (hết tiểu học),,,,wrong_field_content
-09/12 (hết thcs),,,,wrong_field_content
-chuyên gia,expert,,,mapped
-chuyên viên,specialist,,,mapped
-chuyên viên- nhân viên,multiple,,,multiple
-chưa cập nhật,,,,unknown
-công nhân,worker,,,mapped
-cộng tác viên,collaborator,,,mapped
-fresher,entry_level,entry_level,,mapped
-giám đốc,manager,,director,mapped
-giám đốc và cấp cao hơn,,,,ambiguous
-"giám đốc, phó giám đốc bộ phận/ trưởng phòng/ tổ trưởng",multiple,,,multiple
-giám đốc/ trưởng bp,multiple,,,multiple
-học việc/ thực tập,multiple,,,multiple
-junior,,junior,,mapped
-khác,other,,,other
-kỹ sư,engineer,,,mapped
-kỹ thuật viên / kỹ sư,multiple,,,multiple
-lao động kỹ thuật,technical_worker,,,mapped
-lao động phổ thông,general_worker,,,mapped
-loại hình: toàn thời gian,,,,wrong_field_content
-loại hợp đồng:,,,,wrong_field_content
-lãnh đạo,leadership,,,mapped
-mới tốt nghiệp,graduate,entry_level,,mapped
-mới tốt nghiệp / thực tập sinh,multiple,,,multiple
-mới đi làm,entry_level,entry_level,,mapped
-nhân viên,employee,,,mapped
-nhân viên tập sự,trainee,,,mapped
-nhân viên/ chuyên viên,multiple,,,multiple
-outlet manager,manager,,outlet_manager,mapped
-phó giám đốc,manager,,deputy_director,mapped
-quản lý,manager,,manager_unspecified,mapped
-quản lý / giám sát,multiple,,,multiple
-quản lý / trưởng phòng,multiple,,,multiple
-quản lý cấp cao,manager,,senior_manager_unspecified,mapped
-quản đốc/ giám sát/ tổ trưởng,multiple,,,multiple
-senior,,senior,,mapped
-sinh viên / thực tập sinh,multiple,,,multiple
-sinh viên/ thực tập sinh,multiple,,,multiple
-thực tập sinh,intern,intern,,mapped
-thực tập sinh/sinh viên,multiple,,,multiple
-trung cấp chuyên nghiệp,,,,wrong_field_content
-trung cấp nghề,,,,wrong_field_content
-trưởng ca,manager,,shift_lead,mapped
-trưởng ca/ giám sát,multiple,,,multiple
-trưởng chi nhánh,manager,,branch_manager,mapped
-trưởng nhóm,manager,,team_lead,mapped
-trưởng nhóm / giám sát,multiple,,,multiple
-trưởng nhóm/ giám sát,multiple,,,multiple
-trưởng nhóm/giám sát,multiple,,,multiple
-trưởng phòng,manager,,department_manager,mapped
-trưởng/phó phòng,multiple,,,multiple
-"trợ lý, thư ký",multiple,,,multiple
-trợ lý/ thư ký,multiple,,,multiple
-tốt nghiệp thcs,,,,wrong_field_content
-tốt nghiệp thpt,,,,wrong_field_content
-tốt nghiệp đại học,,,,wrong_field_content
-tổng giám đốc,manager,,general_director,mapped
-tổng giám đốc/ ptgđ/ giám đốc/ pgđ,multiple,,,multiple
-điều hành cấp cao,executive,,,mapped
-đào tạo viên,trainer,,,mapped
+label,roles,seniorities,management,status,display_label
+05/12 (hết tiểu học),,,,wrong_field_content,05/12 (hết tiểu học)
+09/12 (hết thcs),,,,wrong_field_content,09/12 (hết THCS)
+chuyên gia,expert,,,mapped,Chuyên gia
+chuyên viên,specialist,,,mapped,Chuyên viên
+chuyên viên- nhân viên,multiple,,,multiple,Chuyên viên- nhân viên
+chưa cập nhật,,,,unknown,Chưa cập nhật
+công nhân,worker,,,mapped,Công nhân
+cộng tác viên,collaborator,,,mapped,Cộng tác viên
+fresher,entry_level,entry_level,,mapped,Fresher
+giám đốc,manager,,director,mapped,Giám đốc
+giám đốc và cấp cao hơn,,,,ambiguous,Giám đốc và cấp cao hơn
+"giám đốc, phó giám đốc bộ phận/ trưởng phòng/ tổ trưởng",multiple,,,multiple,"Giám đốc, phó giám đốc bộ phận/ trưởng phòng/ tổ trưởng"
+giám đốc/ trưởng bp,multiple,,,multiple,Giám đốc/ trưởng BP
+học việc/ thực tập,multiple,,,multiple,Học việc/ thực tập
+junior,,junior,,mapped,Junior
+khác,other,,,other,Khác
+kỹ sư,engineer,,,mapped,Kỹ sư
+kỹ thuật viên / kỹ sư,multiple,,,multiple,Kỹ thuật viên / kỹ sư
+lao động kỹ thuật,technical_worker,,,mapped,Lao động kỹ thuật
+lao động phổ thông,general_worker,,,mapped,Lao động phổ thông
+loại hình: toàn thời gian,,,,wrong_field_content,Loại hình: toàn thời gian
+loại hợp đồng:,,,,wrong_field_content,Loại hợp đồng:
+lãnh đạo,leadership,,,mapped,Lãnh đạo
+mới tốt nghiệp,graduate,entry_level,,mapped,Mới tốt nghiệp
+mới tốt nghiệp / thực tập sinh,multiple,,,multiple,Mới tốt nghiệp / thực tập sinh
+mới đi làm,entry_level,entry_level,,mapped,Mới đi làm
+nhân viên,employee,,,mapped,Nhân viên
+nhân viên tập sự,trainee,,,mapped,Nhân viên tập sự
+nhân viên/ chuyên viên,multiple,,,multiple,Nhân viên/ chuyên viên
+outlet manager,manager,,outlet_manager,mapped,Outlet manager
+phó giám đốc,manager,,deputy_director,mapped,Phó giám đốc
+quản lý,manager,,manager_unspecified,mapped,Quản lý
+quản lý / giám sát,multiple,,,multiple,Quản lý / giám sát
+quản lý / trưởng phòng,multiple,,,multiple,Quản lý / trưởng phòng
+quản lý cấp cao,manager,,senior_manager_unspecified,mapped,Quản lý cấp cao
+quản đốc/ giám sát/ tổ trưởng,multiple,,,multiple,Quản đốc/ giám sát/ tổ trưởng
+senior,,senior,,mapped,Senior
+sinh viên / thực tập sinh,multiple,,,multiple,Sinh viên / thực tập sinh
+sinh viên/ thực tập sinh,multiple,,,multiple,Sinh viên/ thực tập sinh
+thực tập sinh,intern,intern,,mapped,Thực tập sinh
+thực tập sinh/sinh viên,multiple,,,multiple,Thực tập sinh/sinh viên
+trung cấp chuyên nghiệp,,,,wrong_field_content,Trung cấp chuyên nghiệp
+trung cấp nghề,,,,wrong_field_content,Trung cấp nghề
+trưởng ca,manager,,shift_lead,mapped,Trưởng ca
+trưởng ca/ giám sát,multiple,,,multiple,Trưởng ca/ giám sát
+trưởng chi nhánh,manager,,branch_manager,mapped,Trưởng chi nhánh
+trưởng nhóm,manager,,team_lead,mapped,Trưởng nhóm
+trưởng nhóm / giám sát,multiple,,,multiple,Trưởng nhóm / giám sát
+trưởng nhóm/ giám sát,multiple,,,multiple,Trưởng nhóm/ giám sát
+trưởng nhóm/giám sát,multiple,,,multiple,Trưởng nhóm/giám sát
+trưởng phòng,manager,,department_manager,mapped,Trưởng phòng
+trưởng/phó phòng,multiple,,,multiple,Trưởng/phó phòng
+"trợ lý, thư ký",multiple,,,multiple,"Trợ lý, thư ký"
+trợ lý/ thư ký,multiple,,,multiple,Trợ lý/ thư ký
+tốt nghiệp thcs,,,,wrong_field_content,Tốt nghiệp THCS
+tốt nghiệp thpt,,,,wrong_field_content,Tốt nghiệp THPT
+tốt nghiệp đại học,,,,wrong_field_content,Tốt nghiệp đại học
+tổng giám đốc,manager,,general_director,mapped,Tổng giám đốc
+tổng giám đốc/ ptgđ/ giám đốc/ pgđ,multiple,,,multiple,Tổng giám đốc/ PTGĐ/ giám đốc/ PGĐ
+điều hành cấp cao,executive,,,mapped,Điều hành cấp cao
+đào tạo viên,trainer,,,mapped,Đào tạo viên

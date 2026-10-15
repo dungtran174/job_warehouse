@@ -1,8 +1,8 @@
 # Silver core lịch sử — S2
 
-`silver-core-v4`, `core-mappings-v1`, `requirements-attributes-v4`.
+`silver-core-v6`, `core-mappings-v2`, `requirements-attributes-v4`.
 S2 chạy offline bằng Python/PyArrow, độc lập với crawler, PostgreSQL và Docker.
-Đây là đầu ra trung gian local; bảng `silver.job_clean` được publish ở S6.
+Đây là đầu ra trung gian local; bảng `silver.jobs` dự kiến được publish ở S6.
 
 ## Quyết định và grain
 
@@ -23,10 +23,10 @@ S2 chạy offline bằng Python/PyArrow, độc lập với crawler, PostgreSQL 
 | --- | --- |
 | id | source_dataset_id, source_row_index, record_key, source_content_hash; không thay ID |
 | job_title | job_title_clean; NFC/whitespace/control; null/Không tách riêng |
-| company_name | company_name_clean/match_key/status; giữ dấu/pháp lý/chi nhánh; null và `.` riêng; key tương đương không chứng minh cùng pháp nhân |
-| job_type | employment_types[], work_arrangement, shift_work; remote không suy full_time/onsite; không chọn nhãn đầu |
-| education_level | education_category/status; Không/Kỹ sư mơ hồ, Trung học chưa biết THCS/THPT |
-| job_position | label sạch +role/seniority/management arrays; không biến Nhân viên thành junior; nhãn lệch trường giữ raw/flag, không chuyển sang cột khác |
+| company_name | company_name_clean thống nhất tên chỉ khác hoa/thường; match_key/status; giữ dấu/pháp lý/chi nhánh; null và `.` riêng; tên tương đương không chứng minh cùng pháp nhân |
+| job_type | job_type_label_clean giữ chuỗi nguồn với cách viết thống nhất; employment_types/work_arrangement/shift_work giữ riêng để đối soát, chưa dùng để thay nhãn nguồn |
+| education_level | education_label_clean giữ nhãn nguồn với cách viết thống nhất; category/status và inferred là kết quả riêng, không thay nhãn này |
+| job_position | position_label_clean thống nhất cách viết +role/seniority/management arrays; không biến Nhân viên thành junior; nhãn lệch trường giữ raw/flag, không chuyển sang cột khác |
 | experience_level | cận/kind/group/status, canonical months, source unit/values; point không tự là tối thiểu; khoảng không expand |
 | job_description | text sạch có kiểm soát/status; không tóm tắt/cắt nội dung hoặc bù requirements |
 | benefits | text sạch/status; thiếu không có nghĩa không có phúc lợi; không lấy tiền thưởng làm salary |
@@ -35,6 +35,54 @@ S2 chạy offline bằng Python/PyArrow, độc lập với crawler, PostgreSQL 
 | salary | giữ raw, parser thuộc S4 |
 | location | giữ raw, mapping thuộc S3 |
 | job_industry | giữ raw, gộp ngữ nghĩa/scope thuộc S3 |
+
+### Nhãn hiển thị không phân biệt hoa/thường — v5
+
+Theo quyết định chủ dự án ngày 15/10/2026, các cách viết chỉ khác chữ hoa/thường
+được gán về một nhãn hiển thị để `COUNT DISTINCT` không đếm tách. Phạm vi chỉ
+gồm job_position, education_level, job_type; tên công ty không đổi ở chặng này.
+
+- Nhân viên / Nhân Viên / NHÂN VIÊN → `position_label_clean=Nhân viên`.
+- Các nhãn nguồn học vấn giữ riêng: Cử nhân không đổi thành Đại học, Không
+  không đổi thành Không yêu cầu, Kỹ sư không suy ra một bậc bằng cụ thể.
+- Loại hình giữ chuỗi đơn hoặc chuỗi ghép, không chọn nhãn đầu hoặc bỏ Remote.
+  Thứ tự nhãn ghép được giữ; chuẩn hóa khoảng trắng sau dấu phẩy.
+- Các nhãn sai trường vẫn có cùng cờ wrong_field_content; không chuyển cột.
+- Nhãn chưa có trong dictionary được giữ văn bản sạch, không tự đoán alias.
+  Nguồn/revision mới cần review dictionary trước khi cam kết coverage.
+- CSV position có display_label; validator chỉ cho phép đổi hoa/thường với
+  cùng khóa casefold. Không tự ghép nhãn gần nghĩa hoặc đổi thành phần nhãn ghép.
+
+14 cột raw trong Parquet vẫn bất biến. Đếm/lọc nhãn Silver bằng ba cột kết quả
+ở trên; loader SQL tương lai sẽ đưa chúng vào các tên nghiệp vụ job_position,
+education_level và job_type. `core_quality_report.json` có distinct trước/sau,
+số dòng thay đổi/null; `source_label_mapping.csv` lưu nhãn gốc → nhãn cuối và
+số dòng core. Replay vào thư mục mới; không ghi đè các run v4 hoặc S3 hiện có.
+
+Extractor requirements vẫn là v4. Tăng mapping version phản ánh thay đổi nhãn
+nguồn, không phải một vòng kiểm định AI mới. Hồ sơ gate v4 mô tả bản chạy cũ;
+muốn kế thừa kết luận trên bản v5 phải đối soát payload suy luận, không chỉ
+dựa vào số test hoặc version extractor giống nhau.
+
+### Tên công ty hiển thị thống nhất — v6
+
+`company_name_clean` chọn một cách viết nguồn đã làm sạch cho mỗi khóa
+`company_match_key`. Đại diện là cách viết có số dòng core lớn nhất; hòa thì
+chọn theo thứ tự chữ. Tần suất tính trên toàn bộ core của revision, trước
+ngưỡng ngành ≥500; title bị quarantine không được tham gia chọn đại diện.
+Quy tắc không phụ thuộc thứ tự đọc hoặc batch size. Có thêm lượt đọc hai
+cột title/company trước khi normalize; không cần chạy database hoặc AI.
+
+Đã làm sạch Unicode/khoảng trắng rồi mới gom casefold. Không bỏ dấu, dấu câu,
+từ pháp lý, tên chi nhánh hoặc suy tên viết tắt. Giữ tên nguồn trong cột raw;
+null/placeholder không thành một công ty. Khi đổi input/revision có thể đổi
+cách viết phổ biến nhất; đây không phải mã pháp nhân ổn định qua các revision.
+
+`company_name_mapping.csv` ghi tên gốc, cách viết sạch trước ghép, khóa,
+tên đại diện và số dòng core. `core_quality_report.json` có số tên trước/sau,
+số dòng đổi hoa/thường và số dòng thiếu tên. Các artifact chứa tên thật chỉ
+lưu local ngoài Git. Chỉ số là số tên công ty chuẩn hóa, không tự khẳng định
+số doanh nghiệp/pháp nhân duy nhất. Extractor và mapping học vấn không đổi.
 
 Text ngắn và dài dùng NFC; giữ dấu tiếng Việt và C++/C#/.NET/Node.js, dấu câu,
 phủ định/newline. Plain mode không strip tag: `<T>` hay `a < b` được giữ. Chỉ
@@ -130,6 +178,8 @@ size; checksum bytes Parquet có thể khác vì row-group layout.
 | core_quarantine.parquet | Source raw +identity+reason, đủ schema cả khi rỗng |
 | manifest.json | Revision/provenance/license, N/SHA, schemas, version/asset hashes, content digest, checksums, thời gian/RAM |
 | core_quality_report.json | Counts/status/flags/inference/comparison, changed fields, metrics theo năm |
+| source_label_mapping.csv | Ánh xạ cách viết của ba nhãn nguồn → nhãn hiển thị cùng số dòng core |
+| company_name_mapping.csv | Tên gốc → cách viết sạch → key → tên đại diện cùng số dòng core |
 | quality_review_samples.json | Mẫu vấn đề; giữ toàn bộ nhóm wrong-field position/Kỹ sư tối đa 48/32 trong tập core |
 | tune_* / holdout_*.jsonl | Samples accepted/review theo thuộc tính; để gán nhãn, chưa phải ground truth |
 

@@ -1,5 +1,6 @@
 """Validate → batch normalize → reconcile → atomically publish local artifacts."""
 
+import csv
 import hashlib
 import heapq
 import json
@@ -8,6 +9,7 @@ import resource
 import tempfile
 import time
 from collections import Counter
+from collections.abc import Iterator
 from datetime import UTC, datetime
 from importlib.resources import files
 from pathlib import Path
@@ -29,8 +31,15 @@ from job_warehouse.history.contract import (
 )
 from job_warehouse.history.identity import HistoryRow, file_sha256
 from job_warehouse.silver import CORE_VERSION, EXTRACTOR_VERSION, MAPPING_VERSION
+from job_warehouse.silver.categorical import SOURCE_LABEL_FIELDS
+from job_warehouse.silver.companies import (
+    COMPANY_NAME_VERSION,
+    company_spelling,
+    preferred_company_names,
+)
 from job_warehouse.silver.core import normalize_row
 from job_warehouse.silver.schema import core_schema, quarantine_schema
+from job_warehouse.silver.text import normalize_text
 
 
 def configuration_hashes() -> dict[str, str]:
@@ -46,6 +55,18 @@ def configuration_hashes() -> dict[str, str]:
 
 def _json(value: Any) -> str:
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), default=str)
+
+
+def _core_company_values(input_path: Path, batch_size: int) -> Iterator[str | None]:
+    """Use the same title eligibility as core so quarantined rows cannot choose a name."""
+    with pq.ParquetFile(input_path) as source:
+        for batch in source.iter_batches(
+            columns=["job_title", "company_name"], batch_size=batch_size, use_threads=False
+        ):
+            for row in batch.to_pylist():
+                title = normalize_text(row["job_title"], short=True).clean
+                if title is not None and title.casefold() != "không":
+                    yield cast(str | None, row["company_name"])
 
 
 class ReviewPool:
@@ -126,6 +147,7 @@ def run_core(
         batch_size=batch_size,
     )
     rules = configuration_hashes()
+    company_labels = preferred_company_names(_core_company_values(artifact.path, batch_size))
     signature = hashlib.sha256(
         _json(
             {
@@ -140,6 +162,10 @@ def run_core(
     counts: Counter[str] = Counter()
     by_year: Counter[tuple[int, str]] = Counter()
     changed: Counter[str] = Counter()
+    label_counts: dict[str, Counter[tuple[str | None, str | None]]] = {
+        field: Counter() for field in SOURCE_LABEL_FIELDS
+    }
+    company_counts: Counter[tuple[str | None, str | None]] = Counter()
     examples: dict[str, list[dict[str, Any]]] = {}
     seen_keys: set[str] = set()
     row_digest = hashlib.sha256()
@@ -160,7 +186,12 @@ def run_core(
                 batch.validate(full=True)
                 core_rows, quarantined = [], []
                 for raw in batch.to_pylist():
-                    row, reason = normalize_row(cast(HistoryRow, raw), artifact.sha256, index)
+                    row, reason = normalize_row(
+                        cast(HistoryRow, raw),
+                        artifact.sha256,
+                        index,
+                        company_labels=company_labels,
+                    )
                     key = row["record_key"]
                     if key in seen_keys:
                         raise ValueError("Output key collision")
@@ -179,6 +210,9 @@ def run_core(
                         by_year[(year, "quarantine")] += 1
                         continue
                     core_rows.append(row)
+                    company_counts[(raw["company_name"], row["company_name_clean"])] += 1
+                    for field, target in SOURCE_LABEL_FIELDS.items():
+                        label_counts[field][(raw[field], row[target])] += 1
                     counts["core"] += 1
                     by_year[(year, "core")] += 1
                     counts["records_with_flags"] += bool(row["quality_flags"])
@@ -269,6 +303,35 @@ def run_core(
         quality = {
             "counts": dict(sorted(counts.items())),
             "changed_fields_core_denominator": dict(changed),
+            "company_name_canonicalization": {
+                "version": COMPANY_NAME_VERSION,
+                "population": "eligible core rows, before any industry threshold",
+                "representative": "most frequent cleaned source spelling; lexical tie-break",
+                "raw_distinct_nonnull": len({a for a, _ in company_counts if a is not None}),
+                "clean_spelling_distinct_nonnull": len(
+                    {
+                        spelling
+                        for a, _ in company_counts
+                        if (spelling := company_spelling(a)) is not None
+                    }
+                ),
+                "canonical_distinct_nonnull": len(company_labels),
+                "case_changed_rows": sum(
+                    n for (a, b), n in company_counts.items() if company_spelling(a) != b
+                ),
+                "raw_changed_rows": sum(n for (a, b), n in company_counts.items() if a != b),
+                "null_output_rows": sum(n for (_, b), n in company_counts.items() if b is None),
+            },
+            "canonical_source_labels": {
+                field: {
+                    "output_column": SOURCE_LABEL_FIELDS[field],
+                    "raw_distinct_nonnull": len({a for a, _ in pairs if a is not None}),
+                    "canonical_distinct_nonnull": len({b for _, b in pairs if b is not None}),
+                    "changed_rows": sum(n for (a, b), n in pairs.items() if a != b),
+                    "null_output_rows": sum(n for (_, b), n in pairs.items() if b is None),
+                }
+                for field, pairs in label_counts.items()
+            },
             "by_year": [
                 {"year": year, "metric": metric, "count": n}
                 for (year, metric), n in sorted(by_year.items())
@@ -281,6 +344,43 @@ def run_core(
         (staging / "quality_review_samples.json").write_text(
             json.dumps(examples, ensure_ascii=False, indent=2) + "\n"
         )
+        with (staging / "source_label_mapping.csv").open(
+            "w", encoding="utf-8", newline=""
+        ) as stream:
+            writer = csv.writer(stream)
+            writer.writerow(
+                ["source_column", "output_column", "source_label", "canonical_label", "core_rows"]
+            )
+            for field, pairs in label_counts.items():
+                for (source, canonical), n in sorted(
+                    pairs.items(), key=lambda item: (item[0][0] is not None, item[0][0] or "")
+                ):
+                    writer.writerow([field, SOURCE_LABEL_FIELDS[field], source, canonical, n])
+        with (staging / "company_name_mapping.csv").open(
+            "w", encoding="utf-8", newline=""
+        ) as stream:
+            writer = csv.writer(stream)
+            writer.writerow(
+                [
+                    "source_name",
+                    "clean_spelling",
+                    "company_match_key",
+                    "canonical_name",
+                    "core_rows",
+                ]
+            )
+            for (raw_name, canonical), n in sorted(
+                company_counts.items(), key=lambda item: (item[0][0] is not None, item[0][0] or "")
+            ):
+                writer.writerow(
+                    [
+                        raw_name,
+                        company_spelling(raw_name),
+                        canonical.casefold() if canonical else None,
+                        canonical,
+                        n,
+                    ]
+                )
         manifest: dict[str, Any] = {
             "status": "normalized_not_db_published",
             "created_at": datetime.now(UTC).isoformat(),

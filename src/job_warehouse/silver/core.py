@@ -1,12 +1,14 @@
 """One physical source row → one core record or a reasoned quarantine record."""
 
+from collections.abc import Mapping
 from dataclasses import asdict
 from hashlib import sha256
 from typing import Any
 
 from job_warehouse.history.contract import YEARS
 from job_warehouse.history.identity import HistoryRow, content_fingerprint, record_key
-from job_warehouse.silver.categorical import education, job_type, position
+from job_warehouse.silver.categorical import canonical_label, education, job_type, position
+from job_warehouse.silver.companies import canonical_company_name
 from job_warehouse.silver.models import Claim, Experience, Inference
 from job_warehouse.silver.requirements_attributes import extract_attributes
 from job_warehouse.silver.text import normalize_content, normalize_text
@@ -93,7 +95,11 @@ def _experience_comparison(source: Experience, inferred: Inference) -> tuple[str
 
 
 def normalize_row(
-    row: HistoryRow, file_hash: str, row_index: int
+    row: HistoryRow,
+    file_hash: str,
+    row_index: int,
+    *,
+    company_labels: Mapping[str, str] | None = None,
 ) -> tuple[dict[str, Any], str | None]:
     from job_warehouse.silver.experience import parse_experience
 
@@ -130,6 +136,8 @@ def normalize_row(
     company = normalize_text(text_value("company_name"), short=True)
     company_status = "placeholder" if company.clean == "." else company.status
     company_clean = None if company_status == "placeholder" else company.clean
+    if company_clean is not None and company_labels is not None:
+        company_clean = canonical_company_name(company_clean, company_labels)
     edu = education(text_value("education_level"))
     kind = job_type(text_value("job_type"))
     pos = position(text_value("job_position"))
@@ -143,8 +151,10 @@ def normalize_row(
         "company_name_clean": company_clean,
         "company_match_key": company_clean.casefold() if company_clean else None,
         "company_mapping_status": company_status,
+        "education_label_clean": canonical_label("education_level", text_value("education_level")),
         "education_category": edu.category,
         "education_status": edu.status,
+        "job_type_label_clean": canonical_label("job_type", text_value("job_type")),
         "employment_types": list(kind.employment_types),
         "employment_type_group": kind.group,
         "work_arrangement": kind.work_arrangement,

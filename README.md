@@ -55,6 +55,15 @@ chờ review. Tách title thiếu/Không, giữ raw và đối soát core+quaran
 
 CLI giữ SHA/N pin, output phải mới và ngoài repository. Chưa parse
 salary/location/industry, loại trùng, trích skill hay publish vào database.
+S2 gán cách viết thống nhất cho `position_label_clean`,
+`education_label_clean`, `job_type_label_clean`, giữ nguyên 14 cột nguồn.
+Đếm nhãn Silver bằng các cột này; không gộp Cử nhân với Đại học, không bỏ
+Remote hoặc chọn một thành phần của nhãn ghép. Mapping và số lượng thực tế
+được xuất trong `source_label_mapping.csv` và `core_quality_report.json`.
+Từ v6, `company_name_clean` cũng thống nhất các tên chỉ khác hoa/thường:
+chọn cách viết sạch phổ biến nhất trên core, hòa thì chọn theo thứ tự chữ.
+Không ghép tên viết tắt/pháp nhân/chi nhánh khác nhau; `company_match_key`
+giữ nguyên. Xem `company_name_mapping.csv` để đối chiếu tên gốc và tên chung.
 Xem [hợp đồng và cách kiểm định core](docs/warehouse/silver_core_contract.md).
 
 ## Warehouse lịch sử — S3 enrichment
