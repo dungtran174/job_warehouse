@@ -1,0 +1,113 @@
+id,expected_raw,action,source_min,source_max,currency,period,rounding_quantum,evidence_column,evidence_sha256,flags,decision_reference
+6653,10 triệu/giờ,point,10000000,10000000,VND,month,,,,owner_period_override,owner-chat-20261016
+4653,5 triệu/ngày,point,5000000,5000000,VND,month,,,,owner_period_override,owner-chat-20261016
+11027,10 triệu/giờ,point,10000000,10000000,VND,month,,,,owner_period_override,owner-chat-20261016
+11199,8.5 triệu/giờ,point,8500000,8500000,VND,month,,,,owner_period_override,owner-chat-20261016
+12746,2 triệu/giờ,point,2000000,2000000,VND,month,,,,owner_period_override,owner-chat-20261016
+12783,2 triệu/giờ,point,2000000,2000000,VND,month,,,,owner_period_override,owner-chat-20261016
+13313,10 triệu/giờ,point,10000000,10000000,VND,month,,,,owner_period_override,owner-chat-20261016
+13753,4 triệu/giờ,point,4000000,4000000,VND,month,,,,owner_period_override,owner-chat-20261016
+3199,5 triệu/ngày,unresolved,,,VND,month,,,,owner_salary_unresolved,owner-chat-20261016
+9073,3.5 triệu/ngày,unresolved,,,VND,month,,,,owner_salary_unresolved,owner-chat-20261016
+9646,5 triệu/ngày,unresolved,,,VND,month,,,,owner_salary_unresolved,owner-chat-20261016
+10769,1.5 triệu/ngày,unresolved,,,VND,month,,,,owner_salary_unresolved,owner-chat-20261016
+10771,1.5 triệu/ngày,unresolved,,,VND,month,,,,owner_salary_unresolved,owner-chat-20261016
+17155,1000 nghìn/giờ,unresolved,,,VND,month,,,,owner_salary_unresolved,owner-chat-20261016
+43531,$ 13tr-17tr /tháng,range,13000000,17000000,VND,month,,,,owner_currency_override,owner-chat-20261016
+50951,9.000.000 - 12.000.000,range,9000000,12000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+51099,6.000.000 - 10.000.000,range,6000000,10000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+51104,9.000.000 - 15.000.000,range,9000000,15000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+51109,"10,000,000 - 18,000,000",range,10000000,18000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+51193,"10,000,000 - 14,000,000",range,10000000,14000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+51271,12.000.000 - 15.000.000,range,12000000,15000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+51338,8.000.000,point,8000000,8000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+43561,10 - 15 triệu phục vụ,range,10000000,15000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+45017,2 - 3 triệu Thực tập sinh,range,2000000,3000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+51387,2.000.000 + Thưởng,point,2000000,2000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+43519,20 - 30 triệu phục vụ,range,20000000,30000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+50962,Thu nhập 6.000.000 - 15.000.000,range,6000000,10000000,VND,month,,,,owner_salary_override;owner_numeric_correction,owner-chat-20261016-review-resolution
+50643,Thu nhập lên đến 20 triệu Lương thỏa thuận + thưởng dự án,upper_only,,20000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+51350,Thu nhập từ 20.000.000 đến 50.000.000/tháng.,range,20000000,50000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+43499,Tới 30tr ₫/tháng sales logistics tiếng Anh,upper_only,,30000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+50734,Từ 10-15 triệu VND hoặc thỏa thuận,range,10000000,15000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+45010,Từ 15-20 triệu VND hoặc thỏa thuận tùy theo kinh nghiệm,range,10000000,15000000,VND,month,,,,owner_salary_override;owner_numeric_correction,owner-chat-20261016-review-resolution
+50862,Từ 8.000.000 đến 15.000.000,range,8000000,15000000,VND,month,,,,owner_salary_override,owner-chat-20261016-review-resolution
+108256,Upto $1800 x 14 tháng lương/năm + Thưởng,upper_only,,1800,USD,month,,,,owner_salary_override;owner_package_as_monthly_upper,owner-chat-20261016-review-resolution
+292,100,unresolved,,,VND,month,,benefits,bd94f6ec42a2ad0d1a2d5c1b8c584f4880131d2974ad116145f22a8bce4fbfc8,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+653,100,range,3000000,5000000,VND,month,,benefits,efd10a3883356bf08961770190665dae99ff7272fa2c58484f6ba13d5d73e0ad,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+1148,80 - 150,range,80000000,150000000,VND,month,,benefits,2de02cac12cc96f25bc89d24ad0d81c322d2e306cd0de78a124100c0e1fec624,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+1152,60 - 200,unresolved,,,VND,month,,benefits,8de0c7ec7aa022a8f0d8f013ab505943f604073420fef78ba06ceb66e1174fdf,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+1310,200 - 500,range,200000000,500000000,VND,year,1000000,benefits,115c3fe90214ca208adf8226a2af996858e36329ccbc1121469fc370a4d3f34e,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+1398,50 - 300,unresolved,,,VND,month,,benefits,78375f703af9db506a69d3867a918d1fe1134f30f822d3affff9d3b948cddad7,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+1448,180,unresolved,,,VND,month,,benefits,f8d8fe747bda7689069b9508d42368bfafa3ab95dc8e28fd55b73e3787e197b5,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+1469,200 - 700,range,200000000,700000000,VND,year,1000000,benefits,f6d749c91e2c807313ed8bba559645ea9b5bcabe3baca23e9fd2a612626398d5,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+1794,105,unresolved,,,VND,month,,benefits,d8e7b4d8bdc8ff7acbe065d12ed35f1d7ec61bdf68fb58c8cde63fb8b5df7e5e,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+1986,105,unresolved,,,VND,month,,benefits,651dc66b2a341aace74f8454269a024451d461616c0355499b0e49d0e4b541fe,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+2000,250,unresolved,,,VND,month,,benefits,83caad9ae722d1e8efc8da6575c661f52c053db3c3de57e69916d37d4ffafdad,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+2354,181 - 504,unresolved,,,VND,month,,benefits,7aa4180a2cac75b58640406fef88bc05a93a7959e520499d5dec9a71b11d8fbb,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+2402,300,range,50000000,300000000,VND,month,,benefits,3c8684dbd1ffafc8b0a5bde8f06bae43bc58e554189f8c7f072f191bf3ebfae5,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+3987,800,unresolved,,,VND,month,,benefits,,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+4104,500,unresolved,,,VND,month,,benefits,bb257c29eda6dfd7484cd6de1a3dc512e53bcc69437494e62323e3d284b72f4e,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+4491,100,unresolved,,,VND,month,,benefits,abd8eaec566e8340ddadb80c48b8808259831e03cf74bd010afc8e08500081be,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+5242,800,unresolved,,,VND,month,,benefits,6fa22cf79da2f692ec5185e04207af35b189383c80a0e1d7018c27a1162f018c,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+5489,100,range,10000000,25000000,VND,month,,benefits,18af8d511e0682b31210c3022de9d4d039c85dfb15502b1c8d12aab751c021c2,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+5577,500,unresolved,,,VND,month,,benefits,81e2dec1783ab4b8be7fc2730d7a04aff488b1bbf82c19f444c39e99216ec217,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+6011,100 - 150,unresolved,,,VND,month,,benefits,c3bb7f1badc4a14625516a3a8a698fdf4eaab28c0910021d3116e67fe9dbf9e4,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+6446,300,upper_only,,300000000,VND,year,1000000,benefits,e15408eec473fa145536151904ea28880b3ad9ae33830089be83fa027ed51590,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+7263,120 - 200,range,120000000,200000000,VND,year,1000000,benefits,c028ccb79e2a2829bbc3b09932551ebd8283e2368c6aae796d953245ad8b1f4f,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+8025,730,unresolved,,,VND,month,,benefits,dd4b2e8be5f75ce49a4b90dd031558b715e1017138360f5bfabc89a1bc04afa2,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+9087,500,range,15000000,25000000,VND,month,,benefits,10c44a21ac9178589028b76bde03dd4bc3412ec3ea748386e8d99c8330df96a9,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+9095,500,unresolved,,,VND,month,,benefits,782aa8e953b3baecc5e0c67afae55de932f35980fec00612323a3991685853b9,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+9267,50 - 200,upper_only,,16000000,VND,month,,benefits,cd043f61cb5c3bafd677399806ca273ea13293c14b096a543a8bd683b0ab08eb,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+9511,100,unresolved,,,VND,month,,benefits,1e65370008a909e7247e9a1981cc0fe9fd84a4d39134da15363b82459883ff89,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+9521,100,unresolved,,,VND,month,,benefits,cadec15e6325dba35f22c1d8294fe96d7950e9f88a28969497dadd77c3d3f276,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+9524,500,lower_only,7000000,,VND,month,,benefits,6465e1a33ab2c1cb4ab7bf9eb9f1619000b1843755c85dd983946c3f525b71d3,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+9827,100,range,2000000,3000000,VND,month,,benefits,3e6dc9c3af47d1b54158fe9f0854d4024dd43d20b6f8adbf48fe39c1e64fc546,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+9830,100,range,2000000,3500000.0,VND,month,,benefits,294055a115ba29f5ade5f8d34689ab18b67751819f755925b00690bb7c46e2b4,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+9894,100,range,5000000,7000000,VND,month,,benefits,13aee77c2b3dfcf046079249675b687d57e3063e164fa53a00229c6f40f60576,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+9903,100,range,2000000,3000000,VND,month,,benefits,49e60791a839d61447480520bf4235b64d89439705f3e5c43ce92758b41e7d61,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+10243,100 - 200,unresolved,,,VND,month,,benefits,3bb6d42982b600bec161f85f43deaec35a260fc321a97dd809ace6142be15a37,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+10296,100,lower_only,6000000,,VND,month,,benefits,15a83d28e0b2fa4cc6123c88f0c399889d5762dcbe162a080ae49ec414491032,owner_reviewed_benefits;owner_compensation_choice,owner-chat-20261016-benefits-decisions
+10297,100,lower_only,4000000,,VND,month,,benefits,ea35d6e9984620f5bd14308378cb3345df723eaab955fb609619404eb48b75ef,owner_reviewed_benefits;owner_compensation_choice,owner-chat-20261016-benefits-decisions
+10366,50 - 200,lower_only,20000000,,VND,month,,benefits,6d059456098b3c1b56e5eb1a61d3cdcad10af97c9cb48b833c7720cb7beaf218,owner_reviewed_benefits;owner_compensation_choice,owner-chat-20261016-benefits-decisions
+10939,200 - 400,range,7000000,15000000,VND,month,,benefits,e78897bf378073af164a1653f1fa6eee7a3f6141274cfd0c21694d9d04f52c45,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+11112,100,lower_only,7000000,,VND,month,,benefits,b15622e200f496c639635a91009951cbeac59c6e71f8d21469a9100a6be29236,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+11195,80 - 200,range,5000000,15000000,VND,month,,benefits,63940d9cfdef6a097401e1dcb8baaf0275b3a39809a1a885d7e73c38d1dd4162,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+11198,100 - 120,range,8000000,16000000,VND,month,,benefits,b644c6f477988e113e8bea8b6e0bcb0ce4c36aec2749f3bf8152dc43c728cc92,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+11201,11.5 - 200,range,5500000.0,11500000.0,VND,month,,benefits,86a923cf2fb6ca0c4fe523d83fd94b3ab1f14063afdcca26dd55b49ce6c276bb,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+11205,18 - 200,range,5500000.0,18000000,VND,month,,benefits,06f86b4a2f2eecfe86a731a2115331a637a7852df4e71dd47d0fb7252c148ab6,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+11214,11.5 - 200,range,5500000.0,11500000.0,VND,month,,benefits,b184ccd9974f0d778ad92086ca195aa10298010bf969c38bd4199d455e87ce26,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+11246,720,point,18000000,18000000,VND,month,,benefits,1427e203bcccec3214da396961d049f364ccec9f9f9956b3b4e95a7963119e28,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+11344,400,unresolved,,,VND,month,,benefits,3da07f35b0ac69c01f5f4b813a03e8f77de2951a08bb51197c0112dadf0b7ec8,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+11420,50 - 200,upper_only,,16000000,VND,month,,benefits,c243c1fb68a139575dbdc43d7c9216aa4bb6310cc0a87e0d7606351bf567a8a1,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+11627,100,point,30000000,30000000,VND,month,,benefits,19dbba0bcedb37833f6f83c0b611bab0f18df52bf949c93efe5562306bd8aeb4,owner_reviewed_benefits;probation_salary,owner-chat-20261016-benefits-decisions
+11685,80 - 200,range,9000000,13000000,VND,month,,benefits,d3e748de21d105434580105e9e6f99276f42713538d184528ea6842b9f5f5c9f,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+11686,80 - 200,range,9000000,13000000,VND,month,,benefits,3c9bfc966649a5329317434de0d85e57dd37cfcc64a29c735e097f1bc63d3d3c,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+11954,730,unresolved,,,VND,month,,benefits,b8b5fd062bd52a21e7e5f5ad45a06f51cdee9129141d69b784ec2df3fe5d4047,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+12172,960,unresolved,,,VND,month,,benefits,b1e1978a021dad08e7723e7d303a532e89e73e1d09f67b9a208d81821063dc00,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+12328,300 - 400,range,8000000,10000000,VND,month,,benefits,54ab1d25de3db3cf96e5727227696eafb707f987566479fe2beacce08cdb3038,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+12471,150 - 200,unresolved,,,VND,month,,benefits,0ff07100dfaf5480800aa8f2428de16fd267a730bb75190f52bab702a6ac7f06,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+12701,500,unresolved,,,VND,month,,benefits,5078b16eb0a753c57994bc922476204be2dca9f14cf700a7fbf98dbca252ea5e,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+12737,100,range,3000000,6000000,VND,month,,benefits,1758f0c87ca8e9d233fb543ca0a3538ee407d5736ad94ac7fd4aa63d881fd398,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+13314,700,upper_only,,1000000,VND,month,,benefits,e408dfa8de96ceb6a5e0bf45708e4d3be3f33435b4c80adbb5438b67bdabda5f,owner_reviewed_benefits;owner_numeric_correction,owner-chat-20261016-benefits-decisions
+13341,80 - 400,upper_only,,15000000,VND,month,,benefits,64902a5115ee755ff61592c0eacf9c1973258b40a1779b498167d180f91eeb45,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+13842,100,point,8000000,8000000,VND,month,,benefits,69da24b2ead5940888a4a79a0df56f06d50b6430020b248714faf78c5d16fd49,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+13845,100,point,8000000,8000000,VND,month,,benefits,5f8f8b5d515ab5b769d2ac815386c9636863acb59b49a954065e4d8ace80e42d,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+13863,200 - 300,range,12000000,24000000,VND,month,,benefits,8db59028871ecf82c9bfd8e1d2fbc8491c00f2757e203958d5ee9a3bdff6bb8b,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+13872,120 - 150,unresolved,,,VND,month,,benefits,b81c08de1d279f0902dfa7757ff393daf239cf732c53547fb021cdbfe2df84a2,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+13874,15 - 300,range,8000000,15000000,VND,month,,benefits,b3fd8e194d1cdc9bf5d37359a142ea9edf5c7df7fa5027d9c67b311b52e211f2,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+13919,50 - 200,range,6000000,15000000,VND,month,,benefits,addd9959f49184eb42fafbd4929612d310b7b6c3550ac933f433df3bf3d065c4,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+13934,200 - 500,range,5500000.0,18000000,VND,month,,benefits,b450a1192b1831ad3809cb2cb99147f4bf8db5ff9d885d9e55b2b4d7715efddf,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+13937,200 - 500,range,5500000.0,18000000,VND,month,,benefits,2ca11b6c9ba7a7a877186c0f0d82cc2eda87ce4780e493b01c778abe91f40681,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+13962,70 - 150,range,6500000.0,7500000.0,VND,month,,benefits,36b60c96775ef1a62bd078d88b6f72d7846285e69d3d820c0fec6d3b65f70e8e,owner_reviewed_benefits;owner_compensation_choice,owner-chat-20261016-benefits-decisions
+13979,200 - 500,range,5500000.0,18000000,VND,month,,benefits,772374ecdc06573d5e1dce581deec65c945ea3b981dd23aa263c444b0d5e6d37,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+14146,100,range,7000000,9000000,VND,month,,benefits,4df41f1e02edf37cf5a59bddfe187986875728781b88694934ce85ae0391b4d3,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+14548,50 - 500,lower_only,6000000,,VND,month,,benefits,a1c175ceaf30acd4c7afcb88d282b4c3fdaf22a83c5a8e1dcdf3e6d1e0d549d1,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+15611,50,unresolved,,,VND,month,,benefits,58318340198f2caf98670f886080f8e4093786e88eb806a5dff73d195f136597,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+16518,80 - 200,unresolved,,,VND,month,,benefits,fdeac0bcd3a76b28dd5370d227cc46e2ae529024b2cb728293a3ceca39a7d699,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+16620,300,unresolved,,,VND,month,,benefits,4d095b6dc981e64a796d581f61382b782a58359a254f97ba4eee637843bc10a0,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+16623,80 - 200,unresolved,,,VND,month,,benefits,fdeac0bcd3a76b28dd5370d227cc46e2ae529024b2cb728293a3ceca39a7d699,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+16700,70 - 200,range,30000000,45000000,VND,month,,benefits,89990954da2f1a18007d9da5e1f15fdff8ae49b9eee7e862e020ff8221a41ae0,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+16726,100 - 250,range,100000000,250000000,VND,month,,benefits,bd82e2a3d657f94f1728feca30f2558f02974b82d19ce8d6f8049118d9731b95,owner_reviewed_benefits,owner-chat-20261016-benefits-decisions
+17285,250,unresolved,,,VND,month,,benefits,1411a6b6cad484731c2dddab0b59b2abd94cdf748f7619ee5861266ddbd5d83e,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions
+50613,8-10,unresolved,,,VND,month,,benefits,edcb5712b60b8c61d77df8de1f4564ed7a848cd77f9761d8cf432cf22712b14f,owner_reviewed_benefits;owner_salary_unresolved,owner-chat-20261016-benefits-decisions

@@ -66,6 +66,16 @@ Không ghép tên viết tắt/pháp nhân/chi nhánh khác nhau; `company_match
 giữ nguyên. Xem `company_name_mapping.csv` để đối chiếu tên gốc và tên chung.
 Xem [hợp đồng và cách kiểm định core](docs/warehouse/silver_core_contract.md).
 
+## Warehouse lịch sử — S4 lương
+
+Parser offline ở `src/job_warehouse/silver/salary/`; CLI `silver salary`
+đọc core S2 và mapping S3 đã kiểm SHA. Hai cận lương là VNĐ/tháng; giữ
+ngoại lệ do chủ dự án duyệt, tỷ giá theo năm và hệ số kỳ trong hồ sơ chạy.
+Xuất `jobs.parquet`/`jobs_analysis.parquet` với tên cột nghiệp vụ thống nhất,
+`salary_enrichment.parquet` và CSV mapping để đối soát. Input không đổi;
+các chuỗi chưa xác định vẫn giữ tin và lý do, chưa publish PostgreSQL.
+Xem [quy tắc, tỷ giá, schema và cách chạy S4](docs/warehouse/silver_salary_contract.md).
+
 ## Warehouse lịch sử — S3 enrichment
 
 **Trục ngành hiện hành:** dùng `job_industry`, không dùng `occupation_primary`

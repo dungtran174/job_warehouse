@@ -55,6 +55,12 @@ def build_parser() -> argparse.ArgumentParser:
     industry.add_argument("--output-dir", type=Path, required=True)
     industry.add_argument("--threshold", type=int, default=500)
     industry.add_argument("--batch-size", type=int, default=4096)
+    salary = silver_commands.add_parser("salary", help="normalize salary to VND/month offline")
+    salary.add_argument("--core-run", type=Path, required=True)
+    salary.add_argument("--industry-run", type=Path, required=True)
+    salary.add_argument("--output-dir", type=Path, required=True)
+    salary.add_argument("--fx-rates", type=Path)
+    salary.add_argument("--batch-size", type=int, default=2048)
     return parser
 
 
@@ -62,6 +68,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         if args.command == "silver":
+            if args.silver_command == "salary":
+                from job_warehouse.silver.salary.runner import run_salary
+
+                report = run_salary(
+                    args.core_run,
+                    args.industry_run,
+                    args.output_dir,
+                    fx_rates=args.fx_rates,
+                    batch_size=args.batch_size,
+                )
+                print(f"Silver salary: {report['partition']}; output={args.output_dir}")
+                return 0
             if args.silver_command == "industry":
                 from job_warehouse.silver.industry_runner import run_industry
 

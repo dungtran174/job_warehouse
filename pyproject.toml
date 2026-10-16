@@ -40,6 +40,7 @@ where = ["src"]
 "job_warehouse.bronze" = ["migrations/*.sql"]
 "job_warehouse.silver" = ["mappings/*.csv"]
 "job_warehouse.silver.enrichment" = ["mappings/*.csv"]
+"job_warehouse.silver.salary" = ["*.csv"]
 
 [tool.pytest.ini_options]
 addopts = "-m 'not live'"
