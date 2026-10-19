@@ -87,6 +87,7 @@ def build_parser() -> argparse.ArgumentParser:
             "construction_design_projects",
             "education_language",
             "hospitality_retail",
+            "healthcare_food_garment",
         ],
     )
     skills.add_argument("--industry", action="append", help="only validated labels within --batch")
@@ -107,6 +108,7 @@ def build_parser() -> argparse.ArgumentParser:
             "construction_design_projects",
             "education_language",
             "hospitality_retail",
+            "healthcare_food_garment",
         ],
         required=True,
     )
@@ -126,6 +128,7 @@ def build_parser() -> argparse.ArgumentParser:
             "construction_design_projects",
             "education_language",
             "hospitality_retail",
+            "healthcare_food_garment",
         ],
         required=True,
     )
@@ -227,6 +230,10 @@ def main(argv: Sequence[str] | None = None) -> int:
                         from job_warehouse.skills.real_estate import REAL_ESTATE_MAPPINGS
 
                         taxonomy_dir = args.taxonomy_dir or REAL_ESTATE_MAPPINGS
+                    elif args.batch == "healthcare_food_garment":
+                        from job_warehouse.skills.life_sciences import LIFE_SCIENCES_MAPPINGS
+
+                        taxonomy_dir = args.taxonomy_dir or LIFE_SCIENCES_MAPPINGS
                     elif args.batch == "hospitality_retail":
                         from job_warehouse.skills.hospitality import HOSPITALITY_MAPPINGS
 

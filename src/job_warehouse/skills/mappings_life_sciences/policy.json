@@ -1,0 +1,45 @@
+{
+  "version": "owner-life-sciences-keywords-20261019-v1",
+  "taxonomy_version": "healthcare-food-garment-keywords-v1",
+  "scope": [
+    "Dược phẩm / Y tế - Chăm sóc sức khỏe",
+    "Thực phẩm - Đồ uống / Công nghệ thực phẩm - Dinh dưỡng",
+    "Dệt may - Da giày - Thời trang"
+  ],
+  "positive_contexts": [
+    "required",
+    "preferred"
+  ],
+  "certificate_policy": "mapped_language",
+  "decisions": {
+    "source": "requirements only; no role inference from source industry",
+    "skills": "professional, tools, technologies, languages; no soft skills",
+    "duties": "concrete professional duties count",
+    "bare_lists": "unclear without capability",
+    "training": "future training and interest alone excluded",
+    "products": "named product does not imply parent; industry is routing only",
+    "owner_sales_q1": "Include named accounting software for explicit used OR sold alternatives; preserve condition. Selling alone does not imply using.",
+    "owner_sales_q2": "Explicit skill heading such as office IT governs named tool list; company/system inventory alone stays ambiguous.",
+    "owner_batch02_q1": "Separate MISA HR from MISA accounting; preserve existing MISA code/name and prior results.",
+    "benefits": "Insurance coverage/benefits and contract signing offered to applicants are not skills.",
+    "law_lists": "Finite list components require explicit governed law header; degrees excluded.",
+    "generic_sector": "Employment at a bank, law office or financial company does not prove every professional capability.",
+    "v3": "Last systematic correction: explicit professional headings, finite English/abbreviated aliases, governed law lists, shared office-tool proficiency; sector/employer and software-purpose exclusions. Prior review rounds now development only.",
+    "completion_policy": "owner_explicit_keywords_skip_unclear",
+    "unclear_claims": "skip_preserve_evidence_and_job",
+    "recall_target": "none; no-match never blocks completion",
+    "owner_salary_payment": "Payment alone does not imply payroll calculation.",
+    "owner_specific_technologies": "Keep ASP.NET and PL/SQL separate; no implicit parent .NET/SQL.",
+    "license_to_driving": "Owner allows explicit driving licenses/certificates -> corresponding car/motorcycle/forklift skill; no experience years or old/new license conversion; vehicle ownership alone excluded.",
+    "sector": "No operational logistics inference from employer/degree or sales logistics alone.",
+    "standards": "Applicant knowledge/experience or specific professional courses/certificates; no employer/product certification inference; generic FSSC does not invent a numbered standard.",
+    "parent_technology": "No implicit programming/operation from generic PLC/CNC; no generic ISO from numbered standard alone.",
+    "education": "Major, department or employer alone does not assert practical skills.",
+    "projects": "Participation in projects does not imply management; software management purpose does not imply professional management.",
+    "construction": "Quantity takeoff and named construction duties count; majors alone excluded; CAD/AutoCAD, SAP2000/SAP and specific design tools are distinct.",
+    "education_skills": "Teaching, lessons, classroom management, translation and named tools require applicant capability or concrete duties; majors/school names and offered training excluded. Specific TESOL/TEFL/CELTA certificates imply teaching per existing owner vocational-certificate policy; not automatic English proficiency.",
+    "hospitality": "Finite explicit operations/tools only; hotel/retail employers and majors alone excluded. Software-purpose mentions do not imply operational booking/management. Leisure travel/food interests and offered training excluded.",
+    "life_sciences": "Three finite concept groups; major/license alone does not imply practical procedure. Employer certifications, personal vaccination, marketing/sales product references, collaborated departments excluded. GDP requires pharmaceutical context; specific garment products do not imply parents."
+  },
+  "context_overrides": []
+}

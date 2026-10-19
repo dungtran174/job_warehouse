@@ -1,0 +1,344 @@
+{
+  "method": "One bounded development survey:30 deterministic requirements plus finite targeted examples spanning three groups; no independent statistical claim.",
+  "base_hospitality_taxonomy_sha256": "4556b7e20fa0b9075b9303c127f476f869b1d44d3d91e7833871dd493d9999a1",
+  "new_specific_concepts": [
+    {
+      "skill_code": "life_patient_care",
+      "skill_name": "Chăm sóc bệnh nhân",
+      "aliases": [
+        "chăm sóc bệnh nhân",
+        "chăm sóc người bệnh",
+        "patient care"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_nursing",
+      "skill_name": "Nghiệp vụ điều dưỡng",
+      "aliases": [
+        "nghiệp vụ điều dưỡng",
+        "chuyên môn điều dưỡng",
+        "điều dưỡng",
+        "nursing"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_blood_collection",
+      "skill_name": "Lấy máu",
+      "aliases": [
+        "lấy máu",
+        "blood collection",
+        "phlebotomy"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_vital_signs",
+      "skill_name": "Đo sinh hiệu",
+      "aliases": [
+        "đo sinh hiệu",
+        "đo dấu hiệu sinh tồn",
+        "vital signs"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_first_aid",
+      "skill_name": "Sơ cứu",
+      "aliases": [
+        "sơ cứu",
+        "first aid"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_cpr",
+      "skill_name": "Hồi sức tim phổi",
+      "aliases": [
+        "hồi sức tim phổi",
+        "CPR",
+        "cardiopulmonary resuscitation"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_vaccination",
+      "skill_name": "Tiêm chủng",
+      "aliases": [
+        "tiêm chủng",
+        "vaccination"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_compounding",
+      "skill_name": "Bào chế",
+      "aliases": [
+        "bào chế"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_drug_sales",
+      "skill_name": "Bán thuốc",
+      "aliases": [
+        "bán thuốc"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_gmp",
+      "skill_name": "GMP",
+      "aliases": [
+        "GMP"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_gpp",
+      "skill_name": "GPP",
+      "aliases": [
+        "GPP"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_glp",
+      "skill_name": "GLP",
+      "aliases": [
+        "GLP"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_gdp",
+      "skill_name": "GDP dược phẩm",
+      "aliases": [
+        "GDP"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_pharmacy_law",
+      "skill_name": "Luật Dược",
+      "aliases": [
+        "Luật Dược",
+        "pháp luật dược"
+      ],
+      "concept_group": "healthcare_pharma"
+    },
+    {
+      "skill_code": "life_testing",
+      "skill_name": "Kiểm nghiệm",
+      "aliases": [
+        "kiểm nghiệm"
+      ],
+      "concept_group": "food_laboratory"
+    },
+    {
+      "skill_code": "life_microbiology",
+      "skill_name": "Vi sinh",
+      "aliases": [
+        "vi sinh",
+        "microbiology"
+      ],
+      "concept_group": "food_laboratory"
+    },
+    {
+      "skill_code": "life_iso22000",
+      "skill_name": "ISO 22000",
+      "aliases": [
+        "ISO 22000",
+        "ISO22000"
+      ],
+      "concept_group": "food_laboratory"
+    },
+    {
+      "skill_code": "life_fssc",
+      "skill_name": "FSSC",
+      "aliases": [
+        "FSSC"
+      ],
+      "concept_group": "food_laboratory"
+    },
+    {
+      "skill_code": "ret_food_safety",
+      "skill_name": "Vệ sinh an toàn thực phẩm",
+      "aliases": [
+        "VSATTP",
+        "ATVSTP"
+      ],
+      "concept_group": "food_laboratory"
+    },
+    {
+      "skill_code": "life_pattern_design",
+      "skill_name": "Thiết kế rập",
+      "aliases": [
+        "thiết kế rập",
+        "thiết kế mẫu rập",
+        "pattern making",
+        "pattern design"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_pattern_grading",
+      "skill_name": "Nhảy size",
+      "aliases": [
+        "nhảy size",
+        "nhảy cỡ",
+        "pattern grading"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_marker_making",
+      "skill_name": "Giác sơ đồ",
+      "aliases": [
+        "giác sơ đồ",
+        "marker making"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_sample_sewing",
+      "skill_name": "May mẫu",
+      "aliases": [
+        "may mẫu",
+        "sample sewing"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "review_ky_thuat_san_xuat_may_mac",
+      "skill_name": "Kỹ thuật sản xuất may mặc",
+      "aliases": [
+        "kỹ thuật may mặc",
+        "kỹ thuật sản xuất may mặc",
+        "garment construction"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_sewing_machine",
+      "skill_name": "Sử dụng máy may",
+      "aliases": [
+        "máy may",
+        "sewing machine"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_cutting_sewing",
+      "skill_name": "Kỹ thuật cắt may",
+      "aliases": [
+        "kỹ thuật cắt may",
+        "cắt may"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_gerber",
+      "skill_name": "Gerber",
+      "aliases": [
+        "Gerber"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_accumark",
+      "skill_name": "Gerber AccuMark",
+      "aliases": [
+        "Gerber AccuMark",
+        "AccuMark"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_lectra",
+      "skill_name": "Lectra",
+      "aliases": [
+        "Lectra"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_optitex",
+      "skill_name": "Optitex",
+      "aliases": [
+        "Optitex"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_clo3d",
+      "skill_name": "CLO 3D",
+      "aliases": [
+        "CLO 3D",
+        "CLO3D",
+        "CLO"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_browzwear",
+      "skill_name": "Browzwear",
+      "aliases": [
+        "Browzwear"
+      ],
+      "concept_group": "garment_textile"
+    },
+    {
+      "skill_code": "life_gsd",
+      "skill_name": "GSD",
+      "aliases": [
+        "GSD"
+      ],
+      "concept_group": "garment_textile"
+    }
+  ],
+  "concept_groups": {
+    "healthcare_pharma": [
+      "life_patient_care",
+      "life_nursing",
+      "life_blood_collection",
+      "life_vital_signs",
+      "life_first_aid",
+      "life_cpr",
+      "life_vaccination",
+      "life_compounding",
+      "life_drug_sales",
+      "life_gmp",
+      "life_gpp",
+      "life_glp",
+      "life_gdp",
+      "life_pharmacy_law"
+    ],
+    "food_laboratory": [
+      "life_testing",
+      "life_microbiology",
+      "life_iso22000",
+      "life_fssc",
+      "ret_food_safety"
+    ],
+    "garment_textile": [
+      "life_pattern_design",
+      "life_pattern_grading",
+      "life_marker_making",
+      "life_sample_sewing",
+      "review_ky_thuat_san_xuat_may_mac",
+      "life_sewing_machine",
+      "life_cutting_sewing",
+      "life_gerber",
+      "life_accumark",
+      "life_lectra",
+      "life_optitex",
+      "life_clo3d",
+      "life_browzwear",
+      "life_gsd"
+    ]
+  },
+  "runtime_llm_calls": 0,
+  "source_evidence": "Offline batch08 survey and targeted bundle outside Git; substring counts are hints, not accepted skills."
+}

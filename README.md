@@ -138,6 +138,10 @@ Gói dịch vụ/bán lẻ dùng `silver skills --batch hospitality_retail`. Nh�
 nghiệp vụ khách sạn, nhà hàng, du lịch, bán lẻ và công cụ khi requirements
 có bằng chứng rõ; không suy kỹ năng từ nhãn ngành ghép.
 
+Gói y dược/thực phẩm/dệt may dùng `silver skills --batch healthcare_food_garment`
+với ba nhóm từ điển hữu hạn. Chỉ lấy kỹ năng có bằng chứng trong requirements,
+không suy từ bằng cấp, nhãn ngành, chứng nhận nhà máy hay nơi làm việc.
+
 ## Warehouse lịch sử — S3 enrichment
 
 **Trục ngành hiện hành:** dùng `job_industry`, không dùng `occupation_primary`

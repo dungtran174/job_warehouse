@@ -19,6 +19,11 @@ from job_warehouse.skills.input import (
 from job_warehouse.skills.profile import text_hash
 
 BATCH_SCOPES = {
+    "healthcare_food_garment": (
+        "Dược phẩm / Y tế - Chăm sóc sức khỏe",
+        "Thực phẩm - Đồ uống / Công nghệ thực phẩm - Dinh dưỡng",
+        "Dệt may - Da giày - Thời trang",
+    ),
     "hospitality_retail": ("Khách sạn - Nhà hàng - Du lịch / Bán sỉ - Bán lẻ - Quản lý cửa hàng",),
     "education_language": (
         "Giáo dục - Đào tạo / Biên phiên dịch",

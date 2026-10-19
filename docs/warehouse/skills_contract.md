@@ -575,3 +575,23 @@ Abacus/Galileo cần ngữ cảnh công cụ hoặc đặt vé. Thẻ hướng d
 Khớp rõ thì lấy, chưa rõ thì bỏ qua và giữ mọi tin. Khảo sát/test phục vụ
 phát triển, không phải kiểm định thống kê độc lập; không lặp để tăng recall.
 Kết quả các đợt trước giữ nguyên khi ghép.
+
+## Gói y dược, thực phẩm và dệt may
+
+`silver skills --batch healthcare_food_garment` dùng `mappings_life_sciences/`
+cho ba nhãn nguồn tương ứng. Provenance chia ba nhóm khái niệm: y dược;
+kiểm nghiệm/thực phẩm; kỹ thuật may và phần mềm thiết kế. Tái dùng kỹ năng
+bán hàng, văn phòng và kỹ thuật cũ khi có bằng chứng riêng trong requirements.
+
+Không suy thực hành y tế từ bằng cấp/giấy phép chung, không suy năng lực từ
+chứng nhận của nhà máy hoặc tình trạng tiêm chủng cá nhân. Không lấy bộ phận
+phối hợp, địa điểm tuyển dụng, phần mềm phục vụ nghiệp vụ thành kỹ năng
+nghiệp vụ. GDP cần ngữ cảnh dược; Gerber/CLO cần ngữ cảnh công cụ may để
+tránh trùng thương hiệu/chất hóa học. AccuMark không tự thêm Gerber chung;
+Luật Dược không tự thêm kiến thức pháp luật chung từ cùng cụm. FSSC chung
+không tự suy số tiêu chuẩn. Không đổi các kết quả đã nhận của đợt trước.
+
+Bộ từ điển hữu hạn và quy tắc Python nhận khớp rõ; chưa rõ thì bỏ qua, giữ
+mọi tin. Kiểm tra phát triển bằng mẫu thật và test dương/âm cho từng nhóm,
+không phải kiểm định thống kê độc lập hay bảo đảm recall. Không dùng AI hoặc
+embedding trong runtime. Parquet và hồ sơ đối soát ở ngoài Git.

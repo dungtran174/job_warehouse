@@ -1,0 +1,362 @@
+skill_code,skill_name,skill_group,definition
+python,Python,technology,Ngôn ngữ lập trình Python.
+java,Java,technology,Ngôn ngữ Java; không gồm JavaScript.
+javascript,JavaScript,technology,Ngôn ngữ JavaScript.
+typescript,TypeScript,technology,Ngôn ngữ TypeScript.
+cpp,C++,technology,Ngôn ngữ C++; không suy ra C.
+csharp,C#,technology,Ngôn ngữ C#.
+dotnet,.NET,technology,Nền tảng .NET.
+php,PHP,technology,Ngôn ngữ PHP.
+golang,Go,technology,Ngôn ngữ Go; alias ngắn Go cần kiểm định riêng.
+ruby,Ruby,technology,Ngôn ngữ lập trình Ruby.
+kotlin,Kotlin,technology,Ngôn ngữ lập trình Kotlin.
+swift,Swift,technology,Ngôn ngữ lập trình Swift.
+sql,SQL,technology,Ngôn ngữ truy vấn SQL; không suy từ tên sản phẩm database.
+mysql,MySQL,technology,Hệ quản trị MySQL.
+postgresql,PostgreSQL,technology,Hệ quản trị PostgreSQL.
+sql_server,SQL Server,technology,Microsoft SQL Server; không tự thêm SQL từ tên sản phẩm.
+oracle_db,Oracle Database,technology,Oracle Database; Oracle đứng riêng chưa xác định sản phẩm.
+mongodb,MongoDB,technology,Cơ sở dữ liệu MongoDB.
+redis,Redis,technology,Redis.
+html,HTML,technology,Ngôn ngữ đánh dấu HTML.
+css,CSS,technology,Ngôn ngữ kiểu CSS.
+react,React,technology,Thư viện React cho web; React Native là khái niệm riêng.
+react_native,React Native,technology,Framework React Native.
+vue,Vue.js,technology,Framework Vue.js.
+angular,Angular,technology,Framework Angular.
+nodejs,Node.js,technology,Runtime Node.js.
+spring,Spring Framework,technology,Framework Spring; không lấy Spring mùa xuân.
+django,Django,technology,Framework Django.
+flask,Flask,technology,Framework Flask.
+laravel,Laravel,technology,Framework Laravel.
+git,Git,tool,Công cụ quản lý phiên bản Git; không suy từ GitHub.
+github,GitHub,tool,Nền tảng GitHub; CV/link tài khoản đơn thuần không đủ.
+linux,Linux,technology,Hệ điều hành Linux.
+docker,Docker,tool,Công cụ container Docker.
+kubernetes,Kubernetes,technology,Nền tảng Kubernetes.
+aws,Amazon Web Services,technology,Nền tảng Amazon Web Services.
+azure,Microsoft Azure,technology,Nền tảng Microsoft Azure.
+gcp,Google Cloud,technology,Nền tảng Google Cloud.
+spark,Apache Spark,technology,Apache Spark; không nhận Spark nghĩa khác.
+airflow,Apache Airflow,tool,Công cụ orchestration Apache Airflow.
+kafka,Apache Kafka,technology,Nền tảng Apache Kafka.
+power_bi,Power BI,tool,Microsoft Power BI.
+tableau,Tableau,tool,Công cụ Tableau.
+selenium,Selenium,tool,Công cụ kiểm thử Selenium.
+postman,Postman,tool,Công cụ kiểm thử API Postman.
+manual_testing,Kiểm thử thủ công,domain,Kiến thức hoặc kỹ năng kiểm thử thủ công.
+automation_testing,Kiểm thử tự động,domain,Kiến thức hoặc kỹ năng kiểm thử tự động.
+test_case,Thiết kế ca kiểm thử,domain,Thiết kế hoặc viết test case; không chỉ chức danh Tester.
+oop,Lập trình hướng đối tượng,domain,Lập trình hướng đối tượng.
+rest_api,REST API,technology,Giao diện REST API.
+excel,Microsoft Excel,tool,Excel; không suy từ tin học văn phòng.
+word,Microsoft Word,tool,Microsoft Word; Word đơn lẻ cần ngữ cảnh công cụ.
+powerpoint,Microsoft PowerPoint,tool,PowerPoint.
+ms_office,Microsoft Office,tool,Bộ Microsoft Office; không suy các ứng dụng con.
+office_it,Tin học văn phòng,domain,Kỹ năng tin học hoặc vi tính văn phòng; không suy Excel.
+google_sheets,Google Sheets,tool,Bảng tính Google Sheets.
+misa,MISA,tool,Phần mềm kế toán MISA được nêu trong yêu cầu.
+fast_accounting,FAST Accounting,tool,Phần mềm kế toán FAST.
+bravo,BRAVO,tool,Phần mềm kế toán BRAVO.
+sap,SAP,tool,Phần mềm SAP được nêu trong yêu cầu.
+erp,ERP,technology,Hệ thống ERP; không suy sản phẩm cụ thể.
+tax_reporting,Báo cáo thuế,domain,Kỹ năng lập hoặc xử lý báo cáo thuế.
+financial_reporting,Báo cáo tài chính,domain,Kỹ năng lập hoặc đọc báo cáo tài chính.
+payroll,Tính lương,domain,Nghiệp vụ tính lương.
+cost_accounting,Kế toán giá thành,domain,Nghiệp vụ kế toán giá thành.
+account_reconciliation,Đối chiếu công nợ,domain,Nghiệp vụ đối chiếu công nợ.
+photoshop,Adobe Photoshop,tool,Phần mềm Adobe Photoshop.
+illustrator,Adobe Illustrator,tool,Adobe Illustrator; AI đứng riêng chưa tự suy sản phẩm.
+indesign,Adobe InDesign,tool,Phần mềm Adobe InDesign.
+coreldraw,CorelDRAW,tool,Phần mềm CorelDRAW.
+figma,Figma,tool,Công cụ Figma.
+canva,Canva,tool,Công cụ Canva.
+premiere,Adobe Premiere,tool,Phần mềm Adobe Premiere.
+after_effects,Adobe After Effects,tool,Phần mềm Adobe After Effects.
+capcut,CapCut,tool,Công cụ biên tập CapCut.
+seo,SEO,domain,Tối ưu công cụ tìm kiếm; không suy mọi ngành Marketing cần SEO.
+sem,SEM,domain,Marketing trên công cụ tìm kiếm.
+digital_marketing,Digital Marketing,domain,Tiếp thị số; gồm marketing online và digital khi requirements có ngữ cảnh marketing rõ theo Q7; không suy từ tên ngành/title hoặc digital products chung.
+content_marketing,Content Marketing,domain,"Tiếp thị nội dung; gồm viết/biên tập/sáng tạo nội dung và thiết kế hình ảnh, quay dựng video khi requirements có ngữ cảnh marketing rõ theo Q6/Q10; không suy từ ngành/title."
+email_marketing,Email Marketing,domain,Kỹ năng hoặc kiến thức tiếp thị qua email.
+social_media,Social Media Marketing,domain,Kiến thức/kỹ năng tiếp thị và vận hành kênh mạng xã hội trong ngữ cảnh marketing hoặc chiến lược tương tác rõ; tên nền tảng đơn thuần chưa đủ.
+google_ads,Google Ads,tool,Công cụ quảng cáo Google Ads.
+facebook_ads,Facebook Ads,tool,Công cụ quảng cáo Facebook Ads.
+tiktok_ads,TikTok Ads,tool,Công cụ quảng cáo TikTok Ads.
+google_analytics,Google Analytics,tool,Công cụ Google Analytics; GA đứng riêng không nhận.
+tag_manager,Google Tag Manager,tool,Công cụ Google Tag Manager.
+search_console,Google Search Console,tool,Công cụ Google Search Console.
+english,Tiếng Anh,language,Năng lực tiếng Anh được nêu rõ hoặc chứng chỉ có ánh xạ; tên bằng/chuyên ngành không đủ.
+chinese,Tiếng Trung,language,Năng lực tiếng Trung được nêu rõ hoặc chứng chỉ có ánh xạ.
+japanese,Tiếng Nhật,language,Năng lực tiếng Nhật được nêu rõ hoặc chứng chỉ có ánh xạ.
+korean,Tiếng Hàn,language,Năng lực tiếng Hàn được nêu rõ hoặc chứng chỉ có ánh xạ.
+french,Tiếng Pháp,language,Năng lực tiếng Pháp được nêu rõ hoặc chứng chỉ có ánh xạ.
+german,Tiếng Đức,language,Năng lực tiếng Đức được nêu rõ; không suy từ địa chỉ ở Đức.
+spring_boot,Spring Boot,technology,Framework Spring Boot; không tự thêm Spring Framework.
+pyspark,PySpark,technology,API Python của Apache Spark; không tự thêm Apache Spark.
+angularjs,AngularJS,technology,Framework AngularJS; không gộp với Angular.
+review_crm,CRM,domain,Thao tác hoặc kiến thức hệ thống quản trị quan hệ khách hàng; không tự suy từ biết Salesforce.
+review_ban_hang_sales,Bán hàng / Sales,domain,"Nghiệp vụ bán hàng được nêu trong năng lực hoặc kinh nghiệm ở requirements; không lấy ngành học, sở thích, hoa hồng hay chỉ tiêu."
+review_cham_soc_khach_hang,Chăm sóc khách hàng,domain,Kinh nghiệm/năng lực hoặc nhiệm vụ hỗ trợ khách hàng cụ thể; không lấy câu về tính cách thân thiện.
+review_telesales,Telesales,domain,Bán hàng/tư vấn qua điện thoại rõ; không suy chỉ từ có điện thoại hoặc giọng nói tốt.
+review_ban_hang_online,Bán hàng Online,domain,"Kinh nghiệm hoặc nghiệp vụ bán hàng trực tuyến, không suy từ dùng Facebook."
+review_kien_thuc_bat_dong_san,Kiến thức bất động sản,domain,Kiến thức được nêu trực tiếp; làm ở công ty bất động sản không tự chứng minh.
+review_salesforce,Salesforce,tool,"Công cụ Salesforce được nêu như năng lực sử dụng, không tự thêm CRM."
+review_hubspot,HubSpot,domain,"Công cụ HubSpot được nêu như năng lực sử dụng, không tự thêm CRM."
+review_kiotviet,KiotViet,tool,"Sử dụng phần mềm KiotViet, không lấy chỉ từng làm tại công ty KiotViet."
+review_sapo,Sapo,tool,"Sử dụng phần mềm Sapo, không lấy chỉ từng làm tại công ty Sapo."
+sales_prospecting,Tìm kiếm khách hàng,domain,Nghiệp vụ tìm kiếm/phát triển tệp khách hàng; không bao gồm giao tiếp chung.
+sales_product_consulting,Tư vấn sản phẩm,domain,Tư vấn sản phẩm/giải pháp bán hàng cụ thể; tư vấn chung chưa rõ lĩnh vực không thuộc alias.
+sales_complaint_handling,Xử lý khiếu nại,domain,Xử lý khiếu nại khách hàng cụ thể; xử lý tình huống chung không được tự gán.
+sales_quotation,Lập báo giá,domain,Lập báo giá bán hàng rõ; không gán từ tên tài liệu báo giá đứng riêng.
+sales_order_management,Quản lý đơn hàng,domain,Nghiệp vụ quản lý/xử lý/theo dõi đơn hàng; không suy quản lý kho.
+sales_closing,Chốt giao dịch,domain,Hoàn tất giao dịch bán hàng được nêu rõ; không lấy lời hứa được đào tạo chốt deal.
+sales_market_development,Phát triển thị trường,domain,Kinh nghiệm/năng lực/nhiệm vụ phát triển thị trường hoặc kinh doanh; không dựa vào nhãn ngành.
+sales_real_estate_brokerage,Môi giới bất động sản,domain,"Nghiệp vụ hoặc kinh nghiệm môi giới rõ trong requirements, không suy từ kinh nghiệm ngành BĐS chung."
+sales_real_estate_legal,Pháp lý bất động sản,domain,Kiến thức nghiệp vụ pháp lý bất động sản được nêu rõ; không tự suy từ bằng luật.
+sales_distribution_management,Quản lý hệ thống phân phối,domain,"Nghiệp vụ quản lý mạng lưới phân phối, không suy chỉ từ kinh nghiệm ngành hàng."
+sales_call_center,Nghiệp vụ tổng đài,domain,Nghiệp vụ hoặc kinh nghiệm tổng đài; không suy chỉ từ giọng nói tốt.
+hr_recruitment,Tuyển dụng,domain,"Nghiệp vụ tìm kiếm, tuyển chọn nhân sự; không lấy mong muốn làm tuyển dụng hoặc công ty đang tuyển ứng viên."
+hr_interviewing,Phỏng vấn tuyển dụng,domain,Thực hiện phỏng vấn ứng viên trong ngữ cảnh tuyển dụng; không lấy lời mời ứng viên đi phỏng vấn.
+hr_administration,Hành chính văn phòng,domain,"Thực hiện nghiệp vụ hành chính, tổng vụ; ngành học quản trị hành chính đứng riêng không đủ."
+hr_personnel_administration,Nghiệp vụ hành chính nhân sự,domain,Kinh nghiệm thực hiện nghiệp vụ hành chính nhân sự; không suy từ số lượng nhân viên công ty hoặc ngành học.
+hr_human_resources,Nghiệp vụ nhân sự,domain,Thực hiện chuyên môn nhân sự rõ; không lấy ngành học hoặc chỉ từng làm công ty có nhiều nhân sự.
+hr_compensation_benefits,Tiền lương và phúc lợi,domain,Nghiệp vụ C&B ứng viên đã làm hoặc cần biết; không lấy chính sách tiền lương phúc lợi được công ty hứa cung cấp.
+hr_timekeeping,Chấm công,domain,Nghiệp vụ chấm công tính ngày công; không lấy giờ làm của ứng viên.
+hr_employee_training,Đào tạo nhân sự,domain,Năng lực tổ chức hoặc thực hiện đào tạo nhân viên; không lấy ứng viên sẽ được đào tạo sau nhận việc.
+hr_records,Quản lý hồ sơ,domain,"Thực hiện lưu trữ, quản lý hồ sơ; không lấy chỉ dẫn ứng viên nộp hồ sơ."
+hr_document_drafting,Soạn thảo văn bản,domain,"Soạn thảo văn bản nghiệp vụ; không tự suy từ giao tiếp, đánh máy hoặc ngành luật."
+hr_hrm,Phần mềm quản lý nhân sự,tool,Sử dụng hệ thống HRM/HRIS hoặc nguồn gọi rõ phần mềm nhân sự; không tự thêm từ một tên sản phẩm đứng riêng.
+hr_misa,MISA quản lý nhân sự,tool,MISA trong ngữ cảnh phần mềm quản lý nhân sự rõ; không đồng nhất với MISA kế toán.
+review_bao_hiem_xa_hoi,Bảo hiểm xã hội,domain,Kiến thức hoặc xử lý nghiệp vụ BHXH; không lấy quyền lợi được tham gia BHXH của ứng viên.
+review_luat_lao_dong,Luật lao động,domain,Kiến thức áp dụng pháp luật lao động; không lấy yêu cầu ứng viên tuân thủ nội quy chung.
+hr_insurance_law,Luật bảo hiểm,domain,Kiến thức pháp luật bảo hiểm được yêu cầu rõ; không lấy mua hoặc hưởng bảo hiểm.
+review_luat_thue,Luật thuế,domain,Kiến thức pháp luật thuế được nêu rõ; không tự lấy từ mức lương trước thuế.
+review_thue_tncn,Thuế TNCN,domain,Kiến thức hoặc nghiệp vụ thuế thu nhập cá nhân; không lấy mức lương sau thuế hay quyền lợi.
+review_ke_toan_tong_hop,Kế toán tổng hợp,domain,Kinh nghiệm hoặc nghiệp vụ kế toán tổng hợp rõ; ngành học đơn thuần không đủ.
+review_nghiep_vu_ke_toan,Nghiệp vụ kế toán,domain,Thực hiện nghiệp vụ kế toán hoặc kinh nghiệm làm kế toán rõ; không lấy chỉ ngành học hay công ty kế toán.
+review_phan_mem_ke_toan,Phần mềm kế toán,tool,Nguồn nói rõ sử dụng phần mềm kế toán; không tự suy từ MISA hoặc FAST đứng riêng.
+review_ke_khai_thue,Kê khai thuế,domain,Thực hiện nghiệp vụ kê khai thuế; không tự thêm Báo cáo thuế nếu nguồn không nói riêng.
+review_quyet_toan_thue,Quyết toán thuế,domain,Thực hiện nghiệp vụ quyết toán thuế; không tự thêm Báo cáo thuế.
+review_phan_tich_tai_chinh,Phân tích tài chính,domain,Phân tích tài chính được nêu rõ; không suy từ ngành học hoặc kinh nghiệm làm tại ngân hàng.
+review_phan_tich_bao_cao_tai_chinh,Phân tích báo cáo tài chính,domain,Phân tích hoặc đọc hiểu báo cáo tài chính; không tự thêm từ chỉ lập báo cáo tài chính.
+review_nghiep_vu_tin_dung,Nghiệp vụ tín dụng,domain,Kiến thức hoặc thực hiện nghiệp vụ tín dụng; làm tại tổ chức tín dụng đơn thuần không đủ.
+finance_credit_assessment,Thẩm định tín dụng,domain,Thẩm định khoản vay hoặc đánh giá tín dụng rõ.
+review_quan_ly_rui_ro,Quản lý rủi ro,domain,Chuyên môn quản lý rủi ro rõ; không lấy khả năng xử lý tình huống chung hoặc rủi ro cuộc sống.
+finance_basel,Basel II,domain,"Kiến thức hoặc triển khai Basel II được nêu rõ, không suy từ tên ngân hàng."
+finance_consulting,Tư vấn tài chính,domain,Nghiệp vụ tư vấn giải pháp tài chính rõ; không suy từ giao tiếp/thuyết phục.
+finance_debt_recovery,Xử lý thu hồi nợ,domain,"Nghiệp vụ xử lý hoặc thu hồi nợ, không lấy ứng viên không có nợ xấu."
+finance_fundraising,Huy động vốn,domain,Nghiệp vụ huy động vốn; không lấy mức vốn hoặc khả năng tài chính công ty.
+finance_valuation,Thẩm định giá,domain,Kinh nghiệm thẩm định hoặc định giá tài sản; ngành học thẩm định giá đứng riêng không đủ.
+finance_project_appraisal,Thẩm định dự án,domain,Nghiệp vụ thẩm định dự án được nêu rõ.
+finance_capital_management,Quản lý nguồn vốn,domain,"Nghiệp vụ quản lý nguồn vốn, dòng tiền; không lấy sở hữu vốn."
+finance_planning,Lập kế hoạch tài chính,domain,"Lập kế hoạch tài chính chuyên môn, không lấy lập kế hoạch công việc chung."
+review_quan_ly_tai_chinh,Quản lý tài chính,domain,"Thực hiện quản lý tài chính, không suy từ ngành học hoặc chỉ làm tổ chức tài chính."
+finance_cross_selling,Bán chéo sản phẩm,domain,Kinh nghiệm cross-selling hoặc upselling được nêu rõ.
+finance_customer_portfolio,Quản lý danh mục khách hàng,domain,Quản lý danh mục khách hàng rõ; không lấy danh mục chưa nói là khách hàng.
+review_nghiep_vu_ngan_hang,Nghiệp vụ ngân hàng,domain,Kiến thức hoặc thực hiện nghiệp vụ ngân hàng cụ thể; chỉ làm tại ngân hàng không đủ.
+review_nghiep_vu_tai_chinh,Nghiệp vụ tài chính,domain,Kiến thức hoặc thực hiện nghiệp vụ tài chính rõ; chỉ làm trong lĩnh vực hoặc công ty tài chính không đủ.
+review_luat_doanh_nghiep,Luật doanh nghiệp,domain,"Kiến thức pháp luật doanh nghiệp rõ, không suy từ tốt nghiệp trường luật."
+legal_civil_law,Luật dân sự,domain,Kiến thức hoặc kinh nghiệm luật dân sự rõ.
+legal_commercial_law,Luật thương mại,domain,Kiến thức hoặc kinh nghiệm luật thương mại rõ.
+legal_land_law,Luật đất đai,domain,"Kiến thức hoặc kinh nghiệm luật đất đai, không tự thêm từ một địa chỉ."
+legal_investment_law,Luật đầu tư,domain,Kiến thức hoặc áp dụng luật đầu tư rõ; không suy từ đầu tư thông thường.
+legal_construction_law,Luật xây dựng,domain,"Kiến thức hoặc áp dụng luật xây dựng rõ, không suy từ kinh nghiệm công trình."
+legal_economic_law,Luật kinh tế,domain,Kiến thức hoặc kinh nghiệm luật kinh tế; bằng cấp chuyên ngành đứng riêng không đủ.
+legal_customs_law,Luật hải quan,domain,Kiến thức pháp luật hải quan rõ; không suy từ tên ngành ngoại thương.
+legal_contract_review,Rà soát hợp đồng,domain,Nghiệp vụ rà soát/kiểm tra pháp lý hợp đồng; không lấy ký hợp đồng lao động khi nhận việc.
+review_soan_thao_hop_dong,Soạn thảo hợp đồng,domain,"Soạn thảo hợp đồng chuyên môn, không lấy thông tin ứng viên ký hợp đồng."
+legal_drafting,Soạn thảo văn bản pháp lý,domain,Soạn thảo văn bản hoặc tài liệu pháp lý; không tự thêm từ soạn thảo văn bản chung.
+legal_document_review,Rà soát văn bản pháp lý,domain,Rà soát hoặc đánh giá tài liệu pháp lý cụ thể.
+legal_consulting,Tư vấn pháp lý,domain,"Nghiệp vụ tư vấn pháp lý rõ, không lấy mong muốn làm nghề luật."
+legal_litigation,Tố tụng,domain,Kiến thức hoặc thực hiện quy trình tố tụng/khởi kiện; không lấy tranh chấp ngoài tố tụng.
+legal_corporate_affairs,Nghiệp vụ pháp chế,domain,"Kinh nghiệm hoặc nghiệp vụ pháp chế rõ, kể cả pháp chế doanh nghiệp; không suy từ làm ở công ty luật."
+legal_compliance,Kiểm soát tuân thủ,domain,Chuyên môn xây dựng/kiểm soát quy trình tuân thủ; không lấy phẩm chất tính tuân thủ hoặc ứng viên phải tuân thủ nội quy.
+legal_project,Pháp lý dự án,domain,"Thực hiện pháp lý dự án rõ, không suy mọi lĩnh vực pháp lý từ việc tham gia dự án."
+legal_security_law,Pháp luật dịch vụ bảo vệ,domain,Kiến thức quy định pháp luật về dịch vụ bảo vệ được nêu rõ.
+finance_securities_law,Pháp luật chứng khoán,domain,Kiến thức quy định pháp luật chứng khoán được nêu rõ.
+legal_legal_knowledge,Kiến thức pháp luật,domain,Yêu cầu kiến thức pháp luật chung nêu rõ; không tự thêm chỉ vì có luật chuyên ngành hoặc bằng luật.
+review_phan_tich_du_lieu,Phân tích dữ liệu,domain,"Kỹ năng phân tích dữ liệu rõ, không suy từ kỹ năng phân tích chung."
+review_thong_ke_so_lieu,Thống kê số liệu,domain,"Thống kê số liệu hoặc thống kê toán rõ, không suy từ báo cáo chung."
+review_microsoft_teams,Microsoft Teams,tool,Sử dụng Microsoft Teams; không suy từ làm việc nhóm.
+hr_outlook,Microsoft Outlook,tool,Sử dụng phần mềm Outlook; không suy từ email nói chung.
+legal_ecus,ECUS,tool,Sử dụng phần mềm khai báo hải quan ECUS được nêu rõ.
+legal_vnaccs,VNACCS,tool,Sử dụng hệ thống VNACCS được nêu rõ.
+legal_hs_code,Tra cứu mã HS,domain,Kiến thức hoặc tra cứu mã HS/biểu thuế rõ.
+review_livestream,Livestream,domain,Kinh nghiệm phát trực tiếp được nêu rõ; không lấy mời ứng viên xem livestream.
+review_oracle,Oracle,tool,Sản phẩm Oracle chưa xác định rõ; không tự chọn Oracle Database hoặc ERP.
+hr_payroll_software,Phần mềm chấm công tính lương,tool,Sử dụng phần mềm chấm công hoặc tính lương; không tự suy thành nghiệp vụ chấm công/tính lương.
+legal_debt_recovery_law,Pháp luật thu hồi nợ,domain,Kiến thức pháp luật về thu hồi nợ; không tự đồng nhất với kinh nghiệm thực hiện thu hồi nợ.
+review_asp_net,ASP.NET,tool,ASP.NET được nhắc trực tiếp; không tự thêm .NET.
+plsql,PL/SQL,technology,Ngôn ngữ PL/SQL được nêu rõ; không tự thêm SQL.
+review_quan_ly_kho,Quản lý kho,domain,"Kinh nghiệm/quy trình quản lý, vận hành kho rõ; không suy từ làm công ty có kho."
+log_warehouse_operations,Nghiệp vụ kho,domain,Thực hiện nghiệp vụ kho hoặc từng làm nhân viên kho rõ; không thêm kiểm kê/tồn kho nếu không nêu.
+log_inventory_control,Quản lý tồn kho,domain,Quản lý/kiểm soát tồn kho được nêu trực tiếp.
+review_kiem_ke_hang_hoa,Kiểm kê hàng hóa,domain,Nghiệp vụ kiểm kê hàng hoặc tồn kho rõ.
+review_thu_mua,Thu mua,domain,Nghiệp vụ mua hàng của tổ chức; không suy từ bán hàng cho người mua.
+log_supplier_sourcing,Phát triển nhà cung cấp,domain,"Tìm kiếm/phát triển nhà cung cấp, không tự suy từ bán hàng."
+log_supplier_evaluation,Đánh giá nhà cung cấp,domain,Đánh giá/lựa chọn nhà cung cấp được nêu rõ.
+review_xuat_nhap_khau,Xuất nhập khẩu,domain,"Kiến thức/quy trình hoặc nghiệp vụ XNK rõ, không ngành học/tên công ty."
+log_import_export_documents,Chứng từ xuất nhập khẩu,domain,"Lập/xử lý/chuyên môn chứng từ XNK, không chỉ đọc tiếng Anh tài liệu."
+review_khai_bao_hai_quan,Khai báo hải quan,domain,"Khai báo, làm thủ tục hải quan rõ; không suy từ dùng ECUS/VNACCS."
+review_incoterms,Incoterms,domain,Hiểu biết/sử dụng bộ điều kiện Incoterms được nêu rõ.
+log_supply_chain,Quản trị chuỗi cung ứng,domain,"Kiến thức/nghiệp vụ quản trị chuỗi cung ứng, không bằng cấp ngành học."
+review_dieu_do_van_tai,Điều độ vận tải,domain,Điều phối/điều hành phương tiện vận tải được nêu rõ.
+log_fleet_management,Quản lý đội xe,domain,Quản lý đội xe/vận hành phương tiện rõ.
+log_route_management,Quản lý lộ trình,domain,"Lập hoặc quản lý lộ trình, không chỉ biết tên địa phương."
+log_route_knowledge,Thông thạo đường đi,domain,Rành/thông thạo đường đi được yêu cầu trực tiếp; địa phương giữ trong quote.
+log_delivery,Giao nhận hàng hóa,domain,Kinh nghiệm/nghiệp vụ giao nhận hoặc giao hàng rõ.
+log_car_driving,Lái xe ô tô,domain,Biết/có kinh nghiệm lái ô tô rõ; chứng chỉ chỉ theo chính sách được chủ dự án chốt.
+log_motorcycle_driving,Lái xe máy,domain,"Kỹ năng lái xe máy rõ, không chỉ sở hữu xe máy."
+log_forklift,Vận hành xe nâng,domain,Biết lái/vận hành xe nâng; chứng chỉ chỉ theo chính sách chủ dự án.
+review_wms,WMS,tool,Phần mềm/hệ thống quản lý kho WMS được nêu trực tiếp.
+log_tms,TMS,tool,Phần mềm quản lý vận tải TMS được nêu trực tiếp.
+log_gps,GPS,tool,Sử dụng phần mềm/hệ thống GPS; không suy từ sở hữu điện thoại/thiết bị.
+log_fifo,FIFO,domain,Nguyên tắc FIFO được nêu rõ trong yêu cầu chuyên môn.
+log_lifo,LIFO,domain,Nguyên tắc LIFO được nêu rõ trong yêu cầu chuyên môn.
+log_driving,Lái xe,domain,Kỹ năng lái xe chung nêu rõ nhưng chưa xác định loại phương tiện; không suy xe máy/ô tô.
+review_phan_mem_quan_ly_kho,Phần mềm quản lý kho,tool,Sử dụng phần mềm quản lý kho được nêu rõ; không tự suy nghiệp vụ quản lý kho.
+review_autocad,AutoCAD,tool,Phần mềm AutoCAD được nêu rõ; không suy từ CAD chung.
+review_solidworks,SolidWorks,tool,"Phần mềm SolidWorks được nêu rõ, không suy từ thiết kế chung."
+eng_inventor,Autodesk Inventor,tool,Phần mềm Inventor trong ngữ cảnh thiết kế kỹ thuật.
+review_revit,Revit,tool,Sử dụng Revit được nêu rõ.
+review_sketchup,SketchUp,tool,Sử dụng SketchUp được nêu rõ.
+review_cad,CAD,tool,"Công cụ CAD chung được nêu rõ, không chọn AutoCAD hay phần mềm cụ thể."
+eng_eplan,EPLAN,tool,Phần mềm thiết kế điện EPLAN được nêu rõ.
+eng_plc,PLC,technology,Kiến thức/hệ thống PLC; không tự suy khả năng lập trình hoặc hãng sản xuất.
+eng_plc_programming,Lập trình PLC,domain,Lập trình PLC được yêu cầu rõ.
+eng_hmi,HMI,technology,HMI được nêu trong năng lực kỹ thuật rõ.
+eng_scada,SCADA,technology,Hệ thống SCADA được nêu rõ.
+eng_wincc,WinCC,tool,Phần mềm WinCC được nêu rõ.
+review_cnc,CNC,technology,Kiến thức/công nghệ CNC; không tự suy lập trình hoặc vận hành.
+review_lap_trinh_cnc,Lập trình CNC,domain,Lập/chỉnh chương trình CNC được nêu rõ.
+eng_cnc_operation,Vận hành máy CNC,domain,Vận hành máy CNC được nêu rõ.
+eng_gcode,G-code,technology,G-code được nêu trong năng lực lập trình/gia công.
+review_doc_ban_ve_ky_thuat,Đọc bản vẽ kỹ thuật,domain,Đọc/đọc hiểu bản vẽ kỹ thuật rõ; không suy từ ngành học hay chỉ phần mềm.
+review_dung_cu_do_co_khi,Dụng cụ đo cơ khí,tool,Sử dụng dụng cụ đo kỹ thuật được yêu cầu rõ.
+eng_machine_operation,Vận hành máy,domain,Vận hành máy công nghiệp được nêu rõ; không bao gồm máy quay video.
+eng_equipment_maintenance,Bảo trì thiết bị,domain,Bảo trì/sửa máy móc thiết bị vật lý rõ; không suy từ bảo trì chung hoặc phần mềm.
+eng_industrial_electricity,Điện công nghiệp,domain,"Kiến thức/kinh nghiệm điện công nghiệp, không chỉ ngành học."
+eng_electrical_maintenance,Bảo trì điện,domain,Bảo trì/sửa hệ thống điện được nêu rõ.
+eng_welding,Hàn,domain,Nghề hàn kim loại rõ; không phải ngoại ngữ tiếng Hàn.
+eng_tig_welding,Hàn TIG,domain,Công nghệ hàn TIG được nêu rõ.
+eng_mig_welding,Hàn MIG,domain,Công nghệ hàn MIG được nêu rõ.
+eng_machining,Gia công cơ khí,domain,"Thực hiện/hiểu gia công cơ khí rõ, không chỉ học cơ khí."
+eng_mechanical_manufacturing,Chế tạo máy,domain,"Kiến thức/kinh nghiệm chế tạo máy rõ, không chỉ ngành học."
+eng_production_management,Quản lý sản xuất,domain,"Kinh nghiệm/nghiệp vụ quản lý sản xuất, không chỉ phần mềm quản lý."
+review_kiem_soat_chat_luong_qc,Kiểm soát chất lượng (QC),domain,"Kiểm tra/kiểm soát chất lượng hoặc kinh nghiệm QC rõ, không từ nhãn ngành."
+eng_quality_assurance,Đảm bảo chất lượng (QA),domain,Đảm bảo chất lượng hoặc kinh nghiệm QA được yêu cầu rõ.
+review_quan_ly_chat_luong,Quản lý chất lượng,domain,"Quản lý chất lượng/hệ thống chất lượng rõ, không chỉ học ngành QLCL."
+review_iso_9001,ISO 9001,domain,Kiến thức/áp dụng ISO9001; chứng nhận của công ty đứng riêng không đủ.
+eng_iso_14001,ISO 14001,domain,"Kiến thức/áp dụng ISO14001, không suy từ tên ISO chung."
+eng_iso_45001,ISO 45001,domain,"Kiến thức/áp dụng ISO45001, không suy từ tên ISO chung."
+review_iatf_16949,IATF 16949,domain,Kiến thức/áp dụng IATF16949 rõ.
+eng_iso_generic,ISO,domain,"Kiến thức ISO chung được nêu, không tự chọn số tiêu chuẩn."
+review_5s,5S,domain,Phương pháp 5S được nêu trong năng lực chuyên môn.
+eng_lean,Lean,domain,Phương pháp Lean trong ngữ cảnh cải tiến/sản xuất rõ.
+eng_kaizen,Kaizen,domain,Phương pháp Kaizen được nêu rõ.
+eng_six_sigma,Six Sigma,domain,"Phương pháp Six Sigma được nêu rõ, không suy từ Green Belt chung."
+review_spc,SPC,domain,Công cụ SPC được nêu trong yêu cầu năng lực.
+review_fmea,FMEA,domain,Công cụ FMEA được nêu trong yêu cầu năng lực.
+review_apqp,APQP,domain,Công cụ APQP được nêu rõ.
+review_msa,MSA,domain,Công cụ MSA được nêu rõ.
+review_ppap,PPAP,domain,Công cụ PPAP được nêu rõ.
+eng_7qc,7 QC tools,domain,Bảy công cụ QC được nêu rõ.
+eng_haccp,HACCP,domain,Kiến thức/áp dụng HACCP được nêu rõ.
+eng_safety,An toàn lao động,domain,Kiến thức chuyên môn an toàn lao động; tuân thủ nội quy chung không đủ.
+review_he_dieu_hanh_windows,Hệ điều hành Windows,technology,Hiểu biết/sử dụng Windows; không suy từ sở hữu máy tính.
+eng_measurement_tools,Dụng cụ đo kỹ thuật,tool,Dụng cụ đo kỹ thuật chung; không tự suy lĩnh vực đo cơ khí/điện cụ thể.
+review_3ds_max,3ds Max,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+review_lumion,Lumion,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_vray,V-Ray,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_corona,Corona Renderer,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_etabs,ETABS,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_sap2000,SAP2000,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_safe,SAFE,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_navisworks,Navisworks,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+review_microsoft_project,Microsoft Project,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_primavera,Primavera,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_bim,BIM,technology,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_quantity_takeoff,Bóc tách khối lượng,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+review_lap_du_toan,Lập dự toán,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+review_doc_hieu_du_toan_cong_trinh,Đọc hiểu dự toán công trình,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_site_supervision,Giám sát thi công,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_progress_planning,Lập tiến độ thi công,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+review_quan_ly_du_an,Quản lý dự án,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_construction_management,Quản lý thi công,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_acceptance,Nghiệm thu công trình,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_shop_drawing,Shop drawing,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_tender_documents,Lập hồ sơ thầu,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_interior_design,Thiết kế nội thất,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_architectural_design,Thiết kế kiến trúc,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_structural_design,Thiết kế kết cấu,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_hand_drawing,Vẽ tay,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_typography,Typography,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+con_color_theory,Lý thuyết màu sắc,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+review_giang_day,Giảng dạy,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_lesson_planning,Soạn giáo án,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_classroom_management,Quản lý lớp học,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+review_bien_phien_dich,Biên phiên dịch,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_translation,Biên dịch,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_interpreting,Phiên dịch,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_admissions_counselling,Tư vấn tuyển sinh,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_zoom,Zoom,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_google_meet,Google Meet,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_google_classroom,Google Classroom,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_moodle,Moodle,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_lms,LMS,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_trados,Trados,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_memoq,memoQ,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+edu_wordfast,Wordfast,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_front_desk,Nghiệp vụ lễ tân,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_table_service,Phục vụ bàn,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_cooking,Chế biến món ăn,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_bartending,Pha chế,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_housekeeping,Nghiệp vụ buồng phòng,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_room_reservation,Đặt phòng,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_ticketing,Đặt vé,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_tour_operation,Điều hành tour,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_tour_guiding,Hướng dẫn du lịch,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_restaurant_management,Quản lý nhà hàng,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_store_management,Quản lý cửa hàng,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_cashiering,Thu ngân,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_food_safety,Vệ sinh an toàn thực phẩm,domain,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_pos,POS,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_opera,Opera PMS,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_pms,PMS khách sạn,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_amadeus,Amadeus,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_sabre,Sabre,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_galileo,Galileo,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+ret_abacus,Abacus,tool,"Năng lực hoặc công cụ được nêu rõ trong requirements; không suy từ nhãn ngành, tên vị trí hay ngành học đứng riêng."
+life_patient_care,Chăm sóc bệnh nhân,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_nursing,Nghiệp vụ điều dưỡng,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_blood_collection,Lấy máu,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_vital_signs,Đo sinh hiệu,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_first_aid,Sơ cứu,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_cpr,Hồi sức tim phổi,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_vaccination,Tiêm chủng,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_compounding,Bào chế,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_drug_sales,Bán thuốc,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_gmp,GMP,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_gpp,GPP,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_glp,GLP,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_gdp,GDP dược phẩm,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_pharmacy_law,Luật Dược,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_testing,Kiểm nghiệm,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_microbiology,Vi sinh,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_iso22000,ISO 22000,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_fssc,FSSC,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_pattern_design,Thiết kế rập,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_pattern_grading,Nhảy size,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_marker_making,Giác sơ đồ,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_sample_sewing,May mẫu,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+review_ky_thuat_san_xuat_may_mac,Kỹ thuật sản xuất may mặc,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_sewing_machine,Sử dụng máy may,tool,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_cutting_sewing,Kỹ thuật cắt may,domain,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_gerber,Gerber,tool,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_accumark,Gerber AccuMark,tool,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_lectra,Lectra,tool,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_optitex,Optitex,tool,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_clo3d,CLO 3D,tool,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_browzwear,Browzwear,tool,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."
+life_gsd,GSD,tool,"Yêu cầu năng lực hoặc công cụ được nêu rõ; không suy từ ngành học, nhãn ngành hoặc nơi làm việc. Không suy chứng nhận của nhà máy thành năng lực ứng viên."

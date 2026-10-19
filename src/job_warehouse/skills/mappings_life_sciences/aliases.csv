@@ -1,0 +1,1174 @@
+skill_code,alias,mode
+python,Python,literal
+java,Java,literal
+javascript,JavaScript,literal
+typescript,TypeScript,literal
+cpp,C++,literal
+csharp,C#,literal
+csharp,C Sharp,literal
+dotnet,.NET,literal
+dotnet,dotnet,literal
+php,PHP,literal
+golang,Golang,literal
+golang,Go language,literal
+ruby,Ruby,literal
+kotlin,Kotlin,literal
+swift,Swift,literal
+sql,SQL,literal
+mysql,MySQL,literal
+mysql,My SQL,literal
+postgresql,PostgreSQL,literal
+postgresql,Postgres,literal
+sql_server,SQL Server,literal
+sql_server,MSSQL,literal
+sql_server,MS SQL Server,literal
+oracle_db,Oracle Database,literal
+mongodb,MongoDB,literal
+redis,Redis,literal
+html,HTML,literal
+html,HTML5,literal
+css,CSS,literal
+css,CSS3,literal
+react,React,literal
+react,ReactJS,literal
+react,React.js,literal
+react_native,React Native,literal
+vue,Vue.js,literal
+vue,VueJS,literal
+angular,Angular,literal
+angularjs,AngularJS,literal
+nodejs,Node.js,literal
+nodejs,NodeJS,literal
+nodejs,Node JS,literal
+spring,Spring Framework,literal
+spring_boot,Spring Boot,literal
+django,Django,literal
+flask,Flask,literal
+laravel,Laravel,literal
+git,Git,literal
+github,GitHub,literal
+linux,Linux,literal
+docker,Docker,literal
+kubernetes,Kubernetes,literal
+kubernetes,K8s,literal
+aws,AWS,literal
+aws,Amazon Web Services,literal
+azure,Azure,literal
+azure,Microsoft Azure,literal
+gcp,GCP,literal
+gcp,Google Cloud,literal
+gcp,Google Cloud Platform,literal
+spark,Apache Spark,literal
+pyspark,PySpark,literal
+airflow,Airflow,literal
+airflow,Apache Airflow,literal
+kafka,Kafka,literal
+kafka,Apache Kafka,literal
+power_bi,Power BI,literal
+power_bi,PowerBI,literal
+tableau,Tableau,literal
+selenium,Selenium,literal
+postman,Postman,literal
+manual_testing,manual testing,literal
+manual_testing,kiểm thử thủ công,literal
+manual_testing,manual test,literal
+automation_testing,automation testing,literal
+automation_testing,automated testing,literal
+automation_testing,kiểm thử tự động,literal
+automation_testing,automation test,literal
+test_case,test case,literal
+test_case,testcase,literal
+test_case,ca kiểm thử,literal
+oop,OOP,literal
+oop,lập trình hướng đối tượng,literal
+oop,object oriented programming,literal
+rest_api,REST API,literal
+rest_api,RESTful API,literal
+excel,Excel,literal
+excel,Microsoft Excel,literal
+excel,MS Excel,literal
+word,Microsoft Word,literal
+word,MS Word,literal
+powerpoint,PowerPoint,literal
+powerpoint,Power Point,literal
+powerpoint,Microsoft PowerPoint,literal
+ms_office,Microsoft Office,literal
+ms_office,MS Office,literal
+office_it,tin học văn phòng,literal
+office_it,vi tính văn phòng,literal
+google_sheets,Google Sheets,literal
+google_sheets,Google Sheet,literal
+misa,MISA,literal
+fast_accounting,FAST Accounting,literal
+fast_accounting,phần mềm FAST,literal
+fast_accounting,phần mềm kế toán FAST,literal
+bravo,BRAVO,literal
+sap,SAP,literal
+erp,ERP,literal
+tax_reporting,báo cáo thuế,literal
+review_ke_khai_thue,kê khai thuế,literal
+tax_reporting,khai báo thuế,literal
+review_quyet_toan_thue,quyết toán thuế,literal
+financial_reporting,báo cáo tài chính,literal
+financial_reporting,financial reporting,literal
+financial_reporting,financial statements,literal
+payroll,tính lương,literal
+payroll,payroll,literal
+cost_accounting,kế toán giá thành,literal
+cost_accounting,cost accounting,literal
+account_reconciliation,đối chiếu công nợ,literal
+photoshop,Photoshop,literal
+photoshop,Adobe Photoshop,literal
+illustrator,Illustrator,literal
+illustrator,Adobe Illustrator,literal
+indesign,InDesign,literal
+indesign,Adobe InDesign,literal
+coreldraw,CorelDRAW,literal
+coreldraw,Corel Draw,literal
+figma,Figma,literal
+canva,Canva,literal
+premiere,Premiere,literal
+premiere,Adobe Premiere,literal
+premiere,Premiere Pro,literal
+after_effects,After Effects,literal
+after_effects,AfterEffects,literal
+capcut,CapCut,literal
+seo,SEO,literal
+seo,search engine optimization,literal
+seo,tối ưu công cụ tìm kiếm,literal
+sem,SEM,literal
+sem,search engine marketing,literal
+digital_marketing,Digital Marketing,literal
+digital_marketing,marketing kỹ thuật số,literal
+digital_marketing,tiếp thị số,literal
+content_marketing,Content Marketing,literal
+content_marketing,tiếp thị nội dung,literal
+email_marketing,Email Marketing,literal
+social_media,Social Media Marketing,literal
+social_media,Social Marketing,literal
+social_media,marketing mạng xã hội,literal
+google_ads,Google Ads,literal
+google_ads,Google AdWords,literal
+facebook_ads,Facebook Ads,literal
+facebook_ads,Facebook Advertising,literal
+facebook_ads,quảng cáo Facebook,literal
+tiktok_ads,TikTok Ads,literal
+tiktok_ads,quảng cáo TikTok,literal
+google_analytics,Google Analytics,literal
+google_analytics,GA4,literal
+tag_manager,Google Tag Manager,literal
+search_console,Google Search Console,literal
+english,tiếng Anh,literal
+english,English,literal
+english,Anh ngữ,literal
+chinese,tiếng Trung,literal
+chinese,tiếng Hoa,literal
+chinese,Chinese,literal
+chinese,Trung ngữ,literal
+japanese,tiếng Nhật,literal
+japanese,Japanese,literal
+japanese,Nhật ngữ,literal
+korean,tiếng Hàn,literal
+korean,Korean,literal
+korean,Hàn ngữ,literal
+french,tiếng Pháp,literal
+french,French,literal
+french,Pháp ngữ,literal
+german,tiếng Đức,literal
+german,German,literal
+word,Word,contextual
+ms_office,Office,contextual
+english,IELTS,certificate
+english,TOEIC,certificate
+english,TOEFL,certificate
+chinese,HSK,certificate
+japanese,JLPT,certificate
+korean,TOPIK,certificate
+french,DELF,certificate
+french,DALF,certificate
+powerpoint,PPT,contextual
+spark,Spark,contextual
+rest_api,API REST,literal
+rest_api,REST APIs,literal
+rest_api,REST integrations,literal
+csharp,C #,literal
+oop,object-oriented programming,literal
+vue,Vue,contextual
+office_it,phần mềm văn phòng,literal
+office_it,vi tính & ứng dụng văn phòng,literal
+fast_accounting,FAST,contextual
+illustrator,Illustrators,contextual
+digital_marketing,Marketing online,literal
+digital_marketing,marketing về online,literal
+cost_accounting,product costing,literal
+content_marketing,viết content,contextual
+content_marketing,viết nội dung,contextual
+content_marketing,viết bài,contextual
+content_marketing,biên tập nội dung,contextual
+content_marketing,sáng tạo nội dung,contextual
+content_marketing,sản xuất nội dung,contextual
+content_marketing,content creation,contextual
+content_marketing,content writing,contextual
+content_marketing,copywriting,contextual
+content_marketing,content,contextual
+digital_marketing,digital,contextual
+digital_marketing,truyền thông số,contextual
+social_media,social media,contextual
+social_media,mạng xã hội,contextual
+social_media,phát triển cộng đồng,contextual
+facebook_ads,Facebook,contextual
+tiktok_ads,TikTok,contextual
+english,Anh,shared_language
+chinese,Trung,shared_language
+chinese,Hoa,shared_language
+japanese,Nhật,shared_language
+korean,Hàn,shared_language
+french,Pháp,shared_language
+german,Đức,shared_language
+content_marketing,viết SEO,contextual
+social_media,post social,contextual
+rest_api,REST,contextual
+content_marketing,thiết kế banner,contextual
+content_marketing,thiết kế hình ảnh,contextual
+content_marketing,thiết kế đồ họa,contextual
+content_marketing,quay dựng,contextual
+content_marketing,quay chụp,contextual
+content_marketing,quay phim,contextual
+content_marketing,chụp ảnh,contextual
+content_marketing,dựng video,contextual
+content_marketing,biên tập video,contextual
+content_marketing,sản xuất video,contextual
+content_marketing,chỉnh sửa ảnh,contextual
+content_marketing,chỉnh sửa hình ảnh,contextual
+content_marketing,chỉnh sửa video,contextual
+content_marketing,video editing,contextual
+content_marketing,video production,contextual
+content_marketing,photography,contextual
+content_marketing,graphic design,contextual
+social_media,TikTok/Reels,contextual
+facebook_ads,FBads,literal
+facebook_ads,FB Ads,literal
+illustrator,AI,contextual
+photoshop,PS,contextual
+premiere,Pr,contextual
+premiere,Adobe Premier,literal
+after_effects,After effect,literal
+illustrator,Ilustrator,literal
+google_ads,GG ads,literal
+office_it,tin học VP,literal
+office_it,công cụ văn phòng,literal
+content_marketing,viết quảng cáo,contextual
+content_marketing,xây dựng nội dung,contextual
+content_marketing,kịch bản video,contextual
+content_marketing,nội dung video,contextual
+content_marketing,quay video,contextual
+content_marketing,tạo ra video,contextual
+content_marketing,viết lách,contextual
+content_marketing,tối ưu nội dung,contextual
+content_marketing,tối ưu hóa nội dung,contextual
+content_marketing,nội dung đa phương tiện,contextual
+content_marketing,thiết kế các ấn phẩm,contextual
+content_marketing,"quay, dựng clip",contextual
+content_marketing,xử lý video,contextual
+content_marketing,visual storytelling,contextual
+digital_marketing,quảng cáo online,contextual
+digital_marketing,tiếp thị Online,contextual
+digital_marketing,tiêp thị Online,contextual
+digital_marketing,truyền thông online,contextual
+digital_marketing,DigDigital Marketing,contextual
+social_media,quản lý fanpage,contextual
+social_media,quản trị fanpage,contextual
+social_media,marketing Facebook,contextual
+social_media,Social Post,contextual
+social_media,social media analytics,contextual
+social_media,thuật toán Facebook,contextual
+social_media,truyền thông xã hội,contextual
+social_media,mạng xh,contextual
+social_media,sản xuất nội dung trên,contextual
+facebook_ads,FB,contextual
+facebook_ads,Facebock,contextual
+google_ads,Google,contextual
+tiktok_ads,Tik Tok,contextual
+photoshop,PTS,literal
+search_console,Google Console,literal
+seo,S.e.o,literal
+content_marketing,kinh nghiệm livestream,contextual
+review_crm,CRM,literal
+review_crm,Customer Relationship Management,literal
+review_ban_hang_sales,bán hàng,literal
+review_ban_hang_sales,sales,literal
+review_ban_hang_sales,sale,literal
+review_cham_soc_khach_hang,chăm sóc khách hàng,literal
+review_cham_soc_khach_hang,CSKH,literal
+review_cham_soc_khach_hang,dịch vụ khách hàng,literal
+review_cham_soc_khach_hang,customer service,literal
+review_cham_soc_khach_hang,customer support,literal
+review_telesales,telesales,literal
+review_telesales,telesale,literal
+review_telesales,tele sales,literal
+review_telesales,tư vấn qua điện thoại,literal
+review_telesales,bán hàng qua điện thoại,literal
+review_ban_hang_online,bán hàng online,literal
+review_ban_hang_online,bán hàng trực tuyến,literal
+review_ban_hang_online,sales online,literal
+review_ban_hang_online,sale online,literal
+review_kien_thuc_bat_dong_san,kiến thức bất động sản,literal
+review_kien_thuc_bat_dong_san,am hiểu bất động sản,literal
+review_kien_thuc_bat_dong_san,am hiểu thị trường bất động sản,literal
+review_salesforce,Salesforce,literal
+review_hubspot,HubSpot,literal
+review_kiotviet,KiotViet,literal
+review_sapo,Sapo,literal
+sales_prospecting,tìm kiếm khách hàng,literal
+sales_prospecting,phát triển khách hàng,literal
+sales_prospecting,prospecting,literal
+sales_prospecting,lead generation,literal
+sales_product_consulting,tư vấn sản phẩm,literal
+sales_product_consulting,tư vấn bán hàng,literal
+sales_product_consulting,tư vấn giải pháp,literal
+sales_complaint_handling,xử lý khiếu nại,literal
+sales_complaint_handling,giải quyết khiếu nại,literal
+sales_complaint_handling,complaint handling,literal
+sales_quotation,lập báo giá,literal
+sales_quotation,xây dựng báo giá,literal
+sales_order_management,quản lý đơn hàng,literal
+sales_order_management,xử lý đơn hàng,literal
+sales_order_management,theo dõi đơn hàng,literal
+sales_order_management,order management,literal
+sales_order_management,order processing,literal
+sales_closing,chốt đơn,literal
+sales_closing,chốt sales,literal
+sales_closing,chốt sale,literal
+sales_closing,chốt hợp đồng,literal
+sales_closing,chốt deal,literal
+sales_market_development,phát triển thị trường,literal
+sales_market_development,business development,literal
+sales_market_development,phát triển kinh doanh,literal
+sales_real_estate_brokerage,môi giới bất động sản,literal
+sales_real_estate_brokerage,môi giới BĐS,literal
+sales_real_estate_legal,pháp lý bất động sản,literal
+sales_distribution_management,quản lý hệ thống phân phối,literal
+sales_call_center,call center,literal
+sales_call_center,call centre,literal
+sales_call_center,trực tổng đài,literal
+sales_call_center,nghiệp vụ tổng đài,literal
+review_ban_hang_sales,nhân viên kinh doanh,literal
+review_ban_hang_sales,làm kinh doanh,literal
+review_ban_hang_sales,lĩnh vực kinh doanh,literal
+review_ban_hang_sales,kinh nghiệm kinh doanh,literal
+review_ban_hang_sales,quy trình kinh doanh,literal
+review_ban_hang_sales,kinh doanh bán lẻ,literal
+review_ban_hang_sales,kinh doanh thị trường,literal
+review_ban_hang_online,kinh doanh online,literal
+review_ban_hang_online,bán hàng trên các sàn TMĐT,literal
+review_ban_hang_online,bán hàng trên sàn thương mại điện tử,literal
+review_cham_soc_khach_hang,phục vụ khách hàng,literal
+review_cham_soc_khach_hang,customer care,literal
+review_kien_thuc_bat_dong_san,am hiểu về thị trường bất động sản,literal
+review_kien_thuc_bat_dong_san,am hiểu về thị trường BĐS,literal
+review_kien_thuc_bat_dong_san,kiến thức về bất động sản,literal
+review_kien_thuc_bat_dong_san,kiến thức và kinh nghiệm trong lĩnh vực bất động sản,literal
+sales_prospecting,khai thác khách hàng,literal
+sales_prospecting,hunting khách hàng,literal
+sales_prospecting,phát triển dữ liệu khách hàng,literal
+sales_product_consulting,tư vấn các sản phẩm,literal
+sales_product_consulting,tư vấn cho khách hàng về việc mua/bán,literal
+sales_real_estate_legal,pháp lý liên quan đến bất động sản,literal
+sales_real_estate_legal,quy định pháp luật trong lĩnh vực bất động sản,literal
+sales_real_estate_legal,thủ tục Sổ đỏ,literal
+sales_real_estate_legal,thủ tục sang tên nhà đất,literal
+office_it,phần mềm tiện ích văn phòng,literal
+office_it,ứng dụng văn phòng,literal
+sql_server,MS SQL,literal
+word,world,contextual
+google_sheets,Sheets,contextual
+sales_closing,close a deal,literal
+review_telesales,telemarketing,literal
+review_cham_soc_khach_hang,chăm sóc tệp khách hàng,literal
+sales_prospecting,tìm khách hàng,literal
+sales_prospecting,phát triển mạng lưới khách hàng,literal
+sales_prospecting,new business acquisition,literal
+sales_prospecting,generate leads,literal
+sales_prospecting,building client networks,literal
+sales_product_consulting,solution consulting,literal
+sales_product_consulting,tư vấn cho khách hàng sản phẩm,literal
+sales_closing,chốt khách,literal
+sales_closing,closing deals,literal
+office_it,máy tính văn phòng,literal
+office_it,Office computer,literal
+english,Anh văn,literal
+word,wold,contextual
+canva,canvas,contextual
+canva,cava,contextual
+capcut,cupcut,literal
+review_oracle,Oracle,literal
+sql_server,Microsoft SQL,literal
+cost_accounting,tính toán giá thành,literal
+review_kien_thuc_bat_dong_san,biết về ngành Bất động sản,literal
+review_kien_thuc_bat_dong_san,"am hiểu về kinh tế Xã hội, thị trường bất động sản",literal
+content_marketing,edit video,contextual
+hr_recruitment,tuyển dụng,literal
+hr_recruitment,recruitment,literal
+hr_recruitment,recruiting,literal
+hr_recruitment,talent acquisition,literal
+hr_interviewing,phỏng vấn tuyển dụng,literal
+hr_interviewing,phỏng vấn ứng viên,literal
+hr_interviewing,candidate interviewing,literal
+hr_administration,hành chính văn phòng,literal
+hr_administration,nghiệp vụ hành chính,literal
+hr_administration,lĩnh vực hành chính,literal
+hr_administration,công việc hành chính,literal
+hr_administration,hành chính tổng vụ,literal
+hr_administration,administrative work,literal
+hr_personnel_administration,HCNS,literal
+hr_personnel_administration,HC-NS,literal
+hr_personnel_administration,HC - NS,literal
+hr_personnel_administration,hành chính nhân sự,literal
+hr_personnel_administration,hành chính – nhân sự,literal
+hr_personnel_administration,hành chính - nhân sự,literal
+hr_personnel_administration,HR Executive,literal
+hr_personnel_administration,HR tổng hợp,literal
+hr_human_resources,nghiệp vụ nhân sự,literal
+hr_human_resources,công tác nhân sự,literal
+hr_human_resources,kinh nghiệm nhân sự,literal
+hr_human_resources,quản lý nhân sự,literal
+hr_human_resources,human resources management,literal
+hr_compensation_benefits,C&B,literal
+hr_compensation_benefits,compensation and benefits,literal
+hr_compensation_benefits,compensation & benefits,literal
+hr_compensation_benefits,tiền lương và phúc lợi,literal
+hr_timekeeping,chấm công,literal
+hr_timekeeping,timekeeping,literal
+hr_timekeeping,attendance management,literal
+hr_employee_training,đào tạo nhân sự,literal
+hr_employee_training,đào tạo nhân viên,literal
+hr_employee_training,đào tạo nội bộ,literal
+hr_employee_training,employee training,literal
+hr_employee_training,staff training,literal
+hr_records,quản lý hồ sơ,literal
+hr_records,lưu trữ hồ sơ,literal
+hr_records,sắp xếp hồ sơ,literal
+hr_records,quản lý sắp xếp hồ sơ,literal
+hr_records,records management,literal
+hr_document_drafting,soạn thảo văn bản,literal
+hr_document_drafting,soạn thảo tài liệu,literal
+hr_document_drafting,document drafting,literal
+hr_hrm,HRM,literal
+hr_hrm,HRIS,literal
+hr_hrm,phần mềm quản lý nhân sự,literal
+hr_hrm,human resource management system,literal
+hr_misa,MISA AMIS nhân sự,literal
+hr_misa,AMIS nhân sự,literal
+hr_misa,MISA HRM,literal
+review_bao_hiem_xa_hoi,bảo hiểm xã hội,literal
+review_bao_hiem_xa_hoi,BHXH,literal
+review_bao_hiem_xa_hoi,social insurance,literal
+review_luat_lao_dong,luật lao động,literal
+review_luat_lao_dong,labor law,literal
+review_luat_lao_dong,labour law,literal
+hr_insurance_law,luật bảo hiểm,literal
+hr_insurance_law,insurance law,literal
+review_luat_thue,luật thuế,literal
+review_luat_thue,tax law,literal
+review_thue_tncn,thuế TNCN,literal
+review_thue_tncn,thuế thu nhập cá nhân,literal
+review_thue_tncn,personal income tax,literal
+review_ke_toan_tong_hop,kế toán tổng hợp,literal
+review_ke_toan_tong_hop,general accounting,literal
+review_nghiep_vu_ke_toan,nghiệp vụ kế toán,literal
+review_nghiep_vu_ke_toan,kinh nghiệm kế toán,literal
+review_nghiep_vu_ke_toan,lĩnh vực kế toán,literal
+review_nghiep_vu_ke_toan,làm kế toán,literal
+review_nghiep_vu_ke_toan,accounting experience,literal
+review_phan_mem_ke_toan,phần mềm kế toán,literal
+review_phan_mem_ke_toan,accounting software,literal
+review_ke_khai_thue,khai thuế,literal
+review_ke_khai_thue,tax declaration,literal
+review_quyet_toan_thue,tax finalization,literal
+review_phan_tich_tai_chinh,phân tích tài chính,literal
+review_phan_tich_tai_chinh,financial analysis,literal
+review_phan_tich_tai_chinh,financial analyses,literal
+review_phan_tich_bao_cao_tai_chinh,phân tích báo cáo tài chính,literal
+review_phan_tich_bao_cao_tai_chinh,phân tích BCTC,literal
+review_phan_tich_bao_cao_tai_chinh,financial statement analysis,literal
+review_phan_tich_bao_cao_tai_chinh,đọc hiểu báo cáo tài chính,literal
+review_nghiep_vu_tin_dung,nghiệp vụ tín dụng,literal
+review_nghiep_vu_tin_dung,credit operations,literal
+review_nghiep_vu_tin_dung,loan processing,literal
+finance_credit_assessment,thẩm định tín dụng,literal
+finance_credit_assessment,thẩm định khoản vay,literal
+finance_credit_assessment,credit assessment,literal
+finance_credit_assessment,credit appraisal,literal
+review_quan_ly_rui_ro,quản lý rủi ro,literal
+review_quan_ly_rui_ro,quản trị rủi ro,literal
+review_quan_ly_rui_ro,risk management,literal
+review_quan_ly_rui_ro,quản lý rủi ro tín dụng,literal
+review_quan_ly_rui_ro,rủi ro tín dụng,literal
+finance_basel,Basel II,literal
+finance_basel,Basel 2,literal
+finance_consulting,tư vấn tài chính,literal
+finance_consulting,financial advisory,literal
+finance_consulting,financial consulting,literal
+finance_consulting,tư vấn giải pháp tài chính,literal
+finance_debt_recovery,xử lý nợ,literal
+finance_debt_recovery,thu hồi nợ,literal
+finance_debt_recovery,debt recovery,literal
+finance_debt_recovery,debt collection,literal
+finance_fundraising,huy động vốn,literal
+finance_fundraising,capital raising,literal
+finance_fundraising,fundraising,literal
+finance_valuation,thẩm định giá,literal
+finance_valuation,định giá tài sản,literal
+finance_valuation,valuation,literal
+finance_project_appraisal,thẩm định dự án,literal
+finance_project_appraisal,project appraisal,literal
+finance_capital_management,quản lý nguồn vốn,literal
+finance_capital_management,quản lý dòng tiền,literal
+finance_capital_management,cash flow management,literal
+finance_planning,kế hoạch tài chính,literal
+finance_planning,financial planning,literal
+review_quan_ly_tai_chinh,quản lý tài chính,literal
+review_quan_ly_tai_chinh,financial management,literal
+finance_cross_selling,cross-sale,literal
+finance_cross_selling,cross-sell,literal
+finance_cross_selling,cross selling,literal
+finance_cross_selling,upsell,literal
+finance_cross_selling,upselling,literal
+finance_cross_selling,bán chéo,literal
+finance_customer_portfolio,quản lý danh mục khách hàng,literal
+finance_customer_portfolio,customer portfolio management,literal
+review_nghiep_vu_ngan_hang,nghiệp vụ ngân hàng,literal
+review_nghiep_vu_ngan_hang,banking operations,literal
+review_nghiep_vu_tai_chinh,nghiệp vụ tài chính,literal
+review_nghiep_vu_tai_chinh,financial operations,literal
+review_luat_doanh_nghiep,luật doanh nghiệp,literal
+review_luat_doanh_nghiep,enterprise law,literal
+review_luat_doanh_nghiep,corporate law,literal
+legal_civil_law,luật dân sự,literal
+legal_civil_law,pháp luật dân sự,literal
+legal_civil_law,civil law,literal
+legal_commercial_law,luật thương mại,literal
+legal_commercial_law,commercial law,literal
+legal_land_law,luật đất đai,literal
+legal_land_law,land law,literal
+legal_investment_law,luật đầu tư,literal
+legal_investment_law,investment law,literal
+legal_construction_law,luật xây dựng,literal
+legal_construction_law,construction law,literal
+legal_economic_law,luật kinh tế,literal
+legal_economic_law,economic law,literal
+legal_customs_law,luật hải quan,literal
+legal_customs_law,customs law,literal
+legal_contract_review,rà soát hợp đồng,literal
+legal_contract_review,kiểm tra hợp đồng,literal
+legal_contract_review,contract review,literal
+review_soan_thao_hop_dong,soạn thảo hợp đồng,literal
+review_soan_thao_hop_dong,contract drafting,literal
+legal_drafting,soạn thảo văn bản pháp lý,literal
+legal_drafting,soạn thảo các văn bản pháp lý,literal
+legal_drafting,legal drafting,literal
+legal_document_review,rà soát văn bản pháp lý,literal
+legal_document_review,rà soát các văn bản pháp lý,literal
+legal_document_review,legal document review,literal
+legal_consulting,tư vấn pháp lý,literal
+legal_consulting,tư vấn pháp luật,literal
+legal_consulting,legal consulting,literal
+legal_consulting,legal advice,literal
+legal_litigation,tố tụng,literal
+legal_litigation,litigation,literal
+legal_corporate_affairs,pháp chế doanh nghiệp,literal
+legal_corporate_affairs,pháp lý doanh nghiệp,literal
+legal_corporate_affairs,pháp chế nội bộ,literal
+legal_corporate_affairs,in-house legal,literal
+legal_compliance,kiểm soát tuân thủ,literal
+legal_compliance,quy trình tuân thủ,literal
+legal_compliance,regulatory compliance,literal
+legal_compliance,compliance management,literal
+legal_compliance,knowledge of compliance,literal
+legal_project,pháp lý dự án,literal
+legal_project,project legal,literal
+legal_security_law,pháp luật về dịch vụ bảo vệ,literal
+finance_securities_law,luật chứng khoán,literal
+finance_securities_law,securities law,literal
+legal_legal_knowledge,kiến thức pháp luật,literal
+legal_legal_knowledge,kiến thức về pháp luật,literal
+legal_legal_knowledge,knowledge of law,literal
+review_phan_tich_du_lieu,phân tích dữ liệu,literal
+review_phan_tich_du_lieu,data analysis,literal
+review_phan_tich_du_lieu,data analytics,literal
+review_phan_tich_du_lieu,data analys,literal
+review_thong_ke_so_lieu,thống kê số liệu,literal
+review_thong_ke_so_lieu,thông kê số liệu,literal
+review_thong_ke_so_lieu,thống kê toán,literal
+review_thong_ke_so_lieu,statistical analysis,literal
+review_microsoft_teams,Microsoft Teams,literal
+review_microsoft_teams,MS Teams,literal
+review_microsoft_teams,MS Team,literal
+hr_outlook,Outlook,literal
+hr_outlook,Microsoft Outlook,literal
+legal_ecus,ECUS,literal
+legal_vnaccs,VNACCS,literal
+legal_hs_code,mã HS,literal
+legal_hs_code,tra cứu biểu thuế,literal
+legal_hs_code,HS code,literal
+word,Words,literal
+excel,Exel,literal
+powerpoint,PP,contextual
+office_it,Vi tính: văn phòng,literal
+office_it,Tin học: Văn phòng,literal
+financial_reporting,lên báo cáo tài chính,literal
+legal_civil_law,dân sự,contextual
+legal_commercial_law,thương mại,contextual
+review_luat_doanh_nghiep,doanh nghiệp,contextual
+legal_land_law,đất đai,contextual
+legal_investment_law,đầu tư,contextual
+legal_construction_law,xây dựng,contextual
+review_luat_lao_dong,lao động,contextual
+hr_employee_training,đào tạo,contextual
+review_soan_thao_hop_dong,"soạn thảo văn bản, hợp đồng",literal
+review_soan_thao_hop_dong,soạn thảo và rà soát hợp đồng,literal
+review_livestream,livestream,literal
+review_livestream,live stream,literal
+financial_reporting,BCTC,literal
+hr_administration,hành chính,contextual
+hr_administration,quản trị hành chính,literal
+hr_administration,trợ lý,literal
+hr_administration,thư kí,literal
+hr_administration,thư ký,literal
+hr_administration,HCVP,literal
+hr_administration,Admin,contextual
+hr_administration,administration,literal
+hr_administration,công việc văn phòng,literal
+hr_administration,nhân viên văn phòng,literal
+hr_human_resources,nhân sự,contextual
+hr_human_resources,quản trị nguồn nhân lực,literal
+hr_human_resources,human resource,literal
+hr_hrm,phần mềm nhân sự,literal
+hr_records,quản lí hồ sơ,literal
+hr_records,quản lý tài liệu,literal
+hr_records,văn thư,literal
+hr_records,lưu trữ,literal
+hr_interviewing,đánh giá phỏng vấn,literal
+hr_insurance_law,luật BHXH,literal
+hr_insurance_law,luật bảo hiểm xã hội,literal
+hr_document_drafting,soạn thảo tốt,literal
+hr_document_drafting,draft documents,literal
+hr_payroll_software,phần mềm chấm công,literal
+hr_payroll_software,phần mềm tính lương,literal
+review_nghiep_vu_ke_toan,kế toán,contextual
+review_nghiep_vu_ke_toan,hạch toán kế toán,literal
+review_nghiep_vu_ke_toan,nghiệp vụ về kế toán,literal
+review_phan_mem_ke_toan,phần mềm misa kế toán,literal
+misa,MISIA,literal
+legal_corporate_affairs,pháp chế,contextual
+legal_corporate_affairs,pháp chế của doanh nghiệp,literal
+legal_corporate_affairs,pháp chế tại doanh nghiệp,literal
+legal_legal_knowledge,pháp luật,contextual
+legal_legal_knowledge,luật pháp,literal
+legal_legal_knowledge,nắm rõ luật,literal
+legal_legal_knowledge,am hiểu về luật,literal
+legal_litigation,khởi kiện,literal
+legal_litigation,quy trình khởi kiện,literal
+legal_consulting,tư vấn giải quyết các tranh chấp quan hệ dân sự,literal
+legal_civil_law,tranh chấp quan hệ dân sự,literal
+legal_contract_review,rà soát và quản lý hợp đồng,literal
+legal_contract_review,"rà soát, quản lý hợp đồng",literal
+review_soan_thao_hop_dong,"soạn thảo, rà soát và quản lý hợp đồng",literal
+review_soan_thao_hop_dong,draft documents and contracts,literal
+review_nghiep_vu_tin_dung,tín dụng,contextual
+review_nghiep_vu_tin_dung,vay tài chính tiêu dùng,literal
+finance_credit_assessment,thẩm định cho vay,literal
+review_quan_ly_rui_ro,QTRR,literal
+review_quan_ly_rui_ro,"kiểm soát, phòng ngừa rủi ro",literal
+review_nghiep_vu_tai_chinh,quy trình rủi ro và tài chính,literal
+review_thong_ke_so_lieu,thống kê,contextual
+review_phan_tich_du_lieu,"phân tích, tổng hợp dữ liệu",literal
+review_crm,phần mềm quản lý khách hàng,literal
+review_ban_hang_sales,buôn bán,literal
+review_luat_doanh_nghiep,luật DN,literal
+powerpoint,Powoint,literal
+office_it,Tin học ☒ Văn phòng,literal
+office_it,kỹ năng văn phòng,literal
+legal_debt_recovery_law,pháp luật liên quan đến hoạt động thu hồi nợ,literal
+legal_debt_recovery_law,pháp luật thu hồi nợ,literal
+sales_real_estate_legal,pháp luật liên quan đến kinh doanh bất động sản,literal
+hr_hrm,phần mềm quản trị nguồn nhân lực,literal
+hr_hrm,phần mềm quản trị nhân sự,literal
+hr_personnel_administration,HC Nhân sự,literal
+hr_records,Document management,literal
+hr_records,văn thư lưu trữ,literal
+hr_records,cập nhật hồ sơ,literal
+hr_records,regulatory compliance documentation,literal
+hr_document_drafting,soạn thảo,literal
+hr_document_drafting,report writing,literal
+hr_document_drafting,viết báo cáo,literal
+hr_document_drafting,soạn thảo các văn bản,literal
+legal_drafting,Legal writing,literal
+legal_drafting,văn bản quy phạm nội bộ,literal
+legal_drafting,"soạn thảo, rà soát các văn bản pháp lý",literal
+legal_legal_knowledge,kiến thức luật,literal
+legal_legal_knowledge,vận dụng Luật,literal
+legal_legal_knowledge,Am hiểu luật,literal
+legal_legal_knowledge,nền tảng pháp lý,literal
+legal_legal_knowledge,Knowledge: Law,literal
+review_nghiep_vu_tai_chinh,nền tảng tài chính,literal
+review_nghiep_vu_tai_chinh,financial principles,literal
+review_nghiep_vu_tai_chinh,kiến thức cơ bản về tài chính,literal
+review_nghiep_vu_tai_chinh,hệ thống tài chính,literal
+review_nghiep_vu_ngan_hang,kiến thức về ngân hàng,literal
+review_nghiep_vu_ngan_hang,kiến thức cơ bản về tài chính ngân hàng,literal
+review_nghiep_vu_ngan_hang,banking knowledge,literal
+review_nghiep_vu_ngan_hang,sản phẩm dịch vụ ngân hàng,literal
+review_nghiep_vu_tin_dung,cho vay tiêu dùng,literal
+review_phan_mem_ke_toan,phần mềm chuyên dụng của Kế toán,literal
+review_phan_tich_du_lieu,phân tích số liệu,literal
+review_phan_tich_du_lieu,analyze data,literal
+review_phan_tich_du_lieu,analyse data,literal
+review_phan_tich_du_lieu,phân tích thông tin/dữ liệu,literal
+review_phan_tich_tai_chinh,phân tích các dự án tài chính,literal
+finance_planning,FP&A,literal
+finance_planning,Budgeting & Planning,literal
+review_quan_ly_tai_chinh,Cloud financial management,literal
+review_quan_ly_tai_chinh,AWS Cloud Financial Management,literal
+review_quan_ly_tai_chinh,Financial control,literal
+hr_compensation_benefits,quy chế lương thưởng,literal
+legal_compliance,quy định tuân thủ,literal
+legal_corporate_affairs,legal field,literal
+legal_corporate_affairs,đăng ký thành lập,literal
+legal_corporate_affairs,giấy phép đăng ký kinh doanh,literal
+review_quan_ly_rui_ro,phân tích rủi ro,literal
+sales_real_estate_legal,luật kinh doanh BĐS,literal
+sales_real_estate_legal,luật kinh doanh bất động sản,literal
+sales_real_estate_legal,pháp lý dự án bất động sản,literal
+legal_contract_review,"rà soát, soạn thảo hợp đồng",literal
+sales_product_consulting,tư vấn xuất khẩu lao động,literal
+sales_call_center,Tổng đài viên,literal
+excel,Excell,literal
+review_luat_thue,thuế,contextual
+hr_insurance_law,bảo hiểm,contextual
+review_nghiep_vu_tai_chinh,financial services,literal
+review_nghiep_vu_ngan_hang,banking products,literal
+cost_accounting,lập giá thành,literal
+review_asp_net,ASP.NET,literal
+plsql,PL/SQL,literal
+review_quan_ly_kho,quản lý kho,literal
+review_quan_ly_kho,quản lí kho,literal
+review_quan_ly_kho,warehouse management,literal
+review_quan_ly_kho,vận hành kho,literal
+log_warehouse_operations,nghiệp vụ kho,literal
+log_warehouse_operations,nhân viên kho,literal
+log_warehouse_operations,làm qua kho,literal
+log_warehouse_operations,thủ kho,literal
+log_warehouse_operations,warehouse operations,literal
+log_inventory_control,quản lý tồn kho,literal
+log_inventory_control,kiểm soát tồn kho,literal
+log_inventory_control,inventory control,literal
+log_inventory_control,inventory management,literal
+review_kiem_ke_hang_hoa,kiểm kê hàng hóa,literal
+review_kiem_ke_hang_hoa,kiểm kê tồn kho,literal
+review_kiem_ke_hang_hoa,kiểm kê,literal
+review_kiem_ke_hang_hoa,stocktaking,literal
+review_kiem_ke_hang_hoa,stock taking,literal
+review_thu_mua,thu mua,literal
+review_thu_mua,mua hàng,literal
+review_thu_mua,procurement,literal
+review_thu_mua,purchasing,literal
+log_supplier_sourcing,phát triển nhà cung cấp,literal
+log_supplier_sourcing,tìm kiếm nhà cung cấp,literal
+log_supplier_sourcing,supplier sourcing,literal
+log_supplier_evaluation,đánh giá nhà cung cấp,literal
+log_supplier_evaluation,lựa chọn nhà cung cấp,literal
+log_supplier_evaluation,supplier evaluation,literal
+review_xuat_nhap_khau,nghiệp vụ xuất nhập khẩu,literal
+review_xuat_nhap_khau,nghiệp vụ XNK,literal
+review_xuat_nhap_khau,quy trình xuất nhập khẩu,literal
+review_xuat_nhap_khau,quy trình khai quan xuất nhập khẩu,literal
+review_xuat_nhap_khau,import export operations,literal
+log_import_export_documents,chứng từ xuất nhập khẩu,literal
+log_import_export_documents,chứng từ XNK,literal
+log_import_export_documents,bộ hồ sơ xuất nhập khẩu,literal
+log_import_export_documents,import export documentation,literal
+review_khai_bao_hai_quan,khai báo hải quan,literal
+review_khai_bao_hai_quan,khai quan,literal
+review_khai_bao_hai_quan,thủ tục hải quan,literal
+review_khai_bao_hai_quan,customs clearance,literal
+review_khai_bao_hai_quan,customs declaration,literal
+review_incoterms,Incoterms,literal
+review_incoterms,Incoterm,literal
+log_supply_chain,quản trị chuỗi cung ứng,literal
+log_supply_chain,quản lý chuỗi cung ứng,literal
+log_supply_chain,supply chain management,literal
+review_dieu_do_van_tai,điều phối vận tải,literal
+review_dieu_do_van_tai,điều độ vận tải,literal
+review_dieu_do_van_tai,điều phối xe,literal
+review_dieu_do_van_tai,điều hành xe,literal
+review_dieu_do_van_tai,điều vận,literal
+review_dieu_do_van_tai,transport coordination,literal
+log_fleet_management,quản lý đội xe,literal
+log_fleet_management,quản lý xe,literal
+log_fleet_management,fleet management,literal
+log_route_management,quản lý lộ trình,literal
+log_route_management,lập lộ trình,literal
+log_route_management,route planning,literal
+log_route_knowledge,rành đường,literal
+log_route_knowledge,thông thạo đường,literal
+log_route_knowledge,am hiểu đường,literal
+log_delivery,giao hàng,literal
+log_delivery,giao nhận hàng,literal
+log_delivery,delivery experience,literal
+log_delivery,kinh nghiệm giao nhận,literal
+log_car_driving,lái xe ô tô,literal
+log_car_driving,lái xe oto,literal
+log_car_driving,lái xe từ 4,literal
+log_car_driving,lái xe 4,literal
+log_driving,kinh nghiệm lái xe,literal
+log_driving,lái xe cho gia đình,literal
+log_driving,lái xe đưa rước,literal
+log_car_driving,car driving,literal
+log_motorcycle_driving,lái xe máy,literal
+log_motorcycle_driving,lái xe mô tô,literal
+log_forklift,lái xe nâng,literal
+log_forklift,vận hành xe nâng,literal
+log_forklift,forklift operation,literal
+review_wms,WMS,literal
+log_tms,TMS,literal
+log_gps,GPS,literal
+log_fifo,FIFO,literal
+log_lifo,LIFO,literal
+log_driving,biết lái xe,literal
+log_driving,driving experience,literal
+review_phan_mem_quan_ly_kho,phần mềm quản lý kho,literal
+review_autocad,AutoCAD,literal
+review_autocad,Auto CAD,literal
+review_solidworks,SolidWorks,literal
+review_solidworks,Solid Works,literal
+eng_inventor,Autodesk Inventor,literal
+eng_inventor,Inventor,literal
+review_revit,Revit,literal
+review_sketchup,SketchUp,literal
+review_sketchup,Sketch Up,literal
+review_cad,CAD,literal
+eng_eplan,EPLAN,literal
+eng_plc,PLC,literal
+eng_plc_programming,lập trình PLC,literal
+eng_plc_programming,PLC programming,literal
+eng_hmi,HMI,literal
+eng_scada,SCADA,literal
+eng_wincc,WinCC,literal
+review_cnc,CNC,literal
+review_lap_trinh_cnc,lập trình CNC,literal
+review_lap_trinh_cnc,chỉnh sửa chương trình CNC,literal
+review_lap_trinh_cnc,CNC programming,literal
+eng_cnc_operation,vận hành máy CNC,literal
+eng_cnc_operation,CNC operation,literal
+eng_gcode,G-code,literal
+eng_gcode,G- Code,literal
+eng_gcode,G Code,literal
+review_doc_ban_ve_ky_thuat,đọc bản vẽ,literal
+review_doc_ban_ve_ky_thuat,đọc hiểu bản vẽ,literal
+review_doc_ban_ve_ky_thuat,"đọc, hiểu bản vẽ",literal
+review_doc_ban_ve_ky_thuat,đọc hiểu tốt bản vẽ,literal
+review_doc_ban_ve_ky_thuat,"đọc, đọc hiểu bản vẽ",literal
+review_doc_ban_ve_ky_thuat,read technical drawings,literal
+review_dung_cu_do_co_khi,dụng cụ đo cơ khí,literal
+eng_measurement_tools,dụng cụ đo,literal
+review_dung_cu_do_co_khi,thước cặp,literal
+review_dung_cu_do_co_khi,panme,literal
+eng_machine_operation,vận hành máy,literal
+eng_machine_operation,machine operation,literal
+eng_equipment_maintenance,bảo trì thiết bị,literal
+eng_equipment_maintenance,bảo trì máy móc,literal
+eng_equipment_maintenance,bảo trì máy,literal
+eng_equipment_maintenance,bảo dưỡng máy,literal
+eng_equipment_maintenance,sửa chữa máy móc,literal
+eng_equipment_maintenance,sửa chữa thiết bị,literal
+eng_equipment_maintenance,sửa chữa máy,literal
+eng_industrial_electricity,điện công nghiệp,literal
+eng_electrical_maintenance,bảo trì điện,literal
+eng_electrical_maintenance,sửa chữa điện,literal
+eng_electrical_maintenance,bảo trì hệ thống điện,literal
+eng_welding,biết hàn,literal
+eng_welding,kinh nghiệm hàn,literal
+eng_welding,thợ hàn,literal
+eng_welding,chứng chỉ nghề hàn,literal
+eng_welding,chứng chỉ hàn,literal
+eng_tig_welding,hàn TIG,literal
+eng_tig_welding,TIG welding,literal
+eng_mig_welding,hàn MIG,literal
+eng_mig_welding,MIG welding,literal
+eng_machining,gia công cơ khí,literal
+eng_machining,mechanical machining,literal
+eng_mechanical_manufacturing,cơ khí chế tạo máy,literal
+eng_mechanical_manufacturing,cơ khí chế tạo,literal
+eng_mechanical_manufacturing,chế tạo máy,literal
+eng_production_management,quản lý sản xuất,literal
+eng_production_management,quản lí sản xuất,literal
+eng_production_management,production management,literal
+eng_production_management,trưởng phòng sản xuất,literal
+review_kiem_soat_chat_luong_qc,kiểm soát chất lượng,literal
+review_kiem_soat_chat_luong_qc,kiểm tra chất lượng,literal
+review_kiem_soat_chat_luong_qc,kiểm định chất lượng,literal
+review_kiem_soat_chat_luong_qc,QC,contextual
+review_kiem_soat_chat_luong_qc,quality control,literal
+review_kiem_soat_chat_luong_qc,quality inspection,literal
+eng_quality_assurance,đảm bảo chất lượng,literal
+eng_quality_assurance,bảo đảm chất lượng,literal
+eng_quality_assurance,QA,contextual
+eng_quality_assurance,quality assurance,literal
+review_quan_ly_chat_luong,quản lý chất lượng,literal
+review_quan_ly_chat_luong,quản lí chất lượng,literal
+review_quan_ly_chat_luong,quản lý hệ thống chất lượng,literal
+review_quan_ly_chat_luong,quality management,literal
+review_iso_9001,ISO 9001,literal
+review_iso_9001,ISO9001,literal
+review_iso_9001,ISO:9001,literal
+review_iso_9001,ISO 9001:2008,literal
+review_iso_9001,ISO 9001:2015,literal
+eng_iso_14001,ISO 14001,literal
+eng_iso_14001,ISO14001,literal
+eng_iso_45001,ISO 45001,literal
+eng_iso_45001,ISO45001,literal
+review_iatf_16949,IATF 16949,literal
+review_iatf_16949,IATF16949,literal
+eng_iso_generic,ISO,literal
+review_5s,5S,literal
+eng_lean,Lean,literal
+eng_lean,sản xuất tinh gọn,literal
+eng_kaizen,Kaizen,literal
+eng_six_sigma,Six Sigma,literal
+eng_six_sigma,SixSigma,literal
+review_spc,SPC,literal
+review_fmea,FMEA,literal
+review_apqp,APQP,literal
+review_msa,MSA,literal
+review_ppap,PPAP,literal
+eng_7qc,7QC,literal
+eng_7qc,7 QC tools,literal
+eng_7qc,7QC tool,literal
+eng_haccp,HACCP,literal
+eng_safety,an toàn lao động,literal
+eng_safety,occupational safety,literal
+review_he_dieu_hanh_windows,Windows,literal
+review_3ds_max,3ds Max,literal
+review_3ds_max,3D Max,literal
+review_3ds_max,3Dmax,literal
+review_3ds_max,3dsmax,literal
+review_lumion,Lumion,literal
+con_vray,V-Ray,literal
+con_vray,Vray,literal
+con_vray,V Ray,literal
+con_corona,Corona Renderer,literal
+con_corona,Render Corona,literal
+con_corona,Corona render,literal
+con_etabs,ETABS,literal
+con_sap2000,SAP2000,literal
+con_sap2000,SAP 2000,literal
+con_safe,CSI SAFE,literal
+con_safe,phần mềm SAFE,literal
+con_navisworks,Navisworks,literal
+con_navisworks,Naviswork,literal
+review_microsoft_project,MS Project,literal
+review_microsoft_project,Microsoft Project,literal
+review_microsoft_project,MS. Project,literal
+con_primavera,Primavera,literal
+con_bim,BIM,literal
+con_bim,Building Information Modeling,literal
+con_bim,Building Information Modelling,literal
+con_quantity_takeoff,bóc tách khối lượng,literal
+con_quantity_takeoff,bóc tách vật tư,literal
+con_quantity_takeoff,bóc khối lượng,literal
+con_quantity_takeoff,quantity takeoff,literal
+con_quantity_takeoff,quantity take-off,literal
+review_lap_du_toan,lập dự toán,literal
+review_lap_du_toan,lập dự toán công trình,literal
+review_lap_du_toan,lập dự toán xây dựng,literal
+review_doc_hieu_du_toan_cong_trinh,đọc hiểu dự toán,literal
+con_site_supervision,giám sát thi công,literal
+con_site_supervision,giám sát công trình,literal
+con_site_supervision,giám sát xây dựng,literal
+con_site_supervision,giám sát hiện trường,literal
+con_site_supervision,construction supervision,literal
+con_site_supervision,site supervision,literal
+con_progress_planning,lập tiến độ thi công,literal
+con_progress_planning,lập tiến độ/tổng tiến độ thi công,literal
+con_progress_planning,lập tổng tiến độ thi công,literal
+review_quan_ly_du_an,quản lý dự án,literal
+review_quan_ly_du_an,quản lí dự án,literal
+review_quan_ly_du_an,project management,literal
+con_construction_management,quản lý thi công,literal
+con_construction_management,quản lí thi công,literal
+con_construction_management,chỉ huy trưởng công trình,literal
+con_acceptance,nghiệm thu công trình,literal
+con_acceptance,nghiệm thu khối lượng,literal
+con_acceptance,hồ sơ nghiệm thu,literal
+con_shop_drawing,shop drawing,literal
+con_shop_drawing,shopdrawing,literal
+con_tender_documents,lập hồ sơ thầu,literal
+con_tender_documents,lập hồ sơ dự thầu,literal
+con_tender_documents,lập hồ sơ mời thầu,literal
+legal_construction_law,pháp luật xây dựng,literal
+legal_construction_law,pháp luật về xây dựng,literal
+con_interior_design,thiết kế nội thất,literal
+con_interior_design,interior design,literal
+con_architectural_design,thiết kế kiến trúc,literal
+con_architectural_design,architectural design,literal
+con_structural_design,thiết kế kết cấu,literal
+con_structural_design,structural design,literal
+con_hand_drawing,vẽ tay,literal
+con_hand_drawing,hand drawing,literal
+con_typography,Typography,literal
+con_typography,kiểu chữ,literal
+con_color_theory,lý thuyết màu sắc,literal
+con_color_theory,color theory,literal
+review_giang_day,giảng dạy,literal
+review_giang_day,dạy học,literal
+review_giang_day,teaching,literal
+review_giang_day,TESOL,literal
+review_giang_day,TEFL,literal
+review_giang_day,CELTA,literal
+edu_lesson_planning,soạn giáo án,literal
+edu_lesson_planning,soạn bài giảng,literal
+edu_lesson_planning,lập giáo án,literal
+edu_lesson_planning,xây dựng giáo án,literal
+edu_lesson_planning,lesson planning,literal
+edu_classroom_management,quản lý lớp học,literal
+edu_classroom_management,quản lí lớp học,literal
+edu_classroom_management,classroom management,literal
+review_bien_phien_dich,biên phiên dịch,literal
+review_bien_phien_dich,biên - phiên dịch,literal
+review_bien_phien_dich,biên/phiên dịch,literal
+review_bien_phien_dich,translation and interpretation,literal
+edu_translation,biên dịch,literal
+edu_translation,dịch thuật,literal
+edu_translation,edit bản dịch,literal
+edu_translation,translation,literal
+edu_interpreting,phiên dịch,literal
+edu_interpreting,interpreting,literal
+edu_interpreting,interpretation,literal
+edu_admissions_counselling,tư vấn tuyển sinh,literal
+edu_admissions_counselling,admissions counselling,literal
+edu_admissions_counselling,admissions counseling,literal
+edu_zoom,Zoom,literal
+edu_google_meet,Google Meet,literal
+edu_google_classroom,Google Classroom,literal
+edu_moodle,Moodle,literal
+edu_lms,LMS,literal
+edu_lms,Learning Management System,literal
+edu_trados,Trados,literal
+edu_trados,SDL Trados,literal
+edu_memoq,memoQ,literal
+edu_wordfast,Wordfast,literal
+ret_front_desk,nghiệp vụ lễ tân,literal
+ret_front_desk,lễ tân,literal
+ret_front_desk,front desk,literal
+ret_front_desk,front office,literal
+ret_table_service,phục vụ bàn,literal
+ret_table_service,phục vụ món ăn,literal
+ret_table_service,table service,literal
+ret_cooking,chế biến món ăn,literal
+ret_cooking,nấu ăn,literal
+ret_cooking,cooking,literal
+ret_bartending,pha chế,literal
+ret_bartending,bartending,literal
+ret_bartending,barista,literal
+ret_housekeeping,buồng phòng,literal
+ret_housekeeping,housekeeping,literal
+ret_room_reservation,đặt phòng,literal
+ret_room_reservation,room reservation,literal
+ret_room_reservation,hotel reservation,literal
+ret_ticketing,đặt vé,literal
+ret_ticketing,book vé,literal
+ret_ticketing,xuất vé,literal
+ret_ticketing,ticketing,literal
+ret_tour_operation,điều hành tour,literal
+ret_tour_operation,tour operation,literal
+ret_tour_guiding,hướng dẫn viên du lịch,literal
+ret_tour_guiding,hướng dẫn du lịch,literal
+ret_tour_guiding,tour guiding,literal
+ret_restaurant_management,quản lý nhà hàng,literal
+ret_restaurant_management,quản lí nhà hàng,literal
+ret_restaurant_management,quản lý quán ăn,literal
+ret_restaurant_management,restaurant management,literal
+ret_store_management,quản lý cửa hàng,literal
+ret_store_management,quản lí cửa hàng,literal
+ret_store_management,store management,literal
+ret_cashiering,thu ngân,literal
+ret_cashiering,cashiering,literal
+ret_food_safety,vệ sinh an toàn thực phẩm,literal
+ret_food_safety,an toàn vệ sinh thực phẩm,literal
+ret_food_safety,food safety,literal
+ret_pos,POS,literal
+ret_pos,máy POS,literal
+ret_opera,Opera PMS,literal
+ret_opera,Opera Cloud,literal
+ret_opera,Opera,literal
+ret_pms,PMS,literal
+ret_pms,Property Management System,literal
+ret_amadeus,Amadeus,literal
+ret_sabre,Sabre,literal
+ret_galileo,Galileo,literal
+ret_abacus,Abacus,literal
+life_patient_care,chăm sóc bệnh nhân,literal
+life_patient_care,chăm sóc người bệnh,literal
+life_patient_care,patient care,literal
+life_nursing,nghiệp vụ điều dưỡng,literal
+life_nursing,chuyên môn điều dưỡng,literal
+life_nursing,điều dưỡng,literal
+life_nursing,nursing,literal
+life_blood_collection,lấy máu,literal
+life_blood_collection,blood collection,literal
+life_blood_collection,phlebotomy,literal
+life_vital_signs,đo sinh hiệu,literal
+life_vital_signs,đo dấu hiệu sinh tồn,literal
+life_vital_signs,vital signs,literal
+life_first_aid,sơ cứu,literal
+life_first_aid,first aid,literal
+life_cpr,hồi sức tim phổi,literal
+life_cpr,CPR,literal
+life_cpr,cardiopulmonary resuscitation,literal
+life_vaccination,tiêm chủng,literal
+life_vaccination,vaccination,literal
+life_compounding,bào chế,literal
+life_drug_sales,bán thuốc,literal
+life_gmp,GMP,literal
+life_gpp,GPP,literal
+life_glp,GLP,literal
+life_gdp,GDP,literal
+life_pharmacy_law,Luật Dược,literal
+life_pharmacy_law,pháp luật dược,literal
+life_testing,kiểm nghiệm,literal
+life_microbiology,vi sinh,literal
+life_microbiology,microbiology,literal
+life_iso22000,ISO 22000,literal
+life_iso22000,ISO22000,literal
+life_fssc,FSSC,literal
+ret_food_safety,VSATTP,literal
+ret_food_safety,ATVSTP,literal
+life_pattern_design,thiết kế rập,literal
+life_pattern_design,thiết kế mẫu rập,literal
+life_pattern_design,pattern making,literal
+life_pattern_design,pattern design,literal
+life_pattern_grading,nhảy size,literal
+life_pattern_grading,nhảy cỡ,literal
+life_pattern_grading,pattern grading,literal
+life_marker_making,giác sơ đồ,literal
+life_marker_making,marker making,literal
+life_sample_sewing,may mẫu,literal
+life_sample_sewing,sample sewing,literal
+review_ky_thuat_san_xuat_may_mac,kỹ thuật may mặc,literal
+review_ky_thuat_san_xuat_may_mac,kỹ thuật sản xuất may mặc,literal
+review_ky_thuat_san_xuat_may_mac,garment construction,literal
+life_sewing_machine,máy may,literal
+life_sewing_machine,sewing machine,literal
+life_cutting_sewing,kỹ thuật cắt may,literal
+life_cutting_sewing,cắt may,literal
+life_gerber,Gerber,literal
+life_accumark,Gerber AccuMark,literal
+life_accumark,AccuMark,literal
+life_lectra,Lectra,literal
+life_optitex,Optitex,literal
+life_clo3d,CLO 3D,literal
+life_clo3d,CLO3D,literal
+life_clo3d,CLO,literal
+life_browzwear,Browzwear,literal
+life_gsd,GSD,literal
