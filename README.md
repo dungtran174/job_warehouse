@@ -126,6 +126,10 @@ năm nhãn nguồn, với alias CAD/PLC/CNC, đọc bản vẽ, quản lý sản
 lượng. Chỉ nhận bằng chứng rõ trong requirements; không suy từ ngành học,
 chứng nhận của doanh nghiệp hoặc tên công cụ sang nghiệp vụ vận hành.
 
+Gói xây dựng/thiết kế/dự án dùng `silver skills --batch construction_design_projects`
+cho bốn nhãn nguồn. Từ điển gồm công cụ thiết kế, BIM, bóc tách, dự toán và
+nghiệp vụ thi công/dự án có bằng chứng rõ; không suy từ ngành học hay nhãn ngành.
+
 ## Warehouse lịch sử — S3 enrichment
 
 **Trục ngành hiện hành:** dùng `job_industry`, không dùng `occupation_primary`

@@ -1,0 +1,248 @@
+{
+  "method": "One bounded development survey:40 deterministic requirements plus finite targeted examples; no independent quality claim.",
+  "base_engineering_taxonomy_sha256": "e28d4ce4d2dc12f044dfc34d73ff111f84e68586f2acaaee3c97f794c79e3c64",
+  "new_specific_concepts": [
+    {
+      "skill_code": "review_3ds_max",
+      "skill_name": "3ds Max",
+      "aliases": [
+        "3ds Max",
+        "3D Max",
+        "3Dmax",
+        "3dsmax"
+      ]
+    },
+    {
+      "skill_code": "review_lumion",
+      "skill_name": "Lumion",
+      "aliases": [
+        "Lumion"
+      ]
+    },
+    {
+      "skill_code": "con_vray",
+      "skill_name": "V-Ray",
+      "aliases": [
+        "V-Ray",
+        "Vray",
+        "V Ray"
+      ]
+    },
+    {
+      "skill_code": "con_corona",
+      "skill_name": "Corona Renderer",
+      "aliases": [
+        "Corona Renderer",
+        "Render Corona",
+        "Corona render"
+      ]
+    },
+    {
+      "skill_code": "con_etabs",
+      "skill_name": "ETABS",
+      "aliases": [
+        "ETABS"
+      ]
+    },
+    {
+      "skill_code": "con_sap2000",
+      "skill_name": "SAP2000",
+      "aliases": [
+        "SAP2000",
+        "SAP 2000"
+      ]
+    },
+    {
+      "skill_code": "con_safe",
+      "skill_name": "SAFE",
+      "aliases": [
+        "CSI SAFE",
+        "phần mềm SAFE"
+      ]
+    },
+    {
+      "skill_code": "con_navisworks",
+      "skill_name": "Navisworks",
+      "aliases": [
+        "Navisworks",
+        "Naviswork"
+      ]
+    },
+    {
+      "skill_code": "review_microsoft_project",
+      "skill_name": "Microsoft Project",
+      "aliases": [
+        "MS Project",
+        "Microsoft Project",
+        "MS. Project"
+      ]
+    },
+    {
+      "skill_code": "con_primavera",
+      "skill_name": "Primavera",
+      "aliases": [
+        "Primavera"
+      ]
+    },
+    {
+      "skill_code": "con_bim",
+      "skill_name": "BIM",
+      "aliases": [
+        "BIM",
+        "Building Information Modeling",
+        "Building Information Modelling"
+      ]
+    },
+    {
+      "skill_code": "con_quantity_takeoff",
+      "skill_name": "Bóc tách khối lượng",
+      "aliases": [
+        "bóc tách khối lượng",
+        "bóc tách vật tư",
+        "bóc khối lượng",
+        "quantity takeoff",
+        "quantity take-off"
+      ]
+    },
+    {
+      "skill_code": "review_lap_du_toan",
+      "skill_name": "Lập dự toán",
+      "aliases": [
+        "lập dự toán",
+        "lập dự toán công trình",
+        "lập dự toán xây dựng"
+      ]
+    },
+    {
+      "skill_code": "review_doc_hieu_du_toan_cong_trinh",
+      "skill_name": "Đọc hiểu dự toán công trình",
+      "aliases": [
+        "đọc hiểu dự toán"
+      ]
+    },
+    {
+      "skill_code": "con_site_supervision",
+      "skill_name": "Giám sát thi công",
+      "aliases": [
+        "giám sát thi công",
+        "giám sát công trình",
+        "giám sát xây dựng",
+        "giám sát hiện trường",
+        "construction supervision",
+        "site supervision"
+      ]
+    },
+    {
+      "skill_code": "con_progress_planning",
+      "skill_name": "Lập tiến độ thi công",
+      "aliases": [
+        "lập tiến độ thi công",
+        "lập tiến độ/tổng tiến độ thi công",
+        "lập tổng tiến độ thi công"
+      ]
+    },
+    {
+      "skill_code": "review_quan_ly_du_an",
+      "skill_name": "Quản lý dự án",
+      "aliases": [
+        "quản lý dự án",
+        "quản lí dự án",
+        "project management"
+      ]
+    },
+    {
+      "skill_code": "con_construction_management",
+      "skill_name": "Quản lý thi công",
+      "aliases": [
+        "quản lý thi công",
+        "quản lí thi công",
+        "chỉ huy trưởng công trình"
+      ]
+    },
+    {
+      "skill_code": "con_acceptance",
+      "skill_name": "Nghiệm thu công trình",
+      "aliases": [
+        "nghiệm thu công trình",
+        "nghiệm thu khối lượng",
+        "hồ sơ nghiệm thu"
+      ]
+    },
+    {
+      "skill_code": "con_shop_drawing",
+      "skill_name": "Shop drawing",
+      "aliases": [
+        "shop drawing",
+        "shopdrawing"
+      ]
+    },
+    {
+      "skill_code": "con_tender_documents",
+      "skill_name": "Lập hồ sơ thầu",
+      "aliases": [
+        "lập hồ sơ thầu",
+        "lập hồ sơ dự thầu",
+        "lập hồ sơ mời thầu"
+      ]
+    },
+    {
+      "skill_code": "legal_construction_law",
+      "skill_name": "Luật xây dựng",
+      "aliases": [
+        "luật xây dựng",
+        "pháp luật xây dựng",
+        "pháp luật về xây dựng"
+      ]
+    },
+    {
+      "skill_code": "con_interior_design",
+      "skill_name": "Thiết kế nội thất",
+      "aliases": [
+        "thiết kế nội thất",
+        "interior design"
+      ]
+    },
+    {
+      "skill_code": "con_architectural_design",
+      "skill_name": "Thiết kế kiến trúc",
+      "aliases": [
+        "thiết kế kiến trúc",
+        "architectural design"
+      ]
+    },
+    {
+      "skill_code": "con_structural_design",
+      "skill_name": "Thiết kế kết cấu",
+      "aliases": [
+        "thiết kế kết cấu",
+        "structural design"
+      ]
+    },
+    {
+      "skill_code": "con_hand_drawing",
+      "skill_name": "Vẽ tay",
+      "aliases": [
+        "vẽ tay",
+        "hand drawing"
+      ]
+    },
+    {
+      "skill_code": "con_typography",
+      "skill_name": "Typography",
+      "aliases": [
+        "Typography",
+        "kiểu chữ"
+      ]
+    },
+    {
+      "skill_code": "con_color_theory",
+      "skill_name": "Lý thuyết màu sắc",
+      "aliases": [
+        "lý thuyết màu sắc",
+        "color theory"
+      ]
+    }
+  ],
+  "runtime_llm_calls": 0,
+  "source_evidence": "Offline batch05 survey and targeted examples outside Git; substring counts are hints, not skill statistics."
+}

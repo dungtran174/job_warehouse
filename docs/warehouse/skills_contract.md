@@ -520,3 +520,19 @@ an toàn chung không tự thành năng lực chuyên môn tương ứng của �
 Từ điển và kết quả cũ không bị ghi lại; hồ sơ khảo sát, quyết định nghiệm thu,
 Parquet và đối soát giữ ngoài Git. Không có kiểm định mù mới hoặc bảo đảm
 precision/recall; mẫu khảo sát/test được ghi rõ là development.
+
+## Gói xây dựng, thiết kế và dự án
+
+`silver skills --batch construction_design_projects` dùng `mappings_construction/`
+cho bốn nhãn Xây dựng, Kiến trúc - Thiết kế nội ngoại thất, Thiết kế - Sáng tạo
+nghệ thuật và Quản lý dự án. Tái dùng từ điển và chính sách từ khóa rõ; thêm
+BIM, phần mềm thiết kế, bóc tách khối lượng, dự toán, giám sát thi công, hồ sơ
+thầu và quản lý dự án khi requirements có bằng chứng cụ thể.
+
+Không suy kỹ năng từ ngành học, nhãn ngành hoặc việc tham gia một dự án.
+Phần mềm quản lý dự án không tự thành năng lực quản lý dự án; SAP2000 không
+tự thành SAP. Thiết kế kiến trúc dữ liệu không phải thiết kế kiến trúc công
+trình; QC/TCVN trong danh sách quy chuẩn không tự thành nghề kiểm soát chất
+lượng. Giữ mọi tin, bỏ qua phần chưa rõ; không kiểm định lặp để tăng recall.
+Khảo sát và test là kiểm tra phát triển, không phải chứng nhận độ chính xác
+thống kê độc lập. Kết quả các đợt trước được giữ nguyên khi ghép.

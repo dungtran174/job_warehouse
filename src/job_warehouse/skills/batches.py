@@ -19,6 +19,12 @@ from job_warehouse.skills.input import (
 from job_warehouse.skills.profile import text_hash
 
 BATCH_SCOPES = {
+    "construction_design_projects": (
+        "Xây dựng",
+        "Kiến trúc - Thiết kế nội ngoại thất",
+        "Thiết kế - Sáng tạo nghệ thuật",
+        "Quản lý dự án",
+    ),
     "engineering_production": (
         "Điện - Điện tử - Điện lạnh / Vận hành - Bảo trì - Bảo dưỡng",
         "Cơ khí - Ô tô - Tự động hóa / Sản xuất - Lắp ráp - Chế biến",
