@@ -142,6 +142,10 @@ Gói y dược/thực phẩm/dệt may dùng `silver skills --batch healthcare_f
 với ba nhóm từ điển hữu hạn. Chỉ lấy kỹ năng có bằng chứng trong requirements,
 không suy từ bằng cấp, nhãn ngành, chứng nhận nhà máy hay nơi làm việc.
 
+Gói năm nhãn tổng hợp dùng `silver skills --batch general_industries`;
+trích từ requirements bằng từ điển hữu hạn, không phân ngành lại hoặc ép
+tin thực tập/lao động phổ thông phải có skill. Kết quả cũ giữ nguyên khi ghép.
+
 ## Warehouse lịch sử — S3 enrichment
 
 **Trục ngành hiện hành:** dùng `job_industry`, không dùng `occupation_primary`

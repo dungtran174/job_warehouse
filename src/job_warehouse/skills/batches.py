@@ -19,6 +19,13 @@ from job_warehouse.skills.input import (
 from job_warehouse.skills.profile import text_hash
 
 BATCH_SCOPES = {
+    "general_industries": (
+        "Chưa xác định",
+        "Nghề nghiệp khác",
+        "Lao động phổ thông",
+        "Thực tập / Lao động phổ thông",
+        "Thực tập",
+    ),
     "healthcare_food_garment": (
         "Dược phẩm / Y tế - Chăm sóc sức khỏe",
         "Thực phẩm - Đồ uống / Công nghệ thực phẩm - Dinh dưỡng",

@@ -595,3 +595,21 @@ Bộ từ điển hữu hạn và quy tắc Python nhận khớp rõ; chưa rõ 
 mọi tin. Kiểm tra phát triển bằng mẫu thật và test dương/âm cho từng nhóm,
 không phải kiểm định thống kê độc lập hay bảo đảm recall. Không dùng AI hoặc
 embedding trong runtime. Parquet và hồ sơ đối soát ở ngoài Git.
+
+## Gói nhãn tổng hợp và chưa xác định
+
+`silver skills --batch general_industries` dùng `mappings_general/` cho
+Chưa xác định, Nghề nghiệp khác, Lao động phổ thông, Thực tập / Lao động
+phổ thông và Thực tập. Tái dùng từ điển hiện có; bổ sung cụm rõ về đóng gói,
+bốc xếp, vệ sinh công nghiệp, sơ chế thực phẩm từ mẫu requirements. Không
+phân ngành lại, không xem tên các nhãn này là skill và không ép tin có skill.
+
+Chỉ nhận chuyên môn/công cụ/ngoại ngữ có bằng chứng; sở thích không tự thành
+năng lực. Content Marketing cần ngữ cảnh công việc marketing ngoài ngành
+học, kể cả khi rule tổ tiên từng nâng nhãn từ cue chung. Công ty, máy hoặc
+phần mềm đóng gói/vệ sinh không tự chứng minh thao tác nghề tương ứng.
+
+Chốt bằng test dương/âm, khảo sát phát triển hữu hạn, đối soát nguồn/cặp/bằng
+chứng và replay; không đặt mục tiêu recall hoặc kiểm định AI lặp. Những tin
+không có từ khóa được nhận vẫn giữ nguyên. Ghép kết quả bằng cách giữ nguyên
+các đợt đã nhận, không chạy lại toàn nguồn bằng từ điển mới để ghi đè chúng.

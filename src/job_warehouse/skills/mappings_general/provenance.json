@@ -1,0 +1,43 @@
+{
+  "method": "One bounded development survey50 real texts plus targeted explicit examples; no independent statistical claim.",
+  "base_life_sciences_taxonomy_sha256": "4920b2e02b5265af14b00f5136852933c72645fb9e81f62700d673234fdfeb91",
+  "new_specific_concepts": [
+    {
+      "skill_code": "general_packaging",
+      "skill_name": "Đóng gói sản phẩm",
+      "aliases": [
+        "đóng gói sản phẩm",
+        "đóng gói hàng hóa",
+        "đóng gói hàng",
+        "packing goods"
+      ]
+    },
+    {
+      "skill_code": "general_loading",
+      "skill_name": "Bốc xếp hàng hóa",
+      "aliases": [
+        "bốc xếp",
+        "loading and unloading"
+      ]
+    },
+    {
+      "skill_code": "general_industrial_cleaning",
+      "skill_name": "Vệ sinh công nghiệp",
+      "aliases": [
+        "vệ sinh công nghiệp",
+        "industrial cleaning"
+      ]
+    },
+    {
+      "skill_code": "general_food_preparation",
+      "skill_name": "Sơ chế thực phẩm",
+      "aliases": [
+        "sơ chế thực phẩm",
+        "sơ chế nguyên liệu",
+        "sơ chế sản phẩm"
+      ]
+    }
+  ],
+  "runtime_llm_calls": 0,
+  "source_evidence": "Offline batch09 development bundle outside Git; retain all jobs; unclear or absent keywords do not block completion."
+}
