@@ -1,8 +1,9 @@
 # S6 — PostgreSQL Silver
 
-Đợt 1 triển khai kiểm tra đầu vào và migration. Chưa có loader, chưa nạp dữ liệu
-nghiệp vụ hoặc tạo bản công bố Silver trong PostgreSQL. Các bước nạp/giao dịch,
-đối soát SQL với Parquet và backup/restore thuộc đợt 2–3.
+Đợt 1 có kiểm tra đầu vào/migration; đợt 2 có loader và kiểm thử giao dịch
+trên dữ liệu giả trong database riêng. PostgreSQL nghiệp vụ hiện vẫn có ba
+bảng trống. Nạp dữ liệu thật, đối soát toàn bộ với Parquet và backup/restore
+thuộc đợt 3.
 
 ## Đầu vào và thiết kế
 
@@ -23,8 +24,8 @@ kinh nghiệm bị làm tròn khi chuyển từ Decimal 18,6 sang 6,2.
 `ops.silver_load_run` lưu từng attempt, trạng thái running/published/failed,
 fingerprint, manifest, số dòng, thời gian và lượt hiện hành. Cho phép nhiều
 attempt cùng fingerprint, chỉ một lượt published có is_current=true bằng
-partial unique index. Đợt 1 tạo cấu trúc; chưa tạo attempt giả hoặc đánh dấu
-Parquet là đã nạp SQL.
+partial unique index. Không đánh dấu Parquet là đã nạp SQL trước khi công bố
+thực sự. Những lần chạy fixture chỉ ghi nhật ký trong database thử riêng.
 
 ## Kiểm tra đầu vào (không kết nối DB)
 
@@ -50,9 +51,11 @@ không tạo file dữ liệu trung gian. Sau đọc kiểm SHA lần nữa. B�
 thể đổi sau preflight nên loader đợt 2 phải kiểm lại trước công bố; report
 đợt 1 không phải giấy phép bỏ qua kiểm tra đầu vào về sau.
 
-Fingerprint đợt 1 gồm version preflight, DDL và manifest/artifact nguồn,
-không phụ thuộc đường dẫn máy. Đợt 2 bổ sung version/hash loader trước khi
-triển khai quyết định no-op. Chưa có cơ chế no-op nạp dữ liệu trong đợt 1.
+Fingerprint preflight gồm version preflight, DDL và manifest/artifact nguồn.
+Fingerprint nạp bổ sung version, hash code loader/projection/preflight/migration
+và DDL. Không băm mật khẩu hoặc chuỗi kết nối; không đổi nhãn nghiệp vụ để tạo
+fingerprint. Các tham chiếu tuyệt đối trong hồ sơ nguồn phải còn đọc được khi
+chuyển máy; không tự viết lại manifest/receipt đã chốt.
 
 ## Migration
 
@@ -75,6 +78,80 @@ DB chỉ là kiểu lưu trữ: PostgreSQL tự có thể làm tròn số khi IN
 preflight/loader chịu trách nhiệm từ chối chuyển kiểu mất chính xác. Không
 bỏ qua preflight để tự nạp bằng INSERT.
 
+## Nạp và công bố — code đợt 2, dữ liệu thật đợi đợt 3
+
+Dùng kết nối riêng, idle/autocommit theo cấu hình Bronze. Loader kiểm input
+trước khi ghi DB và yêu cầu migration đúng checksum. Không dùng kết nối có
+transaction đang mở hoặc chứa bảng tạm `_s6_jobs`, `_s6_skills` của ứng dụng khác.
+
+```bash
+.venv/bin/job-warehouse silver db-load \
+  --jobs-run /path/to/s4-run \
+  --skills-run /path/to/s5-closure-run \
+  --output-dir /path/outside/repository/new-s6-load \
+  --batch-size 4096
+```
+
+Không có cờ bỏ kiểm tra hoặc dùng fixture trong CLI. Output phải mới và ngoài
+repo. `request.json` và run_id được lưu/in trước khi làm việc với DB;
+`load.json` chỉ ghi sau khi DB hoàn tất. File input và code được kiểm lại SHA
+sau staging và trước công bố. Kiểm định đợt 1 không thay thế lần kiểm này.
+
+| Giai đoạn | Cách xử lý |
+|---|---|
+| Khóa writer | Session advisory lock; writer thứ hai bị từ chối, chưa tạo attempt mới |
+| Nhật ký | Một attempt running được commit riêng; lưu fingerprint, hồ sơ nguồn và số dòng dự kiến |
+| Staging | COPY FROM STDIN theo batch vào hai bảng tạm của kết nối; không tạo CSV, không mount Parquet vào DB |
+| Kiểm tra | Schema/kiểu SQL thực tế, PK, FK và tên skill ở staging, counts, SHA; Decimal không qua float |
+| Công bố | Khóa ghi hai bảng, xóa con trước cha, chép jobs rồi skill, kiểm nội dung hai chiều bằng EXCEPT ALL, cập nhật nhật ký và current trong cùng transaction |
+| Kết thúc | Xóa bảng tạm, nhả khóa, ghi báo cáo cục bộ; không tạo checkpoint đến từng dòng |
+
+Staging chỉ commit dữ liệu tạm; dữ liệu nghiệp vụ chưa bị thay. Transaction
+công bố không commit theo batch. SELECT vẫn đọc được bản trước trong khi đang
+thay dữ liệu. Nhiều truy vấn cần cùng phiên bản phải dùng transaction đọc có
+snapshot phù hợp. Chờ khóa bảng quá 10 giây sẽ thất bại và rollback.
+
+Đã có kiểm tra kiểu cột thực tế trước COPY và công bố: ledger đúng checksum
+không đủ nếu ai đó sửa kiểu numeric bằng tay. Loader báo lỗi thay vì chấp
+nhận việc PostgreSQL tự làm tròn số.
+
+## Nạp lại và xử lý lỗi
+
+| Kết quả | Ý nghĩa |
+|---|---|
+| `published` | Hai bảng và current marker được công bố đồng bộ |
+| `verified_noop` | Fingerprint và toàn bộ nội dung đều khớp; không DELETE/INSERT dữ liệu nghiệp vụ, current marker giữ nguyên |
+| `republished_after_content_drift` | Fingerprint cũ khớp nhưng nội dung SQL lệch; đã nạp lại từ input được chốt để khôi phục |
+
+Lần no-op vẫn có một dòng nhật ký status=published, is_current=false để ghi
+nhận việc kiểm tra thành công; `input_manifest.operation=verified_noop` và
+`input_manifest.current_run_id` chỉ tới lượt công bố được dùng lại. Không coi
+no-op là một bộ tin mới hoặc một lần tăng số dòng nghiệp vụ.
+
+Lỗi trước commit: rollback toàn bộ công bố, giữ cả dữ liệu và current marker
+cũ; attempt thành failed. Mất kết nối có thể để attempt running: sau khi khóa
+session cũ đã nhả, writer tiếp theo mới đánh dấu abandoned_session/failed.
+Không tự kết luận một running attempt đang hoạt động là bị treo.
+
+Lỗi sau commit hoặc ghi `load.json` lỗi không được đổi attempt đã published
+thành failed. Tra UUID trong `request.json` hoặc stdout bằng SQL:
+
+```sql
+SELECT run_id, status, is_current,
+       input_manifest->>'operation' AS operation,
+       input_manifest->>'current_run_id' AS publication_run_id,
+       expected_counts, actual_counts, started_at, finished_at
+FROM ops.silver_load_run
+WHERE run_id = '<run_id>'::uuid;
+```
+
+Nếu published thì DB đã hoàn tất lượt đó, kể cả báo cáo trên máy chưa ghi được;
+xem operation/current_run_id để phân biệt công bố với no-op. Có thể dùng thư
+mục output mới để chạy lại; loader so cả nội dung và không nhân bản tin/skill.
+Nếu chưa có row nhật ký thì attempt chưa được đăng ký; không suy thành công.
+Báo lỗi CLI chỉ ghi loại lỗi/run_id, không in lỗi kết nối chứa secret hoặc dòng
+requirements. Báo cáo thật, request, dữ liệu tạm và backup không đưa vào Git.
+
 ## Kiểm thử
 
 ```bash
@@ -92,6 +169,7 @@ nghiệp vụ. Không đặt cấu hình test bằng tài khoản triển khai k
 
 ```bash
 .venv/bin/pytest -q tests/warehouse/test_silver_database_postgres.py \
+  tests/warehouse/test_silver_database_loader.py \
   tests/warehouse/test_bronze_postgres.py
 ```
 
@@ -99,3 +177,9 @@ Kiểm migration lặp/đồng thời, checksum, rollback DDL, PK/FK/cận/NULL/
 partial unique index lượt hiện hành và giữ ledger Bronze. Nếu thiếu cấu hình,
 integration bị skip; phải báo riêng, không xem là đã kiểm trên PostgreSQL.
 Dữ liệu thật, report, dump, volume và cấu hình runtime tiếp tục nằm ngoài Git.
+
+Đợt 2 còn kiểm round-trip Decimal/NULL/mảng/Unicode, lỗi giữa COPY và giữa lúc
+thay hai bảng, kết nối mất, phản hồi mất sau commit, đĩa ghi báo cáo lỗi, nội
+dung bị sửa nhưng counts bằng nhau, hai writer và reader khi publication chưa
+commit. Đây là kiểm thử giao dịch bằng fixture, không thay nghiệm thu dữ liệu
+thật hoặc thử restore ở đợt 3.
