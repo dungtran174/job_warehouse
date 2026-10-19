@@ -1,0 +1,20 @@
+{
+  "status": "candidate_not_semantically_accepted",
+  "base_sales_taxonomy_sha256": "a1d528da1bd5b8e70411072f1cdd26413a37e1fbb85142e55e2719606cfd5072",
+  "reused_review_catalogue_sha256": "c46bd0fc2db500cc2f624cf803d85e0e35bc582c2492ca780c02722955a479b8",
+  "method": "117 sales foundation concepts plus targeted concepts observed in60 tune and18 additional development requirements; full quotes/IDs outside Git. Not whole602 global activation.",
+  "alias_reassignments": [
+    {
+      "alias": "kê khai thuế",
+      "from": "tax_reporting",
+      "to": "review_ke_khai_thue"
+    },
+    {
+      "alias": "quyết toán thuế",
+      "from": "tax_reporting",
+      "to": "review_quyet_toan_thue"
+    }
+  ],
+  "refinement": "Round1 independent references retained unchanged. Their errors become development evidence for finite generic-role/law aliases, named payroll software and generic Oracle (existing owner decision); no claim that round1 scores validate v2.",
+  "v3_correction": "Finite aliases observed in second development round; no ID-specific overrides. Fresh holdout required, not accepted globally."
+}

@@ -135,7 +135,22 @@ def run_skills(
     policy, policy_document = load_policy(taxonomy_dir, scope=policy_scope)
     matcher: SkillMatcher
     extractor_version, taxonomy_version = EXTRACTOR_VERSION, TAXONOMY_VERSION
-    if batch_name == "real_estate":
+    if batch_name == "hr_finance_legal":
+        from job_warehouse.skills.conservative import (
+            CONSERVATIVE_VERSION,
+            KEYWORD_COMPLETION,
+            ConservativeHRFinanceMatcher,
+        )
+        from job_warehouse.skills.hr_finance import HR_FINANCE_VERSION, HRFinanceSkillMatcher
+
+        if policy_document.get("decisions", {}).get("completion_policy") == KEYWORD_COMPLETION:
+            matcher = ConservativeHRFinanceMatcher(taxonomy, policy)
+            extractor_version = CONSERVATIVE_VERSION
+        else:
+            matcher = HRFinanceSkillMatcher(taxonomy, policy)
+            extractor_version = HR_FINANCE_VERSION
+        taxonomy_version = policy_document["taxonomy_version"]
+    elif batch_name == "real_estate":
         from job_warehouse.skills.real_estate import REAL_ESTATE_VERSION, RealEstateSkillMatcher
 
         matcher = RealEstateSkillMatcher(taxonomy, policy)

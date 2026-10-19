@@ -46,6 +46,7 @@ where = ["src"]
   "mappings_expanded/*.csv", "mappings_expanded/*.json",
   "mappings_sales/*.csv", "mappings_sales/*.json",
   "mappings_real_estate/*.csv", "mappings_real_estate/*.json",
+  "mappings_hr_finance/*.csv", "mappings_hr_finance/*.json",
 ]
 
 [tool.pytest.ini_options]

@@ -443,3 +443,46 @@ Các quyết định chủ dự án được thể hiện bằng rule và eviden
 Bản cuối kiểm định bằng hai AI độc lập trên 70 văn bản mới, tách các mẫu cũ đã
 xem thành dữ liệu phát triển. Gate, điểm số, trạng thái nhận thực tế và giới hạn
 nằm trong hồ sơ chạy ngoài Git; không gọi nhãn AI là nhãn con người xác nhận.
+
+## Gói nhân sự, tài chính và pháp lý
+
+`silver skills --batch hr_finance_legal` chọn ba nhãn nguồn: Nhân sự / Hành
+chính - Thư ký; Ngân hàng / Tài chính - Đầu tư - Chứng Khoán; Luật - Pháp Lý -
+Tuân thủ. Gói `mappings_hr_finance/` và matcher riêng không ghi lại các đợt đã
+nhận. CLI chỉ tạo candidate; gate ngữ nghĩa và kết quả nhận thực tế nằm trong
+hồ sơ ngoài repository, không được suy từ việc có tên batch trong CLI.
+
+Tái sử dụng mã khái niệm cũ khi cùng nghĩa. Quyết toán thuế và kê khai thuế
+nhận mã chuyên môn riêng, không tự thêm Báo cáo thuế. Phân tích báo cáo tài
+chính không tự thêm kỹ năng lập báo cáo. MISA quản lý nhân sự có mã `hr_misa`,
+MISA kế toán giữ `misa`; nguồn phải ghi rõ ngữ cảnh phần mềm nhân sự mới đổi
+sang mã HR. Không đổi tên/mã/cặp đã nhận ở bản cũ.
+
+Luật được liệt kê có thể dùng chung đầu cụm luật/pháp luật theo danh sách
+hữu hạn, không suy mọi nhánh luật từ bằng luật. BHXH, C&B, tính lương, đào tạo
+và hợp đồng chỉ được lấy trong ngữ cảnh năng lực hoặc nhiệm vụ chuyên môn;
+quyền lợi, đào tạo sau khi nhận việc và ký hợp đồng của ứng viên không là skill.
+Từng làm tại ngân hàng/tổ chức tài chính/văn phòng luật không đủ chứng minh
+mọi nghiệp vụ. Câu thiếu chuyên môn và bare list chưa rõ vẫn giữ trạng thái.
+
+API lấy mẫu nhận thêm `exclude_industries` để loại nhóm văn bản của các nhãn
+đã nhận trước đó; cấm loại chính ngành mục tiêu. Mặc định vẫn loại ba ngành
+thí điểm như cũ. Khi sửa rule, phải loại cả mẫu phát triển/kiểm định đã xem
+bằng `exclude_samples` hoặc `exclude_job_ids`; không dùng lại điểm holdout cũ.
+
+### Chốt theo từ khóa rõ, không đặt mục tiêu recall
+
+Theo quyết định chủ dự án, gói nhân sự/tài chính/pháp lý dùng
+`owner_explicit_keywords_skip_unclear`: giữ kỹ năng có bằng chứng rõ, bỏ qua
+claim chưa rõ hoặc không khớp; vẫn giữ mọi tin. Ambiguous evidence chỉ lưu
+vết, không tạo hàng đợi review bắt buộc và không chặn đóng đợt. Không trích
+được không đồng nghĩa tin không có kỹ năng. ASP.NET và PL/SQL giữ riêng;
+trả lương không tự thành tính lương.
+
+Merge có loại gate riêng `accepted_owner_keyword_policy_no_recall_guarantee`,
+phải ràng buộc SHA quyết định chủ dự án, policy và đúng phiên bản extractor.
+Loại gate này không tuyên bố đạt kiểm định độc lập precision/recall; các điểm
+vòng thử nghiệm cũ được giữ nguyên. Gate AI cũ vẫn giữ ngưỡng cũ. Cả hai cách
+đều kiểm hash, toàn bộ cặp–bằng chứng, giữ baseline và đối soát đầu vào.
+Các đợt tiếp theo áp dụng cách làm hữu hạn: khảo sát/từ điển, xử lý một lượt,
+kiểm các lỗi gán sai rõ và đối soát; không lặp chỉ để tăng số tin có skill.

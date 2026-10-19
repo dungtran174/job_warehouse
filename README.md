@@ -110,6 +110,12 @@ Bộ mở rộng nằm riêng ở `skills/mappings_expanded/`; CLI `silver skill
 chạy đồng đều ba ngành và `silver skills-expand-merge` đối chiếu với các review
 đã duyệt. Đây là bản candidate mới, không kế thừa điểm kiểm định của bộ 96.
 
+Gói nhân sự/tài chính/pháp lý chạy bằng `silver skills --batch hr_finance_legal`.
+Từ đợt 02, chủ dự án chốt cách lấy từ khóa rõ, bỏ qua claim chưa rõ và giữ mọi
+tin; không đặt mục tiêu recall hoặc gọi điểm development là kiểm định độc lập.
+Các vòng AI cũ giữ nguyên kết quả. Snapshot và quyết định nghiệm thu nằm ngoài
+Git; chưa publish PostgreSQL.
+
 ## Warehouse lịch sử — S3 enrichment
 
 **Trục ngành hiện hành:** dùng `job_industry`, không dùng `occupation_primary`

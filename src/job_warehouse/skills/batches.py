@@ -19,6 +19,11 @@ from job_warehouse.skills.input import (
 from job_warehouse.skills.profile import text_hash
 
 BATCH_SCOPES = {
+    "hr_finance_legal": (
+        "Nhân sự / Hành chính - Thư ký",
+        "Ngân hàng / Tài chính - Đầu tư - Chứng Khoán",
+        "Luật - Pháp Lý - Tuân thủ",
+    ),
     "real_estate": ("Bất động sản",),
     "sales_customer_service": (
         "Bán hàng - Kinh doanh",
@@ -51,9 +56,12 @@ def prepare_batch(
     allow_unpinned_fixture: bool = False,
     exclude_samples: tuple[Path, ...] = (),
     exclude_job_ids: tuple[int, ...] = (),
+    exclude_industries: tuple[str, ...] = (),
     sample_seed: str = "batch-sample-v1",
 ) -> dict[str, Any]:
     scope = batch_scope(batch_name)
+    if set(scope) & set(exclude_industries):
+        raise ValueError("Cannot exclude a target industry from its own samples")
     if tune_per_industry < 1 or holdout_per_industry < 1:
         raise ValueError("Sample sizes must be positive")
     destination = require_new_destination(output_dir)
@@ -72,7 +80,7 @@ def prepare_batch(
         for row in batch:
             industry, text = row["job_industry"], row["requirements"]
             usable = text is not None and text.strip().casefold() not in PLACEHOLDERS
-            if industry in SCOPE and usable:
+            if industry in (*SCOPE, *exclude_industries) and usable:
                 # Superset of all prior pilot tune/review texts, including
                 # cross-industry copies. No need to read predictions to exclude them.
                 excluded.add(normalized_text_hash(text))
@@ -151,6 +159,7 @@ def prepare_batch(
             "version": sample_seed,
             "exclusion_inputs": exclusion_hashes,
             "excluded_development_job_ids": sorted(excluded_ids),
+            "excluded_prior_industries": list(exclude_industries),
             "tune_texts": len(samples["tune"]),
             "holdout_texts": len(samples["holdout"]),
             "normalization": "NFC, casefold, whitespace collapse; grouping only",

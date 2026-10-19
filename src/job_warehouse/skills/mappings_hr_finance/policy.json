@@ -1,0 +1,35 @@
+{
+  "version": "owner-keyword-completion-20261019-v1",
+  "taxonomy_version": "hr-finance-keywords-v1",
+  "scope": [
+    "Nhân sự / Hành chính - Thư ký",
+    "Ngân hàng / Tài chính - Đầu tư - Chứng Khoán",
+    "Luật - Pháp Lý - Tuân thủ"
+  ],
+  "positive_contexts": [
+    "required",
+    "preferred"
+  ],
+  "certificate_policy": "mapped_language",
+  "decisions": {
+    "source": "requirements only; no role inference from source industry",
+    "skills": "professional, tools, technologies, languages; no soft skills",
+    "duties": "concrete professional duties count",
+    "bare_lists": "unclear without capability",
+    "training": "future training and interest alone excluded",
+    "products": "named product does not imply parent; industry is routing only",
+    "owner_sales_q1": "Include named accounting software for explicit used OR sold alternatives; preserve condition. Selling alone does not imply using.",
+    "owner_sales_q2": "Explicit skill heading such as office IT governs named tool list; company/system inventory alone stays ambiguous.",
+    "owner_batch02_q1": "Separate MISA HR from MISA accounting; preserve existing MISA code/name and prior results.",
+    "benefits": "Insurance coverage/benefits and contract signing offered to applicants are not skills.",
+    "law_lists": "Finite list components require explicit governed law header; degrees excluded.",
+    "generic_sector": "Employment at a bank, law office or financial company does not prove every professional capability.",
+    "v3": "Last systematic correction: explicit professional headings, finite English/abbreviated aliases, governed law lists, shared office-tool proficiency; sector/employer and software-purpose exclusions. Prior review rounds now development only.",
+    "completion_policy": "owner_explicit_keywords_skip_unclear",
+    "unclear_claims": "skip_preserve_evidence_and_job",
+    "recall_target": "none; no-match never blocks completion",
+    "owner_salary_payment": "Payment alone does not imply payroll calculation.",
+    "owner_specific_technologies": "Keep ASP.NET and PL/SQL separate; no implicit parent .NET/SQL."
+  },
+  "context_overrides": []
+}

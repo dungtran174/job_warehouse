@@ -423,3 +423,53 @@ def test_industry_subset_cannot_change_legacy_default(batch_jobs, tmp_path):
             allow_unpinned_fixture=True,
             enabled_industries=("Marketing",),
         )
+
+
+def test_keyword_gate_needs_explicit_owner_policy(merge_inputs, tmp_path):
+    from job_warehouse.skills.batch_merge import merge_batch
+
+    baseline, candidate, path = merge_inputs
+    gate = json.loads(path.read_text())
+    gate["status"] = "accepted_owner_keyword_policy_no_recall_guarantee"
+    path.write_text(json.dumps(gate))
+    with pytest.raises(ValueError, match="bound owner decision"):
+        merge_batch(
+            candidate, baseline, path, tmp_path / "out", batch_name="sales_customer_service"
+        )
+
+
+def test_owner_keyword_completion_does_not_require_recall_target(merge_inputs, tmp_path):
+    from job_warehouse.skills.batch_merge import merge_batch
+
+    baseline, candidate, gate_path = merge_inputs
+    # Explicit synthetic completion metadata, separate from historical AI gates.
+    manifest_path = candidate / "manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    manifest["policy"]["decisions"]["completion_policy"] = "owner_explicit_keywords_skip_unclear"
+    manifest["extractor_version"] = "requirements-skills-explicit-keywords-v1"
+    manifest_path.write_text(json.dumps(manifest))
+    owner_path = tmp_path / "owner.json"
+    owner_path.write_text(
+        json.dumps(
+            {
+                "decision_type": "explicit_keywords_skip_unclear_no_recall_target",
+                "owner_quote": "Synthetic owner fixture: retain jobs and skip unknown skills.",
+                "preserve_source_jobs": True,
+            }
+        )
+    )
+    gate = json.loads(gate_path.read_text())
+    gate.update(
+        status="accepted_owner_keyword_policy_no_recall_guarantee",
+        owner_decision_path=str(owner_path),
+        independent_quality_claim=False,
+    )
+    gate["validation_artifacts"][str(owner_path)] = file_sha256(owner_path)
+    for m in gate["by_industry"].values():
+        m["recall"] = 0.1  # Completion deliberately does not promise high recall.
+    gate_path.write_text(json.dumps(gate))
+    report = merge_batch(
+        candidate, baseline, gate_path, tmp_path / "out", batch_name="sales_customer_service"
+    )
+    assert report["completion_policy"] == "accepted_owner_keyword_policy_no_recall_guarantee"
+    assert "no independent precision/recall guarantee" in report["semantic_reference"]

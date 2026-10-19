@@ -37,8 +37,13 @@ def merge_batch(
     tracked.update(baseline_hashes)
     tracked[gate_path] = file_sha256(gate_path)
     gate = json.loads(gate_path.read_text())
+    keyword_mode = gate.get("status") == "accepted_owner_keyword_policy_no_recall_guarantee"
     if (
-        gate.get("status") != "accepted_ai_holdout_not_human_gold"
+        gate.get("status")
+        not in {
+            "accepted_ai_holdout_not_human_gold",
+            "accepted_owner_keyword_policy_no_recall_guarantee",
+        }
         or gate.get("scope") != list(scope)
         or candidate["policy"]["scope"] != list(approved_scope)
         or gate.get("taxonomy_sha256")
@@ -50,7 +55,26 @@ def merge_batch(
         raise ValueError("Batch semantic gate or frozen taxonomy mismatch")
     if set(gate.get("by_industry", {})) != set(scope):
         raise ValueError("Gate must cover every industry")
-    for metrics in gate["by_industry"].values():
+    if keyword_mode:
+        decision_path = Path(gate.get("owner_decision_path", ""))
+        if (
+            not decision_path.is_file()
+            or gate.get("validation_artifacts", {}).get(str(decision_path.resolve()))
+            != file_sha256(decision_path)
+            or candidate["policy"].get("decisions", {}).get("completion_policy")
+            != "owner_explicit_keywords_skip_unclear"
+        ):
+            raise ValueError("Keyword completion requires a bound owner decision and policy")
+        decision = json.loads(decision_path.read_text())
+        if (
+            decision.get("decision_type") != "explicit_keywords_skip_unclear_no_recall_target"
+            or not decision.get("owner_quote")
+            or decision.get("preserve_source_jobs") is not True
+            or gate.get("independent_quality_claim") is not False
+            or candidate.get("extractor_version") != "requirements-skills-explicit-keywords-v1"
+        ):
+            raise ValueError("Keyword completion must disclose its limits and retain jobs")
+    for metrics in () if keyword_mode else gate["by_industry"].values():
         if (
             metrics.get("texts", 0) < 50
             or metrics.get("tp", 0) < 1
@@ -182,7 +206,12 @@ def merge_batch(
         "added_pairs": len(pair_keys),
         "added_evidence": len(evidence),
         "batch_status_counts": dict(Counter(r["status"] for r in statuses.values())),
-        "semantic_reference": "two blind AI references, adjudicated; not human gold",
+        "semantic_reference": (
+            "owner-authorized conservative keywords; no independent precision/recall guarantee"
+            if keyword_mode
+            else "two blind AI references, adjudicated; not human gold"
+        ),
+        "completion_policy": gate["status"],
         "baseline_outside_batch_preserved": True,
     }
     with staging_directory(destination) as tmp:

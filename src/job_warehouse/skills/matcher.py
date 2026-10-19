@@ -223,6 +223,10 @@ class SkillMatcher:
             result.append((start, end, alias))
         return result
 
+    def _segments(self, text: str, spans: list[tuple[int, int]]) -> list[tuple[int, int, str]]:
+        """Default segmentation stays unchanged for the accepted older profiles."""
+        return clauses(text, spans)
+
     def extract(self, text: str | None) -> Extraction:
         if text is None:
             return Extraction("missing_requirements")
@@ -230,7 +234,7 @@ class SkillMatcher:
             return Extraction("unusable_requirements")
         candidates = self._candidates(text)
         hashed = text_hash(text) if self.policy.context_overrides else None
-        segments = clauses(text, [(s, e) for s, e, _ in candidates])
+        segments = self._segments(text, [(s, e) for s, e, _ in candidates])
         evidence = []
         for start, end, alias in candidates:
             left, right, section = next(
