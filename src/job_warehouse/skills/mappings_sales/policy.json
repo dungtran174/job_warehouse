@@ -1,0 +1,27 @@
+{
+  "version": "owner-skills-sales-20261019-v3",
+  "taxonomy_version": "sales-dictionary-v3",
+  "scope": [
+    "Bán hàng - Kinh doanh",
+    "Chăm sóc khách hàng",
+    "Nhân viên kinh doanh",
+    "Phát triển thị trường",
+    "Bất động sản"
+  ],
+  "positive_contexts": [
+    "required",
+    "preferred"
+  ],
+  "certificate_policy": "mapped_language",
+  "decisions": {
+    "source": "requirements only",
+    "skills": "professional, tools, technologies, languages; no soft skills",
+    "duties": "concrete professional duties count",
+    "bare_lists": "unclear without capability",
+    "training": "future training and interest alone excluded",
+    "products": "named product does not imply parent; industry is routing only",
+    "owner_sales_q1": "Include named accounting software for explicit used OR sold alternatives; preserve condition. Selling alone does not imply using.",
+    "owner_sales_q2": "Explicit skill heading such as office IT governs named tool list; company/system inventory alone stays ambiguous."
+  },
+  "context_overrides": []
+}

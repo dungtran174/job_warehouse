@@ -1,0 +1,9 @@
+{
+  "status": "candidate_not_semantically_accepted",
+  "based_on": {
+    "pilot_taxonomy_sha256": "943d1ff0159551f8fae2e2b55e654d1d8bae17a40247d0cc3ff17ca0c0cec202",
+    "review_catalogue_sha256": "c46bd0fc2db500cc2f624cf803d85e0e35bc582c2492ca780c02722955a479b8"
+  },
+  "derivation": "96 pilot concepts plus 21 explicit sales/service concepts; existing concept codes/names retained, added concepts do not relabel occupations. Full text examples and per-alias evidence retained outside Git. No whole-catalogue activation.",
+  "scope": "five source labels, sampled and evaluated separately"
+}

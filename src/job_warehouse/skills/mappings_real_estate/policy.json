@@ -1,0 +1,28 @@
+{
+  "version": "owner-skills-real-estate-20261019-v2",
+  "taxonomy_version": "real-estate-dictionary-v2",
+  "scope": [
+    "Bất động sản"
+  ],
+  "positive_contexts": [
+    "required",
+    "preferred"
+  ],
+  "certificate_policy": "mapped_language",
+  "decisions": {
+    "source": "requirements only",
+    "skills": "professional, tools, technologies, languages; no soft skills",
+    "duties": "concrete professional duties count",
+    "bare_lists": "unclear without capability",
+    "training": "future training and interest alone excluded",
+    "products": "named product does not imply parent; industry is routing only",
+    "owner_sales_q1": "Include named accounting software for explicit used OR sold alternatives; preserve condition. Selling alone does not imply using.",
+    "owner_sales_q2": "Explicit skill heading such as office IT governs named tool list; company/system inventory alone stays ambiguous.",
+    "domain": "Industry alone or generic domain experience does not prove domain knowledge; explicit knowledge or legal/brokerage duties required.",
+    "owner_real_estate_q1": "An immediately adjacent closed CSKH/Sale/Telesale list may inherit an explicit experience predicate from the preceding sentence. Arbitrary tool inventories still unclear.",
+    "owner_real_estate_q2": "Explicit experience managing sales or head of sales counts as sales; merely counting managed sales staff does not.",
+    "owner_real_estate_q3": "Business law explicitly linked to the previous real-estate paragraph can count; conflicting legal sectors keep review; retain expanded source context.",
+    "owner_real_estate_q4": "Preier means Premiere only in a clear creative-software list with Adobe/Photoshop/Illustrator/InDesign context."
+  },
+  "context_overrides": []
+}

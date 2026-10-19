@@ -83,10 +83,12 @@ def _digest_rows(digest: Any, rows: list[dict[str, Any]]) -> None:
         digest.update(b"\n")
 
 
-def load_policy(directory: Path = MAPPINGS) -> tuple[SkillPolicy, dict[str, Any]]:
+def load_policy(
+    directory: Path = MAPPINGS, *, scope: tuple[str, ...] = SCOPE
+) -> tuple[SkillPolicy, dict[str, Any]]:
     document: dict[str, Any] = json.loads((directory / "policy.json").read_text())
-    if document.get("scope") != list(SCOPE):
-        raise ValueError("Skill scope differs from the approved three industry labels")
+    if document.get("scope") != list(scope):
+        raise ValueError("Skill scope differs from the approved industry labels")
     policy = SkillPolicy(
         document["version"],
         tuple(document["positive_contexts"]),
@@ -104,6 +106,8 @@ def run_skills(
     batch_size: int = 2048,
     allow_unpinned_fixture: bool = False,
     expanded_context: bool = False,
+    batch_name: str | None = None,
+    enabled_industries: tuple[str, ...] | None = None,
 ) -> dict[str, Any]:
     if batch_size < 1:
         raise ValueError("Batch size must be positive")
@@ -116,10 +120,34 @@ def run_skills(
     ]
     asset_hashes = {p: file_sha256(p) for p in assets}
     taxonomy = load_taxonomy(taxonomy_dir)
-    policy, policy_document = load_policy(taxonomy_dir)
+    scope: tuple[str, ...] = SCOPE
+    policy_scope: tuple[str, ...] = SCOPE
+    if enabled_industries is not None and batch_name is None:
+        raise ValueError("Industry subset requires an explicit batch")
+    if batch_name is not None:
+        from job_warehouse.skills.batches import batch_scope
+        from job_warehouse.skills.scopes import processing_scope
+
+        policy_scope = batch_scope(batch_name)
+        scope = processing_scope(batch_name, enabled_industries)
+        if expanded_context:
+            raise ValueError("A batch cannot enable the experimental global expanded matcher")
+    policy, policy_document = load_policy(taxonomy_dir, scope=policy_scope)
     matcher: SkillMatcher
     extractor_version, taxonomy_version = EXTRACTOR_VERSION, TAXONOMY_VERSION
-    if expanded_context:
+    if batch_name == "real_estate":
+        from job_warehouse.skills.real_estate import REAL_ESTATE_VERSION, RealEstateSkillMatcher
+
+        matcher = RealEstateSkillMatcher(taxonomy, policy)
+        extractor_version = REAL_ESTATE_VERSION
+        taxonomy_version = policy_document["taxonomy_version"]
+    elif batch_name == "sales_customer_service":
+        from job_warehouse.skills.sales import SALES_EXTRACTOR_VERSION, SalesSkillMatcher
+
+        matcher = SalesSkillMatcher(taxonomy, policy)
+        extractor_version = SALES_EXTRACTOR_VERSION
+        taxonomy_version = policy_document["taxonomy_version"]
+    elif expanded_context:
         from job_warehouse.skills.expanded import (
             EXPANDED_TAXONOMY_VERSION,
             EXPANDED_VERSION,
@@ -156,7 +184,7 @@ def run_skills(
                         ident, industry, year = row["id"], row["job_industry"], row["year"]
                         text = row["requirements"]
                         hashed = text_hash(text) if text is not None else None
-                        in_scope = industry in SCOPE
+                        in_scope = industry in scope
                         if text is None:
                             result = Extraction("missing_requirements")
                         elif text.strip().casefold() in PLACEHOLDERS:
@@ -259,10 +287,13 @@ def run_skills(
         processed = (
             counts["processed_match"]
             + counts["processed_no_match"]
-            + (counts["expanded_partial_match"] if expanded_context else 0)
+            + (counts["expanded_partial_match"] if expanded_context or batch_name else 0)
         )
         report = {
             "status": "candidate_skills_not_semantically_accepted",
+            "scope": list(scope),
+            "batch": batch_name,
+            "deferred_industries": sorted(set(policy_scope) - set(scope)),
             "counts": dict(counts),
             "artifacts": readback,
             "distinct_skills_with_pairs": len(skills),
@@ -278,7 +309,7 @@ def run_skills(
                 else None,
                 "prevalence_denominator": (
                     "processed_match + processed_no_match + expanded_partial_match"
-                    if expanded_context
+                    if expanded_context or batch_name
                     else "processed_match + processed_no_match under same filters"
                 ),
             },
@@ -291,13 +322,13 @@ def run_skills(
             "cache": {"maxsize": 8192, "hits": cached_extract.cache_info().hits},
             "limits": [
                 "Pairs mean required OR preferred mentions, not all mandatory skills",
-                "Finite vocabulary and three industry labels only; "
+                "Finite vocabulary and configured industry labels only; "
                 "no-match is not absence of skill",
                 "Foreign languages may be inferred from mapped certificates; "
                 "evidence distinguishes it",
                 (
                     "Unresolved individual claims retained; clear pairs may still be included"
-                    if expanded_context
+                    if expanded_context or batch_name
                     else "Unresolved documents withheld from positive pairs "
                     "and processed denominator"
                 ),
@@ -322,6 +353,8 @@ def run_skills(
             "extractor_version": extractor_version,
             "taxonomy_version": taxonomy_version,
             "policy": policy_document,
+            "processed_scope": list(scope),
+            "batch": batch_name,
             "input_hashes": {str(p.resolve()): h for p, h in source.hashes.items()},
             "asset_hashes": {str(p.resolve()): sha for p, sha in asset_hashes.items()},
             "readback": readback,

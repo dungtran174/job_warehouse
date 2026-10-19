@@ -1,0 +1,5 @@
+{
+  "status": "candidate_not_semantically_accepted",
+  "base": "mappings_sales v3 frozen batch",
+  "method": "Finite aliases observed in earlier failed holdout (now development data) and fresh tune only; original source offsets retained. No AI runtime."
+}

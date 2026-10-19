@@ -44,6 +44,8 @@ where = ["src"]
 "job_warehouse.skills" = [
   "mappings/*.csv", "mappings/*.json",
   "mappings_expanded/*.csv", "mappings_expanded/*.json",
+  "mappings_sales/*.csv", "mappings_sales/*.json",
+  "mappings_real_estate/*.csv", "mappings_real_estate/*.json",
 ]
 
 [tool.pytest.ini_options]

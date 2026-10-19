@@ -3,6 +3,76 @@
 Trạng thái: đã kiểm định offline bản thí điểm ba ngành; chưa nạp PostgreSQL.
 Code tại `src/job_warehouse/skills/`, độc lập crawler và extractor S2.
 
+## Mở rộng theo đợt
+
+Đợt `sales_customer_service` chọn đúng năm nhãn nguồn: Bán hàng - Kinh doanh,
+Chăm sóc khách hàng, Nhân viên kinh doanh, Phát triển thị trường, Bất động sản.
+Nhãn ngành chỉ chọn phạm vi; không làm bằng chứng và không được sửa lại.
+Gói `mappings_sales/` kế thừa mã khái niệm cũ, bổ sung nghiệp vụ bán hàng/CSKH,
+có phiên bản và kiểm định riêng. Không bật toàn bộ catalogue 602 tự động.
+Lệnh `silver skills` không có `--batch` vẫn dùng ba ngành/bộ 96 như trước.
+
+```bash
+job-warehouse silver skills-batch-prepare \
+  --batch sales_customer_service \
+  --jobs-run /outside/repository/s4-run \
+  --output-dir /outside/repository/new-batch-samples
+
+job-warehouse silver skills \
+  --batch sales_customer_service \
+  --jobs-run /outside/repository/s4-run \
+  --output-dir /outside/repository/new-batch-candidate
+
+job-warehouse silver skills-batch-merge \
+  --batch sales_customer_service \
+  --candidate-run /outside/repository/new-batch-candidate \
+  --baseline-run /outside/repository/accepted-s5-run \
+  --gate /outside/repository/validated-batch-gate.json \
+  --output-dir /outside/repository/new-merged-s5-run
+```
+
+Chuẩn bị mẫu mặc định 20 tune + 50 holdout/nhãn. Chia nhóm bằng NFC,
+casefold và thu gọn khoảng trắng, chỉ để tách mẫu; requirements/evidence vẫn
+nguyên văn. Loại toàn bộ nội dung đã có trong ba ngành thí điểm, kể cả bản
+sao qua ngành. Khi sửa rule, API `prepare_batch` nhận `exclude_samples`,
+`exclude_job_ids`, `sample_seed` để tạo vòng mới loại các nhóm đã dùng.
+Thiết kế cân bằng năm và nhóm văn bản khác với lấy ngẫu nhiên theo từng tin;
+không coi đây là loại hết các câu gần giống.
+
+Hai cặp rõ và chưa rõ trong cùng tin được xử lý riêng. Kỹ năng mềm, ngành
+học đứng riêng, sở thích, doanh số hoặc lời hứa đào tạo không tạo cặp.
+Danh sách công cụ thiếu ngữ cảnh năng lực giữ chưa rõ; nhiệm vụ chuyên môn
+cụ thể trong requirements có thể tạo cặp. Không suy nghiệp vụ bán hàng từ
+việc chỉ dùng phần mềm quản lý bán hàng hoặc làm báo cáo doanh số.
+Chủ dự án xác nhận: đầu mục kỹ năng rõ như "Vi tính văn phòng" có thể
+làm ngữ cảnh chung cho danh sách công cụ dù không có từ "thành thạo"; câu "đã từng sử dụng
+hoặc bán MISA/FAST" được lấy công cụ và giữ quan hệ lựa chọn, còn chỉ bán
+phần mềm không tự chứng minh biết dùng. SAP là nhãn hệ sinh thái chung;
+SAP BO/SuccessFactors được tính SAP, giữ sản phẩm trong bằng chứng và
+không suy thêm skill ERP. Quyết định và ID/quote cụ thể nằm trong hồ sơ
+ngoài Git, được gate khóa SHA; không sửa manifest các run đã tạo.
+
+Merge yêu cầu gate theo từng nhãn (≥50 văn bản, có cặp dương, precision
+≥95%, recall ≥80%), cùng SHA taxonomy/alias/policy/code và hồ sơ kiểm định.
+Gate phải xuất phát từ đánh giá tham chiếu mù và đối chiếu ngữ nghĩa; JSON/SHA
+chỉ kiểm tính nhất quán, không tự chứng minh chất lượng. Nhãn AI không được
+gọi là nhãn con người. Điểm tính trong từ điển đã khóa, không đo mọi skill.
+Gói/nhãn chưa đạt tiếp tục ở candidate, chưa nhập vào bản hiện hành.
+Khi chỉ một phần đợt đạt, thêm `--industry 'Nhãn nguồn'` lặp lại cho từng
+nhãn được nhận vào lệnh `silver skills`. Nhãn phải là tập con không trùng
+trong đợt đã khai báo. Manifest ghi `processed_scope` và báo cáo ghi các
+nhãn hoãn; merge đối chiếu gate đúng tập con đó, giữ nguyên trạng thái và
+mọi cặp/evidence của các nhãn khác. Chưa đạt không thành "không có skill".
+Chọn phạm vi không đổi `extract(text)`; nếu bổ sung cơ chế chọn tập con sau
+khóa mẫu, phải giữ checksum extractor/alias/policy, lưu diff của phần điều
+khiển và kiểm thử bảo toàn dữ liệu trước khi chạy.
+
+Merge kiểm nguồn S4, tập ID/hash, tên chuẩn, bằng chứng/offset, số lượng,
+đọc lại Parquet và bảo toàn các dòng cũ. Không ghi lại kết quả thí điểm bằng
+rule mới; một đợt đã xử lý không bị ghi đè. Lệnh tạo run mới ngoài Git và
+acceptance offline; việc cập nhật con trỏ vẫn cần kiểm tra báo cáo cuối.
+Chưa publish PostgreSQL, không tự commit/push các thay đổi của đợt mới.
+
 ## Chốt phiên bản thí điểm
 
 Chốt phiên bản là đóng băng đầu ra đã nhận cùng catalogue, policy và provenance;
@@ -348,3 +418,28 @@ Nghiên cứu từ khóa. Lớp merge cũng cập nhật ngoại lệ đã duy�
 thay thế, giữ bảng thay đổi và source run gốc. Mọi evidence mới kiểm FK, hash
 requirements và offsets trên chính S4 trước khi xuất. Các điểm số từ mẫu đã
 dùng sửa rule được lưu nguyên và tách khỏi vòng mẫu mới.
+
+
+## Bổ sung riêng Bất động sản
+
+`silver skills --batch real_estate` dùng `mappings_real_estate/` và matcher
+riêng; chỉ xử lý nhãn Bất động sản. Các rule và dictionary bán hàng/CSKH đã chốt
+được giữ nguyên. Mọi run vẫn là candidate cho đến khi có gate kiểm định riêng.
+Không suy Kiến thức bất động sản chỉ từ kinh nghiệm làm trong ngành, bằng cấp
+hoặc từ nghiệp vụ pháp lý. Phần mềm CSKH không tự thành nghiệp vụ CSKH.
+Sở thích chốt đơn, cam kết học kỹ năng sale và đào tạo tương lai không là năng lực.
+
+Các quyết định chủ dự án được thể hiện bằng rule và evidence ngữ cảnh:
+
+- Danh sách CSKH/Sale/Telesale ngay sau câu yêu cầu kinh nghiệm có thể nhận
+  ngữ cảnh từ câu đó; danh sách công cụ đứng riêng vẫn chưa rõ.
+- Kinh nghiệm quản lý bán hàng rõ được tính Bán hàng; chỉ đếm số nhân viên
+  sales được quản lý chưa đủ bằng chứng.
+- Pháp luật kinh doanh có thể liên kết với Bất động sản nêu rõ trong cùng
+  đoạn trước đó; lĩnh vực pháp luật mâu thuẫn tiếp tục chưa rõ.
+- Lỗi gõ Preier được hiểu là Adobe Premiere trong danh sách phần mềm thiết kế
+  rõ, không áp dụng alias này cho mọi ngữ cảnh.
+
+Bản cuối kiểm định bằng hai AI độc lập trên 70 văn bản mới, tách các mẫu cũ đã
+xem thành dữ liệu phát triển. Gate, điểm số, trạng thái nhận thực tế và giới hạn
+nằm trong hồ sơ chạy ngoài Git; không gọi nhãn AI là nhãn con người xác nhận.

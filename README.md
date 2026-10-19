@@ -88,8 +88,8 @@ là Công nghệ thông tin, Kế toán / Kiểm toán và Marketing. Chỉ đ�
 dùng từ điển/alias và rule offline, không gọi AI ở runtime. Bản v8 đã đạt
 kiểm định cặp tin–skill trên 300 văn bản mới do hai AI đánh giá độc lập:
 precision ≥95%, recall ≥80% từng ngành trong từ điển 96 khái niệm.
-Đây là kiểm định mẫu bằng AI; 581 tin review giữ riêng. Chưa mở rộng 31 nhãn
-ngành còn lại hoặc publish database. CLI luôn tạo candidate; hồ sơ nghiệm
+Đây là kiểm định mẫu bằng AI; dữ liệu review giữ riêng. Các gói mở rộng
+kiểm định theo từng nhãn, chưa publish database. CLI luôn tạo candidate; hồ sơ nghiệm
 thu bổ sung và dữ liệu thật nằm ngoài Git.
 Xem [chính sách, đầu ra và lệnh S5](docs/warehouse/skills_contract.md).
 Bản thí điểm được đóng băng theo phiên bản: giữ kết quả đã nhận và tách các
@@ -98,6 +98,14 @@ catalogue bổ sung qua review chỉ có hiệu lực với các claim ID/hash �
 không đồng nghĩa toàn catalogue được trích đồng đều trên mọi tin. Hồ sơ chốt,
 Parquet, từ điển và danh sách hoãn xử lý lưu ngoài Git. Xem mục chốt phiên bản
 trong hợp đồng S5.
+Mở rộng theo đợt dùng `silver skills-batch-prepare`,
+`silver skills --batch sales_customer_service` và `silver skills-batch-merge`. Gói bán hàng/CSKH có
+phạm vi, mẫu và gate riêng; kết quả ngoài đợt được giữ nguyên. Dữ liệu thực tế
+và tình trạng nghiệm thu từng run lưu ngoài repository; lệnh chạy tạo candidate.
+Riêng Bất động sản dùng `silver skills --batch real_estate`, có từ điển và
+rule ngữ cảnh riêng để giữ nguyên kết quả bán hàng/CSKH đã chốt. Bộ mẫu mới
+70 văn bản do hai AI đánh giá độc lập đạt gate; hồ sơ, sai sót còn lại và
+bản Silver offline đã ghép được lưu ngoài Git, chưa publish database.
 Bộ mở rộng nằm riêng ở `skills/mappings_expanded/`; CLI `silver skills-expand`
 chạy đồng đều ba ngành và `silver skills-expand-merge` đối chiếu với các review
 đã duyệt. Đây là bản candidate mới, không kế thừa điểm kiểm định của bộ 96.

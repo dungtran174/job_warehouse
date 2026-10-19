@@ -76,6 +76,29 @@ def build_parser() -> argparse.ArgumentParser:
     skills.add_argument("--output-dir", type=Path, required=True)
     skills.add_argument("--taxonomy-dir", type=Path)
     skills.add_argument("--batch-size", type=int, default=2048)
+    skills.add_argument("--batch", choices=["sales_customer_service", "real_estate"])
+    skills.add_argument("--industry", action="append", help="only validated labels within --batch")
+    batch_prepare = silver_commands.add_parser(
+        "skills-batch-prepare",
+        help="freeze disjoint samples for an explicit skills expansion batch",
+    )
+    batch_prepare.add_argument("--jobs-run", type=Path, required=True)
+    batch_prepare.add_argument("--output-dir", type=Path, required=True)
+    batch_prepare.add_argument(
+        "--batch", choices=["sales_customer_service", "real_estate"], required=True
+    )
+    batch_prepare.add_argument("--tune-per-industry", type=int, default=20)
+    batch_prepare.add_argument("--holdout-per-industry", type=int, default=50)
+    batch_merge = silver_commands.add_parser(
+        "skills-batch-merge", help="merge a validated expansion batch while preserving the baseline"
+    )
+    batch_merge.add_argument(
+        "--batch", choices=["sales_customer_service", "real_estate"], required=True
+    )
+    batch_merge.add_argument("--candidate-run", type=Path, required=True)
+    batch_merge.add_argument("--baseline-run", type=Path, required=True)
+    batch_merge.add_argument("--gate", type=Path, required=True)
+    batch_merge.add_argument("--output-dir", type=Path, required=True)
     review = silver_commands.add_parser(
         "skills-apply-review", help="apply evidence-bound skill review to held-out jobs"
     )
@@ -104,6 +127,30 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         if args.command == "silver":
+            if args.silver_command == "skills-batch-merge":
+                from job_warehouse.skills.batch_merge import merge_batch
+
+                report = merge_batch(
+                    args.candidate_run,
+                    args.baseline_run,
+                    args.gate,
+                    args.output_dir,
+                    batch_name=args.batch,
+                )
+                print(f"Batch merged: {report}; output={args.output_dir}")
+                return 0
+            if args.silver_command == "skills-batch-prepare":
+                from job_warehouse.skills.batches import prepare_batch
+
+                report = prepare_batch(
+                    args.jobs_run,
+                    args.output_dir,
+                    batch_name=args.batch,
+                    tune_per_industry=args.tune_per_industry,
+                    holdout_per_industry=args.holdout_per_industry,
+                )
+                print(f"Batch samples: {report}; output={args.output_dir}")
+                return 0
             if args.silver_command == "skills-expand-merge":
                 from job_warehouse.skills.expansion_merge import merge_expansion
 
@@ -137,11 +184,22 @@ def main(argv: Sequence[str] | None = None) -> int:
                 from job_warehouse.skills.runner import run_skills
                 from job_warehouse.skills.taxonomy import MAPPINGS
 
+                taxonomy_dir = args.taxonomy_dir or MAPPINGS
+                if args.batch:
+                    from job_warehouse.skills.sales import SALES_MAPPINGS
+
+                    taxonomy_dir = args.taxonomy_dir or SALES_MAPPINGS
+                    if args.batch == "real_estate":
+                        from job_warehouse.skills.real_estate import REAL_ESTATE_MAPPINGS
+
+                        taxonomy_dir = args.taxonomy_dir or REAL_ESTATE_MAPPINGS
                 report = run_skills(
                     args.jobs_run,
                     args.output_dir,
-                    taxonomy_dir=args.taxonomy_dir or MAPPINGS,
+                    taxonomy_dir=taxonomy_dir,
                     batch_size=args.batch_size,
+                    batch_name=args.batch,
+                    enabled_industries=tuple(args.industry) if args.industry else None,
                 )
                 print(f"Candidate skills: {report['counts']}; output={args.output_dir}")
                 return 0

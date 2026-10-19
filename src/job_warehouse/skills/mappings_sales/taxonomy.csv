@@ -1,0 +1,118 @@
+skill_code,skill_name,skill_group,definition
+python,Python,technology,Ngôn ngữ lập trình Python.
+java,Java,technology,Ngôn ngữ Java; không gồm JavaScript.
+javascript,JavaScript,technology,Ngôn ngữ JavaScript.
+typescript,TypeScript,technology,Ngôn ngữ TypeScript.
+cpp,C++,technology,Ngôn ngữ C++; không suy ra C.
+csharp,C#,technology,Ngôn ngữ C#.
+dotnet,.NET,technology,Nền tảng .NET.
+php,PHP,technology,Ngôn ngữ PHP.
+golang,Go,technology,Ngôn ngữ Go; alias ngắn Go cần kiểm định riêng.
+ruby,Ruby,technology,Ngôn ngữ lập trình Ruby.
+kotlin,Kotlin,technology,Ngôn ngữ lập trình Kotlin.
+swift,Swift,technology,Ngôn ngữ lập trình Swift.
+sql,SQL,technology,Ngôn ngữ truy vấn SQL; không suy từ tên sản phẩm database.
+mysql,MySQL,technology,Hệ quản trị MySQL.
+postgresql,PostgreSQL,technology,Hệ quản trị PostgreSQL.
+sql_server,SQL Server,technology,Microsoft SQL Server; không tự thêm SQL từ tên sản phẩm.
+oracle_db,Oracle Database,technology,Oracle Database; Oracle đứng riêng chưa xác định sản phẩm.
+mongodb,MongoDB,technology,Cơ sở dữ liệu MongoDB.
+redis,Redis,technology,Redis.
+html,HTML,technology,Ngôn ngữ đánh dấu HTML.
+css,CSS,technology,Ngôn ngữ kiểu CSS.
+react,React,technology,Thư viện React cho web; React Native là khái niệm riêng.
+react_native,React Native,technology,Framework React Native.
+vue,Vue.js,technology,Framework Vue.js.
+angular,Angular,technology,Framework Angular.
+nodejs,Node.js,technology,Runtime Node.js.
+spring,Spring Framework,technology,Framework Spring; không lấy Spring mùa xuân.
+django,Django,technology,Framework Django.
+flask,Flask,technology,Framework Flask.
+laravel,Laravel,technology,Framework Laravel.
+git,Git,tool,Công cụ quản lý phiên bản Git; không suy từ GitHub.
+github,GitHub,tool,Nền tảng GitHub; CV/link tài khoản đơn thuần không đủ.
+linux,Linux,technology,Hệ điều hành Linux.
+docker,Docker,tool,Công cụ container Docker.
+kubernetes,Kubernetes,technology,Nền tảng Kubernetes.
+aws,Amazon Web Services,technology,Nền tảng Amazon Web Services.
+azure,Microsoft Azure,technology,Nền tảng Microsoft Azure.
+gcp,Google Cloud,technology,Nền tảng Google Cloud.
+spark,Apache Spark,technology,Apache Spark; không nhận Spark nghĩa khác.
+airflow,Apache Airflow,tool,Công cụ orchestration Apache Airflow.
+kafka,Apache Kafka,technology,Nền tảng Apache Kafka.
+power_bi,Power BI,tool,Microsoft Power BI.
+tableau,Tableau,tool,Công cụ Tableau.
+selenium,Selenium,tool,Công cụ kiểm thử Selenium.
+postman,Postman,tool,Công cụ kiểm thử API Postman.
+manual_testing,Kiểm thử thủ công,domain,Kiến thức hoặc kỹ năng kiểm thử thủ công.
+automation_testing,Kiểm thử tự động,domain,Kiến thức hoặc kỹ năng kiểm thử tự động.
+test_case,Thiết kế ca kiểm thử,domain,Thiết kế hoặc viết test case; không chỉ chức danh Tester.
+oop,Lập trình hướng đối tượng,domain,Lập trình hướng đối tượng.
+rest_api,REST API,technology,Giao diện REST API.
+excel,Microsoft Excel,tool,Excel; không suy từ tin học văn phòng.
+word,Microsoft Word,tool,Microsoft Word; Word đơn lẻ cần ngữ cảnh công cụ.
+powerpoint,Microsoft PowerPoint,tool,PowerPoint.
+ms_office,Microsoft Office,tool,Bộ Microsoft Office; không suy các ứng dụng con.
+office_it,Tin học văn phòng,domain,Kỹ năng tin học hoặc vi tính văn phòng; không suy Excel.
+google_sheets,Google Sheets,tool,Bảng tính Google Sheets.
+misa,MISA,tool,Phần mềm kế toán MISA được nêu trong yêu cầu.
+fast_accounting,FAST Accounting,tool,Phần mềm kế toán FAST.
+bravo,BRAVO,tool,Phần mềm kế toán BRAVO.
+sap,SAP,tool,Phần mềm SAP được nêu trong yêu cầu.
+erp,ERP,technology,Hệ thống ERP; không suy sản phẩm cụ thể.
+tax_reporting,Báo cáo thuế,domain,Kỹ năng lập hoặc xử lý báo cáo thuế.
+financial_reporting,Báo cáo tài chính,domain,Kỹ năng lập hoặc đọc báo cáo tài chính.
+payroll,Tính lương,domain,Nghiệp vụ tính lương.
+cost_accounting,Kế toán giá thành,domain,Nghiệp vụ kế toán giá thành.
+account_reconciliation,Đối chiếu công nợ,domain,Nghiệp vụ đối chiếu công nợ.
+photoshop,Adobe Photoshop,tool,Phần mềm Adobe Photoshop.
+illustrator,Adobe Illustrator,tool,Adobe Illustrator; AI đứng riêng chưa tự suy sản phẩm.
+indesign,Adobe InDesign,tool,Phần mềm Adobe InDesign.
+coreldraw,CorelDRAW,tool,Phần mềm CorelDRAW.
+figma,Figma,tool,Công cụ Figma.
+canva,Canva,tool,Công cụ Canva.
+premiere,Adobe Premiere,tool,Phần mềm Adobe Premiere.
+after_effects,Adobe After Effects,tool,Phần mềm Adobe After Effects.
+capcut,CapCut,tool,Công cụ biên tập CapCut.
+seo,SEO,domain,Tối ưu công cụ tìm kiếm; không suy mọi ngành Marketing cần SEO.
+sem,SEM,domain,Marketing trên công cụ tìm kiếm.
+digital_marketing,Digital Marketing,domain,Tiếp thị số; gồm marketing online và digital khi requirements có ngữ cảnh marketing rõ theo Q7; không suy từ tên ngành/title hoặc digital products chung.
+content_marketing,Content Marketing,domain,"Tiếp thị nội dung; gồm viết/biên tập/sáng tạo nội dung và thiết kế hình ảnh, quay dựng video khi requirements có ngữ cảnh marketing rõ theo Q6/Q10; không suy từ ngành/title."
+email_marketing,Email Marketing,domain,Kỹ năng hoặc kiến thức tiếp thị qua email.
+social_media,Social Media Marketing,domain,Kiến thức/kỹ năng tiếp thị và vận hành kênh mạng xã hội trong ngữ cảnh marketing hoặc chiến lược tương tác rõ; tên nền tảng đơn thuần chưa đủ.
+google_ads,Google Ads,tool,Công cụ quảng cáo Google Ads.
+facebook_ads,Facebook Ads,tool,Công cụ quảng cáo Facebook Ads.
+tiktok_ads,TikTok Ads,tool,Công cụ quảng cáo TikTok Ads.
+google_analytics,Google Analytics,tool,Công cụ Google Analytics; GA đứng riêng không nhận.
+tag_manager,Google Tag Manager,tool,Công cụ Google Tag Manager.
+search_console,Google Search Console,tool,Công cụ Google Search Console.
+english,Tiếng Anh,language,Năng lực tiếng Anh được nêu rõ hoặc chứng chỉ có ánh xạ; tên bằng/chuyên ngành không đủ.
+chinese,Tiếng Trung,language,Năng lực tiếng Trung được nêu rõ hoặc chứng chỉ có ánh xạ.
+japanese,Tiếng Nhật,language,Năng lực tiếng Nhật được nêu rõ hoặc chứng chỉ có ánh xạ.
+korean,Tiếng Hàn,language,Năng lực tiếng Hàn được nêu rõ hoặc chứng chỉ có ánh xạ.
+french,Tiếng Pháp,language,Năng lực tiếng Pháp được nêu rõ hoặc chứng chỉ có ánh xạ.
+german,Tiếng Đức,language,Năng lực tiếng Đức được nêu rõ; không suy từ địa chỉ ở Đức.
+spring_boot,Spring Boot,technology,Framework Spring Boot; không tự thêm Spring Framework.
+pyspark,PySpark,technology,API Python của Apache Spark; không tự thêm Apache Spark.
+angularjs,AngularJS,technology,Framework AngularJS; không gộp với Angular.
+review_crm,CRM,domain,Thao tác hoặc kiến thức hệ thống quản trị quan hệ khách hàng; không tự suy từ biết Salesforce.
+review_ban_hang_sales,Bán hàng / Sales,domain,"Nghiệp vụ bán hàng được nêu trong năng lực hoặc kinh nghiệm ở requirements; không lấy ngành học, sở thích, hoa hồng hay chỉ tiêu."
+review_cham_soc_khach_hang,Chăm sóc khách hàng,domain,Kinh nghiệm/năng lực hoặc nhiệm vụ hỗ trợ khách hàng cụ thể; không lấy câu về tính cách thân thiện.
+review_telesales,Telesales,domain,Bán hàng/tư vấn qua điện thoại rõ; không suy chỉ từ có điện thoại hoặc giọng nói tốt.
+review_ban_hang_online,Bán hàng Online,domain,"Kinh nghiệm hoặc nghiệp vụ bán hàng trực tuyến, không suy từ dùng Facebook."
+review_kien_thuc_bat_dong_san,Kiến thức bất động sản,domain,Kiến thức được nêu trực tiếp; làm ở công ty bất động sản không tự chứng minh.
+review_salesforce,Salesforce,tool,"Công cụ Salesforce được nêu như năng lực sử dụng, không tự thêm CRM."
+review_hubspot,HubSpot,domain,"Công cụ HubSpot được nêu như năng lực sử dụng, không tự thêm CRM."
+review_kiotviet,KiotViet,tool,"Sử dụng phần mềm KiotViet, không lấy chỉ từng làm tại công ty KiotViet."
+review_sapo,Sapo,tool,"Sử dụng phần mềm Sapo, không lấy chỉ từng làm tại công ty Sapo."
+sales_prospecting,Tìm kiếm khách hàng,domain,Nghiệp vụ tìm kiếm/phát triển tệp khách hàng; không bao gồm giao tiếp chung.
+sales_product_consulting,Tư vấn sản phẩm,domain,Tư vấn sản phẩm/giải pháp bán hàng cụ thể; tư vấn chung chưa rõ lĩnh vực không thuộc alias.
+sales_complaint_handling,Xử lý khiếu nại,domain,Xử lý khiếu nại khách hàng cụ thể; xử lý tình huống chung không được tự gán.
+sales_quotation,Lập báo giá,domain,Lập báo giá bán hàng rõ; không gán từ tên tài liệu báo giá đứng riêng.
+sales_order_management,Quản lý đơn hàng,domain,Nghiệp vụ quản lý/xử lý/theo dõi đơn hàng; không suy quản lý kho.
+sales_closing,Chốt giao dịch,domain,Hoàn tất giao dịch bán hàng được nêu rõ; không lấy lời hứa được đào tạo chốt deal.
+sales_market_development,Phát triển thị trường,domain,Kinh nghiệm/năng lực/nhiệm vụ phát triển thị trường hoặc kinh doanh; không dựa vào nhãn ngành.
+sales_real_estate_brokerage,Môi giới bất động sản,domain,"Nghiệp vụ hoặc kinh nghiệm môi giới rõ trong requirements, không suy từ kinh nghiệm ngành BĐS chung."
+sales_real_estate_legal,Pháp lý bất động sản,domain,Kiến thức nghiệp vụ pháp lý bất động sản được nêu rõ; không tự suy từ bằng luật.
+sales_distribution_management,Quản lý hệ thống phân phối,domain,"Nghiệp vụ quản lý mạng lưới phân phối, không suy chỉ từ kinh nghiệm ngành hàng."
+sales_call_center,Nghiệp vụ tổng đài,domain,Nghiệp vụ hoặc kinh nghiệm tổng đài; không suy chỉ từ giọng nói tốt.

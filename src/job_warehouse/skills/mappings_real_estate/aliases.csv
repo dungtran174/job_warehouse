@@ -1,0 +1,438 @@
+skill_code,alias,mode
+python,Python,literal
+java,Java,literal
+javascript,JavaScript,literal
+typescript,TypeScript,literal
+cpp,C++,literal
+csharp,C#,literal
+csharp,C Sharp,literal
+dotnet,.NET,literal
+dotnet,dotnet,literal
+php,PHP,literal
+golang,Golang,literal
+golang,Go language,literal
+ruby,Ruby,literal
+kotlin,Kotlin,literal
+swift,Swift,literal
+sql,SQL,literal
+mysql,MySQL,literal
+mysql,My SQL,literal
+postgresql,PostgreSQL,literal
+postgresql,Postgres,literal
+sql_server,SQL Server,literal
+sql_server,MSSQL,literal
+sql_server,MS SQL Server,literal
+oracle_db,Oracle Database,literal
+mongodb,MongoDB,literal
+redis,Redis,literal
+html,HTML,literal
+html,HTML5,literal
+css,CSS,literal
+css,CSS3,literal
+react,React,literal
+react,ReactJS,literal
+react,React.js,literal
+react_native,React Native,literal
+vue,Vue.js,literal
+vue,VueJS,literal
+angular,Angular,literal
+angularjs,AngularJS,literal
+nodejs,Node.js,literal
+nodejs,NodeJS,literal
+nodejs,Node JS,literal
+spring,Spring Framework,literal
+spring_boot,Spring Boot,literal
+django,Django,literal
+flask,Flask,literal
+laravel,Laravel,literal
+git,Git,literal
+github,GitHub,literal
+linux,Linux,literal
+docker,Docker,literal
+kubernetes,Kubernetes,literal
+kubernetes,K8s,literal
+aws,AWS,literal
+aws,Amazon Web Services,literal
+azure,Azure,literal
+azure,Microsoft Azure,literal
+gcp,GCP,literal
+gcp,Google Cloud,literal
+gcp,Google Cloud Platform,literal
+spark,Apache Spark,literal
+pyspark,PySpark,literal
+airflow,Airflow,literal
+airflow,Apache Airflow,literal
+kafka,Kafka,literal
+kafka,Apache Kafka,literal
+power_bi,Power BI,literal
+power_bi,PowerBI,literal
+tableau,Tableau,literal
+selenium,Selenium,literal
+postman,Postman,literal
+manual_testing,manual testing,literal
+manual_testing,kiểm thử thủ công,literal
+manual_testing,manual test,literal
+automation_testing,automation testing,literal
+automation_testing,automated testing,literal
+automation_testing,kiểm thử tự động,literal
+automation_testing,automation test,literal
+test_case,test case,literal
+test_case,testcase,literal
+test_case,ca kiểm thử,literal
+oop,OOP,literal
+oop,lập trình hướng đối tượng,literal
+oop,object oriented programming,literal
+rest_api,REST API,literal
+rest_api,RESTful API,literal
+excel,Excel,literal
+excel,Microsoft Excel,literal
+excel,MS Excel,literal
+word,Microsoft Word,literal
+word,MS Word,literal
+powerpoint,PowerPoint,literal
+powerpoint,Power Point,literal
+powerpoint,Microsoft PowerPoint,literal
+ms_office,Microsoft Office,literal
+ms_office,MS Office,literal
+office_it,tin học văn phòng,literal
+office_it,vi tính văn phòng,literal
+google_sheets,Google Sheets,literal
+google_sheets,Google Sheet,literal
+misa,MISA,literal
+fast_accounting,FAST Accounting,literal
+fast_accounting,phần mềm FAST,literal
+fast_accounting,phần mềm kế toán FAST,literal
+bravo,BRAVO,literal
+sap,SAP,literal
+erp,ERP,literal
+tax_reporting,báo cáo thuế,literal
+tax_reporting,kê khai thuế,literal
+tax_reporting,khai báo thuế,literal
+tax_reporting,quyết toán thuế,literal
+financial_reporting,báo cáo tài chính,literal
+financial_reporting,financial reporting,literal
+financial_reporting,financial statements,literal
+payroll,tính lương,literal
+payroll,payroll,literal
+cost_accounting,kế toán giá thành,literal
+cost_accounting,cost accounting,literal
+account_reconciliation,đối chiếu công nợ,literal
+photoshop,Photoshop,literal
+photoshop,Adobe Photoshop,literal
+illustrator,Illustrator,literal
+illustrator,Adobe Illustrator,literal
+indesign,InDesign,literal
+indesign,Adobe InDesign,literal
+coreldraw,CorelDRAW,literal
+coreldraw,Corel Draw,literal
+figma,Figma,literal
+canva,Canva,literal
+premiere,Premiere,literal
+premiere,Adobe Premiere,literal
+premiere,Premiere Pro,literal
+after_effects,After Effects,literal
+after_effects,AfterEffects,literal
+capcut,CapCut,literal
+seo,SEO,literal
+seo,search engine optimization,literal
+seo,tối ưu công cụ tìm kiếm,literal
+sem,SEM,literal
+sem,search engine marketing,literal
+digital_marketing,Digital Marketing,literal
+digital_marketing,marketing kỹ thuật số,literal
+digital_marketing,tiếp thị số,literal
+content_marketing,Content Marketing,literal
+content_marketing,tiếp thị nội dung,literal
+email_marketing,Email Marketing,literal
+social_media,Social Media Marketing,literal
+social_media,Social Marketing,literal
+social_media,marketing mạng xã hội,literal
+google_ads,Google Ads,literal
+google_ads,Google AdWords,literal
+facebook_ads,Facebook Ads,literal
+facebook_ads,Facebook Advertising,literal
+facebook_ads,quảng cáo Facebook,literal
+tiktok_ads,TikTok Ads,literal
+tiktok_ads,quảng cáo TikTok,literal
+google_analytics,Google Analytics,literal
+google_analytics,GA4,literal
+tag_manager,Google Tag Manager,literal
+search_console,Google Search Console,literal
+english,tiếng Anh,literal
+english,English,literal
+english,Anh ngữ,literal
+chinese,tiếng Trung,literal
+chinese,tiếng Hoa,literal
+chinese,Chinese,literal
+chinese,Trung ngữ,literal
+japanese,tiếng Nhật,literal
+japanese,Japanese,literal
+japanese,Nhật ngữ,literal
+korean,tiếng Hàn,literal
+korean,Korean,literal
+korean,Hàn ngữ,literal
+french,tiếng Pháp,literal
+french,French,literal
+french,Pháp ngữ,literal
+german,tiếng Đức,literal
+german,German,literal
+word,Word,contextual
+ms_office,Office,contextual
+english,IELTS,certificate
+english,TOEIC,certificate
+english,TOEFL,certificate
+chinese,HSK,certificate
+japanese,JLPT,certificate
+korean,TOPIK,certificate
+french,DELF,certificate
+french,DALF,certificate
+powerpoint,PPT,contextual
+spark,Spark,contextual
+rest_api,API REST,literal
+rest_api,REST APIs,literal
+rest_api,REST integrations,literal
+csharp,C #,literal
+oop,object-oriented programming,literal
+vue,Vue,contextual
+office_it,phần mềm văn phòng,literal
+office_it,vi tính & ứng dụng văn phòng,literal
+fast_accounting,FAST,contextual
+illustrator,Illustrators,contextual
+digital_marketing,Marketing online,literal
+digital_marketing,marketing về online,literal
+cost_accounting,product costing,literal
+content_marketing,viết content,contextual
+content_marketing,viết nội dung,contextual
+content_marketing,viết bài,contextual
+content_marketing,biên tập nội dung,contextual
+content_marketing,sáng tạo nội dung,contextual
+content_marketing,sản xuất nội dung,contextual
+content_marketing,content creation,contextual
+content_marketing,content writing,contextual
+content_marketing,copywriting,contextual
+content_marketing,content,contextual
+digital_marketing,digital,contextual
+digital_marketing,truyền thông số,contextual
+social_media,social media,contextual
+social_media,mạng xã hội,contextual
+social_media,phát triển cộng đồng,contextual
+facebook_ads,Facebook,contextual
+tiktok_ads,TikTok,contextual
+english,Anh,shared_language
+chinese,Trung,shared_language
+chinese,Hoa,shared_language
+japanese,Nhật,shared_language
+korean,Hàn,shared_language
+french,Pháp,shared_language
+german,Đức,shared_language
+content_marketing,viết SEO,contextual
+social_media,post social,contextual
+rest_api,REST,contextual
+content_marketing,thiết kế banner,contextual
+content_marketing,thiết kế hình ảnh,contextual
+content_marketing,thiết kế đồ họa,contextual
+content_marketing,quay dựng,contextual
+content_marketing,quay chụp,contextual
+content_marketing,quay phim,contextual
+content_marketing,chụp ảnh,contextual
+content_marketing,dựng video,contextual
+content_marketing,biên tập video,contextual
+content_marketing,sản xuất video,contextual
+content_marketing,chỉnh sửa ảnh,contextual
+content_marketing,chỉnh sửa hình ảnh,contextual
+content_marketing,chỉnh sửa video,contextual
+content_marketing,video editing,contextual
+content_marketing,video production,contextual
+content_marketing,photography,contextual
+content_marketing,graphic design,contextual
+social_media,TikTok/Reels,contextual
+facebook_ads,FBads,literal
+facebook_ads,FB Ads,literal
+illustrator,AI,contextual
+photoshop,PS,contextual
+premiere,Pr,contextual
+premiere,Adobe Premier,literal
+after_effects,After effect,literal
+illustrator,Ilustrator,literal
+google_ads,GG ads,literal
+office_it,tin học VP,literal
+office_it,công cụ văn phòng,literal
+content_marketing,viết quảng cáo,contextual
+content_marketing,xây dựng nội dung,contextual
+content_marketing,kịch bản video,contextual
+content_marketing,nội dung video,contextual
+content_marketing,quay video,contextual
+content_marketing,tạo ra video,contextual
+content_marketing,viết lách,contextual
+content_marketing,tối ưu nội dung,contextual
+content_marketing,tối ưu hóa nội dung,contextual
+content_marketing,nội dung đa phương tiện,contextual
+content_marketing,thiết kế các ấn phẩm,contextual
+content_marketing,"quay, dựng clip",contextual
+content_marketing,xử lý video,contextual
+content_marketing,visual storytelling,contextual
+digital_marketing,quảng cáo online,contextual
+digital_marketing,tiếp thị Online,contextual
+digital_marketing,tiêp thị Online,contextual
+digital_marketing,truyền thông online,contextual
+digital_marketing,DigDigital Marketing,contextual
+social_media,quản lý fanpage,contextual
+social_media,quản trị fanpage,contextual
+social_media,marketing Facebook,contextual
+social_media,Social Post,contextual
+social_media,social media analytics,contextual
+social_media,thuật toán Facebook,contextual
+social_media,truyền thông xã hội,contextual
+social_media,mạng xh,contextual
+social_media,sản xuất nội dung trên,contextual
+facebook_ads,FB,contextual
+facebook_ads,Facebock,contextual
+google_ads,Google,contextual
+tiktok_ads,Tik Tok,contextual
+photoshop,PTS,literal
+search_console,Google Console,literal
+seo,S.e.o,literal
+content_marketing,kinh nghiệm livestream,contextual
+review_crm,CRM,literal
+review_crm,Customer Relationship Management,literal
+review_ban_hang_sales,bán hàng,literal
+review_ban_hang_sales,sales,literal
+review_ban_hang_sales,sale,literal
+review_cham_soc_khach_hang,chăm sóc khách hàng,literal
+review_cham_soc_khach_hang,CSKH,literal
+review_cham_soc_khach_hang,dịch vụ khách hàng,literal
+review_cham_soc_khach_hang,customer service,literal
+review_cham_soc_khach_hang,customer support,literal
+review_telesales,telesales,literal
+review_telesales,telesale,literal
+review_telesales,tele sales,literal
+review_telesales,tư vấn qua điện thoại,literal
+review_telesales,bán hàng qua điện thoại,literal
+review_ban_hang_online,bán hàng online,literal
+review_ban_hang_online,bán hàng trực tuyến,literal
+review_ban_hang_online,sales online,literal
+review_ban_hang_online,sale online,literal
+review_kien_thuc_bat_dong_san,kiến thức bất động sản,literal
+review_kien_thuc_bat_dong_san,am hiểu bất động sản,literal
+review_kien_thuc_bat_dong_san,am hiểu thị trường bất động sản,literal
+review_salesforce,Salesforce,literal
+review_hubspot,HubSpot,literal
+review_kiotviet,KiotViet,literal
+review_sapo,Sapo,literal
+sales_prospecting,tìm kiếm khách hàng,literal
+sales_prospecting,phát triển khách hàng,literal
+sales_prospecting,prospecting,literal
+sales_prospecting,lead generation,literal
+sales_product_consulting,tư vấn sản phẩm,literal
+sales_product_consulting,tư vấn bán hàng,literal
+sales_product_consulting,tư vấn giải pháp,literal
+sales_complaint_handling,xử lý khiếu nại,literal
+sales_complaint_handling,giải quyết khiếu nại,literal
+sales_complaint_handling,complaint handling,literal
+sales_quotation,lập báo giá,literal
+sales_quotation,xây dựng báo giá,literal
+sales_order_management,quản lý đơn hàng,literal
+sales_order_management,xử lý đơn hàng,literal
+sales_order_management,theo dõi đơn hàng,literal
+sales_order_management,order management,literal
+sales_order_management,order processing,literal
+sales_closing,chốt đơn,literal
+sales_closing,chốt sales,literal
+sales_closing,chốt sale,literal
+sales_closing,chốt hợp đồng,literal
+sales_closing,chốt deal,literal
+sales_market_development,phát triển thị trường,literal
+sales_market_development,business development,literal
+sales_market_development,phát triển kinh doanh,literal
+sales_real_estate_brokerage,môi giới bất động sản,literal
+sales_real_estate_brokerage,môi giới BĐS,literal
+sales_real_estate_legal,pháp lý bất động sản,literal
+sales_distribution_management,quản lý hệ thống phân phối,literal
+sales_call_center,call center,literal
+sales_call_center,call centre,literal
+sales_call_center,trực tổng đài,literal
+sales_call_center,nghiệp vụ tổng đài,literal
+review_ban_hang_sales,nhân viên kinh doanh,literal
+review_ban_hang_sales,làm kinh doanh,literal
+review_ban_hang_sales,lĩnh vực kinh doanh,literal
+review_ban_hang_sales,kinh nghiệm kinh doanh,literal
+review_ban_hang_sales,quy trình kinh doanh,literal
+review_ban_hang_sales,kinh doanh bán lẻ,literal
+review_ban_hang_sales,kinh doanh thị trường,literal
+review_ban_hang_online,kinh doanh online,literal
+review_ban_hang_online,bán hàng trên các sàn TMĐT,literal
+review_ban_hang_online,bán hàng trên sàn thương mại điện tử,literal
+review_cham_soc_khach_hang,phục vụ khách hàng,literal
+review_cham_soc_khach_hang,customer care,literal
+review_kien_thuc_bat_dong_san,am hiểu về thị trường bất động sản,literal
+review_kien_thuc_bat_dong_san,am hiểu về thị trường BĐS,literal
+review_kien_thuc_bat_dong_san,kiến thức về bất động sản,literal
+review_kien_thuc_bat_dong_san,kiến thức và kinh nghiệm trong lĩnh vực bất động sản,literal
+sales_prospecting,khai thác khách hàng,literal
+sales_prospecting,hunting khách hàng,literal
+sales_prospecting,phát triển dữ liệu khách hàng,literal
+sales_product_consulting,tư vấn các sản phẩm,literal
+sales_product_consulting,tư vấn cho khách hàng về việc mua/bán,literal
+sales_real_estate_legal,pháp lý liên quan đến bất động sản,literal
+sales_real_estate_legal,quy định pháp luật trong lĩnh vực bất động sản,literal
+sales_real_estate_legal,thủ tục Sổ đỏ,literal
+sales_real_estate_legal,thủ tục sang tên nhà đất,literal
+office_it,phần mềm tiện ích văn phòng,literal
+office_it,ứng dụng văn phòng,literal
+sql_server,MS SQL,literal
+word,world,contextual
+google_sheets,Sheets,contextual
+sales_closing,close a deal,literal
+review_telesales,telemarketing,literal
+review_cham_soc_khach_hang,chăm sóc tệp khách hàng,literal
+sales_prospecting,tìm khách hàng,literal
+sales_prospecting,phát triển mạng lưới khách hàng,literal
+sales_prospecting,new business acquisition,literal
+sales_prospecting,generate leads,literal
+sales_prospecting,building client networks,literal
+sales_product_consulting,solution consulting,literal
+sales_product_consulting,tư vấn cho khách hàng sản phẩm,literal
+sales_closing,chốt khách,literal
+sales_closing,closing deals,literal
+office_it,máy tính văn phòng,literal
+office_it,Office computer,literal
+english,Anh văn,literal
+word,wold,contextual
+canva,canvas,contextual
+canva,cava,contextual
+capcut,cupcut,literal
+oracle_db,Oracle,contextual
+sql_server,Microsoft SQL,literal
+cost_accounting,tính toán giá thành,literal
+review_kien_thuc_bat_dong_san,biết về ngành Bất động sản,literal
+review_kien_thuc_bat_dong_san,"am hiểu về kinh tế Xã hội, thị trường bất động sản",literal
+content_marketing,edit video,contextual
+review_kien_thuc_bat_dong_san,bất động sản,literal
+review_kien_thuc_bat_dong_san,BĐS,literal
+review_kien_thuc_bat_dong_san,thị trường nhà đất,literal
+sales_real_estate_brokerage,môi giới,literal
+sales_real_estate_legal,pháp lý,literal
+sales_real_estate_legal,pháp luật,literal
+sales_real_estate_legal,luật về kinh doanh,literal
+review_ban_hang_sales,kinh doanh BĐS,literal
+review_ban_hang_sales,kinh doanh bất động sản,literal
+review_ban_hang_sales,bán shophouse,literal
+review_ban_hang_sales,bán căn hộ,literal
+review_ban_hang_sales,bán đất nền,literal
+review_ban_hang_sales,bán các sản phẩm,literal
+review_ban_hang_sales,vai trò kinh doanh,literal
+review_autocad,Auto Cad,literal
+review_wordpress,Web WP,literal
+review_autocad,AutoCAD,literal
+review_wordpress,WordPress,literal
+review_kien_thuc_bat_dong_san,hiểu biết về bất động sản,literal
+review_kien_thuc_bat_dong_san,hiểu rõ về thị trường bất động sản,literal
+review_kien_thuc_bat_dong_san,kiến thức về BĐS,literal
+review_kien_thuc_bat_dong_san,hiểu biết về BĐS,literal
+review_kien_thuc_bat_dong_san,am hiểu thị trường BĐS,literal
+review_ban_hang_sales,trưởng phòng kinh doanh,literal
+review_ban_hang_sales,quản lý đội nhóm bán,literal
+review_ban_hang_sales,kinh doanh bất động sản công nghiệp,literal
+sales_real_estate_legal,pháp lý dự án,literal
+sales_product_consulting,tư vấn Bất động sản,literal
+premiere,Preier,contextual
