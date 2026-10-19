@@ -19,6 +19,7 @@ from job_warehouse.skills.input import (
 from job_warehouse.skills.profile import text_hash
 
 BATCH_SCOPES = {
+    "hospitality_retail": ("Khách sạn - Nhà hàng - Du lịch / Bán sỉ - Bán lẻ - Quản lý cửa hàng",),
     "education_language": (
         "Giáo dục - Đào tạo / Biên phiên dịch",
         "Giáo dục - Đào tạo / Chăm sóc khách hàng",

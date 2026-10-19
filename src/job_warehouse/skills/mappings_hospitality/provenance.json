@@ -1,0 +1,178 @@
+{
+  "method": "One bounded development survey:20 deterministic requirements plus finite targeted examples; no independent quality claim.",
+  "base_education_taxonomy_sha256": "36dfe83999d9932ed06dd49d149a806a6176102fe17239940de56eb4b54d696c",
+  "new_specific_concepts": [
+    {
+      "skill_code": "ret_front_desk",
+      "skill_name": "Nghiệp vụ lễ tân",
+      "aliases": [
+        "nghiệp vụ lễ tân",
+        "lễ tân",
+        "front desk",
+        "front office"
+      ]
+    },
+    {
+      "skill_code": "ret_table_service",
+      "skill_name": "Phục vụ bàn",
+      "aliases": [
+        "phục vụ bàn",
+        "phục vụ món ăn",
+        "table service"
+      ]
+    },
+    {
+      "skill_code": "ret_cooking",
+      "skill_name": "Chế biến món ăn",
+      "aliases": [
+        "chế biến món ăn",
+        "nấu ăn",
+        "cooking"
+      ]
+    },
+    {
+      "skill_code": "ret_bartending",
+      "skill_name": "Pha chế",
+      "aliases": [
+        "pha chế",
+        "bartending",
+        "barista"
+      ]
+    },
+    {
+      "skill_code": "ret_housekeeping",
+      "skill_name": "Nghiệp vụ buồng phòng",
+      "aliases": [
+        "buồng phòng",
+        "housekeeping"
+      ]
+    },
+    {
+      "skill_code": "ret_room_reservation",
+      "skill_name": "Đặt phòng",
+      "aliases": [
+        "đặt phòng",
+        "room reservation",
+        "hotel reservation"
+      ]
+    },
+    {
+      "skill_code": "ret_ticketing",
+      "skill_name": "Đặt vé",
+      "aliases": [
+        "đặt vé",
+        "book vé",
+        "xuất vé",
+        "ticketing"
+      ]
+    },
+    {
+      "skill_code": "ret_tour_operation",
+      "skill_name": "Điều hành tour",
+      "aliases": [
+        "điều hành tour",
+        "tour operation"
+      ]
+    },
+    {
+      "skill_code": "ret_tour_guiding",
+      "skill_name": "Hướng dẫn du lịch",
+      "aliases": [
+        "hướng dẫn viên du lịch",
+        "hướng dẫn du lịch",
+        "tour guiding"
+      ]
+    },
+    {
+      "skill_code": "ret_restaurant_management",
+      "skill_name": "Quản lý nhà hàng",
+      "aliases": [
+        "quản lý nhà hàng",
+        "quản lí nhà hàng",
+        "quản lý quán ăn",
+        "restaurant management"
+      ]
+    },
+    {
+      "skill_code": "ret_store_management",
+      "skill_name": "Quản lý cửa hàng",
+      "aliases": [
+        "quản lý cửa hàng",
+        "quản lí cửa hàng",
+        "store management"
+      ]
+    },
+    {
+      "skill_code": "ret_cashiering",
+      "skill_name": "Thu ngân",
+      "aliases": [
+        "thu ngân",
+        "cashiering"
+      ]
+    },
+    {
+      "skill_code": "ret_food_safety",
+      "skill_name": "Vệ sinh an toàn thực phẩm",
+      "aliases": [
+        "vệ sinh an toàn thực phẩm",
+        "an toàn vệ sinh thực phẩm",
+        "food safety"
+      ]
+    },
+    {
+      "skill_code": "ret_pos",
+      "skill_name": "POS",
+      "aliases": [
+        "POS",
+        "máy POS"
+      ]
+    },
+    {
+      "skill_code": "ret_opera",
+      "skill_name": "Opera PMS",
+      "aliases": [
+        "Opera PMS",
+        "Opera Cloud",
+        "Opera"
+      ]
+    },
+    {
+      "skill_code": "ret_pms",
+      "skill_name": "PMS khách sạn",
+      "aliases": [
+        "PMS",
+        "Property Management System"
+      ]
+    },
+    {
+      "skill_code": "ret_amadeus",
+      "skill_name": "Amadeus",
+      "aliases": [
+        "Amadeus"
+      ]
+    },
+    {
+      "skill_code": "ret_sabre",
+      "skill_name": "Sabre",
+      "aliases": [
+        "Sabre"
+      ]
+    },
+    {
+      "skill_code": "ret_galileo",
+      "skill_name": "Galileo",
+      "aliases": [
+        "Galileo"
+      ]
+    },
+    {
+      "skill_code": "ret_abacus",
+      "skill_name": "Abacus",
+      "aliases": [
+        "Abacus"
+      ]
+    }
+  ],
+  "runtime_llm_calls": 0,
+  "source_evidence": "Offline batch07 survey and targeted examples outside Git; substring counts are hints, not skill statistics."
+}

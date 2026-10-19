@@ -555,3 +555,23 @@ Thông báo bảo mật hồ sơ không phải năng lực nghiệp vụ của �
 Chốt một lượt theo từ khóa rõ: giữ mọi tin, bỏ qua phần chưa rõ/không khớp;
 không mục tiêu recall hay kiểm định AI lặp. Mẫu khảo sát/test là development,
 không chứng nhận thống kê độc lập. Kết quả cũ giữ nguyên khi ghép.
+
+## Gói dịch vụ và bán lẻ
+
+`silver skills --batch hospitality_retail` dùng `mappings_hospitality/` cho
+nhãn ghép khách sạn/nhà hàng/du lịch và bán sỉ/bán lẻ/quản lý cửa hàng. Chỉ
+đọc requirements: bổ sung các nghiệp vụ lễ tân, phục vụ bàn, buồng phòng,
+chế biến món ăn, pha chế, đặt phòng/vé, điều hành tour, hướng dẫn du lịch,
+thu ngân, quản lý nhà hàng/cửa hàng và công cụ được nêu rõ. Tái dùng kỹ năng
+bán hàng, CSKH, ngôn ngữ và công cụ cũ khi có bằng chứng riêng.
+
+Không suy bộ kỹ năng từ nhãn ngành ghép, ngành học hoặc nơi làm việc. Không
+lấy sở thích ẩm thực/pha chế, đào tạo tương lai hay tuân thủ vệ sinh chung
+làm năng lực chuyên môn. Dùng phần mềm quản lý cửa hàng/đặt phòng không tự
+chứng minh nghiệp vụ tương ứng. Opera/PMS cần ngữ cảnh phần mềm khách sạn;
+Abacus/Galileo cần ngữ cảnh công cụ hoặc đặt vé. Thẻ hướng dẫn viên du lịch
+được nêu rõ theo chính sách chứng chỉ nghề cụ thể, không suy kinh nghiệm.
+
+Khớp rõ thì lấy, chưa rõ thì bỏ qua và giữ mọi tin. Khảo sát/test phục vụ
+phát triển, không phải kiểm định thống kê độc lập; không lặp để tăng recall.
+Kết quả các đợt trước giữ nguyên khi ghép.

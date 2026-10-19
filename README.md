@@ -134,6 +134,10 @@ Gói giáo dục/ngôn ngữ dùng `silver skills --batch education_language` ch
 nhãn nguồn; nhận kỹ năng giảng dạy, biên phiên dịch và công cụ có bằng chứng
 trong requirements. Bỏ qua phần chưa rõ, giữ mọi tin và kết quả các đợt trước.
 
+Gói dịch vụ/bán lẻ dùng `silver skills --batch hospitality_retail`. Nhận
+nghiệp vụ khách sạn, nhà hàng, du lịch, bán lẻ và công cụ khi requirements
+có bằng chứng rõ; không suy kỹ năng từ nhãn ngành ghép.
+
 ## Warehouse lịch sử — S3 enrichment
 
 **Trục ngành hiện hành:** dùng `job_industry`, không dùng `occupation_primary`

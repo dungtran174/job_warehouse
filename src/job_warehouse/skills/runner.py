@@ -135,7 +135,14 @@ def run_skills(
     policy, policy_document = load_policy(taxonomy_dir, scope=policy_scope)
     matcher: SkillMatcher
     extractor_version, taxonomy_version = EXTRACTOR_VERSION, TAXONOMY_VERSION
-    if batch_name == "education_language":
+    if batch_name == "hospitality_retail":
+        from job_warehouse.skills.conservative import CONSERVATIVE_VERSION
+        from job_warehouse.skills.hospitality import HospitalitySkillMatcher
+
+        matcher = HospitalitySkillMatcher(taxonomy, policy)
+        extractor_version = CONSERVATIVE_VERSION
+        taxonomy_version = policy_document["taxonomy_version"]
+    elif batch_name == "education_language":
         from job_warehouse.skills.conservative import CONSERVATIVE_VERSION
         from job_warehouse.skills.education import EducationSkillMatcher
 
