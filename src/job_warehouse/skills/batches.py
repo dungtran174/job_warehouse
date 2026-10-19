@@ -19,6 +19,13 @@ from job_warehouse.skills.input import (
 from job_warehouse.skills.profile import text_hash
 
 BATCH_SCOPES = {
+    "engineering_production": (
+        "Điện - Điện tử - Điện lạnh / Vận hành - Bảo trì - Bảo dưỡng",
+        "Cơ khí - Ô tô - Tự động hóa / Sản xuất - Lắp ráp - Chế biến",
+        "Khoa học - Kỹ thuật",
+        "Kỹ thuật",
+        "Quản lý tiêu chuẩn và chất lượng",
+    ),
     "logistics_transport": (
         "Xuất Nhập Khẩu / Thu mua - Kho Vận - Chuỗi cung ứng",
         "Vận Tải - Lái xe - Giao nhận",

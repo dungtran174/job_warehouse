@@ -1,0 +1,413 @@
+{
+  "method": "One bounded survey50 real texts plus targeted exact-keyword examples; no independent quality claim.",
+  "base_logistics_taxonomy_sha256": "509e9c1984a2c372be6393b287e4ebf21baefa7a03c38ee9412b6e386900087e",
+  "new_specific_concepts": [
+    {
+      "skill_code": "review_autocad",
+      "skill_name": "AutoCAD",
+      "aliases": [
+        "AutoCAD",
+        "Auto CAD"
+      ]
+    },
+    {
+      "skill_code": "review_solidworks",
+      "skill_name": "SolidWorks",
+      "aliases": [
+        "SolidWorks",
+        "Solid Works"
+      ]
+    },
+    {
+      "skill_code": "eng_inventor",
+      "skill_name": "Autodesk Inventor",
+      "aliases": [
+        "Autodesk Inventor",
+        "Inventor"
+      ]
+    },
+    {
+      "skill_code": "review_revit",
+      "skill_name": "Revit",
+      "aliases": [
+        "Revit"
+      ]
+    },
+    {
+      "skill_code": "review_sketchup",
+      "skill_name": "SketchUp",
+      "aliases": [
+        "SketchUp",
+        "Sketch Up"
+      ]
+    },
+    {
+      "skill_code": "review_cad",
+      "skill_name": "CAD",
+      "aliases": [
+        "CAD"
+      ]
+    },
+    {
+      "skill_code": "eng_eplan",
+      "skill_name": "EPLAN",
+      "aliases": [
+        "EPLAN"
+      ]
+    },
+    {
+      "skill_code": "eng_plc",
+      "skill_name": "PLC",
+      "aliases": [
+        "PLC"
+      ]
+    },
+    {
+      "skill_code": "eng_plc_programming",
+      "skill_name": "Lập trình PLC",
+      "aliases": [
+        "lập trình PLC",
+        "PLC programming"
+      ]
+    },
+    {
+      "skill_code": "eng_hmi",
+      "skill_name": "HMI",
+      "aliases": [
+        "HMI"
+      ]
+    },
+    {
+      "skill_code": "eng_scada",
+      "skill_name": "SCADA",
+      "aliases": [
+        "SCADA"
+      ]
+    },
+    {
+      "skill_code": "eng_wincc",
+      "skill_name": "WinCC",
+      "aliases": [
+        "WinCC"
+      ]
+    },
+    {
+      "skill_code": "review_cnc",
+      "skill_name": "CNC",
+      "aliases": [
+        "CNC"
+      ]
+    },
+    {
+      "skill_code": "review_lap_trinh_cnc",
+      "skill_name": "Lập trình CNC",
+      "aliases": [
+        "lập trình CNC",
+        "chỉnh sửa chương trình CNC",
+        "CNC programming"
+      ]
+    },
+    {
+      "skill_code": "eng_cnc_operation",
+      "skill_name": "Vận hành máy CNC",
+      "aliases": [
+        "vận hành máy CNC",
+        "CNC operation"
+      ]
+    },
+    {
+      "skill_code": "eng_gcode",
+      "skill_name": "G-code",
+      "aliases": [
+        "G-code",
+        "G- Code",
+        "G Code"
+      ]
+    },
+    {
+      "skill_code": "review_doc_ban_ve_ky_thuat",
+      "skill_name": "Đọc bản vẽ kỹ thuật",
+      "aliases": [
+        "đọc bản vẽ",
+        "đọc hiểu bản vẽ",
+        "đọc, hiểu bản vẽ",
+        "đọc hiểu tốt bản vẽ",
+        "đọc, đọc hiểu bản vẽ",
+        "read technical drawings"
+      ]
+    },
+    {
+      "skill_code": "review_dung_cu_do_co_khi",
+      "skill_name": "Dụng cụ đo cơ khí",
+      "aliases": [
+        "dụng cụ đo cơ khí",
+        "dụng cụ đo",
+        "thước cặp",
+        "panme"
+      ]
+    },
+    {
+      "skill_code": "eng_machine_operation",
+      "skill_name": "Vận hành máy",
+      "aliases": [
+        "vận hành máy",
+        "machine operation"
+      ]
+    },
+    {
+      "skill_code": "eng_equipment_maintenance",
+      "skill_name": "Bảo trì thiết bị",
+      "aliases": [
+        "bảo trì thiết bị",
+        "bảo trì máy móc",
+        "bảo trì máy",
+        "bảo dưỡng máy",
+        "sửa chữa máy móc",
+        "sửa chữa thiết bị",
+        "sửa chữa máy"
+      ]
+    },
+    {
+      "skill_code": "eng_industrial_electricity",
+      "skill_name": "Điện công nghiệp",
+      "aliases": [
+        "điện công nghiệp"
+      ]
+    },
+    {
+      "skill_code": "eng_electrical_maintenance",
+      "skill_name": "Bảo trì điện",
+      "aliases": [
+        "bảo trì điện",
+        "sửa chữa điện",
+        "bảo trì hệ thống điện"
+      ]
+    },
+    {
+      "skill_code": "eng_welding",
+      "skill_name": "Hàn",
+      "aliases": [
+        "biết hàn",
+        "kinh nghiệm hàn",
+        "thợ hàn",
+        "chứng chỉ nghề hàn",
+        "chứng chỉ hàn"
+      ]
+    },
+    {
+      "skill_code": "eng_tig_welding",
+      "skill_name": "Hàn TIG",
+      "aliases": [
+        "hàn TIG",
+        "TIG welding"
+      ]
+    },
+    {
+      "skill_code": "eng_mig_welding",
+      "skill_name": "Hàn MIG",
+      "aliases": [
+        "hàn MIG",
+        "MIG welding"
+      ]
+    },
+    {
+      "skill_code": "eng_machining",
+      "skill_name": "Gia công cơ khí",
+      "aliases": [
+        "gia công cơ khí",
+        "mechanical machining"
+      ]
+    },
+    {
+      "skill_code": "eng_mechanical_manufacturing",
+      "skill_name": "Chế tạo máy",
+      "aliases": [
+        "cơ khí chế tạo máy",
+        "cơ khí chế tạo",
+        "chế tạo máy"
+      ]
+    },
+    {
+      "skill_code": "eng_production_management",
+      "skill_name": "Quản lý sản xuất",
+      "aliases": [
+        "quản lý sản xuất",
+        "quản lí sản xuất",
+        "production management",
+        "trưởng phòng sản xuất"
+      ]
+    },
+    {
+      "skill_code": "review_kiem_soat_chat_luong_qc",
+      "skill_name": "Kiểm soát chất lượng (QC)",
+      "aliases": [
+        "kiểm soát chất lượng",
+        "kiểm tra chất lượng",
+        "kiểm định chất lượng",
+        "QC",
+        "quality control",
+        "quality inspection"
+      ]
+    },
+    {
+      "skill_code": "eng_quality_assurance",
+      "skill_name": "Đảm bảo chất lượng (QA)",
+      "aliases": [
+        "đảm bảo chất lượng",
+        "bảo đảm chất lượng",
+        "QA",
+        "quality assurance"
+      ]
+    },
+    {
+      "skill_code": "review_quan_ly_chat_luong",
+      "skill_name": "Quản lý chất lượng",
+      "aliases": [
+        "quản lý chất lượng",
+        "quản lí chất lượng",
+        "quản lý hệ thống chất lượng",
+        "quality management"
+      ]
+    },
+    {
+      "skill_code": "review_iso_9001",
+      "skill_name": "ISO 9001",
+      "aliases": [
+        "ISO 9001",
+        "ISO9001",
+        "ISO:9001",
+        "ISO 9001:2008",
+        "ISO 9001:2015"
+      ]
+    },
+    {
+      "skill_code": "eng_iso_14001",
+      "skill_name": "ISO 14001",
+      "aliases": [
+        "ISO 14001",
+        "ISO14001"
+      ]
+    },
+    {
+      "skill_code": "eng_iso_45001",
+      "skill_name": "ISO 45001",
+      "aliases": [
+        "ISO 45001",
+        "ISO45001"
+      ]
+    },
+    {
+      "skill_code": "review_iatf_16949",
+      "skill_name": "IATF 16949",
+      "aliases": [
+        "IATF 16949",
+        "IATF16949"
+      ]
+    },
+    {
+      "skill_code": "eng_iso_generic",
+      "skill_name": "ISO",
+      "aliases": [
+        "ISO"
+      ]
+    },
+    {
+      "skill_code": "review_5s",
+      "skill_name": "5S",
+      "aliases": [
+        "5S"
+      ]
+    },
+    {
+      "skill_code": "eng_lean",
+      "skill_name": "Lean",
+      "aliases": [
+        "Lean",
+        "sản xuất tinh gọn"
+      ]
+    },
+    {
+      "skill_code": "eng_kaizen",
+      "skill_name": "Kaizen",
+      "aliases": [
+        "Kaizen"
+      ]
+    },
+    {
+      "skill_code": "eng_six_sigma",
+      "skill_name": "Six Sigma",
+      "aliases": [
+        "Six Sigma",
+        "SixSigma"
+      ]
+    },
+    {
+      "skill_code": "review_spc",
+      "skill_name": "SPC",
+      "aliases": [
+        "SPC"
+      ]
+    },
+    {
+      "skill_code": "review_fmea",
+      "skill_name": "FMEA",
+      "aliases": [
+        "FMEA"
+      ]
+    },
+    {
+      "skill_code": "review_apqp",
+      "skill_name": "APQP",
+      "aliases": [
+        "APQP"
+      ]
+    },
+    {
+      "skill_code": "review_msa",
+      "skill_name": "MSA",
+      "aliases": [
+        "MSA"
+      ]
+    },
+    {
+      "skill_code": "review_ppap",
+      "skill_name": "PPAP",
+      "aliases": [
+        "PPAP"
+      ]
+    },
+    {
+      "skill_code": "eng_7qc",
+      "skill_name": "7 QC tools",
+      "aliases": [
+        "7QC",
+        "7 QC tools",
+        "7QC tool"
+      ]
+    },
+    {
+      "skill_code": "eng_haccp",
+      "skill_name": "HACCP",
+      "aliases": [
+        "HACCP"
+      ]
+    },
+    {
+      "skill_code": "eng_safety",
+      "skill_name": "An toàn lao động",
+      "aliases": [
+        "an toàn lao động",
+        "occupational safety"
+      ]
+    },
+    {
+      "skill_code": "review_he_dieu_hanh_windows",
+      "skill_name": "Hệ điều hành Windows",
+      "aliases": [
+        "Windows"
+      ]
+    }
+  ],
+  "runtime_llm_calls": 0,
+  "source_evidence": "Offline batch04 survey/targeted bundle outside Git; substring counts are candidate hints, not skill frequencies."
+}

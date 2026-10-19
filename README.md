@@ -121,6 +121,11 @@ dùng từ khóa chuyên môn và mapping bằng/chứng chỉ lái xe đã ch�
 vận hành logistics từ sales logistics hoặc từ việc chỉ sở hữu phương tiện.
 Tin không có từ khóa rõ vẫn giữ nguyên; kết quả mới phải đối soát trước khi nhận.
 
+Gói kỹ thuật/sản xuất dùng `silver skills --batch engineering_production` cho
+năm nhãn nguồn, với alias CAD/PLC/CNC, đọc bản vẽ, quản lý sản xuất và chất
+lượng. Chỉ nhận bằng chứng rõ trong requirements; không suy từ ngành học,
+chứng nhận của doanh nghiệp hoặc tên công cụ sang nghiệp vụ vận hành.
+
 ## Warehouse lịch sử — S3 enrichment
 
 **Trục ngành hiện hành:** dùng `job_industry`, không dùng `occupation_primary`

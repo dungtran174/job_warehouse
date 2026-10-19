@@ -503,3 +503,20 @@ bằng cũ–mới; có xe máy/điện thoại không tự thành kỹ năng l�
 được công ty hứa đào tạo/cấp trong tương lai không tính là năng lực có sẵn.
 CLI giữ `--taxonomy-dir` nếu người vận hành cung cấp. Các đợt trước giữ
 kết quả đã nhận; không dùng điểm kiểm định thí điểm để chứng nhận gói này.
+
+## Gói kỹ thuật và sản xuất
+
+`silver skills --batch engineering_production` dùng `mappings_engineering/`
+cho năm nhãn nguồn điện/bảo trì, cơ khí/sản xuất, khoa học kỹ thuật, kỹ thuật
+và quản lý chất lượng. Chỉ trích từ requirements với từ khóa/alias hữu hạn;
+không suy chuyên môn từ nhãn ngành hoặc bằng cấp. Kế thừa chính sách chốt
+khớp rõ, bỏ qua phần chưa rõ và giữ tin; không đặt mục tiêu recall.
+
+CNC/PLC chung không tự thêm lập trình hoặc vận hành. CAD không tự đổi thành
+AutoCAD; ISO chung không tự chọn số tiêu chuẩn. Hàn kim loại tách tiếng Hàn.
+Dụng cụ đo chung không tự gán thành dụng cụ đo cơ khí. Chứng nhận ISO của
+công ty, chỉ phối hợp với phòng QC, phần mềm quản lý sản xuất hoặc hành vi
+an toàn chung không tự thành năng lực chuyên môn tương ứng của ứng viên.
+Từ điển và kết quả cũ không bị ghi lại; hồ sơ khảo sát, quyết định nghiệm thu,
+Parquet và đối soát giữ ngoài Git. Không có kiểm định mù mới hoặc bảo đảm
+precision/recall; mẫu khảo sát/test được ghi rõ là development.

@@ -1,0 +1,42 @@
+{
+  "version": "owner-engineering-keywords-20261019-v1",
+  "taxonomy_version": "engineering-production-keywords-v1",
+  "scope": [
+    "Điện - Điện tử - Điện lạnh / Vận hành - Bảo trì - Bảo dưỡng",
+    "Cơ khí - Ô tô - Tự động hóa / Sản xuất - Lắp ráp - Chế biến",
+    "Khoa học - Kỹ thuật",
+    "Kỹ thuật",
+    "Quản lý tiêu chuẩn và chất lượng"
+  ],
+  "positive_contexts": [
+    "required",
+    "preferred"
+  ],
+  "certificate_policy": "mapped_language",
+  "decisions": {
+    "source": "requirements only; no role inference from source industry",
+    "skills": "professional, tools, technologies, languages; no soft skills",
+    "duties": "concrete professional duties count",
+    "bare_lists": "unclear without capability",
+    "training": "future training and interest alone excluded",
+    "products": "named product does not imply parent; industry is routing only",
+    "owner_sales_q1": "Include named accounting software for explicit used OR sold alternatives; preserve condition. Selling alone does not imply using.",
+    "owner_sales_q2": "Explicit skill heading such as office IT governs named tool list; company/system inventory alone stays ambiguous.",
+    "owner_batch02_q1": "Separate MISA HR from MISA accounting; preserve existing MISA code/name and prior results.",
+    "benefits": "Insurance coverage/benefits and contract signing offered to applicants are not skills.",
+    "law_lists": "Finite list components require explicit governed law header; degrees excluded.",
+    "generic_sector": "Employment at a bank, law office or financial company does not prove every professional capability.",
+    "v3": "Last systematic correction: explicit professional headings, finite English/abbreviated aliases, governed law lists, shared office-tool proficiency; sector/employer and software-purpose exclusions. Prior review rounds now development only.",
+    "completion_policy": "owner_explicit_keywords_skip_unclear",
+    "unclear_claims": "skip_preserve_evidence_and_job",
+    "recall_target": "none; no-match never blocks completion",
+    "owner_salary_payment": "Payment alone does not imply payroll calculation.",
+    "owner_specific_technologies": "Keep ASP.NET and PL/SQL separate; no implicit parent .NET/SQL.",
+    "license_to_driving": "Owner allows explicit driving licenses/certificates -> corresponding car/motorcycle/forklift skill; no experience years or old/new license conversion; vehicle ownership alone excluded.",
+    "sector": "No operational logistics inference from employer/degree or sales logistics alone.",
+    "standards": "Named standards count only as applicant knowledge/experience; company certifications excluded.",
+    "parent_technology": "No implicit programming/operation from generic PLC/CNC; no generic ISO from numbered standard alone.",
+    "education": "Major, department or employer alone does not assert practical skills."
+  },
+  "context_overrides": []
+}
