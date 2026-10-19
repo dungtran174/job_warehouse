@@ -5,7 +5,11 @@ offline; S1 có PostgreSQL Bronze registry; S2 có Silver core offline;
 S3 có enrichment và nhập ánh xạ địa điểm offline; trục ngành hiện dùng nhãn
 nguồn, alias và ghép cha theo quyết định chủ dự án. CLI ngành xuất Silver
 đầy đủ và tập phân tích theo ngưỡng ≥500, giữ lưu vết về Bronze.
+S5 đã kiểm định offline bản thí điểm trích kỹ năng từ requirements cho ba
+ngành; kết quả Parquet và hồ sơ nghiệm thu lưu riêng ngoài repository.
 Silver database publish/Gold/dashboard/Airflow chưa triển khai.
+CLI `silver skills-apply-review` hỗ trợ nhập các claim kỹ năng đã rà soát
+trong bundle có lưu vết, tạo output mới và giữ nguyên các tin ngoài tập review.
 Code warehouse ở `src/job_warehouse/`, test ở `tests/warehouse/`,
 [hợp đồng và cách chạy](docs/warehouse/history_data_contract.md) ở `docs/warehouse/`.
 
@@ -75,6 +79,28 @@ Xuất `jobs.parquet`/`jobs_analysis.parquet` với tên cột nghiệp vụ th�
 `salary_enrichment.parquet` và CSV mapping để đối soát. Input không đổi;
 các chuỗi chưa xác định vẫn giữ tin và lý do, chưa publish PostgreSQL.
 Xem [quy tắc, tỷ giá, schema và cách chạy S4](docs/warehouse/silver_salary_contract.md).
+
+## Warehouse lịch sử — S5 kỹ năng (thí điểm ba ngành)
+
+`silver skills-prepare` khảo sát requirements, chia mẫu tune/holdout theo hash;
+`silver skills` xuất cặp job–skill, bằng chứng và trạng thái riêng. Phạm vi đầu
+là Công nghệ thông tin, Kế toán / Kiểm toán và Marketing. Chỉ đọc requirements,
+dùng từ điển/alias và rule offline, không gọi AI ở runtime. Bản v8 đã đạt
+kiểm định cặp tin–skill trên 300 văn bản mới do hai AI đánh giá độc lập:
+precision ≥95%, recall ≥80% từng ngành trong từ điển 96 khái niệm.
+Đây là kiểm định mẫu bằng AI; 581 tin review giữ riêng. Chưa mở rộng 31 nhãn
+ngành còn lại hoặc publish database. CLI luôn tạo candidate; hồ sơ nghiệm
+thu bổ sung và dữ liệu thật nằm ngoài Git.
+Xem [chính sách, đầu ra và lệnh S5](docs/warehouse/skills_contract.md).
+Bản thí điểm được đóng băng theo phiên bản: giữ kết quả đã nhận và tách các
+đề xuất chưa nghiệm thu để xử lý sau. Bộ 96 kỹ năng được kiểm định tự động;
+catalogue bổ sung qua review chỉ có hiệu lực với các claim ID/hash đã duyệt,
+không đồng nghĩa toàn catalogue được trích đồng đều trên mọi tin. Hồ sơ chốt,
+Parquet, từ điển và danh sách hoãn xử lý lưu ngoài Git. Xem mục chốt phiên bản
+trong hợp đồng S5.
+Bộ mở rộng nằm riêng ở `skills/mappings_expanded/`; CLI `silver skills-expand`
+chạy đồng đều ba ngành và `silver skills-expand-merge` đối chiếu với các review
+đã duyệt. Đây là bản candidate mới, không kế thừa điểm kiểm định của bộ 96.
 
 ## Warehouse lịch sử — S3 enrichment
 

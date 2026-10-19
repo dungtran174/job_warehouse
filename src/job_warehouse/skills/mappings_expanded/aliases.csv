@@ -1,0 +1,1019 @@
+skill_code,alias,mode
+python,Python,literal
+java,Java,literal
+javascript,JavaScript,literal
+typescript,TypeScript,literal
+cpp,C++,literal
+csharp,C#,literal
+csharp,C Sharp,literal
+dotnet,.NET,literal
+dotnet,dotnet,literal
+php,PHP,literal
+golang,Golang,literal
+golang,Go language,literal
+ruby,Ruby,literal
+kotlin,Kotlin,literal
+swift,Swift,literal
+sql,SQL,literal
+mysql,MySQL,literal
+mysql,My SQL,literal
+postgresql,PostgreSQL,literal
+postgresql,Postgres,literal
+sql_server,SQL Server,literal
+sql_server,MSSQL,literal
+sql_server,MS SQL Server,literal
+oracle_db,Oracle Database,literal
+mongodb,MongoDB,literal
+redis,Redis,literal
+html,HTML,literal
+html,HTML5,literal
+css,CSS,literal
+css,CSS3,literal
+react,React,literal
+react,ReactJS,literal
+react,React.js,literal
+react_native,React Native,literal
+vue,Vue.js,literal
+vue,VueJS,literal
+angular,Angular,literal
+angularjs,AngularJS,literal
+nodejs,Node.js,literal
+nodejs,NodeJS,literal
+nodejs,Node JS,literal
+spring,Spring Framework,literal
+spring_boot,Spring Boot,literal
+django,Django,literal
+flask,Flask,literal
+laravel,Laravel,literal
+git,Git,literal
+github,GitHub,literal
+linux,Linux,literal
+docker,Docker,literal
+kubernetes,Kubernetes,literal
+kubernetes,K8s,literal
+aws,AWS,literal
+aws,Amazon Web Services,literal
+azure,Azure,literal
+azure,Microsoft Azure,literal
+gcp,GCP,literal
+gcp,Google Cloud,literal
+gcp,Google Cloud Platform,literal
+spark,Apache Spark,literal
+pyspark,PySpark,literal
+airflow,Airflow,literal
+airflow,Apache Airflow,literal
+kafka,Kafka,literal
+kafka,Apache Kafka,literal
+power_bi,Power BI,literal
+power_bi,PowerBI,literal
+tableau,Tableau,literal
+selenium,Selenium,literal
+postman,Postman,literal
+manual_testing,manual testing,literal
+manual_testing,kiểm thử thủ công,literal
+manual_testing,manual test,literal
+automation_testing,automation testing,literal
+automation_testing,automated testing,literal
+automation_testing,kiểm thử tự động,literal
+automation_testing,automation test,literal
+test_case,test case,literal
+test_case,testcase,literal
+test_case,ca kiểm thử,literal
+oop,OOP,literal
+oop,lập trình hướng đối tượng,literal
+oop,object oriented programming,literal
+rest_api,REST API,literal
+rest_api,RESTful API,literal
+excel,Excel,literal
+excel,Microsoft Excel,literal
+excel,MS Excel,literal
+word,Microsoft Word,literal
+word,MS Word,literal
+powerpoint,PowerPoint,literal
+powerpoint,Power Point,literal
+powerpoint,Microsoft PowerPoint,literal
+ms_office,Microsoft Office,literal
+ms_office,MS Office,literal
+office_it,tin học văn phòng,literal
+office_it,vi tính văn phòng,literal
+google_sheets,Google Sheets,literal
+google_sheets,Google Sheet,literal
+misa,MISA,literal
+fast_accounting,FAST Accounting,literal
+fast_accounting,phần mềm FAST,literal
+fast_accounting,phần mềm kế toán FAST,literal
+bravo,BRAVO,literal
+sap,SAP,literal
+erp,ERP,literal
+tax_reporting,báo cáo thuế,literal
+review_ke_khai_thue,kê khai thuế,literal
+review_ke_khai_thue,khai báo thuế,literal
+review_quyet_toan_thue,quyết toán thuế,literal
+financial_reporting,báo cáo tài chính,literal
+financial_reporting,financial reporting,literal
+financial_reporting,financial statements,literal
+payroll,tính lương,literal
+payroll,payroll,literal
+cost_accounting,kế toán giá thành,literal
+cost_accounting,cost accounting,literal
+account_reconciliation,đối chiếu công nợ,literal
+photoshop,Photoshop,literal
+photoshop,Adobe Photoshop,literal
+illustrator,Illustrator,literal
+illustrator,Adobe Illustrator,literal
+indesign,InDesign,literal
+indesign,Adobe InDesign,literal
+coreldraw,CorelDRAW,literal
+coreldraw,Corel Draw,literal
+figma,Figma,literal
+canva,Canva,literal
+premiere,Premiere,literal
+premiere,Adobe Premiere,literal
+premiere,Premiere Pro,literal
+after_effects,After Effects,literal
+after_effects,AfterEffects,literal
+capcut,CapCut,literal
+seo,SEO,literal
+seo,search engine optimization,literal
+seo,tối ưu công cụ tìm kiếm,literal
+sem,SEM,literal
+sem,search engine marketing,literal
+digital_marketing,Digital Marketing,literal
+digital_marketing,marketing kỹ thuật số,literal
+digital_marketing,tiếp thị số,literal
+content_marketing,Content Marketing,literal
+content_marketing,tiếp thị nội dung,literal
+email_marketing,Email Marketing,literal
+social_media,Social Media Marketing,literal
+social_media,Social Marketing,literal
+social_media,marketing mạng xã hội,literal
+google_ads,Google Ads,literal
+google_ads,Google AdWords,literal
+facebook_ads,Facebook Ads,literal
+facebook_ads,Facebook Advertising,literal
+facebook_ads,quảng cáo Facebook,literal
+tiktok_ads,TikTok Ads,literal
+tiktok_ads,quảng cáo TikTok,literal
+google_analytics,Google Analytics,literal
+google_analytics,GA4,literal
+tag_manager,Google Tag Manager,literal
+search_console,Google Search Console,literal
+english,tiếng Anh,literal
+english,English,literal
+english,Anh ngữ,literal
+chinese,tiếng Trung,literal
+chinese,tiếng Hoa,literal
+chinese,Chinese,literal
+chinese,Trung ngữ,literal
+japanese,tiếng Nhật,literal
+japanese,Japanese,literal
+japanese,Nhật ngữ,literal
+korean,tiếng Hàn,literal
+korean,Korean,literal
+korean,Hàn ngữ,literal
+french,tiếng Pháp,literal
+french,French,literal
+french,Pháp ngữ,literal
+german,tiếng Đức,literal
+german,German,literal
+word,Word,contextual
+ms_office,Office,contextual
+english,IELTS,certificate
+english,TOEIC,certificate
+english,TOEFL,certificate
+chinese,HSK,certificate
+japanese,JLPT,certificate
+korean,TOPIK,certificate
+french,DELF,certificate
+french,DALF,certificate
+powerpoint,PPT,contextual
+spark,Spark,contextual
+rest_api,API REST,literal
+rest_api,REST APIs,literal
+rest_api,REST integrations,literal
+csharp,C #,literal
+oop,object-oriented programming,literal
+vue,Vue,contextual
+office_it,phần mềm văn phòng,literal
+office_it,vi tính & ứng dụng văn phòng,literal
+fast_accounting,FAST,contextual
+illustrator,Illustrators,contextual
+digital_marketing,Marketing online,literal
+digital_marketing,marketing về online,literal
+cost_accounting,product costing,literal
+content_marketing,viết content,contextual
+review_viet_noi_dung_copywriting,viết nội dung,literal
+content_marketing,viết bài,contextual
+content_marketing,biên tập nội dung,contextual
+content_marketing,sáng tạo nội dung,contextual
+review_san_xuat_noi_dung,sản xuất nội dung,literal
+content_marketing,content creation,contextual
+review_viet_noi_dung_copywriting,content writing,literal
+review_viet_noi_dung_copywriting,copywriting,literal
+review_content,content,literal
+digital_marketing,digital,contextual
+digital_marketing,truyền thông số,contextual
+social_media,social media,contextual
+social_media,mạng xã hội,contextual
+social_media,phát triển cộng đồng,contextual
+facebook_ads,Facebook,contextual
+tiktok_ads,TikTok,contextual
+english,Anh,shared_language
+chinese,Trung,shared_language
+chinese,Hoa,shared_language
+japanese,Nhật,shared_language
+korean,Hàn,shared_language
+french,Pháp,shared_language
+german,Đức,shared_language
+content_marketing,viết SEO,contextual
+social_media,post social,contextual
+rest_api,REST,contextual
+content_marketing,thiết kế banner,contextual
+review_thiet_ke_hinh_anh,thiết kế hình ảnh,literal
+review_thiet_ke_do_hoa,thiết kế đồ họa,literal
+content_marketing,quay dựng,contextual
+content_marketing,quay chụp,contextual
+review_quay_phim,quay phim,literal
+review_chup_anh,chụp ảnh,literal
+review_bien_tap_dung_video,dựng video,literal
+review_bien_tap_dung_video,biên tập video,literal
+review_san_xuat_video,sản xuất video,literal
+content_marketing,chỉnh sửa ảnh,contextual
+content_marketing,chỉnh sửa hình ảnh,contextual
+content_marketing,chỉnh sửa video,contextual
+review_bien_tap_dung_video,video editing,literal
+review_san_xuat_video,video production,literal
+review_chup_anh,photography,literal
+review_thiet_ke_do_hoa,graphic design,literal
+social_media,TikTok/Reels,contextual
+facebook_ads,FBads,literal
+facebook_ads,FB Ads,literal
+illustrator,AI,contextual
+photoshop,PS,contextual
+premiere,Pr,contextual
+premiere,Adobe Premier,literal
+after_effects,After effect,literal
+illustrator,Ilustrator,literal
+google_ads,GG ads,literal
+office_it,tin học VP,literal
+office_it,công cụ văn phòng,literal
+content_marketing,viết quảng cáo,contextual
+content_marketing,xây dựng nội dung,contextual
+content_marketing,kịch bản video,contextual
+content_marketing,nội dung video,contextual
+content_marketing,quay video,contextual
+content_marketing,tạo ra video,contextual
+content_marketing,viết lách,contextual
+content_marketing,tối ưu nội dung,contextual
+content_marketing,tối ưu hóa nội dung,contextual
+content_marketing,nội dung đa phương tiện,contextual
+content_marketing,thiết kế các ấn phẩm,contextual
+content_marketing,"quay, dựng clip",contextual
+content_marketing,xử lý video,contextual
+content_marketing,visual storytelling,contextual
+digital_marketing,quảng cáo online,contextual
+digital_marketing,tiếp thị Online,contextual
+digital_marketing,tiêp thị Online,contextual
+digital_marketing,truyền thông online,contextual
+digital_marketing,DigDigital Marketing,contextual
+review_quan_tri_fanpage,quản lý fanpage,literal
+review_quan_tri_fanpage,quản trị fanpage,literal
+social_media,marketing Facebook,contextual
+social_media,Social Post,contextual
+social_media,social media analytics,contextual
+social_media,thuật toán Facebook,contextual
+social_media,truyền thông xã hội,contextual
+social_media,mạng xh,contextual
+social_media,sản xuất nội dung trên,contextual
+facebook_ads,FB,contextual
+facebook_ads,Facebock,contextual
+google_ads,Google,contextual
+tiktok_ads,Tik Tok,contextual
+photoshop,PTS,literal
+search_console,Google Console,literal
+seo,S.e.o,literal
+content_marketing,kinh nghiệm livestream,contextual
+golang,Go,contextual
+test_case,Thiết kế ca kiểm thử,literal
+after_effects,Adobe After Effects,literal
+review_3ds_max,3ds Max,literal
+review_active_directory,Active Directory,literal
+review_adobe_xd,Adobe XD,literal
+review_agile,Agile,literal
+review_ahrefs,Ahrefs,literal
+review_ai_agent,AI Agent,literal
+review_amazon_s3,Amazon S3,literal
+review_android_studio,Android Studio,literal
+review_ansible,Ansible,literal
+review_apache_flink,Apache Flink,literal
+review_api,API,literal
+review_apple_search_ads,Apple Search Ads,literal
+review_arito,Arito,literal
+review_aso_app_store_optimization,ASO (App Store Optimization),literal
+review_asp_net,ASP.NET,literal
+review_asp_net_core,ASP.NET Core,literal
+review_autocad,AutoCAD,literal
+review_aws_quicksight,AWS QuickSight,literal
+review_azure_ai,Azure AI,literal
+review_azure_ai_search,Azure AI Search,literal
+review_azure_openai,Azure OpenAI,literal
+review_ban_hang_sales,Bán hàng / Sales,literal
+review_bao_hiem_xa_hoi,Bảo hiểm xã hội,literal
+review_bao_mat_thong_tin,Bảo mật thông tin,literal
+review_bash,Bash,literal
+review_bien_tap_dung_video,Biên tập / Dựng video,literal
+review_bigquery,BigQuery,literal
+review_bitbucket,Bitbucket,literal
+review_blender,Blender,literal
+review_branding,Branding,literal
+review_business_analysis_ba,Business Analysis (BA),literal
+review_cad_thiet_ke_2d_3d,CAD / Thiết kế 2D-3D,literal
+review_cdp,CDP,literal
+review_celery,Celery,literal
+review_change_management,Change Management,literal
+review_chatgpt,ChatGPT,literal
+review_che_do_ke_toan,Chế độ kế toán,literal
+review_chuan_muc_ke_toan,Chuẩn mực kế toán,literal
+review_ci_cd,CI/CD,literal
+review_codeigniter,CodeIgniter,literal
+review_computer_vision,Computer Vision,literal
+review_confluence,Confluence,literal
+review_copilot,Copilot,literal
+review_cqrs,CQRS,literal
+review_creative_production,Creative Production,literal
+review_crm,CRM,literal
+review_data_structures_algorithms,Data Structures & Algorithms,literal
+review_databricks,Databricks,literal
+review_dataflow,Dataflow,literal
+review_dbt,DBT,literal
+review_deep_learning,Deep Learning,literal
+review_design_patterns,Design Patterns,literal
+review_dhcp,DHCP,literal
+review_dns,DNS,literal
+review_do_luong_hieu_qua_truyen_thong,Đo lường hiệu quả truyền thông,literal
+review_dramatiq,Dramatiq,literal
+review_e_commerce_van_hanh_san_tmdt,E-commerce / Vận hành sàn TMĐT,literal
+review_easy_invoice,Easy Invoice,literal
+review_eclipse_ide,Eclipse IDE,literal
+review_elasticsearch,Elasticsearch,literal
+review_entity_framework,Entity Framework,literal
+review_etl_elt,ETL/ELT,literal
+review_express_js,Express.js,literal
+review_facebook_business_manager,Facebook Business Manager,literal
+review_fastapi,FastAPI,literal
+review_firewall,Firewall,literal
+review_fusion_360,Fusion 360,literal
+review_gemini,Gemini,literal
+review_github_copilot,GitHub Copilot,literal
+review_gitlab,GitLab,literal
+review_google_ad_manager,Google Ad Manager,literal
+review_google_analytics_4,Google Analytics 4,literal
+review_google_app_engine,Google App Engine,literal
+review_google_apps_script,Google Apps Script,literal
+review_google_firebase,Google Firebase,literal
+review_google_keyword_planner,Google Keyword Planner,literal
+review_google_uac,Google UAC,literal
+review_google_workspace,Google Workspace,literal
+review_grafana,Grafana,literal
+review_graphql,GraphQL,literal
+review_growth_marketing,Growth Marketing,literal
+review_hadoop,Hadoop,literal
+review_http,HTTP,literal
+review_influencer_kol_marketing,Influencer / KOL Marketing,literal
+review_intellij_idea,IntelliJ IDEA,literal
+review_ios,iOS,literal
+review_iot,IoT,literal
+review_ips_ids,IPS / IDS,literal
+review_jenkins,Jenkins,literal
+review_jest,Jest,literal
+review_jira,Jira,literal
+review_jquery,jQuery,literal
+review_k2_speech_processing,K2 (Speech Processing),literal
+review_kaldi,Kaldi,literal
+review_ke_toan_ban_hang,Kế toán bán hàng,literal
+review_ke_toan_kho,Kế toán kho,literal
+review_ke_toan_noi_bo,Kế toán nội bộ,literal
+review_ke_toan_quan_tri,Kế toán quản trị,literal
+review_ke_toan_thue,Kế toán thuế,literal
+review_ke_toan_tong_hop,Kế toán tổng hợp,literal
+review_khai_pha_du_lieu,Khai phá dữ liệu,literal
+review_kibana,Kibana,literal
+review_kiem_soat_chat_luong_qc,Kiểm soát chất lượng (QC),literal
+review_kiem_thu_phan_mem,Kiểm thử phần mềm,literal
+review_kingdee,Kingdee,literal
+review_kiotviet,KiotViet,literal
+review_lan_he_thong_mang,LAN / Hệ thống mạng,literal
+review_langchain,LangChain,literal
+review_langgraph,LangGraph,literal
+review_lap_bao_cao_quan_tri,Lập báo cáo quản trị,literal
+review_llm,LLM,literal
+review_looker_studio,Looker Studio,literal
+review_lora,LoRa,literal
+review_luat_thue,Luật thuế,literal
+review_machine_learning,Machine Learning,literal
+review_mailchimp,Mailchimp,literal
+review_mang_may_tinh,Mạng máy tính,literal
+review_memcached,Memcached,literal
+review_meta_ads,Meta Ads,literal
+review_meta_business_suite,Meta Business Suite,literal
+review_meta_pixel,Meta Pixel,literal
+review_microservices,Microservices,literal
+review_microsoft_exchange,Microsoft Exchange,literal
+review_microsoft_project,Microsoft Project,literal
+review_microsoft_teams,Microsoft Teams,literal
+review_modbus,Modbus,literal
+review_mqtt,MQTT,literal
+review_mvc,MVC,literal
+review_nac,NAC,literal
+review_netbeans,NetBeans,literal
+review_next_js,Next.js,literal
+review_nghien_cuu_thi_truong,Nghiên cứu thị trường,literal
+review_nghiep_vu_hach_toan_ke_toan,Nghiệp vụ hạch toán kế toán,literal
+review_nghiep_vu_ke_toan,Nghiệp vụ kế toán,literal
+review_nghiep_vu_lap_bao_cao_du_lieu,Nghiệp vụ lập báo cáo dữ liệu,literal
+review_nginx,Nginx,literal
+review_ngon_ngu_lap_trinh_c,Ngôn ngữ lập trình C,literal
+review_ngon_ngu_lap_trinh_r,Ngôn ngữ lập trình R,literal
+review_nlp,NLP,literal
+review_nosql,NoSQL,literal
+review_npm,NPM,literal
+review_nuxt_js,Nuxt.js,literal
+review_oauth2,OAuth2,literal
+review_odoo,Odoo,literal
+review_onnx,ONNX,literal
+review_opc_ua,OPC UA,literal
+review_opencv,OpenCV,literal
+review_oracle_netsuite,Oracle NetSuite,literal
+review_performance_marketing,Performance Marketing,literal
+review_phan_mem_ke_toan,Phần mềm kế toán,literal
+review_phan_tich_du_lieu,Phân tích dữ liệu,literal
+review_phan_tich_hanh_vi_nguoi_dung,Phân tích hành vi người dùng,literal
+review_phan_tich_thi_truong,Phân tích thị trường,literal
+review_phan_tich_yeu_cau_phan_mem,Phân tích yêu cầu phần mềm,literal
+review_photopea,Photopea,literal
+review_pinia,Pinia,literal
+review_pytorch,PyTorch,literal
+review_qdrant,Qdrant,literal
+review_quan_he_cong_chung_pr,Quan hệ công chúng (PR),literal
+review_quan_ly_du_an,Quản lý dự án,literal
+review_quan_tri_he_thong,Quản trị hệ thống,literal
+review_quan_tri_noi_dung_website,Quản trị nội dung website,literal
+review_quan_tri_tai_nguyen_facebook,Quản trị tài nguyên Facebook,literal
+review_quang_cao,Quảng cáo,literal
+review_quang_cao_truc_tuyen,Quảng cáo trực tuyến,literal
+review_quay_phim_chup_anh,Quay phim / Chụp ảnh,literal
+review_rabbitmq,RabbitMQ,literal
+review_rag,RAG,literal
+review_redux,Redux,literal
+review_routing_switching,Routing / Switching,literal
+review_salesforce,Salesforce,literal
+review_sap_fico,SAP FICO,literal
+review_sas,SAS,literal
+review_sass,SASS,literal
+review_scala,Scala,literal
+review_screaming_frog,Screaming Frog,literal
+review_scrum,Scrum,literal
+review_semrush,SEMrush,literal
+review_shell_scripting,Shell scripting,literal
+review_shopee,Shopee,literal
+review_shopee_ads,Shopee Ads,literal
+review_shopify,Shopify,literal
+review_sketch,Sketch,literal
+review_slack,Slack,literal
+review_snowflake,Snowflake,literal
+review_soan_thao_van_ban,Soạn thảo văn bản,literal
+review_solid,SOLID,literal
+review_solidworks,SolidWorks,literal
+review_speechbrain,SpeechBrain,literal
+review_ssl_tls,SSL/TLS,literal
+review_starlette,Starlette,literal
+review_su_dung_may_tinh,Sử dụng máy tính,literal
+review_swagger,Swagger,literal
+review_tensorflow,TensorFlow,literal
+review_terraform,Terraform,literal
+review_theo_doi_phan_tich_hieu_qua_quang_cao,Theo dõi / Phân tích hiệu quả quảng cáo,literal
+review_thiet_ke_2d,Thiết kế 2D,literal
+review_thiet_ke_2d_3d,Thiết kế 2D/3D,literal
+review_thiet_ke_he_thong_kien_truc_phan_mem,Thiết kế hệ thống / Kiến trúc phần mềm,literal
+review_thiet_ke_ui_ux,Thiết kế UI/UX,literal
+review_thong_ke_so_lieu,Thống kê số liệu,literal
+review_thue_gtgt_vat,Thuế GTGT (VAT),literal
+review_thue_nha_thau_wht,Thuế nhà thầu (WHT),literal
+review_thue_tncn,Thuế TNCN,literal
+review_thue_tndn,Thuế TNDN,literal
+review_tich_hop_apple_search_ads_api,Tích hợp Apple Search Ads API,literal
+review_tich_hop_google_ads_api,Tích hợp Google Ads API,literal
+review_tich_hop_meta_ads_api,Tích hợp Meta Ads API,literal
+review_tieng_hungary,Tiếng Hungary,literal
+review_tieng_thai,Tiếng Thái,literal
+review_tiktok_shop_ads,TikTok Shop Ads,literal
+review_tinkercad,Tinkercad,literal
+review_toi_uu_chuyen_doi_cro,Tối ưu chuyển đổi (CRO),literal
+review_tri_tue_nhan_tao_ai,Trí tuệ nhân tạo (AI),literal
+review_trien_khai_he_thong_quan_ly_du_an,Triển khai hệ thống quản lý dự án,literal
+review_trien_khai_quan_tri_mang,Triển khai / Quản trị mạng,literal
+review_truc_quan_hoa_du_lieu,Trực quan hóa dữ liệu,literal
+review_unity,Unity,literal
+review_unreal_engine,Unreal Engine,literal
+review_user_acquisition,User Acquisition,literal
+review_van_hanh_he_thong_cntt,Vận hành hệ thống CNTT,literal
+review_van_hanh_marketing,Vận hành Marketing,literal
+review_viet_noi_dung_copywriting,Viết nội dung / Copywriting,literal
+review_visio,Visio,literal
+review_visual_merchandising,Visual Merchandising,literal
+review_vlan,VLAN,literal
+review_vm_ao_hoa,VM / Ảo hóa,literal
+review_vmware,VMware,literal
+review_voip,VoIP,literal
+review_vue_test_utils,Vue Test Utils,literal
+review_vuex,Vuex,literal
+review_weaviate,Weaviate,literal
+review_webmaster_tools,Webmaster Tools,literal
+review_websocket,WebSocket,literal
+review_windows_server,Windows Server,literal
+review_winforms,WinForms,literal
+review_wms,WMS,literal
+review_wordpress,WordPress,literal
+review_wpf,WPF,literal
+review_xay_dung_kenh_mang_xa_hoi,Xây dựng kênh mạng xã hội,literal
+review_xu_ly_du_lieu,Xử lý dữ liệu,literal
+review_xuat_nhap_khau_hai_quan,Xuất nhập khẩu / Hải quan,literal
+review_yonyou,Yonyou,literal
+review_youtube_ads,YouTube Ads,literal
+review_zalo_ads,Zalo Ads,literal
+review_zigbee,Zigbee,literal
+review_5s,5S,literal
+review_a_b_testing,A/B Testing,literal
+review_adobe_lightroom,Adobe Lightroom,literal
+review_affiliate_marketing,Affiliate Marketing,literal
+review_ai_ung_dung,AI ứng dụng,literal
+review_aix,AIX,literal
+review_an_toan_thong_tin,An toàn thông tin,literal
+review_android,Android,literal
+review_apqp,APQP,literal
+review_asana,Asana,literal
+review_ban_hang_online,Bán hàng Online,literal
+review_bao_cao_quan_tri,Báo cáo quản trị,literal
+review_bao_cao_va_phan_tich_dong_tien,Báo cáo và phân tích dòng tiền,literal
+review_bao_mat_he_thong,Bảo mật hệ thống,literal
+review_bao_mat_mang,Bảo mật mạng,literal
+review_bao_tri_may_tinh,Bảo trì máy tính,literal
+review_bao_tri_thiet_bi_cntt,Bảo trì thiết bị CNTT,literal
+review_bgp,BGP,literal
+review_bien_phien_dich,Biên phiên dịch,literal
+review_bom,BOM,literal
+review_business_intelligence,Business Intelligence,literal
+review_cad,CAD,literal
+review_cai_dat_phan_mem,Cài đặt phần mềm,literal
+review_cam,CAM,literal
+review_catia,CATIA,literal
+review_cau_hinh_camera,Cấu hình camera,literal
+review_cau_hinh_mang_lan_wifi,Cấu hình mạng LAN/WiFi,literal
+review_cau_hinh_thiet_bi_mang,Cấu hình thiết bị mạng,literal
+review_centos,CentOS,literal
+review_cham_soc_khach_hang,Chăm sóc khách hàng,literal
+review_chan_doan_loi_thiet_bi,Chẩn đoán lỗi thiết bị,literal
+review_chan_doan_su_co_may_tinh,Chẩn đoán sự cố máy tính,literal
+review_che_tao_do_noi_that,Chế tạo đồ nội thất,literal
+review_chuan_muc_bao_cao_tai_chinh_quoc_te,Chuẩn mực báo cáo tài chính quốc tế,literal
+review_chuan_muc_ke_toan_viet_nam,Chuẩn mực kế toán Việt Nam,literal
+review_chuan_muc_kiem_toan,Chuẩn mực kiểm toán,literal
+review_cimatron,Cimatron,literal
+review_cisco,Cisco,literal
+review_cnc,CNC,literal
+review_co_so_du_lieu,Cơ sở dữ liệu,literal
+review_cocos_creator,Cocos Creator,literal
+review_cukcuk,CukCuk,literal
+review_customer_journey,Customer Journey,literal
+review_danh_gia_hieu_suat,Đánh giá hiệu suất,literal
+review_danh_may,Đánh máy,literal
+review_dart,Dart,literal
+review_data_pipeline,Data Pipeline,literal
+review_data_warehouse,Data Warehouse,literal
+review_debian,Debian,literal
+review_dem_va_tinh_tien,Đếm và tính tiền,literal
+review_dieu_do_san_xuat,Điều độ sản xuất,literal
+review_dieu_do_van_tai,Điều độ vận tải,literal
+review_doc_ban_ve_ky_thuat,Đọc bản vẽ kỹ thuật,literal
+review_doc_hieu_du_toan_cong_trinh,Đọc hiểu dự toán công trình,literal
+review_doi_soat_so_lieu,Đối soát số liệu,literal
+review_du_bao_tai_chinh,Dự báo tài chính,literal
+review_dung_cu_do_co_khi,Dụng cụ đo cơ khí,literal
+review_flutter,Flutter,literal
+review_fmea,FMEA,literal
+review_fortigate,FortiGate,literal
+review_fortinet,Fortinet,literal
+review_game_design,Game Design,literal
+review_giai_quyet_tranh_tung_va_thi_hanh_an,Giải quyết tranh tụng và thi hành án,literal
+review_giang_day,Giảng dạy,literal
+review_gis,GIS,literal
+review_google_shopping,Google Shopping,literal
+review_hach_toan_ngan_hang,Hạch toán ngân hàng,literal
+review_hai_quan,Hải quan,literal
+review_han_ban_le,Hàn bản lề,literal
+review_he_dieu_hanh_windows,Hệ điều hành Windows,literal
+review_hieu_biet_tiktok,Hiểu biết TikTok,literal
+review_ho_tro_nguoi_dung_it,Hỗ trợ người dùng IT,literal
+review_hoa_don_dien_tu,Hóa đơn điện tử,literal
+review_hs_code,HS Code,literal
+review_hubspot,HubSpot,literal
+review_iatf_16949,IATF 16949,literal
+review_incoterms,Incoterms,literal
+review_iso_27001,ISO 27001,literal
+review_iso_9001,ISO 9001,literal
+review_it_helpdesk,IT Helpdesk,literal
+review_kanban,Kanban,literal
+review_ke_toan_cong_no,Kế toán công nợ,literal
+review_ke_toan_thanh_toan,Kế toán thanh toán,literal
+review_khac_phuc_su_co_may_tinh,Khắc phục sự cố máy tính,literal
+review_khai_bao_hai_quan,Khai báo hải quan,literal
+review_kiem_ke_hang_hoa,Kiểm kê hàng hóa,literal
+review_kiem_toan_doc_lap,Kiểm toán độc lập,literal
+review_kiem_toan_noi_bo,Kiểm toán nội bộ,literal
+review_kiem_tra_chung_tu,Kiểm tra chứng từ,literal
+review_kiem_tra_so_lieu_ke_toan,Kiểm tra số liệu kế toán,literal
+review_kiem_tra_so_sach,Kiểm tra sổ sách,literal
+review_kien_thuc_bat_dong_san,Kiến thức bất động sản,literal
+review_kien_thuc_marketing,Kiến thức Marketing,literal
+review_kien_thuc_nganh_my_pham_cham_soc_da,Kiến thức ngành mỹ phẩm / chăm sóc da,literal
+review_kien_thuc_thiet_bi_cntt,Kiến thức thiết bị CNTT,literal
+review_kien_thuc_thue,Kiến thức thuế,literal
+review_kien_thuc_thuong_hieu,Kiến thức thương hiệu,literal
+review_kien_thuc_vat_lieu_thi_cong,Kiến thức vật liệu thi công,literal
+review_kien_thuc_ve_web,Kiến thức về Web,literal
+review_ky_thuat_san_xuat_may_mac,Kỹ thuật sản xuất may mặc,literal
+review_lan_wan,LAN/WAN,literal
+review_lap_bao_cao,Lập báo cáo,literal
+review_lap_dat_camera,Lắp đặt camera,literal
+review_lap_dat_thiet_bi_cntt,Lắp đặt thiết bị CNTT,literal
+review_lap_du_toan,Lập dự toán,literal
+review_lap_ke_hoach_marketing,Lập kế hoạch Marketing,literal
+review_lap_ke_hoach_ra_mat_thi_truong,Lập kế hoạch ra mắt thị trường,literal
+review_lap_ke_hoach_truyen_thong_media_planning,Lập kế hoạch truyền thông (Media Planning),literal
+review_lap_ngan_sach,Lập ngân sách,literal
+review_lap_trinh,Lập trình,literal
+review_lap_trinh_cnc,Lập trình CNC,literal
+review_lap_trinh_ung_dung,Lập trình ứng dụng,literal
+review_lap_trinh_web,Lập trình web,literal
+review_lap_va_kiem_tra_chung_tu,Lập và kiểm tra chứng từ,literal
+review_lark_suite,Lark Suite,literal
+review_len_y_tuong_noi_dung,Lên ý tưởng nội dung,literal
+review_link_building,Link Building,literal
+review_livestream,Livestream,literal
+review_logistics,Logistics,literal
+review_luat_doanh_nghiep,Luật doanh nghiệp,literal
+review_luat_lao_dong,Luật lao động,literal
+review_lumion,Lumion,literal
+review_macos,macOS,literal
+review_mariadb,MariaDB,literal
+review_mastercam,Mastercam,literal
+review_may_chu_va_luu_tru_oracle,Máy chủ và lưu trữ Oracle,literal
+review_microsoft_365,Microsoft 365,literal
+review_mikrotik,MikroTik,literal
+review_mlops,MLOps,literal
+review_mpls,MPLS,literal
+review_msa,MSA,literal
+review_nghien_cuu_tu_khoa,Nghiên cứu từ khóa,literal
+review_nghiep_vu_kiem_toan,Nghiệp vụ kiểm toán,literal
+review_nghiep_vu_ngan_hang,Nghiệp vụ ngân hàng,literal
+review_nghiep_vu_tai_chinh,Nghiệp vụ tài chính,literal
+review_nghiep_vu_thu_quy,Nghiệp vụ thủ quỹ,literal
+review_nghiep_vu_tin_dung,Nghiệp vụ tín dụng,literal
+review_nguyen_ly_ke_toan,Nguyên lý kế toán,literal
+review_nhap_lieu,Nhập liệu,literal
+review_notion,Notion,literal
+review_nx,NX,contextual
+review_openai_api,OpenAI API,literal
+review_oracle,Oracle,literal
+review_oracle_erp,Oracle ERP,literal
+review_ospf,OSPF,literal
+review_phan_cung_may_tinh,Phần cứng máy tính,literal
+review_phan_mem_quan_ly_kho,Phần mềm quản lý kho,literal
+review_phan_tich_bao_cao,Phân tích báo cáo,literal
+review_phan_tich_bao_cao_tai_chinh,Phân tích báo cáo tài chính,literal
+review_phan_tich_do_luong_chi_so,Phân tích / đo lường chỉ số,literal
+review_phan_tich_dong_tien,Phân tích dòng tiền,literal
+review_phan_tich_dong_tien_du_an,Phân tích dòng tiền dự án,literal
+review_phan_tich_khach_hang,Phân tích khách hàng,literal
+review_phan_tich_kinh_doanh,Phân tích kinh doanh,literal
+review_phan_tich_tai_chinh,Phân tích tài chính,literal
+review_phan_tich_yeu_cau,Phân tích yêu cầu,literal
+review_phap_luat_ke_toan,Pháp luật kế toán,literal
+review_phap_luat_tai_chinh,Pháp luật tài chính,literal
+review_phap_luat_ve_truyen_thong_quang_cao,Pháp luật về truyền thông quảng cáo,literal
+review_power_query,Power Query,literal
+review_powermill,PowerMill,literal
+review_ppap,PPAP,literal
+review_product_backlog,Product Backlog,literal
+review_product_roadmap,Product Roadmap,literal
+review_prometheus,Prometheus,literal
+review_quan_ly_chat_luong,Quản lý chất lượng,literal
+review_quan_ly_chi_phi,Quản lý chi phí,literal
+review_quan_ly_chung_tu,Quản lý chứng từ,literal
+review_quan_ly_cong_no,Quản lý công nợ,literal
+review_quan_ly_dong_tien,Quản lý dòng tiền,literal
+review_quan_ly_kho,Quản lý kho,literal
+review_quan_ly_mang_xa_hoi,Quản lý mạng xã hội,literal
+review_quan_ly_ngan_sach,Quản lý ngân sách,literal
+review_quan_ly_rui_ro,Quản lý rủi ro,literal
+review_quan_ly_san_pham,Quản lý sản phẩm,literal
+review_quan_ly_tai_chinh,Quản lý tài chính,literal
+review_quan_ly_tai_chinh_doanh_nghiep,Quản lý tài chính doanh nghiệp,literal
+review_quan_ly_tai_san_cntt,Quản lý tài sản CNTT,literal
+review_quan_ly_thu_chi,Quản lý thu chi,literal
+review_quan_ly_thuong_mai_dien_tu,Quản lý thương mại điện tử,literal
+review_quan_tri_co_so_du_lieu,Quản trị cơ sở dữ liệu,literal
+review_quan_tri_facebook,Quản trị Facebook,literal
+review_quan_tri_mang,Quản trị mạng,literal
+review_quan_tri_may_chu,Quản trị máy chủ,literal
+review_quan_tri_quy_trinh_noi_bo,Quản trị quy trình nội bộ,literal
+review_quan_tri_website,Quản trị Website,literal
+review_quang_cao_chuyen_doi,Quảng cáo chuyển đổi,literal
+review_quang_cao_tim_kiem,Quảng cáo tìm kiếm,literal
+review_red_hat,Red Hat,literal
+review_remarketing,Remarketing,literal
+review_revit,Revit,literal
+review_san_xuat_noi_dung_tiktok,Sản xuất nội dung TikTok,literal
+review_sap_xep_chung_tu,Sắp xếp chứng từ,literal
+review_sapo,Sapo,literal
+review_sdlc,SDLC,literal
+review_server_storage,Server / Storage,literal
+review_siem,SIEM,literal
+review_sketchup,SketchUp,literal
+review_so_sach_ke_toan,Sổ sách kế toán,literal
+review_soan_thao_hop_dong,Soạn thảo hợp đồng,literal
+review_spc,SPC,literal
+review_su_dung_cong_cu_marketing,Sử dụng công cụ Marketing,literal
+review_su_dung_internet,Sử dụng Internet,literal
+review_su_dung_mang_xa_hoi,Sử dụng mạng xã hội,literal
+review_su_dung_phan_mem_marketing,Sử dụng phần mềm Marketing,literal
+review_su_dung_phan_mem_quan_ly,Sử dụng phần mềm quản lý,literal
+review_su_dung_phan_mem_thanh_toan,Sử dụng phần mềm thanh toán,literal
+review_su_dung_phan_mem_thiet_ke,Sử dụng phần mềm thiết kế,literal
+review_sua_chua_may_in,Sửa chữa máy in,literal
+review_sua_chua_may_tinh,Sửa chữa máy tính,literal
+review_tcp_ip,TCP/IP,literal
+review_telesales,Telesales,literal
+review_thao_lap_thay_the_linh_kien,"Tháo lắp, thay thế linh kiện",literal
+review_theo_doi_xu_huong_thi_truong,Theo dõi xu hướng thị trường,literal
+review_thiet_ke_3d,Thiết kế 3D,literal
+review_thiet_ke_bo_cuc,Thiết kế bố cục,literal
+review_thiet_ke_giao_dien_web,Thiết kế giao diện web,literal
+review_thiet_ke_mau_rap,Thiết kế mẫu / Rập,literal
+review_thiet_ke_my_thuat,Thiết kế mỹ thuật,literal
+review_thiet_ke_website,Thiết kế website,literal
+review_thiet_lap_boi_canh_quay,Thiết lập bối cảnh quay,literal
+review_thu_mua,Thu mua,literal
+review_thu_ngan_thanh_toan,Thu ngân / Thanh toán,literal
+review_thu_tuc_nhap_khau,Thủ tục nhập khẩu,literal
+review_tieng_khmer,Tiếng Khmer,literal
+review_tiktok_shop,TikTok Shop,literal
+review_to_chuc_su_kien,Tổ chức sự kiện,literal
+review_toi_uu_hieu_nang,Tối ưu hiệu năng,literal
+review_toi_uu_performance_ads,Tối ưu Performance Ads,literal
+review_toi_uu_quang_cao,Tối ưu quảng cáo,literal
+review_trade_marketing,Trade Marketing,literal
+review_trang_diem_makeup,Trang điểm / Makeup,literal
+review_trello,Trello,literal
+review_trien_khai_chien_dich_marketing,Triển khai chiến dịch Marketing,literal
+review_truyen_thong_tich_hop_imc,Truyền thông tích hợp (IMC),literal
+review_uipath,UiPath,literal
+review_unix,Unix,literal
+review_van_hanh_may_quay,Vận hành máy quay,literal
+review_van_hanh_tiktok,Vận hành TikTok,literal
+review_viet_kich_ban,Viết kịch bản,literal
+review_viet_user_story,Viết User Story,literal
+review_vpn,VPN,literal
+review_waterfall,Waterfall,literal
+review_waterfall_quang_cao,Waterfall quảng cáo,literal
+review_xac_dinh_khach_hang_muc_tieu,Xác định khách hàng mục tiêu,literal
+review_xay_dung_thuong_hieu,Xây dựng thương hiệu,literal
+review_xu_ly_chung_tu,Xử lý chứng từ,literal
+review_xuat_hoa_don,Xuất hóa đơn,literal
+review_xuat_nhap_khau,Xuất nhập khẩu,literal
+review_ban_hang_sales,bán hàng,literal
+review_ban_hang_sales,sales,literal
+review_bien_tap_dung_video,edit video,literal
+review_bien_tap_dung_video,dựng phim,literal
+review_business_analysis_ba,business analysis,literal
+review_cad_thiet_ke_2d_3d,thiết kế 2D-3D,literal
+review_data_structures_algorithms,data structures,literal
+review_data_structures_algorithms,cấu trúc dữ liệu và giải thuật,literal
+review_e_commerce_van_hanh_san_tmdt,thương mại điện tử,literal
+review_e_commerce_van_hanh_san_tmdt,e-commerce,literal
+review_e_commerce_van_hanh_san_tmdt,ecommerce,literal
+review_e_commerce_van_hanh_san_tmdt,vận hành sàn TMĐT,literal
+review_etl_elt,ETL,literal
+review_etl_elt,ELT,literal
+review_influencer_kol_marketing,influencer marketing,literal
+review_influencer_kol_marketing,KOL marketing,literal
+review_lan_he_thong_mang,hệ thống mạng LAN,literal
+review_llm,large language model,literal
+review_ngon_ngu_lap_trinh_c,lập trình C,literal
+review_ngon_ngu_lap_trinh_r,lập trình R,literal
+review_quan_he_cong_chung_pr,quan hệ công chúng,literal
+review_quan_he_cong_chung_pr,public relations,literal
+review_quay_phim_chup_anh,quay phim và chụp ảnh,literal
+review_routing_switching,routing and switching,literal
+review_shell_scripting,shell script,literal
+review_shell_scripting,bash script,literal
+review_ssl_tls,SSL,literal
+review_ssl_tls,TLS,literal
+review_thiet_ke_he_thong_kien_truc_phan_mem,kiến trúc phần mềm,literal
+review_thiet_ke_he_thong_kien_truc_phan_mem,software architecture,literal
+review_thiet_ke_ui_ux,UI/UX,literal
+review_thiet_ke_ui_ux,UX/UI,literal
+review_thiet_ke_ui_ux,UI UX,literal
+review_thiet_ke_ui_ux,UI design,literal
+review_thiet_ke_ui_ux,UX design,literal
+review_thue_gtgt_vat,thuế GTGT,literal
+review_thue_gtgt_vat,thuế VAT,literal
+review_thue_nha_thau_wht,thuế nhà thầu,literal
+review_toi_uu_chuyen_doi_cro,tối ưu chuyển đổi,literal
+review_toi_uu_chuyen_doi_cro,conversion rate optimization,literal
+review_tri_tue_nhan_tao_ai,trí tuệ nhân tạo,literal
+review_tri_tue_nhan_tao_ai,artificial intelligence,literal
+review_tri_tue_nhan_tao_ai,generative AI,literal
+review_tri_tue_nhan_tao_ai,AI tạo sinh,literal
+review_trien_khai_quan_tri_mang,triển khai mạng,literal
+review_vm_ao_hoa,ảo hóa,literal
+review_vm_ao_hoa,virtualization,literal
+review_vm_ao_hoa,virtualisation,literal
+review_an_toan_thong_tin,information security,literal
+review_bao_mat_mang,network security,literal
+review_chuan_muc_bao_cao_tai_chinh_quoc_te,IFRS,literal
+review_chuan_muc_ke_toan_viet_nam,VAS,literal
+review_chuan_muc_kiem_toan,auditing standards,literal
+review_co_so_du_lieu,database,literal
+review_dieu_do_san_xuat,production scheduling,literal
+review_doc_ban_ve_ky_thuat,đọc hiểu bản vẽ kỹ thuật,literal
+review_he_dieu_hanh_windows,Windows,literal
+review_ho_tro_nguoi_dung_it,IT support,literal
+review_kiem_toan_noi_bo,internal audit,literal
+review_kiem_toan_doc_lap,external audit,literal
+review_kien_thuc_marketing,kiến thức về marketing,literal
+review_kien_thuc_thue,kiến thức về thuế,literal
+review_ky_thuat_san_xuat_may_mac,kỹ thuật may,literal
+review_lap_bao_cao,reporting,literal
+review_lap_ke_hoach_marketing,marketing planning,literal
+review_lap_ke_hoach_truyen_thong_media_planning,media planning,literal
+review_lap_ke_hoach_truyen_thong_media_planning,lập kế hoạch truyền thông,literal
+review_lap_ngan_sach,budgeting,literal
+review_lap_trinh,programming,literal
+review_lap_trinh_web,web development,literal
+review_len_y_tuong_noi_dung,ý tưởng nội dung,literal
+review_nghiep_vu_hach_toan_ke_toan,hạch toán kế toán,literal
+review_nghiep_vu_ke_toan,nghiệp vụ về kế toán,literal
+review_nghiep_vu_kiem_toan,nghiệp vụ về kiểm toán,literal
+review_nhap_lieu,data entry,literal
+review_phan_tich_bao_cao_tai_chinh,financial statement analysis,literal
+review_phan_tich_tai_chinh,financial analysis,literal
+review_phan_tich_kinh_doanh,business analytics,literal
+review_quan_ly_chat_luong,quality management,literal
+review_quan_ly_cong_no,quản trị công nợ,literal
+review_quan_ly_du_an,project management,literal
+review_quan_ly_ngan_sach,budget management,literal
+review_quan_ly_rui_ro,risk management,literal
+review_quan_ly_san_pham,product management,literal
+review_quan_tri_co_so_du_lieu,database administration,literal
+review_quan_tri_may_chu,server administration,literal
+review_su_dung_may_tinh,kỹ năng máy tính,literal
+review_su_dung_may_tinh,computer skills,literal
+review_su_dung_may_tinh,sử dụng vi tính,literal
+review_quyet_toan_thue,tax finalization,literal
+review_ke_khai_thue,khai thuế,literal
+review_ke_khai_thue,tax declaration,literal
+review_phap_luat_ke_toan,luật kế toán,literal
+review_phan_mem_ke_toan,accounting software,literal
+review_adobe_lightroom,Lightroom,literal
+review_microsoft_365,Office 365,literal
+review_google_firebase,Firebase,literal
+review_aso_app_store_optimization,app store optimization,literal
+review_nghiep_vu_ke_toan,kế toán,literal
+review_nghiep_vu_ke_toan,accounting,literal
+review_nghiep_vu_kiem_toan,kiểm toán,literal
+review_nghiep_vu_kiem_toan,auditing,literal
+review_kien_thuc_marketing,marketing,literal
+review_kien_thuc_marketing,tiếp thị,literal
+review_su_dung_may_tinh,máy tính,literal
+review_su_dung_may_tinh,máy vi tính,literal
+review_su_dung_may_tinh,vi tính,literal
+review_su_dung_may_tinh,skills in computer,literal
+review_su_dung_may_tinh,computer proficiency,literal
+review_su_dung_may_tinh,computer literacy,literal
+review_ban_hang_sales,sale,literal
+review_ban_hang_sales,kinh nghiệm kinh doanh,literal
+review_phap_luat_ke_toan,quy định về kế toán,literal
+review_phap_luat_ke_toan,luật trong kế toán,literal
+review_phap_luat_ke_toan,pháp luật về kế toán,literal
+review_luat_thue,quy định về thuế,literal
+review_luat_thue,pháp luật về thuế,literal
+review_lap_bao_cao,viết báo cáo,literal
+review_lap_bao_cao,làm báo cáo,literal
+review_lap_bao_cao,tổng hợp báo cáo,literal
+review_lap_bao_cao,basic reporting,literal
+review_cham_soc_khach_hang,CSKH,literal
+review_cham_soc_khach_hang,customer service,literal
+review_mang_may_tinh,networking,literal
+review_mang_may_tinh,networking fundamentals,literal
+review_mang_may_tinh,hệ thống mạng,literal
+review_server_storage,server,literal
+review_server_storage,storage,literal
+review_quan_tri_mang,quản trị hệ thống mạng,literal
+review_quan_tri_mang,network administration,literal
+review_bao_mat_mang,an ninh mạng,literal
+review_an_toan_thong_tin,cybersecurity,literal
+review_an_toan_thong_tin,cyber security,literal
+review_thiet_ke_3d,dựng 3D,literal
+review_thiet_ke_3d,3D modeling,literal
+review_thiet_ke_3d,3D modelling,literal
+review_thiet_ke_bo_cuc,bố cục,literal
+review_thiet_ke_bo_cuc,layout design,literal
+review_3ds_max,3D Max,literal
+rest_api,RESTful services,literal
+rest_api,API RESTful,literal
+rest_api,RESTful APIs,literal
+review_microservices,microservice,literal
+review_lap_trinh_ung_dung,phát triển ứng dụng,literal
+review_lap_trinh_ung_dung,phát triển ứng dụng di động,literal
+review_lap_trinh_ung_dung,application development,literal
+review_quan_tri_co_so_du_lieu,quản lý cơ sở dữ liệu,literal
+review_data_structures_algorithms,"cấu trúc dữ liệu, thuật toán",literal
+review_data_structures_algorithms,cấu trúc dữ liệu và thuật toán,literal
+review_google_apps_script,Apps Script,literal
+review_toi_uu_hieu_nang,tối ưu hóa hiệu suất,literal
+review_toi_uu_hieu_nang,tối ưu hoá hiệu năng,literal
+review_toi_uu_hieu_nang,tối ưu hóa hiệu năng,literal
+review_toi_uu_hieu_nang,performance optimization,literal
+review_van_hanh_he_thong_cntt,IT Operation,literal
+review_van_hanh_he_thong_cntt,IT Operations,literal
+review_quan_tri_he_thong,System Admin,literal
+review_quan_tri_he_thong,System Administration,literal
+review_amazon_s3,S3,literal
+review_design_patterns,design pattern,literal
+review_sketchup,Sketup,literal
+review_customer_journey,customer journeys,literal
+review_ngon_ngu_lap_trinh_c,C,contextual
+review_ngon_ngu_lap_trinh_r,R,contextual
+review_thiet_ke_ui_ux,UIUX,literal
+review_danh_may,typing,literal
+review_lap_dat_thiet_bi_cntt,lắp đặt vi tính,literal
+review_sua_chua_may_tinh,sửa chữa máy vi tính,literal
+review_sua_chua_may_tinh,sửa chữa vi tính,literal
+review_lap_trinh,Developer,literal
+review_lap_trinh,phát triển phần mềm,literal
+review_lap_trinh,software development,literal
+review_eclipse_ide,Eclipse,literal
+review_kien_thuc_thiet_bi_cntt,IT devices,literal
+review_phan_tich_du_lieu,phân tích số liệu,literal
+review_phan_tich_du_lieu,data analysis,literal
+review_phan_mem_ke_toan,phầm mềm kế toán,literal
+review_autocad,Auto Card,literal
+review_solidworks,Solidwork,literal
+review_ahrefs,Ahref,literal
+review_wordpress,Worldpress,literal
+review_su_dung_internet,tìm kiếm thông tin trên internet,literal
+review_telesales,Telesale,literal
+review_su_dung_phan_mem_thiet_ke,phần mềm thiết kế,literal
+review_su_dung_phan_mem_thiet_ke,công cụ thiết kế,literal
+review_bien_tap_dung_video,dựng clip,literal
+review_bien_tap_dung_video,chỉnh sửa ảnh/video,literal
+review_bien_tap_dung_video,"chỉnh sửa ảnh, video",literal
+review_bien_tap_dung_video,quay dựng video,literal
+review_quay_phim,quay và biên tập video,literal
+review_quay_phim,tự quay,literal
+review_chinh_sua_hinh_anh,edit ảnh,literal
+review_chinh_sua_hinh_anh,photo editing,literal
+review_chinh_sua_hinh_anh,image editing,literal
+review_san_xuat_video,sản xuất TVC,literal
+review_viet_noi_dung_copywriting,kỹ năng viết tốt,literal
+review_van_hanh_tiktok,quản lý kênh tiktok,literal
+review_google_keyword_planner,Keyword Planner,literal
+search_console,Search Console,literal
+review_thiet_ke_website,build website,literal
+review_thiet_ke_website,xây dựng website,literal
+review_to_chuc_su_kien,quản lý sự kiện,literal
+review_do_luong_hieu_qua_truyen_thong,đánh giá các hoạt động truyền thông,literal
+english,anh văn,literal
+illustrator,Adobe AI,literal
+sql_server,MSSQL Server,literal
+review_chuan_muc_ke_toan,accounting standards,literal
+review_ai_ung_dung,triển khai dự án AI,literal
+review_ai_ung_dung,triển khai mô hình AI,literal
+review_khac_phuc_su_co_may_tinh,xử lý các vấn đề liên quan tới máy tính,literal
+review_khac_phuc_su_co_may_tinh,xử lý sự cố máy tính,literal
+review_khac_phuc_su_co_may_tinh,khắc phục lỗi máy tính,literal
+review_mang_may_tinh,mạng,literal
+review_cham_soc_khach_hang,chăm sóc tốt khách hàng,literal
+review_nghiep_vu_tai_chinh,hoạt động tài chính,literal
+review_nghiep_vu_ngan_hang,ngân hàng,literal
+review_quan_ly_kho,thủ kho,literal
+review_san_xuat_noi_dung,làm nội dung,literal
+review_kien_thuc_marketing,marketting,literal
+digital_marketing,marketting môi trường số internet,literal
+review_chup_anh,chụp hình,literal
+review_chup_anh,chụp hình ảnh,literal
+review_viet_noi_dung_copywriting,khả năng viết tốt,literal
+review_viet_noi_dung_copywriting,viết tốt,literal
+review_sdlc,vòng đời phát triển phần mềm,literal
+review_sdlc,software development lifecycle,literal

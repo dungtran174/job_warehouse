@@ -1,0 +1,50 @@
+{
+  "version": "expanded-skills-policy-20261018-v2",
+  "decision_date": "2026-10-17",
+  "positive_contexts": [
+    "required",
+    "preferred"
+  ],
+  "certificate_policy": "mapped_language",
+  "decisions": {
+    "Q1": "pilot three source industry labels; keep all jobs",
+    "Q2": "domain, tools, technology and languages; no soft skills",
+    "Q3": "include required and preferred; do not call all mandatory",
+    "Q4": "allow language inference from finite certificate mapping, retain evidence; do not infer proficiency",
+    "Q5": "two blind AI reviewers approved; not human ground truth",
+    "Q6": "Content writing/editing/creation counts as Content Marketing only with clear marketing context in requirements.",
+    "Q7": "Allow digital shorthand only with clear marketing context in requirements.",
+    "Q8": "ID 532645 office IT clause is required prior training; finite exact-text override, not every bare training phrase.",
+    "Q9": "Trung (Anh) in language context includes English; do not assert both are mandatory.",
+    "Q10": "Include image/banner/graphic design and photo/video production in Content Marketing only with clear marketing context inside requirements; keep named tools separately.",
+    "Q11": "Include explicitly recruited ad skills even when zero experience and fallback training are accepted (ID 273532). Business pairs do not distinguish required/preferred; do not include mere unrelated or future-training-only mentions."
+  },
+  "scope": [
+    "Công nghệ thông tin",
+    "Kế toán / Kiểm toán",
+    "Marketing"
+  ],
+  "taxonomy_status": "candidate_pending_reference_review",
+  "limits": [
+    "Literal canonical names plus finite aliases; no automatic split of composite labels",
+    "Review claims remain ID/hash bound; never globalize owner-specific inference",
+    "601 concepts are a finite vocabulary, not guaranteed exhaustive coverage"
+  ],
+  "context_overrides": [
+    {
+      "text_hash": "ffca33db0833e20343dd76e96d6a23eb2cff40061c9be9dff2762a66a253ae4c",
+      "skill_code": "office_it",
+      "evidence": "Được đào tạo Tin học văn phòng",
+      "context": "required",
+      "decision": "Q8_532645"
+    }
+  ],
+  "expanded_owner_decisions": {
+    "specialist_labels": "Quyết toán thuế, Kê khai thuế, Quản trị Fanpage use specialist concepts; broad group needs separate explicit evidence",
+    "content_parent": "Preserve Content Marketing rollup for explicit media-production capabilities in marketing context in requirements",
+    "generic_and_tool": "Take both if both are explicit, e.g. phần mềm kế toán MISA; no generic inference from MISA alone",
+    "new_photo_editing": "Existing owner authorization allows new professional skills with direct evidence; image editing kept distinct from image design",
+    "marketing_degree_only": "Degree/major alone cannot establish marketing context for Content Marketing; retain explicit media skills",
+    "keyword_scope": "Keyword familiarity alone is not keyword research; require research/analysis/selection capability"
+  }
+}

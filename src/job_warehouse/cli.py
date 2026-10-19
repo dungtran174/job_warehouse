@@ -61,6 +61,42 @@ def build_parser() -> argparse.ArgumentParser:
     salary.add_argument("--output-dir", type=Path, required=True)
     salary.add_argument("--fx-rates", type=Path)
     salary.add_argument("--batch-size", type=int, default=2048)
+    skills_prepare = silver_commands.add_parser(
+        "skills-prepare", help="profile requirements and freeze unlabelled skill samples"
+    )
+    skills_prepare.add_argument("--jobs-run", type=Path, required=True)
+    skills_prepare.add_argument("--output-dir", type=Path, required=True)
+    skills_prepare.add_argument("--tune-per-industry", type=int, default=30)
+    skills_prepare.add_argument("--holdout-per-industry", type=int, default=100)
+    skills_prepare.add_argument("--batch-size", type=int, default=2048)
+    skills = silver_commands.add_parser(
+        "skills", help="extract candidate requirement skills offline"
+    )
+    skills.add_argument("--jobs-run", type=Path, required=True)
+    skills.add_argument("--output-dir", type=Path, required=True)
+    skills.add_argument("--taxonomy-dir", type=Path)
+    skills.add_argument("--batch-size", type=int, default=2048)
+    review = silver_commands.add_parser(
+        "skills-apply-review", help="apply evidence-bound skill review to held-out jobs"
+    )
+    review.add_argument("--jobs-run", type=Path, required=True)
+    review.add_argument("--baseline-run", type=Path, required=True)
+    review.add_argument("--review-bundle", type=Path, required=True)
+    review.add_argument("--output-dir", type=Path, required=True)
+    expanded = silver_commands.add_parser(
+        "skills-expand", help="rerun the expanded skills dictionary on the three pilot industries"
+    )
+    expanded.add_argument("--jobs-run", type=Path, required=True)
+    expanded.add_argument("--output-dir", type=Path, required=True)
+    expanded.add_argument("--taxonomy-dir", type=Path)
+    expanded.add_argument("--batch-size", type=int, default=2048)
+    expanded_merge = silver_commands.add_parser(
+        "skills-expand-merge", help="combine expanded candidates and document-bound reviews"
+    )
+    expanded_merge.add_argument("--automatic-run", type=Path, required=True)
+    expanded_merge.add_argument("--baseline-run", type=Path, required=True)
+    expanded_merge.add_argument("--review-run", type=Path, action="append", required=True)
+    expanded_merge.add_argument("--output-dir", type=Path, required=True)
     return parser
 
 
@@ -68,6 +104,59 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         if args.command == "silver":
+            if args.silver_command == "skills-expand-merge":
+                from job_warehouse.skills.expansion_merge import merge_expansion
+
+                report = merge_expansion(
+                    args.automatic_run, args.baseline_run, args.review_run, args.output_dir
+                )
+                print(f"Expanded candidates: {report}; output={args.output_dir}")
+                return 0
+            if args.silver_command == "skills-expand":
+                from job_warehouse.skills.expanded import EXPANDED_MAPPINGS
+                from job_warehouse.skills.runner import run_skills
+
+                report = run_skills(
+                    args.jobs_run,
+                    args.output_dir,
+                    taxonomy_dir=args.taxonomy_dir or EXPANDED_MAPPINGS,
+                    batch_size=args.batch_size,
+                    expanded_context=True,
+                )
+                print(f"Expanded candidate skills: {report['counts']}; output={args.output_dir}")
+                return 0
+            if args.silver_command == "skills-apply-review":
+                from job_warehouse.skills.review_import import apply_review
+
+                report = apply_review(
+                    args.jobs_run, args.baseline_run, args.review_bundle, args.output_dir
+                )
+                print(f"Reviewed pairs added: {report['added_pairs']}; output={args.output_dir}")
+                return 0
+            if args.silver_command == "skills":
+                from job_warehouse.skills.runner import run_skills
+                from job_warehouse.skills.taxonomy import MAPPINGS
+
+                report = run_skills(
+                    args.jobs_run,
+                    args.output_dir,
+                    taxonomy_dir=args.taxonomy_dir or MAPPINGS,
+                    batch_size=args.batch_size,
+                )
+                print(f"Candidate skills: {report['counts']}; output={args.output_dir}")
+                return 0
+            if args.silver_command == "skills-prepare":
+                from job_warehouse.skills.profile import prepare_skills
+
+                report = prepare_skills(
+                    args.jobs_run,
+                    args.output_dir,
+                    tune_per_industry=args.tune_per_industry,
+                    holdout_per_industry=args.holdout_per_industry,
+                    batch_size=args.batch_size,
+                )
+                print(f"Skills preparation: {report['counts']}; output={args.output_dir}")
+                return 0
             if args.silver_command == "salary":
                 from job_warehouse.silver.salary.runner import run_salary
 

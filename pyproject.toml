@@ -41,6 +41,10 @@ where = ["src"]
 "job_warehouse.silver" = ["mappings/*.csv"]
 "job_warehouse.silver.enrichment" = ["mappings/*.csv"]
 "job_warehouse.silver.salary" = ["*.csv"]
+"job_warehouse.skills" = [
+  "mappings/*.csv", "mappings/*.json",
+  "mappings_expanded/*.csv", "mappings_expanded/*.json",
+]
 
 [tool.pytest.ini_options]
 addopts = "-m 'not live'"

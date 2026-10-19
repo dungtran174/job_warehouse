@@ -1,0 +1,41 @@
+{
+  "version": "owner-skills-20261017-v4",
+  "decision_date": "2026-10-17",
+  "positive_contexts": [
+    "required",
+    "preferred"
+  ],
+  "certificate_policy": "mapped_language",
+  "decisions": {
+    "Q1": "pilot three source industry labels; keep all jobs",
+    "Q2": "domain, tools, technology and languages; no soft skills",
+    "Q3": "include required and preferred; do not call all mandatory",
+    "Q4": "allow language inference from finite certificate mapping, retain evidence; do not infer proficiency",
+    "Q5": "two blind AI reviewers approved; not human ground truth",
+    "Q6": "Content writing/editing/creation counts as Content Marketing only with clear marketing context in requirements.",
+    "Q7": "Allow digital shorthand only with clear marketing context in requirements.",
+    "Q8": "ID 532645 office IT clause is required prior training; finite exact-text override, not every bare training phrase.",
+    "Q9": "Trung (Anh) in language context includes English; do not assert both are mandatory.",
+    "Q10": "Include image/banner/graphic design and photo/video production in Content Marketing only with clear marketing context inside requirements; keep named tools separately.",
+    "Q11": "Include explicitly recruited ad skills even when zero experience and fallback training are accepted (ID 273532). Business pairs do not distinguish required/preferred; do not include mere unrelated or future-training-only mentions."
+  },
+  "scope": [
+    "Công nghệ thông tin",
+    "Kế toán / Kiểm toán",
+    "Marketing"
+  ],
+  "taxonomy_status": "candidate_pending_reference_review",
+  "limits": [
+    "Literal vocabulary is finite; no implicit skills from occupation or parent technology.",
+    "No language inference from a degree/major alone."
+  ],
+  "context_overrides": [
+    {
+      "text_hash": "ffca33db0833e20343dd76e96d6a23eb2cff40061c9be9dff2762a66a253ae4c",
+      "skill_code": "office_it",
+      "evidence": "Được đào tạo Tin học văn phòng",
+      "context": "required",
+      "decision": "Q8_532645"
+    }
+  ]
+}

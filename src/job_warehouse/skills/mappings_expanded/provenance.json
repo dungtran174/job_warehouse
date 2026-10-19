@@ -1,0 +1,51 @@
+{
+  "version": "expanded-skills-v4",
+  "source_catalogue_sha256": "1fef70871f07621c0cd6a23b7522a67b9c21ddbe61c61ce1d7637227d4019e00",
+  "concepts": 602,
+  "aliases": 1018,
+  "source": "Reviewed 581 and 23825 requirements proposal bundles; no external standard claimed",
+  "alias_policy": "Keep original aliases except owner-approved routing to explicit specialist concepts. Add literal canonical names and finite same-meaning spellings; composite labels are not split automatically. Inference exceptions remain local to reviewed claims.",
+  "shared_surface_notes": [
+    {
+      "alias": "chỉnh sửa video",
+      "primary_skill": "content_marketing",
+      "also_explicit_skill": "review_bien_tap_dung_video"
+    },
+    {
+      "alias": "quay video",
+      "primary_skill": "content_marketing",
+      "also_explicit_skill": "review_quay_phim"
+    },
+    {
+      "alias": "quay dựng video",
+      "primary_skill": "review_bien_tap_dung_video",
+      "also_explicit_skill": "review_quay_phim"
+    },
+    {
+      "alias": "chỉnh sửa hình ảnh",
+      "primary_skill": "content_marketing",
+      "also_explicit_skill": "review_chinh_sua_hinh_anh"
+    },
+    {
+      "alias": "chỉnh sửa ảnh",
+      "primary_skill": "content_marketing",
+      "also_explicit_skill": "review_chinh_sua_hinh_anh"
+    },
+    {
+      "alias": "chỉnh sửa ảnh/video",
+      "primary_skill": "review_bien_tap_dung_video",
+      "also_explicit_skill": "review_chinh_sua_hinh_anh"
+    },
+    {
+      "alias": "chỉnh sửa ảnh, video",
+      "primary_skill": "review_bien_tap_dung_video",
+      "also_explicit_skill": "review_chinh_sua_hinh_anh"
+    },
+    {
+      "alias": "viết bài",
+      "primary_skill": "content_marketing",
+      "also_explicit_skill": "review_viet_noi_dung_copywriting"
+    }
+  ],
+  "development_review": "Two separate120-document AI rounds used for error analysis; their frozen metrics remain archived. Revised rules require fresh evaluation."
+}
