@@ -23,6 +23,7 @@ data/
 *.xlsx
 *.xls
 *.duckdb
+*.dump
 /outputs/
 /artifacts/
 /reports/generated/

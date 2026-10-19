@@ -1,9 +1,9 @@
 # S6 — PostgreSQL Silver
 
-Đợt 1 có kiểm tra đầu vào/migration; đợt 2 có loader và kiểm thử giao dịch
-trên dữ liệu giả trong database riêng. PostgreSQL nghiệp vụ hiện vẫn có ba
-bảng trống. Nạp dữ liệu thật, đối soát toàn bộ với Parquet và backup/restore
-thuộc đợt 3.
+S6 đã nạp 590.693 tin và 875.580 cặp kỹ năng vào PostgreSQL, đối soát toàn bộ
+với Parquet, kiểm tra nạp lại và thử khôi phục backup vào database riêng.
+Báo cáo/dump thật nằm ngoài Git; các câu lệnh dưới đây dùng lại cho vận hành.
+Không cần chạy lại chuẩn hóa hoặc trích kỹ năng để đọc dữ liệu Silver.
 
 ## Đầu vào và thiết kế
 
@@ -78,7 +78,7 @@ DB chỉ là kiểu lưu trữ: PostgreSQL tự có thể làm tròn số khi IN
 preflight/loader chịu trách nhiệm từ chối chuyển kiểu mất chính xác. Không
 bỏ qua preflight để tự nạp bằng INSERT.
 
-## Nạp và công bố — code đợt 2, dữ liệu thật đợi đợt 3
+## Nạp và công bố
 
 Dùng kết nối riêng, idle/autocommit theo cấu hình Bronze. Loader kiểm input
 trước khi ghi DB và yêu cầu migration đúng checksum. Không dùng kết nối có
@@ -152,6 +152,103 @@ Nếu chưa có row nhật ký thì attempt chưa được đăng ký; không su
 Báo lỗi CLI chỉ ghi loại lỗi/run_id, không in lỗi kết nối chứa secret hoặc dòng
 requirements. Báo cáo thật, request, dữ liệu tạm và backup không đưa vào Git.
 
+## Đọc lại toàn bộ để nghiệm thu
+
+```bash
+.venv/bin/job-warehouse silver db-verify \
+  --jobs-run /path/to/s4-run \
+  --skills-run /path/to/s5-closure-run \
+  --output-dir /path/outside/repository/new-s6-verification
+```
+
+Lệnh dùng một transaction REPEATABLE READ, READ ONLY; đọc mọi trường của cả
+hai bảng qua server-side cursor. Mỗi giá trị được băm SHA-256 với kiểu dữ liệu
+rõ: NULL khác 0/chuỗi rỗng, mảng giữ thứ tự, Decimal chuẩn hóa về 2 chữ số chỉ
+khi không mất giá trị. Chỉ số tạm chứa khóa và hash, không lưu toàn văn tin;
+tự xóa khi xong. Nguồn và DB được so theo khóa rồi đối chiếu hash toàn bảng.
+
+`verification.json` báo dòng thiếu/thừa/trùng/khác, cột khác, counts, NULL,
+phân bố năm/ngành, FK, tên skill, ledger/current fingerprint và dung lượng DB.
+Exit 0 khi tất cả khớp, exit 2 khi không đạt. Không sửa dữ liệu khi kiểm tra.
+
+Truy vấn xem nhanh, không thay thế kiểm nội dung:
+
+```sql
+SELECT count(*) FROM silver.jobs;
+SELECT count(*) FROM silver.job_skill_match;
+SELECT count(DISTINCT job_id) FROM silver.job_skill_match;
+SELECT year, count(*) FROM silver.jobs GROUP BY year ORDER BY year;
+SELECT job_industry, count(*) FROM silver.jobs
+GROUP BY job_industry ORDER BY count(*) DESC;
+```
+
+Kết quả nghiệm thu nguồn hiện hành: 590.693 jobs, 875.580 pairs, 380.984 tin
+có skill, 209.709 tin không có cặp skill; 34 nhãn ngành. Không tính lương
+trung bình sau JOIN skill trực tiếp vì có thể nhân nhiều dòng của một tin.
+
+## Backup và thử restore
+
+Dùng công cụ PostgreSQL 17 trong container hiện có, không cần cài pg_dump lên
+host. Backup toàn database gồm Silver, ops, schema ledger và Bronze registry;
+không chứa file Parquet hoặc secret. Giữ nguồn/receipt và cấu hình bí mật riêng.
+
+Từ thư mục repo, định nghĩa hàm dùng đúng Compose warehouse:
+
+```bash
+warehouse_compose() {
+  docker compose --env-file .runtime/warehouse/compose.env \
+    -f infra/warehouse/compose.yaml "$@"
+}
+```
+
+Dùng tên backup mới, chỉ đổi tên partial sau khi dump/list thành công:
+
+```bash
+(
+  set -eC
+  mkdir -p .runtime/warehouse/backups
+  silver_backup_path=".runtime/warehouse/backups/silver_$(date +%Y%m%d_%H%M%S).dump"
+  test ! -e "$silver_backup_path"
+  warehouse_compose exec -T db sh -c \
+    'exec pg_dump -U "$POSTGRES_USER" -d "$POSTGRES_DB" --format=custom --no-owner --no-privileges' \
+    > "$silver_backup_path.partial"
+  warehouse_compose exec -T db pg_restore --list < "$silver_backup_path.partial"
+  mv -n "$silver_backup_path.partial" "$silver_backup_path"
+  sha256sum "$silver_backup_path"
+)
+```
+
+Dump thật được giữ ngoài repository hoặc trong `.runtime/` được Git bỏ qua;
+`*.dump` cũng được ignore. Không đưa dump vào commit. Lỗi dump/list thì không
+gọi file partial là backup đã đạt.
+
+Restore chỉ vào database mới, không ghi đè DB đang dùng. Ví dụ sau yêu cầu
+biến `silver_backup_path` trỏ đúng dump và một tên thử chưa tồn tại:
+
+```bash
+(
+  set -e
+  silver_restore_db="warehouse_restore_s6_$(date +%Y%m%d_%H%M%S)"
+  warehouse_compose exec -T db sh -c \
+    'exec createdb -U "$POSTGRES_USER" "$1"' sh "$silver_restore_db"
+  warehouse_compose exec -T db sh -c \
+    'exec pg_restore -U "$POSTGRES_USER" --dbname "$1" --exit-on-error --single-transaction --no-owner --no-privileges' \
+    sh "$silver_restore_db" < "$silver_backup_path"
+  printf 'Restore database: %s\n' "$silver_restore_db"
+)
+```
+
+Sau restore, trỏ `WAREHOUSE_DB_NAME` của kết nối kiểm tra sang DB thử và chạy
+`silver db-verify` với cùng bộ S4–S5. Chỉ coi backup đạt khi full readback khớp,
+đồng thời đối chiếu Bronze registry, migration ledger và lượt công bố hiện hành.
+Snapshot backup chỉ chứa lịch sử ops tới thời điểm dump; một lần no-op phát
+sinh sau đó ở DB chính không làm backup cũ sai dữ liệu.
+
+Ghi lại SHA/kích thước dump, thời gian dump/restore và kết quả kiểm. Khi đã đạt,
+dọn riêng database thử do lượt này tạo và trả cấu hình về DB nghiệp vụ. Giữ
+backup cùng hồ sơ nghiệm thu để khôi phục/chuyển máy; dữ liệu PostgreSQL chính
+vẫn nằm trên named volume của Compose.
+
 ## Kiểm thử
 
 ```bash
@@ -178,8 +275,9 @@ partial unique index lượt hiện hành và giữ ledger Bronze. Nếu thiếu
 integration bị skip; phải báo riêng, không xem là đã kiểm trên PostgreSQL.
 Dữ liệu thật, report, dump, volume và cấu hình runtime tiếp tục nằm ngoài Git.
 
-Đợt 2 còn kiểm round-trip Decimal/NULL/mảng/Unicode, lỗi giữa COPY và giữa lúc
-thay hai bảng, kết nối mất, phản hồi mất sau commit, đĩa ghi báo cáo lỗi, nội
-dung bị sửa nhưng counts bằng nhau, hai writer và reader khi publication chưa
-commit. Đây là kiểm thử giao dịch bằng fixture, không thay nghiệm thu dữ liệu
-thật hoặc thử restore ở đợt 3.
+Các test còn kiểm round-trip Decimal/NULL/mảng/Unicode, lỗi giữa COPY và giữa
+lúc thay hai bảng, kết nối mất, phản hồi mất sau commit, đĩa ghi báo cáo lỗi,
+counts bằng nhau nhưng nội dung lệch, hai writer và snapshot reader. Full
+readback có test phát hiện khác từng trường, thiếu/thừa ID, sai tên skill,
+thiếu current ledger và việc đọc một snapshot khi có writer đồng thời.
+Các test fixture này tách khỏi hồ sơ nạp/restore dữ liệu thật ngoài Git.

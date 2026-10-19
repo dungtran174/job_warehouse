@@ -46,6 +46,13 @@ def build_parser() -> argparse.ArgumentParser:
     db_load.add_argument("--skills-run", type=Path, required=True)
     db_load.add_argument("--output-dir", type=Path, required=True)
     db_load.add_argument("--batch-size", type=int, default=4096)
+    db_verify = silver_commands.add_parser(
+        "db-verify", help="read all Silver rows back against Parquet"
+    )
+    db_verify.add_argument("--jobs-run", type=Path, required=True)
+    db_verify.add_argument("--skills-run", type=Path, required=True)
+    db_verify.add_argument("--output-dir", type=Path, required=True)
+    db_verify.add_argument("--batch-size", type=int, default=4096)
     core = silver_commands.add_parser("core", help="normalize the pinned file outside Git")
     core.add_argument("--input", type=Path, required=True)
     core.add_argument("--output-dir", type=Path, required=True)
@@ -187,6 +194,16 @@ def main(argv: Sequence[str] | None = None) -> int:
                 run_preflight(args.jobs_run, args.skills_run, args.output_dir)
                 print(f"Silver preflight passed; report={args.output_dir / 'preflight.json'}")
                 return 0
+            if args.silver_command == "db-verify":
+                from job_warehouse.silver.database.commands import run_verification
+
+                return (
+                    0
+                    if run_verification(
+                        args.jobs_run, args.skills_run, args.output_dir, batch_size=args.batch_size
+                    )
+                    else 2
+                )
             if args.silver_command == "db-load":
                 from job_warehouse.silver.database.commands import run_load
 

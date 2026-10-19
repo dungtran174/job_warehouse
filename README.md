@@ -5,10 +5,10 @@ offline; S1 có PostgreSQL Bronze registry; S2 có Silver core offline;
 S3 có enrichment và nhập ánh xạ địa điểm offline; trục ngành hiện dùng nhãn
 nguồn, alias và ghép cha theo quyết định chủ dự án. CLI ngành xuất Silver
 đầy đủ và tập phân tích theo ngưỡng ≥500, giữ lưu vết về Bronze.
-S5 đã kiểm định offline bản thí điểm trích kỹ năng từ requirements cho ba
-ngành; kết quả Parquet và hồ sơ nghiệm thu lưu riêng ngoài repository.
-S6 đợt 1–2 có kiểm tra đầu vào, migration và loader PostgreSQL Silver đã thử
-trên fixture; chưa nạp dữ liệu thật. Gold/dashboard/Airflow chưa triển khai.
+S5 trích kỹ năng từ requirements bằng từ điển, gồm bản thí điểm và các đợt
+mở rộng; kết quả Parquet/hồ sơ nghiệm thu lưu riêng ngoài repository.
+S6 đã nạp 590.693 tin và 875.580 cặp kỹ năng vào PostgreSQL, đối soát toàn bộ,
+kiểm nạp lại và backup/restore. Gold/dashboard/Airflow chưa triển khai.
 CLI `silver skills-apply-review` hỗ trợ nhập các claim kỹ năng đã rà soát
 trong bundle có lưu vết, tạo output mới và giữ nguyên các tin ngoài tập review.
 Code warehouse ở `src/job_warehouse/`, test ở `tests/warehouse/`,
@@ -147,13 +147,14 @@ Gói năm nhãn tổng hợp dùng `silver skills --batch general_industries`;
 trích từ requirements bằng từ điển hữu hạn, không phân ngành lại hoặc ép
 tin thực tập/lao động phổ thông phải có skill. Kết quả cũ giữ nguyên khi ghép.
 
-## Warehouse lịch sử — S6 PostgreSQL (đợt 1–2)
+## Warehouse lịch sử — S6 PostgreSQL
 
 `silver db-preflight` kiểm toàn bộ đầu vào S4–S5 đã khóa, xuất một báo cáo
 ngoài Git. `silver db-migrate` tạo hai bảng nghiệp vụ và nhật ký kỹ thuật,
 không nạp tin hoặc skill. `silver db-load` có COPY/staging, công bố bằng một
-transaction và đối chiếu nội dung khi chạy lại; đã kiểm thử trên database tạm.
-Nạp dữ liệu thật và backup/restore thuộc đợt 3. Code ở `silver/database/`; xem
+transaction và đối chiếu nội dung khi chạy lại. `silver db-verify` đọc lại mọi
+trường trong một snapshot để kiểm với Parquet. Đã nghiệm thu dữ liệu thật và
+backup/restore ở đợt 3. Code ở `silver/database/`; xem
 [hướng dẫn, schema và kiểm thử PostgreSQL](docs/warehouse/silver_database_operations.md).
 
 ## Warehouse lịch sử — S3 enrichment

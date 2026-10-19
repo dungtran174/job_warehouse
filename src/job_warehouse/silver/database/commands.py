@@ -68,3 +68,26 @@ def run_load(jobs_run: Path, skills_run: Path, output_dir: Path, *, batch_size: 
             f"({type(exc).__name__})"
         ) from None
     print(f"Silver load: {result['status']}; run_id={run_id}")
+
+
+def run_verification(
+    jobs_run: Path, skills_run: Path, output_dir: Path, *, batch_size: int = 4096
+) -> bool:
+    from job_warehouse.silver.database.verification import verify_publication
+
+    destination = require_new_destination(output_dir)
+    try:
+        with connect_registry() as conn:
+            result = verify_publication(conn, jobs_run, skills_run, batch_size=batch_size)
+    except psycopg.Error as exc:
+        raise ValueError(
+            f"Silver verification failed ({type(exc).__name__}); check DB locally"
+        ) from None
+    with staging_directory(destination) as tmp:
+        stage = Path(tmp)
+        (stage / "verification.json").write_text(json_text(result))
+        if destination.exists():
+            raise ValueError("Verification output appeared during processing")
+        os.rename(stage, destination)
+    print(f"Silver verification: {result['status']}; report={destination}")
+    return bool(result["status"] == "passed_full_readback")
