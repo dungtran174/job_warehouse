@@ -135,7 +135,14 @@ def run_skills(
     policy, policy_document = load_policy(taxonomy_dir, scope=policy_scope)
     matcher: SkillMatcher
     extractor_version, taxonomy_version = EXTRACTOR_VERSION, TAXONOMY_VERSION
-    if batch_name == "hr_finance_legal":
+    if batch_name == "logistics_transport":
+        from job_warehouse.skills.conservative import CONSERVATIVE_VERSION
+        from job_warehouse.skills.logistics import LogisticsSkillMatcher
+
+        matcher = LogisticsSkillMatcher(taxonomy, policy)
+        extractor_version = CONSERVATIVE_VERSION
+        taxonomy_version = policy_document["taxonomy_version"]
+    elif batch_name == "hr_finance_legal":
         from job_warehouse.skills.conservative import (
             CONSERVATIVE_VERSION,
             KEYWORD_COMPLETION,

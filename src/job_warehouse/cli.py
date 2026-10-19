@@ -77,7 +77,13 @@ def build_parser() -> argparse.ArgumentParser:
     skills.add_argument("--taxonomy-dir", type=Path)
     skills.add_argument("--batch-size", type=int, default=2048)
     skills.add_argument(
-        "--batch", choices=["sales_customer_service", "real_estate", "hr_finance_legal"]
+        "--batch",
+        choices=[
+            "sales_customer_service",
+            "real_estate",
+            "hr_finance_legal",
+            "logistics_transport",
+        ],
     )
     skills.add_argument("--industry", action="append", help="only validated labels within --batch")
     batch_prepare = silver_commands.add_parser(
@@ -88,7 +94,12 @@ def build_parser() -> argparse.ArgumentParser:
     batch_prepare.add_argument("--output-dir", type=Path, required=True)
     batch_prepare.add_argument(
         "--batch",
-        choices=["sales_customer_service", "real_estate", "hr_finance_legal"],
+        choices=[
+            "sales_customer_service",
+            "real_estate",
+            "hr_finance_legal",
+            "logistics_transport",
+        ],
         required=True,
     )
     batch_prepare.add_argument("--tune-per-industry", type=int, default=20)
@@ -98,7 +109,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     batch_merge.add_argument(
         "--batch",
-        choices=["sales_customer_service", "real_estate", "hr_finance_legal"],
+        choices=[
+            "sales_customer_service",
+            "real_estate",
+            "hr_finance_legal",
+            "logistics_transport",
+        ],
         required=True,
     )
     batch_merge.add_argument("--candidate-run", type=Path, required=True)
@@ -199,6 +215,10 @@ def main(argv: Sequence[str] | None = None) -> int:
                         from job_warehouse.skills.real_estate import REAL_ESTATE_MAPPINGS
 
                         taxonomy_dir = args.taxonomy_dir or REAL_ESTATE_MAPPINGS
+                    elif args.batch == "logistics_transport":
+                        from job_warehouse.skills.logistics import LOGISTICS_MAPPINGS
+
+                        taxonomy_dir = args.taxonomy_dir or LOGISTICS_MAPPINGS
                     elif args.batch == "hr_finance_legal":
                         from job_warehouse.skills.hr_finance import HR_FINANCE_MAPPINGS
 

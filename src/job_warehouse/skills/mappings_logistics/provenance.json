@@ -1,0 +1,243 @@
+{
+  "method": "One bounded survey40 texts plus finite targeted keyword examples; reuse stable concept codes and conservative explicit-keyword policy.",
+  "runtime_llm_calls": 0,
+  "base_hr_taxonomy_sha256": "20068ad0876ddee8f883195474d3e584c4b9a65e5f6705a99cc0367034b57640",
+  "evidence_location": "Offline survey and alias evidence bundle outside Git.",
+  "new_specific_concepts": [
+    {
+      "skill_code": "review_quan_ly_kho",
+      "skill_name": "Quản lý kho",
+      "aliases": [
+        "quản lý kho",
+        "quản lí kho",
+        "warehouse management",
+        "vận hành kho"
+      ]
+    },
+    {
+      "skill_code": "log_warehouse_operations",
+      "skill_name": "Nghiệp vụ kho",
+      "aliases": [
+        "nghiệp vụ kho",
+        "nhân viên kho",
+        "làm qua kho",
+        "thủ kho",
+        "warehouse operations"
+      ]
+    },
+    {
+      "skill_code": "log_inventory_control",
+      "skill_name": "Quản lý tồn kho",
+      "aliases": [
+        "quản lý tồn kho",
+        "kiểm soát tồn kho",
+        "inventory control",
+        "inventory management"
+      ]
+    },
+    {
+      "skill_code": "review_kiem_ke_hang_hoa",
+      "skill_name": "Kiểm kê hàng hóa",
+      "aliases": [
+        "kiểm kê hàng hóa",
+        "kiểm kê tồn kho",
+        "kiểm kê",
+        "stocktaking",
+        "stock taking"
+      ]
+    },
+    {
+      "skill_code": "review_thu_mua",
+      "skill_name": "Thu mua",
+      "aliases": [
+        "thu mua",
+        "mua hàng",
+        "procurement",
+        "purchasing"
+      ]
+    },
+    {
+      "skill_code": "log_supplier_sourcing",
+      "skill_name": "Phát triển nhà cung cấp",
+      "aliases": [
+        "phát triển nhà cung cấp",
+        "tìm kiếm nhà cung cấp",
+        "supplier sourcing"
+      ]
+    },
+    {
+      "skill_code": "log_supplier_evaluation",
+      "skill_name": "Đánh giá nhà cung cấp",
+      "aliases": [
+        "đánh giá nhà cung cấp",
+        "lựa chọn nhà cung cấp",
+        "supplier evaluation"
+      ]
+    },
+    {
+      "skill_code": "review_xuat_nhap_khau",
+      "skill_name": "Xuất nhập khẩu",
+      "aliases": [
+        "nghiệp vụ xuất nhập khẩu",
+        "nghiệp vụ XNK",
+        "quy trình xuất nhập khẩu",
+        "quy trình khai quan xuất nhập khẩu",
+        "import export operations"
+      ]
+    },
+    {
+      "skill_code": "log_import_export_documents",
+      "skill_name": "Chứng từ xuất nhập khẩu",
+      "aliases": [
+        "chứng từ xuất nhập khẩu",
+        "chứng từ XNK",
+        "bộ hồ sơ xuất nhập khẩu",
+        "import export documentation"
+      ]
+    },
+    {
+      "skill_code": "review_khai_bao_hai_quan",
+      "skill_name": "Khai báo hải quan",
+      "aliases": [
+        "khai báo hải quan",
+        "khai quan",
+        "thủ tục hải quan",
+        "customs clearance",
+        "customs declaration"
+      ]
+    },
+    {
+      "skill_code": "review_incoterms",
+      "skill_name": "Incoterms",
+      "aliases": [
+        "Incoterms",
+        "Incoterm"
+      ]
+    },
+    {
+      "skill_code": "log_supply_chain",
+      "skill_name": "Quản trị chuỗi cung ứng",
+      "aliases": [
+        "quản trị chuỗi cung ứng",
+        "quản lý chuỗi cung ứng",
+        "supply chain management"
+      ]
+    },
+    {
+      "skill_code": "review_dieu_do_van_tai",
+      "skill_name": "Điều độ vận tải",
+      "aliases": [
+        "điều phối vận tải",
+        "điều độ vận tải",
+        "điều phối xe",
+        "điều hành xe",
+        "điều vận",
+        "transport coordination"
+      ]
+    },
+    {
+      "skill_code": "log_fleet_management",
+      "skill_name": "Quản lý đội xe",
+      "aliases": [
+        "quản lý đội xe",
+        "quản lý xe",
+        "fleet management"
+      ]
+    },
+    {
+      "skill_code": "log_route_management",
+      "skill_name": "Quản lý lộ trình",
+      "aliases": [
+        "quản lý lộ trình",
+        "lập lộ trình",
+        "route planning"
+      ]
+    },
+    {
+      "skill_code": "log_route_knowledge",
+      "skill_name": "Thông thạo đường đi",
+      "aliases": [
+        "rành đường",
+        "thông thạo đường",
+        "am hiểu đường"
+      ]
+    },
+    {
+      "skill_code": "log_delivery",
+      "skill_name": "Giao nhận hàng hóa",
+      "aliases": [
+        "giao hàng",
+        "giao nhận hàng",
+        "delivery experience",
+        "kinh nghiệm giao nhận"
+      ]
+    },
+    {
+      "skill_code": "log_car_driving",
+      "skill_name": "Lái xe ô tô",
+      "aliases": [
+        "lái xe ô tô",
+        "lái xe oto",
+        "lái xe từ 4",
+        "lái xe 4",
+        "kinh nghiệm lái xe",
+        "lái xe cho gia đình",
+        "lái xe đưa rước",
+        "car driving"
+      ]
+    },
+    {
+      "skill_code": "log_motorcycle_driving",
+      "skill_name": "Lái xe máy",
+      "aliases": [
+        "lái xe máy",
+        "lái xe mô tô"
+      ]
+    },
+    {
+      "skill_code": "log_forklift",
+      "skill_name": "Vận hành xe nâng",
+      "aliases": [
+        "lái xe nâng",
+        "vận hành xe nâng",
+        "forklift operation"
+      ]
+    },
+    {
+      "skill_code": "review_wms",
+      "skill_name": "WMS",
+      "aliases": [
+        "WMS"
+      ]
+    },
+    {
+      "skill_code": "log_tms",
+      "skill_name": "TMS",
+      "aliases": [
+        "TMS"
+      ]
+    },
+    {
+      "skill_code": "log_gps",
+      "skill_name": "GPS",
+      "aliases": [
+        "GPS"
+      ]
+    },
+    {
+      "skill_code": "log_fifo",
+      "skill_name": "FIFO",
+      "aliases": [
+        "FIFO"
+      ]
+    },
+    {
+      "skill_code": "log_lifo",
+      "skill_name": "LIFO",
+      "aliases": [
+        "LIFO"
+      ]
+    }
+  ],
+  "independent_quality_claim": false
+}

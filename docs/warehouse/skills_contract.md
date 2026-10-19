@@ -486,3 +486,20 @@ vòng thử nghiệm cũ được giữ nguyên. Gate AI cũ vẫn giữ ngưỡ
 đều kiểm hash, toàn bộ cặp–bằng chứng, giữ baseline và đối soát đầu vào.
 Các đợt tiếp theo áp dụng cách làm hữu hạn: khảo sát/từ điển, xử lý một lượt,
 kiểm các lỗi gán sai rõ và đối soát; không lặp chỉ để tăng số tin có skill.
+
+## Gói kho vận và vận tải
+
+`silver skills --batch logistics_transport` dùng `mappings_logistics/` cho
+hai nhãn nguồn xuất nhập khẩu/thu mua/kho vận và vận tải/lái xe/giao nhận.
+Tái dùng chính sách từ khóa rõ: bỏ qua claim chưa rõ, giữ tin; không mở vòng
+kiểm định lặp để đạt recall. Có các cụm thu mua, quản lý kho/tồn kho, kiểm kê,
+chứng từ XNK, hải quan, điều độ, giao nhận; WMS/TMS/GPS chỉ lấy khi có ngữ cảnh
+năng lực rõ. Dùng phần mềm quản lý kho không tự thành nghiệp vụ quản lý kho;
+sales logistics và bằng cấp ngành học không tự thành vận hành logistics.
+
+Chủ dự án cho phép bằng/chứng chỉ lái xe được nêu rõ tạo skill tương ứng
+ô tô, xe máy hoặc xe nâng. Không suy số năm kinh nghiệm hoặc quy đổi hạng
+bằng cũ–mới; có xe máy/điện thoại không tự thành kỹ năng lái xe. Chứng chỉ
+được công ty hứa đào tạo/cấp trong tương lai không tính là năng lực có sẵn.
+CLI giữ `--taxonomy-dir` nếu người vận hành cung cấp. Các đợt trước giữ
+kết quả đã nhận; không dùng điểm kiểm định thí điểm để chứng nhận gói này.

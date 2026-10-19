@@ -19,6 +19,10 @@ from job_warehouse.skills.input import (
 from job_warehouse.skills.profile import text_hash
 
 BATCH_SCOPES = {
+    "logistics_transport": (
+        "Xuất Nhập Khẩu / Thu mua - Kho Vận - Chuỗi cung ứng",
+        "Vận Tải - Lái xe - Giao nhận",
+    ),
     "hr_finance_legal": (
         "Nhân sự / Hành chính - Thư ký",
         "Ngân hàng / Tài chính - Đầu tư - Chứng Khoán",

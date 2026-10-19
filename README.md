@@ -116,6 +116,11 @@ tin; không đặt mục tiêu recall hoặc gọi điểm development là kiể
 Các vòng AI cũ giữ nguyên kết quả. Snapshot và quyết định nghiệm thu nằm ngoài
 Git; chưa publish PostgreSQL.
 
+Gói kho vận/vận tải chạy bằng `silver skills --batch logistics_transport`,
+dùng từ khóa chuyên môn và mapping bằng/chứng chỉ lái xe đã chốt. Không suy
+vận hành logistics từ sales logistics hoặc từ việc chỉ sở hữu phương tiện.
+Tin không có từ khóa rõ vẫn giữ nguyên; kết quả mới phải đối soát trước khi nhận.
+
 ## Warehouse lịch sử — S3 enrichment
 
 **Trục ngành hiện hành:** dùng `job_industry`, không dùng `occupation_primary`
