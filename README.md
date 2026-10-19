@@ -130,6 +130,10 @@ Gói xây dựng/thiết kế/dự án dùng `silver skills --batch construction
 cho bốn nhãn nguồn. Từ điển gồm công cụ thiết kế, BIM, bóc tách, dự toán và
 nghiệp vụ thi công/dự án có bằng chứng rõ; không suy từ ngành học hay nhãn ngành.
 
+Gói giáo dục/ngôn ngữ dùng `silver skills --batch education_language` cho ba
+nhãn nguồn; nhận kỹ năng giảng dạy, biên phiên dịch và công cụ có bằng chứng
+trong requirements. Bỏ qua phần chưa rõ, giữ mọi tin và kết quả các đợt trước.
+
 ## Warehouse lịch sử — S3 enrichment
 
 **Trục ngành hiện hành:** dùng `job_industry`, không dùng `occupation_primary`

@@ -536,3 +536,22 @@ trình; QC/TCVN trong danh sách quy chuẩn không tự thành nghề kiểm so
 lượng. Giữ mọi tin, bỏ qua phần chưa rõ; không kiểm định lặp để tăng recall.
 Khảo sát và test là kiểm tra phát triển, không phải chứng nhận độ chính xác
 thống kê độc lập. Kết quả các đợt trước được giữ nguyên khi ghép.
+
+## Gói giáo dục và ngôn ngữ
+
+`silver skills --batch education_language` dùng `mappings_education/` cho ba
+nhãn giáo dục/biên phiên dịch, giáo dục/CSKH và giáo dục. Tái sử dụng các kỹ
+năng cũ khi requirements nêu rõ; thêm giảng dạy, soạn giáo án, quản lý lớp,
+biên dịch, phiên dịch, tư vấn tuyển sinh và công cụ hỗ trợ học tập/dịch thuật.
+
+Bằng cấp/ngành học, tên trung tâm ngoại ngữ hoặc sở thích giảng dạy không
+tự thành kỹ năng. Dùng công cụ dịch thuật không tự thành năng lực biên dịch;
+biên phiên dịch kết hợp không tự thêm các nhãn con nếu chỉ có cùng một cụm.
+Chứng chỉ nghề TESOL/TEFL/CELTA được tính cho giảng dạy theo quyết định cho
+phép chứng chỉ nghề cụ thể; không tự suy thêm tiếng Anh. Chứng chỉ ngoại ngữ
+theo bảng ánh xạ hữu hạn hiện có. Không suy trình độ thành thạo hoặc số năm.
+Thông báo bảo mật hồ sơ không phải năng lực nghiệp vụ của ứng viên.
+
+Chốt một lượt theo từ khóa rõ: giữ mọi tin, bỏ qua phần chưa rõ/không khớp;
+không mục tiêu recall hay kiểm định AI lặp. Mẫu khảo sát/test là development,
+không chứng nhận thống kê độc lập. Kết quả cũ giữ nguyên khi ghép.

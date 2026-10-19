@@ -19,6 +19,11 @@ from job_warehouse.skills.input import (
 from job_warehouse.skills.profile import text_hash
 
 BATCH_SCOPES = {
+    "education_language": (
+        "Giáo dục - Đào tạo / Biên phiên dịch",
+        "Giáo dục - Đào tạo / Chăm sóc khách hàng",
+        "Giáo dục - Đào tạo",
+    ),
     "construction_design_projects": (
         "Xây dựng",
         "Kiến trúc - Thiết kế nội ngoại thất",

@@ -1,0 +1,136 @@
+{
+  "method": "One bounded development survey:30 deterministic requirements plus finite targeted examples; no independent quality claim.",
+  "base_construction_taxonomy_sha256": "e29c5034580214982be20e4bf196ecf116ca696d73242b931761af8806d1d7a2",
+  "new_specific_concepts": [
+    {
+      "skill_code": "review_giang_day",
+      "skill_name": "Giảng dạy",
+      "aliases": [
+        "giảng dạy",
+        "dạy học",
+        "teaching",
+        "TESOL",
+        "TEFL",
+        "CELTA"
+      ]
+    },
+    {
+      "skill_code": "edu_lesson_planning",
+      "skill_name": "Soạn giáo án",
+      "aliases": [
+        "soạn giáo án",
+        "soạn bài giảng",
+        "lập giáo án",
+        "xây dựng giáo án",
+        "lesson planning"
+      ]
+    },
+    {
+      "skill_code": "edu_classroom_management",
+      "skill_name": "Quản lý lớp học",
+      "aliases": [
+        "quản lý lớp học",
+        "quản lí lớp học",
+        "classroom management"
+      ]
+    },
+    {
+      "skill_code": "review_bien_phien_dich",
+      "skill_name": "Biên phiên dịch",
+      "aliases": [
+        "biên phiên dịch",
+        "biên - phiên dịch",
+        "biên/phiên dịch",
+        "translation and interpretation"
+      ]
+    },
+    {
+      "skill_code": "edu_translation",
+      "skill_name": "Biên dịch",
+      "aliases": [
+        "biên dịch",
+        "dịch thuật",
+        "edit bản dịch",
+        "translation"
+      ]
+    },
+    {
+      "skill_code": "edu_interpreting",
+      "skill_name": "Phiên dịch",
+      "aliases": [
+        "phiên dịch",
+        "interpreting",
+        "interpretation"
+      ]
+    },
+    {
+      "skill_code": "edu_admissions_counselling",
+      "skill_name": "Tư vấn tuyển sinh",
+      "aliases": [
+        "tư vấn tuyển sinh",
+        "admissions counselling",
+        "admissions counseling"
+      ]
+    },
+    {
+      "skill_code": "edu_zoom",
+      "skill_name": "Zoom",
+      "aliases": [
+        "Zoom"
+      ]
+    },
+    {
+      "skill_code": "edu_google_meet",
+      "skill_name": "Google Meet",
+      "aliases": [
+        "Google Meet"
+      ]
+    },
+    {
+      "skill_code": "edu_google_classroom",
+      "skill_name": "Google Classroom",
+      "aliases": [
+        "Google Classroom"
+      ]
+    },
+    {
+      "skill_code": "edu_moodle",
+      "skill_name": "Moodle",
+      "aliases": [
+        "Moodle"
+      ]
+    },
+    {
+      "skill_code": "edu_lms",
+      "skill_name": "LMS",
+      "aliases": [
+        "LMS",
+        "Learning Management System"
+      ]
+    },
+    {
+      "skill_code": "edu_trados",
+      "skill_name": "Trados",
+      "aliases": [
+        "Trados",
+        "SDL Trados"
+      ]
+    },
+    {
+      "skill_code": "edu_memoq",
+      "skill_name": "memoQ",
+      "aliases": [
+        "memoQ"
+      ]
+    },
+    {
+      "skill_code": "edu_wordfast",
+      "skill_name": "Wordfast",
+      "aliases": [
+        "Wordfast"
+      ]
+    }
+  ],
+  "runtime_llm_calls": 0,
+  "source_evidence": "Offline batch06 survey and targeted examples outside Git; substring counts are hints, not skill statistics."
+}
