@@ -32,6 +32,13 @@ def build_parser() -> argparse.ArgumentParser:
     register.add_argument("--report-dir", type=Path, required=True)
     silver = commands.add_parser("silver", help="offline core historical normalization")
     silver_commands = silver.add_subparsers(dest="silver_command", required=True)
+    db_preflight = silver_commands.add_parser(
+        "db-preflight", help="verify frozen S4/S5 inputs without changing PostgreSQL"
+    )
+    db_preflight.add_argument("--jobs-run", type=Path, required=True)
+    db_preflight.add_argument("--skills-run", type=Path, required=True)
+    db_preflight.add_argument("--output-dir", type=Path, required=True)
+    silver_commands.add_parser("db-migrate", help="apply Silver schema only; never load jobs")
     core = silver_commands.add_parser("core", help="normalize the pinned file outside Git")
     core.add_argument("--input", type=Path, required=True)
     core.add_argument("--output-dir", type=Path, required=True)
@@ -167,6 +174,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         if args.command == "silver":
+            if args.silver_command == "db-preflight":
+                from job_warehouse.silver.database.commands import run_preflight
+
+                run_preflight(args.jobs_run, args.skills_run, args.output_dir)
+                print(f"Silver preflight passed; report={args.output_dir / 'preflight.json'}")
+                return 0
+            if args.silver_command == "db-migrate":
+                from job_warehouse.silver.database.commands import run_migration
+
+                run_migration()
+                return 0
             if args.silver_command == "skills-batch-merge":
                 from job_warehouse.skills.batch_merge import merge_batch
 

@@ -7,6 +7,7 @@ nguồn, alias và ghép cha theo quyết định chủ dự án. CLI ngành xu�
 đầy đủ và tập phân tích theo ngưỡng ≥500, giữ lưu vết về Bronze.
 S5 đã kiểm định offline bản thí điểm trích kỹ năng từ requirements cho ba
 ngành; kết quả Parquet và hồ sơ nghiệm thu lưu riêng ngoài repository.
+S6 đợt 1 có kiểm tra đầu vào và migration PostgreSQL Silver; chưa nạp dữ liệu.
 Silver database publish/Gold/dashboard/Airflow chưa triển khai.
 CLI `silver skills-apply-review` hỗ trợ nhập các claim kỹ năng đã rà soát
 trong bundle có lưu vết, tạo output mới và giữ nguyên các tin ngoài tập review.
@@ -145,6 +146,14 @@ không suy từ bằng cấp, nhãn ngành, chứng nhận nhà máy hay nơi l�
 Gói năm nhãn tổng hợp dùng `silver skills --batch general_industries`;
 trích từ requirements bằng từ điển hữu hạn, không phân ngành lại hoặc ép
 tin thực tập/lao động phổ thông phải có skill. Kết quả cũ giữ nguyên khi ghép.
+
+## Warehouse lịch sử — S6 PostgreSQL (đợt 1)
+
+`silver db-preflight` kiểm toàn bộ đầu vào S4–S5 đã khóa, xuất một báo cáo
+ngoài Git. `silver db-migrate` tạo hai bảng nghiệp vụ và nhật ký kỹ thuật,
+không nạp tin hoặc skill. Code ở `silver/database/`; xem
+[hướng dẫn, schema và kiểm thử PostgreSQL](docs/warehouse/silver_database_operations.md).
+Loader và công bố dữ liệu thuộc đợt tiếp theo.
 
 ## Warehouse lịch sử — S3 enrichment
 

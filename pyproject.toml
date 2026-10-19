@@ -39,6 +39,7 @@ where = ["src"]
 [tool.setuptools.package-data]
 "job_warehouse.bronze" = ["migrations/*.sql"]
 "job_warehouse.silver" = ["mappings/*.csv"]
+"job_warehouse.silver.database" = ["migrations/*.sql"]
 "job_warehouse.silver.enrichment" = ["mappings/*.csv"]
 "job_warehouse.silver.salary" = ["*.csv"]
 "job_warehouse.skills" = [
